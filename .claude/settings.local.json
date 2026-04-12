@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(shopify version:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(shopify theme:*)",
+      "Bash(jobs -l)",
+      "Bash(lsof -ti:9292)",
+      "Bash(xargs kill:*)",
+      "Bash(curl -sI http://127.0.0.1:9292)",
+      "Bash(ps -p 31280 -o command=)"
+    ]
+  }
+}

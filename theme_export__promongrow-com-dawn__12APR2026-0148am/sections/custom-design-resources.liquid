@@ -1,0 +1,219 @@
+<!-- Promo & Grow: Design Resources Page -->
+
+<!-- 1. Hero -->
+<section class="png-section-white" style="text-align: center; padding-bottom: 32px;">
+  <div class="page-width" style="max-width: 640px;">
+    <span class="png-eyebrow">Design resources</span>
+    <h1 class="png-dr-hero__heading">We don't do the design. We make it easy.</h1>
+    <p class="png-dr-hero__subtext">Free templates, guides, and AI prompts to help you create print-ready artwork in minutes. Every order is proofed before production.</p>
+  </div>
+</section>
+
+<!-- 2. Three-step process -->
+<section class="png-section-white" style="padding-top: 0;">
+  <div class="page-width">
+    <div class="png-section-offwhite" style="padding: 36px 32px;">
+      <div class="png-steps">
+        <div class="png-step">
+          <div class="png-step__number">1</div>
+          <h3 class="png-step__title">Download template</h3>
+          <p class="png-step__description">Pre-sized to your product with bleed guides</p>
+        </div>
+        <div class="png-step__arrow" aria-hidden="true">&rarr;</div>
+        <div class="png-step">
+          <div class="png-step__number">2</div>
+          <h3 class="png-step__title">Add your design</h3>
+          <p class="png-step__description">Use Canva, Illustrator, or our AI prompts</p>
+        </div>
+        <div class="png-step__arrow" aria-hidden="true">&rarr;</div>
+        <div class="png-step">
+          <div class="png-step__number png-step__number--accent">3</div>
+          <h3 class="png-step__title">Upload and order</h3>
+          <p class="png-step__description">We proof before production. You approve, we print.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Downloadable templates -->
+<section class="png-section-white">
+  <div class="page-width">
+    <div class="png-section-header">
+      <h2 class="png-section-header__title">Download templates</h2>
+      <span class="png-section-header__meta">PDF / AI format</span>
+    </div>
+    <div class="png-dr-templates-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'template_card' -%}
+          <div class="png-dr-template-card" {{ block.shopify_attributes }}>
+            <div class="png-dr-template-card__preview">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 400 | image_tag: class: 'png-dr-template-card__img', loading: 'lazy' }}
+              {%- else -%}
+                <div class="png-dr-template-card__placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+              {%- endif -%}
+            </div>
+            <h3 class="png-dr-template-card__name">{{ block.settings.name }}</h3>
+            <p class="png-dr-template-card__dims">{{ block.settings.dimensions }}</p>
+            <div class="png-dr-template-card__actions">
+              {%- if block.settings.pdf_url != blank -%}
+                <a href="{{ block.settings.pdf_url }}" class="png-dr-dl-btn" download>PDF</a>
+              {%- endif -%}
+              {%- if block.settings.ai_url != blank -%}
+                <a href="{{ block.settings.ai_url }}" class="png-dr-dl-btn" download>AI</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- 4. File requirements -->
+<section class="png-section-white">
+  <div class="page-width">
+    <div class="png-section-header">
+      <h2 class="png-section-header__title">File requirements</h2>
+    </div>
+    <div class="png-dr-reqs-grid">
+      <div class="png-dr-req-card">
+        <h3 class="png-dr-req-card__title">Accepted formats</h3>
+        <p class="png-dr-req-card__text">PDF, AI, EPS, PNG, PSD, JPG</p>
+      </div>
+      <div class="png-dr-req-card">
+        <h3 class="png-dr-req-card__title">Resolution</h3>
+        <p class="png-dr-req-card__text">300 DPI minimum (150 DPI for items over 48")</p>
+      </div>
+      <div class="png-dr-req-card">
+        <h3 class="png-dr-req-card__title">Color space</h3>
+        <p class="png-dr-req-card__text">CMYK preferred. RGB accepted (we convert)</p>
+      </div>
+      <div class="png-dr-req-card">
+        <h3 class="png-dr-req-card__title">Bleed</h3>
+        <p class="png-dr-req-card__text">0.125" on all sides. Keep text 0.25" from trim edge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. AI prompt guide -->
+<section class="png-section-white">
+  <div class="page-width">
+    <div class="png-section-header" style="flex-direction: column; gap: 4px; align-items: flex-start;">
+      <h2 class="png-section-header__title">AI prompt guide</h2>
+      <p class="png-section-header__meta" style="margin: 0;">Copy these into ChatGPT or Canva AI to generate event-ready graphics.</p>
+    </div>
+    <div class="png-dr-prompts">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'ai_prompt' -%}
+          <details class="png-dr-prompt-card" {{ block.shopify_attributes }}>
+            <summary class="png-dr-prompt-card__header">
+              <span class="png-dr-prompt-card__title">{{ block.settings.prompt_title }}</span>
+              <span class="png-dr-prompt-card__toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="png-dr-prompt-card__body">
+              <pre class="png-dr-prompt-card__text">{{ block.settings.prompt_text }}</pre>
+              <button class="png-dr-copy-btn" data-copy="{{ block.settings.prompt_text | escape }}" type="button">
+                Copy prompt
+              </button>
+            </div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- 6. Bottom CTA -->
+<section class="png-section-white" style="padding-top: 16px;">
+  <div class="page-width">
+    <div class="png-cta-banner">
+      <div class="png-cta-banner__content">
+        <h2 class="png-cta-banner__title">Still need help? Call us. We'll walk you through it.</h2>
+      </div>
+      <div class="png-cta-banner__actions">
+        <a href="/pages/contact" class="png-btn-primary">Get a quote</a>
+        <a href="tel:8448833308" class="png-btn-ghost--light">(844) 883-3308</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Copy prompt JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.png-dr-copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = this.getAttribute('data-copy');
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = 'Copied!';
+            setTimeout(function () { btn.textContent = 'Copy prompt'; }, 2000);
+          });
+        }
+      });
+    });
+    document.querySelectorAll('.png-dr-prompt-card').forEach(function (card) {
+      card.addEventListener('toggle', function () {
+        var toggle = this.querySelector('.png-dr-prompt-card__toggle');
+        toggle.textContent = this.open ? '−' : '+';
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Design Resources",
+  "class": "png-design-resources-section",
+  "max_blocks": 20,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "template_card",
+      "name": "Template",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Product name", "default": "10'x10' Tent Canopy" },
+        { "type": "text", "id": "dimensions", "label": "Dimensions + bleed", "default": "120\" x 120\" + 0.125\" bleed" },
+        { "type": "image_picker", "id": "image", "label": "Preview image" },
+        { "type": "url", "id": "pdf_url", "label": "PDF download URL" },
+        { "type": "url", "id": "ai_url", "label": "AI download URL" }
+      ]
+    },
+    {
+      "type": "ai_prompt",
+      "name": "AI Prompt",
+      "settings": [
+        { "type": "text", "id": "prompt_title", "label": "Prompt title", "default": "Tent canopy design" },
+        { "type": "textarea", "id": "prompt_text", "label": "Prompt text", "default": "Design a tent canopy for [BUSINESS NAME]..." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Design Resources",
+      "blocks": [
+        { "type": "template_card", "settings": { "name": "10'x10' Tent Canopy", "dimensions": "120\" x 120\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "15'x10' Tent Canopy", "dimensions": "180\" x 120\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "20'x10' Tent Canopy", "dimensions": "240\" x 120\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "6ft Table Throw", "dimensions": "132\" x 90.5\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "8ft Table Throw", "dimensions": "156\" x 90.5\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "Teardrop Flag", "dimensions": "30\" x 68\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "Feather Flag", "dimensions": "24\" x 72\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "10ft Back Wall", "dimensions": "120\" x 96\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "10ft Half Wall", "dimensions": "120\" x 48\" + 0.125\" bleed" } },
+        { "type": "template_card", "settings": { "name": "Step & Repeat Backdrop", "dimensions": "96\" x 96\" + 0.125\" bleed" } },
+        { "type": "ai_prompt", "settings": { "prompt_title": "Tent canopy design", "prompt_text": "Design a full-color tent canopy for [BUSINESS NAME]. The business is [INDUSTRY]. Brand colors are [COLOR 1] and [COLOR 2]. Include the logo centered on the canopy top with the business name and tagline \"[TAGLINE]\" below it. Style: clean, professional, easy to read from 20 feet away. Output as a high-resolution PNG at 300 DPI, 120 inches x 120 inches, CMYK color space." } },
+        { "type": "ai_prompt", "settings": { "prompt_title": "Trade show backdrop", "prompt_text": "Design a trade show backdrop for [BUSINESS NAME]. Industry: [INDUSTRY]. Brand colors: [COLOR 1], [COLOR 2]. Include: large logo centered, tagline below, 3 key selling points or services listed. Style: professional, clean, bold text readable from 10 feet. Output: high-resolution PNG, 300 DPI, 96 x 96 inches, CMYK." } },
+        { "type": "ai_prompt", "settings": { "prompt_title": "Table throw layout", "prompt_text": "Design a 6ft table throw for [BUSINESS NAME]. Industry: [INDUSTRY]. Brand colors: [COLOR 1], [COLOR 2]. Front panel: large centered logo with tagline. Side panels: website URL and phone number. Style: clean, minimal, professional. Output: high-resolution PNG, 300 DPI, 132 x 90.5 inches, CMYK." } },
+        { "type": "ai_prompt", "settings": { "prompt_title": "Feather flag design", "prompt_text": "Design a feather flag for [BUSINESS NAME]. Industry: [INDUSTRY]. Brand colors: [COLOR 1], [COLOR 2]. Include: logo at top, business name vertically or diagonally, one key message (e.g., \"OPEN\", \"SALE\", \"[SERVICE]\"). Style: bold, eye-catching, readable while fluttering. Output: high-resolution PNG, 300 DPI, 24 x 72 inches, CMYK." } },
+        { "type": "ai_prompt", "settings": { "prompt_title": "Step & repeat backdrop", "prompt_text": "Design a step and repeat backdrop for [BUSINESS NAME]. Logos to include: [LOGO 1], [LOGO 2 if sponsor]. Repeat pattern: logos tiled diagonally at alternating sizes. Background: [COLOR — usually white or dark]. Style: classic red-carpet step-and-repeat. Output: high-resolution PNG, 300 DPI, 96 x 96 inches, CMYK." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

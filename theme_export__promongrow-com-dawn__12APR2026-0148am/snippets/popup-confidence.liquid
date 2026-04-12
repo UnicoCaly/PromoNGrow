@@ -1,0 +1,89 @@
+<!-- Promo & Grow: Popup B — First-Order Confidence Builder -->
+<div id="png-popup-confidence" class="png-popup" role="dialog" aria-modal="true" aria-labelledby="popup-confidence-heading" hidden>
+  <div class="png-popup__overlay" data-popup-close></div>
+  <div class="png-popup__modal">
+    <button class="png-popup__close" data-popup-close aria-label="Close">&times;</button>
+
+    <h2 id="popup-confidence-heading" class="png-popup__heading">Your first order? We've got you.</h2>
+    <p class="png-popup__body">
+      We know buying custom event displays online takes trust. Here's what you get with every order:
+    </p>
+
+    <ul class="png-popup__checklist">
+      <li>
+        <span class="png-popup__check" aria-hidden="true">&#10003;</span>
+        <span><strong>Free artwork proof</strong> — nothing prints without your approval</span>
+      </li>
+      <li>
+        <span class="png-popup__check" aria-hidden="true">&#10003;</span>
+        <span><strong>5-day guaranteed delivery</strong> — nationwide</span>
+      </li>
+      <li>
+        <span class="png-popup__check" aria-hidden="true">&#10003;</span>
+        <span><strong>4.8-star rating</strong> from 19 Google reviews</span>
+      </li>
+      <li>
+        <span class="png-popup__check" aria-hidden="true">&#10003;</span>
+        <span><strong>20+ years</strong> in production</span>
+      </li>
+    </ul>
+
+    <div class="png-popup__incentive">
+      <p class="png-popup__incentive-text">Plus — first order ships free over $500</p>
+      <p class="png-popup__incentive-code">Use code: <strong>SHOWUP</strong></p>
+    </div>
+
+    <a href="/collections/bundles" class="png-btn-primary" style="width: 100%; text-align: center; display: block;">
+      Shop bundles — most popular
+    </a>
+    <button class="png-popup__dismiss" data-popup-close>I'm just browsing</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var POPUP_KEY = 'png_confidence_popup_shown';
+  var popup = document.getElementById('png-popup-confidence');
+  if (!popup) return;
+
+  function closePopup() {
+    popup.hidden = true;
+    document.body.style.overflow = '';
+    sessionStorage.setItem(POPUP_KEY, '1');
+  }
+
+  popup.querySelectorAll('[data-popup-close]').forEach(function (el) {
+    el.addEventListener('click', closePopup);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !popup.hidden) closePopup();
+  });
+
+  /* Only show on product pages, for new visitors, once per session */
+  var isProductPage = window.location.pathname.indexOf('/products/') !== -1;
+  if (!isProductPage) return;
+  if (sessionStorage.getItem(POPUP_KEY)) return;
+
+  /* Check if returning customer (has customer object or prior orders cookie) */
+  var isReturning = false;
+  try {
+    if (window.__st && window.__st.cid) isReturning = true;
+    if (document.cookie.indexOf('_shopify_sa_t') !== -1) {
+      /* Has had a previous session — could be returning, but we'll be generous */
+    }
+  } catch (e) {}
+
+  /* For Shopify: check if customer is logged in */
+  if (document.querySelector('meta[name="customer"]')) isReturning = true;
+
+  if (isReturning) return;
+
+  /* Show after 5 seconds */
+  setTimeout(function () {
+    if (sessionStorage.getItem(POPUP_KEY)) return;
+    popup.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }, 5000);
+})();
+</script>

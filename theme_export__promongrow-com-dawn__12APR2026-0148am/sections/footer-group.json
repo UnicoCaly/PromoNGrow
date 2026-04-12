@@ -1,0 +1,23 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "cta-banner": {
+      "type": "custom-cta-banner",
+      "settings": {
+        "heading": "Ready to stand out?",
+        "subtext": "10% off your first order. No gimmicks, no countdown timers.",
+        "primary_label": "Shop bundles",
+        "secondary_label": "Call (844) 883-3308"
+      }
+    },
+    "custom-footer": {
+      "type": "custom-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "cta-banner",
+    "custom-footer"
+  ]
+}

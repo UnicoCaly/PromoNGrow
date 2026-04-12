@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "shopify-theme-dev",
+      "runtimeExecutable": "shopify",
+      "runtimeArgs": ["theme", "dev", "--path", "theme_export__promongrow-com-dawn__12APR2026-0148am"],
+      "port": 9293
+    }
+  ]
+}

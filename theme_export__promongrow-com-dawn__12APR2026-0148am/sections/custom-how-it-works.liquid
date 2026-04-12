@@ -1,0 +1,85 @@
+<!-- Promo & Grow: How It Works -->
+<section class="png-section-white">
+  <div class="page-width">
+    <div class="png-section-offwhite" style="padding: 40px 32px;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <h2 class="png-section-header__title" style="margin: 0 0 6px;">{{ section.settings.heading | default: 'Three steps. Five days. Done.' }}</h2>
+        <p style="font-size: 13px; color: var(--png-text-muted); margin: 0;">{{ section.settings.subtext | default: 'From upload to unboxing — we handle everything in between.' }}</p>
+      </div>
+
+      <div class="png-steps">
+        {%- for block in section.blocks -%}
+          {%- if forloop.index > 1 -%}
+            <div class="png-step__arrow" aria-hidden="true">&rarr;</div>
+          {%- endif -%}
+          <div class="png-step" {{ block.shopify_attributes }}>
+            <div class="png-step__number{% if block.settings.accent %} png-step__number--accent{% endif %}">
+              {{ forloop.index }}
+            </div>
+            <h3 class="png-step__title">{{ block.settings.title }}</h3>
+            <p class="png-step__description">{{ block.settings.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "class": "png-how-it-works-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Three steps. Five days. Done."
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "From upload to unboxing — we handle everything in between."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Step description goes here."
+        },
+        {
+          "type": "checkbox",
+          "id": "accent",
+          "label": "Use copper accent",
+          "default": false,
+          "info": "Fills the step number circle with copper"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Upload artwork", "description": "Order online. Upload files. Need help? We design too." } },
+        { "type": "step", "settings": { "title": "We produce + proof", "description": "Digital proof for approval. Then straight to production." } },
+        { "type": "step", "settings": { "title": "Delivered in 5 days", "description": "To your door or your venue. Nationwide guaranteed.", "accent": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

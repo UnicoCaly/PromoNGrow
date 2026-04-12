@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "contact": {
+      "type": "custom-contact",
+      "settings": {
+        "eyebrow": "Get a quote",
+        "heading": "Tell us what you need.",
+        "subtext": "Custom orders, bulk pricing, or questions — we respond within one business day."
+      }
+    }
+  },
+  "order": [
+    "contact"
+  ]
+}

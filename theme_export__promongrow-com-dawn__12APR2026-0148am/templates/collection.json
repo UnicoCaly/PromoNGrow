@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "banner": {
+      "type": "custom-collection-banner",
+      "settings": {}
+    },
+    "product-list": {
+      "type": "custom-collection-products",
+      "settings": {
+        "products_per_page": 16,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "mark_first_best_seller": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-list"
+  ]
+}

@@ -1,0 +1,121 @@
+<!-- Promo & Grow: Collection Product List (Comparison Grid) -->
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+
+<div class="png-section-white">
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    <div class="page-width">
+
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+        <aside
+          aria-labelledby="verticalTitle"
+          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %} page-width"
+          id="main-collection-filters"
+          data-id="{{ section.id }}"
+        >
+          {% render 'facets',
+            results: collection,
+            enable_filtering: section.settings.enable_filtering,
+            enable_sorting: section.settings.enable_sorting,
+            filter_type: 'horizontal',
+            paginate: paginate
+          %}
+        </aside>
+      {%- endif -%}
+
+      <!-- Product count -->
+      <div class="png-collection-meta">
+        <span class="png-collection-meta__count">
+          {{ collection.products_count }} {{ collection.products_count | pluralize: 'product', 'products' }}
+        </span>
+      </div>
+
+      <!-- Product rows -->
+      <div class="product-grid-container" id="ProductGridContainer">
+        {%- if collection.products.size == 0 -%}
+          <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient"></div>
+            <div class="title-wrapper center">
+              <h2 class="title title--primary">
+                {{ 'sections.collection_template.empty' | t -}}<br>
+                {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: 'underlined-link link' }}
+              </h2>
+            </div>
+          </div>
+        {%- else -%}
+          <div class="collection" id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient"></div>
+            <div class="png-product-list">
+              {%- for product in collection.products -%}
+                {%- liquid
+                  assign lazy_load = false
+                  if forloop.index > 4
+                    assign lazy_load = true
+                  endif
+                  assign is_best = false
+                  if forloop.index == 1 and section.settings.mark_first_best_seller
+                    assign is_best = true
+                  endif
+                  for tag in product.tags
+                    if tag == 'best-seller'
+                      assign is_best = true
+                    endif
+                  endfor
+                -%}
+                {% render 'product-row-card',
+                  card_product: product,
+                  is_best_seller: is_best,
+                  lazy_load: lazy_load
+                %}
+              {%- endfor -%}
+            </div>
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            {% render 'pagination', paginate: paginate, anchor: '' %}
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collection Products",
+  "class": "png-collection-products-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "Enable filtering"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "Enable sorting"
+    },
+    {
+      "type": "checkbox",
+      "id": "mark_first_best_seller",
+      "default": false,
+      "label": "Mark first product as best seller",
+      "info": "Products tagged 'best-seller' are always marked"
+    }
+  ]
+}
+{% endschema %}
