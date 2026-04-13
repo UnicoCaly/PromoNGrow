@@ -1,0 +1,67 @@
+<!-- Promo & Grow: Collection Hero Banner -->
+{%- liquid
+  assign handle = collection.handle
+  assign eyebrow = collection.title
+  assign headline = 'Quality you can count on.'
+  assign subtext = ''
+
+  case handle
+    when 'tents-canopies'
+      assign headline = "Your brand's first impression."
+      assign subtext = 'Full-color dye sublimation on 600D polyester. Heavy-duty aluminum frames.'
+    when 'bundles'
+      assign headline = 'Everything your event needs. One order.'
+      assign subtext = 'Save 15%+ when you bundle tent, walls, and accessories.'
+    when 'backdrop-display'
+      assign headline = 'Your backdrop. Your stage.'
+      assign subtext = 'SEG lightboxes, popup displays, and step-and-repeats.'
+    when 'accessories'
+      assign headline = 'The finishing touches.'
+      assign subtext = 'Flags, table throws, and everything in between.'
+    when 'wraps'
+      assign headline = 'Cover every surface.'
+      assign subtext = 'Vinyl, fabric, and specialty wraps for walls, vehicles, and more.'
+  endcase
+-%}
+
+<section class="png-collection-banner">
+  <div class="page-width">
+    <div class="png-collection-banner__inner">
+      <div class="png-collection-banner__content">
+        <span class="png-eyebrow">{{ eyebrow }}</span>
+        <h1 class="png-collection-banner__heading">{{ headline }}</h1>
+        {%- if subtext != blank -%}
+          <p class="png-collection-banner__subtext">{{ subtext }}</p>
+        {%- endif -%}
+        {%- if collection.description != blank -%}
+          <div class="png-collection-banner__description">{{ collection.description }}</div>
+        {%- endif -%}
+      </div>
+      <div class="png-collection-banner__image">
+        {%- if collection.image -%}
+          {{
+            collection.image
+            | image_url: width: 600
+            | image_tag:
+              class: 'png-collection-banner__img',
+              loading: 'eager',
+              sizes: '(min-width: 750px) 35vw, 100vw',
+              widths: '300, 400, 600'
+          }}
+        {%- else -%}
+          <div class="png-collection-banner__placeholder">
+            {{ 'collection-1' | placeholder_svg_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "class": "png-collection-banner-section",
+  "settings": []
+}
+{% endschema %}

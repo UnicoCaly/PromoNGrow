@@ -1,0 +1,89 @@
+<!-- Promo & Grow: Custom Footer -->
+<footer class="png-footer" role="contentinfo">
+  <div class="page-width">
+    <div class="png-footer__main">
+      <!-- Logo + Tagline -->
+      <div class="png-footer__brand">
+        <a href="{{ routes.root_url }}" class="png-footer__logo" aria-label="Promo and Grow home">
+          {%- if shop.brand.logo -%}
+            {{
+              shop.brand.logo
+              | image_url: width: 300
+              | image_tag:
+                class: 'png-logo-img png-logo-img--footer',
+                alt: shop.name,
+                loading: 'lazy',
+                sizes: '150px',
+                widths: '100, 150, 200, 300'
+            }}
+          {%- else -%}
+            <span class="png-logo">
+              <span class="png-logo__text" style="color: #fff;">PROMO</span><span class="png-logo__ampersand">&</span><span class="png-logo__text" style="color: #fff;">GROW</span>
+            </span>
+          {%- endif -%}
+        </a>
+        <p class="png-footer__tagline">Custom event displays. Produced and delivered in 5 days.</p>
+      </div>
+
+      <!-- Link Columns -->
+      <div class="png-footer__links">
+        <div class="png-footer__column">
+          <h3 class="png-footer__column-heading">Shop</h3>
+          <ul class="png-footer__list">
+            <li><a href="/collections/bundles">Bundles</a></li>
+            <li><a href="/collections/tents-canopies">Tents</a></li>
+            <li><a href="/collections/backdrop-display">Displays</a></li>
+            <li><a href="/collections/accessories">Accessories</a></li>
+            <li><a href="/collections/wraps">Wraps</a></li>
+          </ul>
+        </div>
+        <div class="png-footer__column">
+          <h3 class="png-footer__column-heading">Support</h3>
+          <ul class="png-footer__list">
+            <li><a href="/pages/contact">Contact us</a></li>
+            <li><a href="/policies/shipping-policy">Shipping policy</a></li>
+            <li><a href="/policies/refund-policy">Refund policy</a></li>
+            <li><a href="/pages/design-resources">Design resources</a></li>
+          </ul>
+        </div>
+        <div class="png-footer__column">
+          <h3 class="png-footer__column-heading">Company</h3>
+          <ul class="png-footer__list">
+            <li><a href="/pages/reviews">Reviews</a></li>
+            <li><a href="/pages/about">About us</a></li>
+            <li><a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="png-footer__copyright">
+      <p>&copy; {{ 'now' | date: '%Y' }} Promo &amp; Grow &middot; Powered by Pro&aacute;go Branding Dept.</p>
+      <div class="png-footer__legal">
+        <a href="/policies/privacy-policy">Privacy</a>
+        <span>&middot;</span>
+        <a href="/policies/terms-of-service">Terms</a>
+        <span>&middot;</span>
+        <a href="/policies/shipping-policy">Shipping</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "class": "png-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Footer"
+    }
+  ]
+}
+{% endschema %}

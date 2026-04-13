@@ -1,0 +1,66 @@
+<!-- Promo & Grow: Product Row Card -->
+{%- comment -%}
+  Renders a product as a horizontal row for the collection comparison grid.
+  Accepts:
+    - card_product: {Object} Shopify product object
+    - is_best_seller: {Boolean} Show best seller badge
+    - lazy_load: {Boolean} Lazy load the image
+{%- endcomment -%}
+
+{%- liquid
+  assign is_best_seller = is_best_seller | default: false
+  assign compare_price = card_product.compare_at_price
+  assign price = card_product.price
+  assign savings = compare_price | minus: price
+-%}
+
+<a href="{{ card_product.url }}" class="png-product-row{% if is_best_seller %} png-product-row--best-seller{% endif %}">
+  {%- if is_best_seller -%}
+    <span class="png-product-row__badge">Best seller</span>
+  {%- endif -%}
+
+  <div class="png-product-row__image">
+    {%- if card_product.featured_image -%}
+      {{
+        card_product.featured_image
+        | image_url: width: 160
+        | image_tag:
+          class: 'png-product-row__img',
+          loading: lazy_load,
+          sizes: '80px',
+          widths: '80, 160'
+      }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'png-product-row__placeholder' }}
+    {%- endif -%}
+  </div>
+
+  <div class="png-product-row__info">
+    <h3 class="png-product-row__title">{{ card_product.title }}</h3>
+    {%- if card_product.metafields.custom.specs != blank -%}
+      <p class="png-product-row__specs">{{ card_product.metafields.custom.specs }}</p>
+    {%- elsif card_product.variants.size > 1 -%}
+      <p class="png-product-row__specs">{{ card_product.variants.size }} options available</p>
+    {%- endif -%}
+  </div>
+
+  <div class="png-product-row__pricing">
+    <div class="png-product-row__price">
+      {%- if compare_price > price -%}
+        <span class="png-product-row__compare-price">{{ compare_price | money }}</span>
+      {%- endif -%}
+      <span class="png-product-row__current-price">{{ price | money }}</span>
+    </div>
+    {%- if compare_price > price -%}
+      <span class="png-product-row__savings">Save {{ savings | money }}</span>
+    {%- endif -%}
+    <span class="png-product-row__delivery">
+      <span class="png-trust-dot" aria-hidden="true" style="width: 6px; height: 6px;"></span>
+      5-day delivery
+    </span>
+  </div>
+
+  <div class="png-product-row__action">
+    <span class="png-btn-primary png-btn-primary--sm">View</span>
+  </div>
+</a>

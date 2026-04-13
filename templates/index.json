@@ -1,75 +1,173 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "custom-hero",
+      "settings": {
+        "eyebrow": "Custom event displays",
+        "heading": "Your brand, built to show up.",
+        "subtext": "Custom tents, backdrops, flags, and signage — produced and delivered nationwide in 5 business days.",
+        "primary_label": "Shop bundles",
+        "secondary_label": "Get a quote"
+      }
+    },
+    "trust-bar": {
+      "type": "custom-trust-bar",
+      "settings": {}
+    },
+    "categories": {
+      "type": "custom-categories",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "cat-bundles": {
+          "type": "category",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "title": "Bundles",
+            "subtitle": "Save 15%+ →",
+            "highlight_subtitle": true,
+            "link": "/collections/bundles"
           }
         },
-        "button": {
-          "type": "buttons",
+        "cat-tents": {
+          "type": "category",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "title": "Tents",
+            "subtitle": "From $495",
+            "link": "/collections/tents-canopies"
+          }
+        },
+        "cat-displays": {
+          "type": "category",
+          "settings": {
+            "title": "Displays",
+            "subtitle": "From $295",
+            "link": "/collections/backdrop-display"
+          }
+        },
+        "cat-accessories": {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "subtitle": "From $95",
+            "link": "/collections/accessories"
+          }
+        },
+        "cat-wraps": {
+          "type": "category",
+          "settings": {
+            "title": "Wraps",
+            "subtitle": "From $195",
+            "link": "/collections/wraps"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "cat-bundles",
+        "cat-tents",
+        "cat-displays",
+        "cat-accessories",
+        "cat-wraps"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "heading": "Shop by category"
       }
     },
-    "featured_collection": {
+    "how-it-works": {
+      "type": "custom-how-it-works",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "title": "Upload artwork",
+            "description": "Order online. Upload files. Need help? We design too."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "title": "We produce + proof",
+            "description": "Digital proof for approval. Then straight to production."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "title": "Delivered in 5 days",
+            "description": "To your door or your venue. Nationwide guaranteed.",
+            "accent": true
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3"],
+      "settings": {
+        "heading": "Three steps. Five days. Done.",
+        "subtext": "From upload to unboxing — we handle everything in between."
+      }
+    },
+    "best-sellers": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "Best sellers",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
+        "collection": "best-sellers",
+        "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "link",
         "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "testimonials": {
+      "type": "custom-testimonials",
+      "blocks": {
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "quote": "Very friendly, accommodating, and professional quality finish. My go-to for all event branding.",
+            "author": "Endy S."
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "quote": "Excellent advice, multiple options, excellent pricing. Helped our startup have a very successful first year.",
+            "author": "Greg B."
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "quote": "Turn around time was amazing, the work was flawless. Friendly, reliable, quality and time efficient.",
+            "author": "Tiffany P."
+          }
+        }
+      },
+      "block_order": ["review-1", "review-2", "review-3"],
+      "settings": {
+        "heading": "What our clients say",
+        "meta": "4.8 average from 19 Google reviews"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "trust-bar",
+    "categories",
+    "how-it-works",
+    "best-sellers",
+    "testimonials"
   ]
 }

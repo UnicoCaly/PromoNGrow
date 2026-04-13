@@ -1,1 +1,141 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","settings":{}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","description","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"large","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"stacked","mobile_thumbnails":"hide","media_position":"left","image_zoom":"lightbox","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}}},"order":["main","related-products"]}
+{
+  "sections": {
+    "product-header": {
+      "type": "custom-product-header",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "custom_trust": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-trust-badges' %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "custom_trust",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 24,
+        "padding_bottom": 12
+      }
+    },
+    "product-tabs": {
+      "type": "custom-product-tabs",
+      "blocks": {
+        "tab-included": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "What's included",
+            "tab_content": "<p><strong>In the box:</strong></p><ul><li>Custom printed canopy</li><li>Heavy-duty aluminum frame</li><li>Wheeled carry bag</li><li>Stake kit</li><li>Free digital proof</li></ul>"
+          }
+        },
+        "tab-specs": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Specs",
+            "tab_content": "<p><strong>Material:</strong> 600D polyester<br><strong>Print method:</strong> Dye sublimation<br><strong>Frame:</strong> Commercial-grade aluminum<br><strong>Weight:</strong> ~45 lbs<br><strong>Setup time:</strong> Under 5 minutes<br><strong>Wind rating:</strong> 30+ mph with proper staking</p>"
+          }
+        },
+        "tab-design": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Design guide",
+            "tab_content": "<p><strong>File formats:</strong> PDF, AI, or PNG at 300dpi<br><strong>Color mode:</strong> CMYK preferred<br><strong>Bleed:</strong> Include 0.25\" bleed on all sides</p><p>Need help? Use our free Canva templates or contact us for design assistance.</p>"
+          }
+        },
+        "tab-faq": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "FAQ",
+            "tab_content": "<p><strong>What file format do you need?</strong><br>PDF, AI, or PNG at 300dpi. We accept most formats and review everything before production.</p><p><strong>Do you offer design services?</strong><br>Design is not included, but we provide free Canva templates and AI prompt guides. We proof every order.</p><p><strong>Can I order fabric only?</strong><br>Yes. Select \"Fabric only\" in the configurator.</p><p><strong>What's the turnaround?</strong><br>5 business days standard. Rush (3 days) available for an additional fee.</p><p><strong>Can you ship to my venue?</strong><br>Yes. Enter the venue address at checkout.</p><p><strong>Custom size?</strong><br>Call us at (844) 883-3308 or use \"Get a quote.\"</p>"
+          }
+        }
+      },
+      "block_order": ["tab-included", "tab-specs", "tab-design", "tab-faq"],
+      "settings": {}
+    },
+    "artwork-help": {
+      "type": "custom-artwork-help",
+      "settings": {
+        "heading": "Need help with artwork?",
+        "text": "Design not included — but we make it easy. Use our free Canva templates and AI prompt guides to create print-ready files in minutes.",
+        "link_label": "Design resources"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You might also need",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "product-header",
+    "main",
+    "product-tabs",
+    "artwork-help",
+    "related-products"
+  ]
+}

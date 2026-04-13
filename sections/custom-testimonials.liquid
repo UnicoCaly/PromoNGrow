@@ -1,0 +1,71 @@
+<!-- Promo & Grow: Testimonials -->
+<section class="png-section-white">
+  <div class="page-width">
+    <div class="png-section-header">
+      <h2 class="png-section-header__title">{{ section.settings.heading | default: 'What our clients say' }}</h2>
+      <span class="png-section-header__meta">{{ section.settings.meta | default: '4.8 average from 19 Google reviews' }}</span>
+    </div>
+
+    <div class="png-reviews-grid">
+      {%- for block in section.blocks -%}
+        <div class="png-review-card" {{ block.shopify_attributes }}>
+          <div class="png-review-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="png-review-card__quote">"{{ block.settings.quote }}"</p>
+          <p class="png-review-card__author">{{ block.settings.author }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "png-testimonials-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What our clients say"
+    },
+    {
+      "type": "text",
+      "id": "meta",
+      "label": "Subheading",
+      "default": "4.8 average from 19 Google reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Great quality and fast delivery!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author name",
+          "default": "Customer Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "review", "settings": { "quote": "Very friendly, accommodating, and professional quality finish. My go-to for all event branding.", "author": "Endy S." } },
+        { "type": "review", "settings": { "quote": "Excellent advice, multiple options, excellent pricing. Helped our startup have a very successful first year.", "author": "Greg B." } },
+        { "type": "review", "settings": { "quote": "Turn around time was amazing, the work was flawless. Friendly, reliable, quality and time efficient.", "author": "Tiffany P." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

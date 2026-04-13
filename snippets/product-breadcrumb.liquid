@@ -1,0 +1,11 @@
+<!-- Promo & Grow: Product Breadcrumb -->
+<nav class="png-breadcrumb" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}">Home</a>
+  <span aria-hidden="true">/</span>
+  {%- if product.collections.size > 0 -%}
+    {%- assign primary_collection = product.collections | first -%}
+    <a href="{{ primary_collection.url }}">{{ primary_collection.title }}</a>
+    <span aria-hidden="true">/</span>
+  {%- endif -%}
+  <span aria-current="page">{{ product.title }}</span>
+</nav>

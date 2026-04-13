@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "design-resources": {
+      "type": "custom-design-resources",
+      "blocks": {
+        "tpl-1": { "type": "template_card", "settings": { "name": "10'x10' Tent Canopy", "dimensions": "120\" x 120\" + 0.125\" bleed" } },
+        "tpl-2": { "type": "template_card", "settings": { "name": "15'x10' Tent Canopy", "dimensions": "180\" x 120\" + 0.125\" bleed" } },
+        "tpl-3": { "type": "template_card", "settings": { "name": "20'x10' Tent Canopy", "dimensions": "240\" x 120\" + 0.125\" bleed" } },
+        "tpl-4": { "type": "template_card", "settings": { "name": "6ft Table Throw", "dimensions": "132\" x 90.5\" + 0.125\" bleed" } },
+        "tpl-5": { "type": "template_card", "settings": { "name": "8ft Table Throw", "dimensions": "156\" x 90.5\" + 0.125\" bleed" } },
+        "tpl-6": { "type": "template_card", "settings": { "name": "Teardrop Flag", "dimensions": "30\" x 68\" + 0.125\" bleed" } },
+        "tpl-7": { "type": "template_card", "settings": { "name": "Feather Flag", "dimensions": "24\" x 72\" + 0.125\" bleed" } },
+        "tpl-8": { "type": "template_card", "settings": { "name": "10ft Back Wall", "dimensions": "120\" x 96\" + 0.125\" bleed" } },
+        "tpl-9": { "type": "template_card", "settings": { "name": "10ft Half Wall", "dimensions": "120\" x 48\" + 0.125\" bleed" } },
+        "tpl-10": { "type": "template_card", "settings": { "name": "Step & Repeat Backdrop", "dimensions": "96\" x 96\" + 0.125\" bleed" } },
+        "ai-1": { "type": "ai_prompt", "settings": { "prompt_title": "Tent canopy design", "prompt_text": "Design a full-color tent canopy for [BUSINESS NAME]. The business is [INDUSTRY]. Brand colors are [COLOR 1] and [COLOR 2]. Include the logo centered on the canopy top with the business name and tagline \"[TAGLINE]\" below it. Style: clean, professional, easy to read from 20 feet away. Output as a high-resolution PNG at 300 DPI, 120 inches x 120 inches, CMYK color space." } },
+        "ai-2": { "type": "ai_prompt", "settings": { "prompt_title": "Trade show backdrop", "prompt_text": "Design a trade show backdrop for [BUSINESS NAME]. Industry: [INDUSTRY]. Brand colors: [COLOR 1], [COLOR 2]. Include: large logo centered, tagline below, 3 key selling points or services listed. Style: professional, clean, bold text readable from 10 feet. Output: high-resolution PNG, 300 DPI, 96 x 96 inches, CMYK." } },
+        "ai-3": { "type": "ai_prompt", "settings": { "prompt_title": "Table throw layout", "prompt_text": "Design a 6ft table throw for [BUSINESS NAME]. Industry: [INDUSTRY]. Brand colors: [COLOR 1], [COLOR 2]. Front panel: large centered logo with tagline. Side panels: website URL and phone number. Style: clean, minimal, professional. Output: high-resolution PNG, 300 DPI, 132 x 90.5 inches, CMYK." } },
+        "ai-4": { "type": "ai_prompt", "settings": { "prompt_title": "Feather flag design", "prompt_text": "Design a feather flag for [BUSINESS NAME]. Industry: [INDUSTRY]. Brand colors: [COLOR 1], [COLOR 2]. Include: logo at top, business name vertically or diagonally, one key message. Style: bold, eye-catching, readable while fluttering. Output: high-resolution PNG, 300 DPI, 24 x 72 inches, CMYK." } },
+        "ai-5": { "type": "ai_prompt", "settings": { "prompt_title": "Step & repeat backdrop", "prompt_text": "Design a step and repeat backdrop for [BUSINESS NAME]. Logos to include: [LOGO 1], [LOGO 2 if sponsor]. Repeat pattern: logos tiled diagonally at alternating sizes. Background: [COLOR]. Style: classic red-carpet step-and-repeat. Output: high-resolution PNG, 300 DPI, 96 x 96 inches, CMYK." } }
+      },
+      "block_order": ["tpl-1", "tpl-2", "tpl-3", "tpl-4", "tpl-5", "tpl-6", "tpl-7", "tpl-8", "tpl-9", "tpl-10", "ai-1", "ai-2", "ai-3", "ai-4", "ai-5"],
+      "settings": {}
+    }
+  },
+  "order": ["design-resources"]
+}

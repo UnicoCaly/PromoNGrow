@@ -172,7 +172,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {%- render 'logo-text' -%}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -215,7 +215,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {%- render 'logo-text' -%}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -284,6 +284,8 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
+
+      <a href="/pages/contact" class="png-header-cta small-hide">Get a quote</a>
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}

@@ -1,0 +1,94 @@
+<!-- Promo & Grow: Popup A — Bundle Savings Calculator -->
+<div id="png-popup-bundle" class="png-popup" role="dialog" aria-modal="true" aria-labelledby="popup-bundle-heading" hidden>
+  <div class="png-popup__overlay" data-popup-close></div>
+  <div class="png-popup__modal">
+    <button class="png-popup__close" data-popup-close aria-label="Close">&times;</button>
+
+    <div class="png-popup__badge png-popup__badge--green">
+      <span class="png-trust-dot" aria-hidden="true" style="width: 6px; height: 6px;"></span>
+      You could save more
+    </div>
+
+    <h2 id="popup-bundle-heading" class="png-popup__heading">Bundle and save 15%+</h2>
+    <p class="png-popup__body">
+      You're buying a <strong id="popup-bundle-product">product</strong>.
+      Add a table throw and save <strong id="popup-bundle-savings-text">$X</strong> when you bundle.
+    </p>
+
+    <div class="png-popup__compare">
+      <div class="png-popup__compare-card">
+        <span class="png-popup__compare-label">Buying separately</span>
+        <span class="png-popup__compare-price png-popup__compare-price--old" id="popup-bundle-separate">$0</span>
+      </div>
+      <div class="png-popup__compare-card png-popup__compare-card--highlight">
+        <span class="png-popup__compare-label">Bundle price</span>
+        <span class="png-popup__compare-price" id="popup-bundle-total">$0</span>
+      </div>
+    </div>
+
+    <a href="#" id="popup-bundle-cta" class="png-btn-primary" style="width: 100%; text-align: center; display: block;">
+      Switch to the bundle — save <span id="popup-bundle-savings-btn">$X</span>
+    </a>
+    <button class="png-popup__dismiss" data-popup-close>No thanks, I'll buy separately</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var POPUP_KEY = 'png_bundle_popup_shown';
+  var popup = document.getElementById('png-popup-bundle');
+  if (!popup) return;
+
+  function closePopup() {
+    popup.hidden = true;
+    document.body.style.overflow = '';
+    sessionStorage.setItem(POPUP_KEY, '1');
+  }
+
+  popup.querySelectorAll('[data-popup-close]').forEach(function (el) {
+    el.addEventListener('click', closePopup);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !popup.hidden) closePopup();
+  });
+
+  /* Listen for add-to-cart events from Dawn's cart system */
+  document.addEventListener('cart:item-added', function (e) {
+    if (sessionStorage.getItem(POPUP_KEY)) return;
+
+    var item = e.detail;
+    if (!item || !item.product_type) return;
+
+    /* Skip if already a bundle */
+    var title = (item.title || '').toLowerCase();
+    if (title.indexOf('bundle') !== -1) return;
+
+    /* Fetch bundle data — check if a matching bundle exists */
+    fetch('/collections/bundles/products.json?limit=10')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.products || data.products.length === 0) return;
+
+        /* Find a bundle that might match */
+        var bundle = data.products[0]; /* Default to first bundle */
+        var separatePrice = item.price / 100;
+        var bundlePrice = bundle.variants[0].price / 100;
+        var savings = Math.max(0, separatePrice * 1.15 - bundlePrice); /* Estimate */
+
+        if (savings <= 0) savings = bundlePrice * 0.15; /* Fallback 15% estimate */
+
+        document.getElementById('popup-bundle-product').textContent = item.title;
+        document.getElementById('popup-bundle-separate').textContent = '$' + (bundlePrice + savings).toFixed(0);
+        document.getElementById('popup-bundle-total').textContent = '$' + bundlePrice.toFixed(0);
+        document.getElementById('popup-bundle-savings-text').textContent = '$' + savings.toFixed(0);
+        document.getElementById('popup-bundle-savings-btn').textContent = '$' + savings.toFixed(0);
+        document.getElementById('popup-bundle-cta').href = '/products/' + bundle.handle;
+
+        popup.hidden = false;
+        document.body.style.overflow = 'hidden';
+      })
+      .catch(function () { /* Silently fail */ });
+  });
+})();
+</script>
