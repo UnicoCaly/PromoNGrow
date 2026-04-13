@@ -188,6 +188,10 @@
         "heading": "What our clients say",
         "meta": "4.8 average from 19 Google reviews"
       }
+    },
+    "pagefly-home": {
+      "type": "pagefly-home",
+      "settings": {}
     }
   },
   "order": [
@@ -196,6 +200,7 @@
     "categories",
     "how-it-works",
     "best-sellers",
-    "testimonials"
+    "testimonials",
+    "pagefly-home"
   ]
 }
