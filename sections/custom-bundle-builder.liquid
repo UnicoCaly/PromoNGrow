@@ -1,0 +1,120 @@
+<!-- Promo & Grow: Bundle Builder — Package Tiers + Add-ons -->
+<section class="png-section-white">
+  <div class="page-width">
+
+    <!-- Eyebrow -->
+    <span class="png-eyebrow">Choose your package</span>
+
+    <!-- Package Tier Cards -->
+    <div class="png-tiers">
+
+      <!-- Essential -->
+      <div class="png-tier-card">
+        <span class="png-tier-card__name">Essential</span>
+        <span class="png-tier-card__price">{{ section.settings.price_essential | default: '$595' }}</span>
+        <p class="png-tier-card__contents">Canopy + frame<br>Carry bag</p>
+        <a href="{{ section.settings.link_essential | default: '#' }}" class="png-tier-card__btn png-tier-card__btn--outline">Select</a>
+      </div>
+
+      <!-- Pro (Popular) -->
+      <div class="png-tier-card png-tier-card--popular">
+        <span class="png-tier-card__badge">Popular</span>
+        <span class="png-tier-card__name">Pro</span>
+        <span class="png-tier-card__price">{{ section.settings.price_pro | default: '$895' }}</span>
+        <p class="png-tier-card__contents">+ back wall<br>+ stake kit</p>
+        <a href="{{ section.settings.link_pro | default: '#' }}" class="png-tier-card__btn png-tier-card__btn--filled">Select</a>
+      </div>
+
+      <!-- Complete -->
+      <div class="png-tier-card">
+        <span class="png-tier-card__name">Complete</span>
+        <span class="png-tier-card__price">{{ section.settings.price_complete | default: '$1,295' }}</span>
+        <p class="png-tier-card__contents">+ side walls<br>+ table throw</p>
+        <a href="{{ section.settings.link_complete | default: '#' }}" class="png-tier-card__btn png-tier-card__btn--outline">Select</a>
+      </div>
+
+    </div>
+
+    <!-- Optional Add-ons -->
+    <div class="png-addons">
+      <h3 class="png-addons__heading">Optional add-ons</h3>
+      <ul class="png-addons__list">
+        <li class="png-addons__item">
+          <span class="png-addons__checkbox" aria-hidden="true"></span>
+          <span class="png-addons__label">Side walls (set of 2)</span>
+          <span class="png-addons__price">+$180</span>
+        </li>
+        <li class="png-addons__item">
+          <span class="png-addons__checkbox" aria-hidden="true"></span>
+          <span class="png-addons__label">Attachable flags (set of 2)</span>
+          <span class="png-addons__price">+$120</span>
+        </li>
+        <li class="png-addons__item">
+          <span class="png-addons__checkbox" aria-hidden="true"></span>
+          <span class="png-addons__label">Rush production (3 days)</span>
+          <span class="png-addons__price png-addons__price--copper">+$238</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundle Builder",
+  "class": "png-bundle-builder-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Essential tier"
+    },
+    {
+      "type": "text",
+      "id": "price_essential",
+      "label": "Price",
+      "default": "$595"
+    },
+    {
+      "type": "url",
+      "id": "link_essential",
+      "label": "Product link"
+    },
+    {
+      "type": "header",
+      "content": "Pro tier"
+    },
+    {
+      "type": "text",
+      "id": "price_pro",
+      "label": "Price",
+      "default": "$895"
+    },
+    {
+      "type": "url",
+      "id": "link_pro",
+      "label": "Product link"
+    },
+    {
+      "type": "header",
+      "content": "Complete tier"
+    },
+    {
+      "type": "text",
+      "id": "price_complete",
+      "label": "Price",
+      "default": "$1,295"
+    },
+    {
+      "type": "url",
+      "id": "link_complete",
+      "label": "Product link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Builder"
+    }
+  ]
+}
+{% endschema %}

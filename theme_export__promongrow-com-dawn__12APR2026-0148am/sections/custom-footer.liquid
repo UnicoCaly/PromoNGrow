@@ -5,22 +5,7 @@
       <!-- Logo + Tagline -->
       <div class="png-footer__brand">
         <a href="{{ routes.root_url }}" class="png-footer__logo" aria-label="Promo and Grow home">
-          {%- if shop.brand.logo -%}
-            {{
-              shop.brand.logo
-              | image_url: width: 300
-              | image_tag:
-                class: 'png-logo-img png-logo-img--footer',
-                alt: shop.name,
-                loading: 'lazy',
-                sizes: '150px',
-                widths: '100, 150, 200, 300'
-            }}
-          {%- else -%}
-            <span class="png-logo">
-              <span class="png-logo__text" style="color: #fff;">PROMO</span><span class="png-logo__ampersand">&</span><span class="png-logo__text" style="color: #fff;">GROW</span>
-            </span>
-          {%- endif -%}
+          {{ shop.brand.logo | image_url: width: 200 | image_tag: class: 'png-footer__logo-img', alt: shop.name }}
         </a>
         <p class="png-footer__tagline">Custom event displays. Produced and delivered in 5 days.</p>
       </div>

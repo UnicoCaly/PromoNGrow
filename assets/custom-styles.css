@@ -153,31 +153,55 @@ p, li, td, th, label, input, select, textarea {
   padding: 14px 0;
 }
 
-/* Nav item with subtitle */
+/* 5-item nav with subtitles */
+.png-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: nowrap;
+}
+
+.png-nav li {
+  list-style: none;
+}
+
+.png-nav-link {
+  text-decoration: none;
+  padding: 4px 0;
+}
+
 .png-nav-item-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   line-height: 1;
 }
 
 .png-nav-title {
+  font-family: var(--png-font-body);
   font-size: 12px;
   font-weight: 500;
-  color: var(--png-navy);
+  color: #1B2838;
 }
 
 .png-nav-subtitle {
+  font-family: var(--png-font-body);
   font-size: 10px;
   font-weight: 400;
-  color: var(--png-text-muted);
-  margin-top: 2px;
+  color: #999;
+  margin-top: 3px;
   transition: opacity 0.2s ease, max-height 0.2s ease;
   max-height: 16px;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .png-nav-subtitle--copper {
+  color: #C17A3A;
+}
+
+.png-nav-link:hover .png-nav-title {
   color: var(--png-copper);
 }
 
@@ -520,14 +544,6 @@ a.png-link-cta::after {
 }
 
 
-/* ---------- Category Image Wrapper ---------- */
-.png-category-card__image-wrapper {
-  overflow: hidden;
-  border-radius: var(--png-card-radius);
-  margin-bottom: 10px;
-}
-
-
 /* ---------- Eyebrow Labels ---------- */
 .png-eyebrow {
   font-family: var(--png-font-body);
@@ -544,7 +560,7 @@ a.png-link-cta::after {
 /* ---------- Section Alternation ---------- */
 .png-section-white {
   background: var(--png-white);
-  padding: var(--png-section-padding) 0;
+  padding: 48px 0;
 }
 
 .png-section-offwhite {
@@ -567,8 +583,8 @@ a.png-link-cta::after {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 16px 0;
-  border-top: 0.5px solid var(--png-border);
+  padding: 12px 0;
+  border-top: 0.5px solid #f0f0f0;
 }
 
 .png-trust-bar__item {
@@ -580,8 +596,8 @@ a.png-link-cta::after {
 }
 
 .png-trust-bar__stars {
-  color: var(--png-copper);
-  font-size: 13px;
+  color: #C17A3A;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 
@@ -613,14 +629,19 @@ a.png-link-cta::after {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: var(--png-card-radius);
-  margin-bottom: 10px;
-  transition: transform 0.3s ease;
+  border-radius: 8px;
   display: block;
+  transition: transform 0.3s ease;
 }
 
 .png-category-card:hover .png-category-card__image {
   transform: scale(1.02);
+}
+
+.png-category-card__image-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .png-category-card__title {
@@ -764,6 +785,7 @@ a.png-link-cta::after {
   background: var(--png-navy);
   border-radius: 10px;
   padding: 28px 32px;
+  margin: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -840,6 +862,8 @@ a.png-link-cta::after {
     flex-direction: column;
     text-align: center;
     gap: 16px;
+    margin: 0;
+    border-radius: 8px;
   }
   .png-cta-banner__actions {
     flex-direction: column;
@@ -911,6 +935,14 @@ a.png-link-cta::after {
 
 .png-footer__logo {
   text-decoration: none;
+}
+
+.png-footer__logo-img {
+  display: inline-block;
+  max-height: 36px;
+  width: auto;
+  margin-bottom: 6px;
+  filter: brightness(0) invert(1);
 }
 
 .png-footer__tagline {
@@ -1011,6 +1043,179 @@ a.png-link-cta::after {
     gap: 8px;
     text-align: center;
   }
+}
+
+
+/* ---------- Bundle Builder: Tier Cards ---------- */
+.png-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.png-tier-card {
+  position: relative;
+  border: 1px solid var(--png-border);
+  border-radius: var(--png-card-radius);
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.png-tier-card--popular {
+  border: 2px solid #C17A3A;
+}
+
+.png-tier-card__badge {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #C17A3A;
+  color: #fff;
+  font-family: var(--png-font-body);
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.png-tier-card__name {
+  font-family: var(--png-font-body);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--png-text-muted);
+  margin-bottom: 6px;
+}
+
+.png-tier-card__price {
+  font-family: var(--png-font-body);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--png-text-primary);
+  margin-bottom: 10px;
+}
+
+.png-tier-card__contents {
+  font-family: var(--png-font-body);
+  font-size: 11px;
+  color: #999;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.png-tier-card__btn {
+  display: inline-block;
+  font-family: var(--png-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: var(--png-btn-radius);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.png-tier-card__btn--outline {
+  background: transparent;
+  color: var(--png-navy);
+  border: 1.5px solid var(--png-navy);
+}
+
+.png-tier-card__btn--outline:hover {
+  background: var(--png-navy);
+  color: #fff;
+}
+
+.png-tier-card__btn--filled {
+  background: #C17A3A;
+  color: #fff;
+  border: 1.5px solid #C17A3A;
+}
+
+.png-tier-card__btn--filled:hover {
+  background: var(--png-copper-hover);
+  border-color: var(--png-copper-hover);
+  color: #fff;
+}
+
+@media (max-width: 749px) {
+  .png-tiers {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+
+/* ---------- Bundle Builder: Add-ons ---------- */
+.png-addons {
+  border-top: 0.5px solid var(--png-border);
+  padding-top: 20px;
+}
+
+.png-addons__heading {
+  font-family: var(--png-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--png-text-muted);
+  margin: 0 0 12px;
+}
+
+.png-addons__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.png-addons__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--png-border);
+}
+
+.png-addons__item:last-child {
+  border-bottom: none;
+}
+
+.png-addons__checkbox {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.png-addons__label {
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  color: var(--png-text-primary);
+  flex: 1;
+}
+
+.png-addons__price {
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--png-text-secondary);
+  white-space: nowrap;
+}
+
+.png-addons__price--copper {
+  color: #C17A3A;
 }
 
 
@@ -1703,11 +1908,20 @@ a.png-link-cta::after {
   outline-offset: 2px;
 }
 
-/* Clean up Dawn's default button styles */
+/* Clean up Dawn's default button styles — sentence case, 5px radius */
 .button,
-button {
-  text-transform: none;
+button,
+.shopify-payment-button button,
+.png-btn-primary,
+.png-btn-ghost--light,
+.png-tier-card__btn,
+.png-dr-copy-btn,
+.png-dr-dl-btn,
+.png-hero__btn-primary,
+.png-header-cta {
+  text-transform: none !important;
   letter-spacing: 0;
+  border-radius: 5px;
 }
 
 /* Remove any remaining template artifacts */
@@ -1831,6 +2045,16 @@ button {
    Design Resources Page
    ========================================================================== */
 
+.png-dr-hero {
+  text-align: center;
+  padding-bottom: 32px;
+}
+
+.png-dr-hero__inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
 .png-dr-hero__heading {
   font-family: var(--png-font-display);
   font-size: 24px;
@@ -1846,6 +2070,22 @@ button {
   color: var(--png-text-secondary);
   line-height: 1.7;
   margin: 0;
+}
+
+/* Steps panel */
+.png-dr-steps-panel {
+  background: var(--png-offwhite);
+  border-radius: 10px;
+  padding: 36px 32px;
+}
+
+/* Prompts header */
+.png-dr-prompts-header {
+  margin-bottom: 20px;
+}
+
+.png-dr-prompts-header .png-section-header__meta {
+  margin-top: 4px;
 }
 
 /* Template cards grid */

@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "banner": {
+      "type": "custom-collection-banner",
+      "settings": {}
+    },
+    "bundle-builder": {
+      "type": "custom-bundle-builder",
+      "settings": {
+        "price_essential": "$595",
+        "price_pro": "$895",
+        "price_complete": "$1,295"
+      }
+    },
+    "product-list": {
+      "type": "custom-collection-products",
+      "settings": {
+        "products_per_page": 16,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "mark_first_best_seller": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "bundle-builder",
+    "product-list"
+  ]
+}

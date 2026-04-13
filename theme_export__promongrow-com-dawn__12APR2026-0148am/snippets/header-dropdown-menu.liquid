@@ -1,125 +1,54 @@
 {% comment %}
-  Renders a standard dropdown style menu for the header.
-  Promo & Grow: added nav subtitles per PRD spec.
-
-  Usage:
-  {% render 'header-dropdown-menu' %}
+  Promo & Grow: 5-item navigation with benefit subtitles.
+  Subtitles are configurable via the Header section schema in theme customizer.
 {% endcomment %}
 
-{%- liquid
-  comment
-    Nav subtitle map — keyed by link handle
-  endcomment
--%}
-
 <nav class="header__inline-menu">
-  <ul class="list-menu list-menu--inline" role="list">
-    {%- for link in section.settings.menu.links -%}
-      {%- liquid
-        assign nav_subtitle = ''
-        assign nav_subtitle_copper = false
-        case link.handle
-          when 'bundles'
-            assign nav_subtitle = 'Save 15%+'
-            assign nav_subtitle_copper = true
-          when 'tents', 'tents-canopies'
-            assign nav_subtitle = 'Free 3D preview'
-          when 'displays', 'backdrop-display'
-            assign nav_subtitle = 'SEG + popup'
-          when 'accessories'
-            assign nav_subtitle = 'Flags, throws +'
-          when 'wraps'
-            assign nav_subtitle = 'Walls + vehicles'
-        endcase
-      -%}
-      <li>
-        {%- if link.links != blank -%}
-          <header-menu>
-            <details id="Details-HeaderMenu-{{ forloop.index }}">
-              <summary
-                id="HeaderMenu-{{ link.handle }}"
-                class="header__menu-item list-menu__item link focus-inset"
-              >
-                <span class="png-nav-item-wrap{% if link.child_active %} header__active-menu-item{% endif %}">
-                  <span class="png-nav-title">{{- link.title | escape -}}</span>
-                  {%- if nav_subtitle != blank -%}
-                    <span class="png-nav-subtitle{% if nav_subtitle_copper %} png-nav-subtitle--copper{% endif %}">{{ nav_subtitle }}</span>
-                  {%- endif -%}
-                </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <ul
-                id="HeaderMenu-MenuList-{{ forloop.index }}"
-                class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
-                role="list"
-                tabindex="-1"
-              >
-                {%- for childlink in link.links -%}
-                  <li>
-                    {%- if childlink.links == blank -%}
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
-                    {%- else -%}
-                      <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
-                        <summary
-                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                          class="header__menu-item link link--text list-menu__item focus-inset caption-large"
-                        >
-                          <span>{{ childlink.title | escape }}</span>
-                          {{- 'icon-caret.svg' | inline_asset_content -}}
-                        </summary>
-                        <ul
-                          id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                          class="header__submenu list-menu motion-reduce"
-                        >
-                          {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
-                              >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      </details>
-                    {%- endif -%}
-                  </li>
-                {%- endfor -%}
-              </ul>
-            </details>
-          </header-menu>
-        {%- else -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            <span class="png-nav-item-wrap{% if link.current %} header__active-menu-item{% endif %}">
-              <span class="png-nav-title">{{- link.title | escape -}}</span>
-              {%- if nav_subtitle != blank -%}
-                <span class="png-nav-subtitle{% if nav_subtitle_copper %} png-nav-subtitle--copper{% endif %}">{{ nav_subtitle }}</span>
-              {%- endif -%}
-            </span>
-          </a>
-        {%- endif -%}
-      </li>
-    {%- endfor -%}
+  <ul class="png-nav list-menu list-menu--inline" role="list">
+    <!-- 1. Bundles -->
+    <li>
+      <a href="/collections/bundles" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+        <span class="png-nav-item-wrap">
+          <span class="png-nav-title">Bundles</span>
+          <span class="png-nav-subtitle png-nav-subtitle--copper">{{ section.settings.nav_subtitle_1 | default: 'Save 15%+' }}</span>
+        </span>
+      </a>
+    </li>
+    <!-- 2. Tents -->
+    <li>
+      <a href="/collections/tents-canopies" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+        <span class="png-nav-item-wrap">
+          <span class="png-nav-title">Tents</span>
+          <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_2 | default: 'Free 3D preview' }}</span>
+        </span>
+      </a>
+    </li>
+    <!-- 3. Displays -->
+    <li>
+      <a href="/collections/backdrop-display" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+        <span class="png-nav-item-wrap">
+          <span class="png-nav-title">Displays</span>
+          <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_3 | default: 'SEG + popup' }}</span>
+        </span>
+      </a>
+    </li>
+    <!-- 4. Flags -->
+    <li>
+      <a href="/collections/accessories" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+        <span class="png-nav-item-wrap">
+          <span class="png-nav-title">Flags</span>
+          <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_4 | default: '5 styles · small → large' }}</span>
+        </span>
+      </a>
+    </li>
+    <!-- 5. Wraps -->
+    <li>
+      <a href="/collections/wraps" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+        <span class="png-nav-item-wrap">
+          <span class="png-nav-title">Wraps</span>
+          <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_5 | default: 'Walls + backdrops' }}</span>
+        </span>
+      </a>
+    </li>
   </ul>
 </nav>
