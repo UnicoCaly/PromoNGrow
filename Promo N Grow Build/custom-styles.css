@@ -116,32 +116,86 @@ p, li, td, th, label, input, select, textarea {
   font-size: 11px;
 }
 
-/* Hide Dawn's default announcement bar if it leaks through */
-.announcement-bar-section {
-  display: none !important;
+/* ---------- Announcement Bar (Trust Strip) ---------- */
+.png-announcement-bar-section {
+  background: #F7F7F5;
 }
 
-.png-trust-dot {
+/* Override Dawn's utility-bar wrapper */
+.png-announcement-bar-section .utility-bar {
+  display: none;
+}
+
+.png-ab {
+  background: #F7F7F5;
+  padding: 6px 0;
+}
+
+.png-ab__inner {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.png-ab__desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.png-ab__mobile {
+  display: none;
+}
+
+.png-ab__stars {
+  color: #C17A3A;
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.png-ab__text {
+  font-family: var(--png-font-body);
+  font-size: 11px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.png-ab__divider {
+  color: #e0e0e0;
+  font-size: 11px;
+}
+
+.png-ab__dot {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--png-trust-green);
+  background: #1E6B4A;
   flex-shrink: 0;
 }
 
-/* Hide trust strip on scroll (sticky header hides announcement bar section) */
-.shopify-section-header-sticky ~ .png-trust-strip-section {
+/* Hide on scroll when header is sticky */
+.shopify-section-header-sticky ~ .png-announcement-bar-section {
   display: none;
 }
 
 @media (max-width: 749px) {
-  .png-trust-strip__inner {
-    gap: 8px;
-  }
-  .png-trust-strip__divider:nth-child(6),
-  .png-trust-strip__item:nth-child(7) {
+  .png-ab__desktop {
     display: none;
+  }
+  .png-ab__mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .png-ab__mobile .png-ab__stars {
+    font-size: 10px;
+  }
+  .png-ab__mobile .png-ab__text {
+    font-size: 10px;
   }
 }
 

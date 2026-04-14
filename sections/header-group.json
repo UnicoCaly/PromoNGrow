@@ -2,8 +2,8 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "trust-strip": {
-      "type": "custom-trust-strip",
+    "announcement-bar": {
+      "type": "announcement-bar",
       "settings": {}
     },
     "header": {
@@ -27,7 +27,7 @@
     }
   },
   "order": [
-    "trust-strip",
+    "announcement-bar",
     "header"
   ]
 }
