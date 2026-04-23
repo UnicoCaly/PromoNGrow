@@ -1,17 +1,17 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "banner": {
       "type": "custom-collection-banner",
       "settings": {}
+    },
+    "bundle-builder": {
+      "type": "custom-bundle-builder",
+      "settings": {
+        "force_show": false,
+        "price_essential": "$595",
+        "price_pro": "$895",
+        "price_complete": "$1,295"
+      }
     },
     "product-list": {
       "type": "custom-collection-products",
@@ -25,6 +25,7 @@
   },
   "order": [
     "banner",
+    "bundle-builder",
     "product-list"
   ]
 }

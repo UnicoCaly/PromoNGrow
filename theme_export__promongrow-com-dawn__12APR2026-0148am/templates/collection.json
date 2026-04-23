@@ -4,6 +4,15 @@
       "type": "custom-collection-banner",
       "settings": {}
     },
+    "bundle-builder": {
+      "type": "custom-bundle-builder",
+      "settings": {
+        "force_show": false,
+        "price_essential": "$595",
+        "price_pro": "$895",
+        "price_complete": "$1,295"
+      }
+    },
     "product-list": {
       "type": "custom-collection-products",
       "settings": {
@@ -16,6 +25,7 @@
   },
   "order": [
     "banner",
+    "bundle-builder",
     "product-list"
   ]
 }

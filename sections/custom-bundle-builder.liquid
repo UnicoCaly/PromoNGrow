@@ -1,4 +1,9 @@
 <!-- Promo & Grow: Bundle Builder — Package Tiers + Add-ons -->
+{%- comment -%}
+  Only renders on the Bundles collection (handle "bundles"),
+  OR when force_show is enabled via theme customizer (for the dedicated collection.bundles template).
+{%- endcomment -%}
+{%- if collection.handle == 'bundles' or section.settings.force_show -%}
 <section class="png-section-white">
   <div class="page-width">
 
@@ -59,12 +64,22 @@
 
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Bundle Builder",
   "class": "png-bundle-builder-section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "force_show",
+      "label": "Show on all collections (not just Bundles)",
+      "default": false
+    },
     {
       "type": "header",
       "content": "Essential tier"
