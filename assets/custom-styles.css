@@ -996,7 +996,28 @@ a.png-link-cta::after {
   max-height: 36px;
   width: auto;
   margin-bottom: 6px;
-  filter: brightness(0) invert(1);
+}
+
+/* Footer logo text fallback (white on navy) */
+.png-footer__logo-fallback {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-family: var(--png-font-body);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.png-footer__logo-fallback-text {
+  color: #fff;
+  font-weight: 500;
+}
+
+.png-footer__logo-fallback-amp {
+  color: #C17A3A;
+  font-weight: 400;
+  padding: 0 2px;
 }
 
 .png-footer__tagline {
