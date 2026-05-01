@@ -2951,15 +2951,6 @@ button,
   contain: layout style;
 }
 
-/* Font display optimization */
-.png-logo,
-.png-eyebrow,
-.png-btn-primary,
-.png-btn-ghost--light,
-.png-product-badge {
-  font-display: swap;
-}
-
 /* Smooth scrolling (only if no preference) */
 @media (prefers-reduced-motion: no-preference) {
   html {

@@ -18,7 +18,64 @@
     <!-- Promo & Grow: Google Fonts (DM Serif Display + DM Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap">
+    </noscript>
+
+    <!-- Promo & Grow: Critical CSS (above-fold) -->
+    <style>
+      :root{--png-navy:#1B2838;--png-copper:#C17A3A;--png-copper-hover:#A8682F;--png-text-primary:#1B2838;--png-text-muted:#999;--png-white:#fff;--png-offwhite:#F7F7F5;--png-trust-green:#1E6B4A;--png-border:#eee;--png-font-display:'DM Serif Display',Georgia,serif;--png-font-body:'DM Sans',system-ui,-apple-system,sans-serif;}
+      body{margin:0;font-family:var(--png-font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+      .png-announcement-bar-section{background:#F7F7F5;}
+      .png-announcement-bar-section .utility-bar{display:none;}
+      .png-ab{background:#F7F7F5;padding:6px 0;}
+      .png-ab__inner{max-width:120rem;margin:0 auto;padding:0 16px;}
+      .png-ab__desktop{display:flex;align-items:center;justify-content:center;gap:28px;}
+      .png-ab__mobile{display:none;}
+      .png-ab__stars{color:#C17A3A;font-size:11px;letter-spacing:1px;line-height:1;}
+      .png-ab__text{font-family:var(--png-font-body);font-size:11px;color:#999;white-space:nowrap;}
+      .png-ab__divider{color:#e0e0e0;font-size:11px;}
+      .png-ab__dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#1E6B4A;flex-shrink:0;}
+      .header{background:#fff;border-bottom:.5px solid #f0f0f0;padding:14px 0;}
+      .png-nav{display:flex;align-items:center;gap:28px;flex-wrap:nowrap;}
+      .png-nav li{list-style:none;}
+      .png-nav-link{text-decoration:none;padding:4px 0;}
+      .png-nav-item-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1;}
+      .png-nav-title{font-family:var(--png-font-body);font-size:12px;font-weight:500;color:#1B2838;}
+      .png-nav-subtitle{font-family:var(--png-font-body);font-size:10px;color:#999;margin-top:3px;white-space:nowrap;}
+      .png-nav-subtitle--copper{color:#C17A3A;}
+      .png-logo-img{display:block;max-height:40px;width:auto;height:auto;}
+      .png-header-cta{display:inline-block;background:#C17A3A;color:#fff;padding:7px 16px;border-radius:4px;font-family:var(--png-font-body);font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;}
+      .png-hero-dark{background:#1B2838;width:100%;}
+      .png-hero-dark__inner{max-width:1200px;margin:0 auto;padding:48px 40px 0;}
+      .png-hero-dark__columns{display:flex;align-items:center;gap:32px;padding-bottom:32px;}
+      .png-hero-dark__content{flex:1;min-width:0;}
+      .png-hero-dark__eyebrow{display:block;font-family:var(--png-font-body);font-size:11px;font-weight:500;color:#C17A3A;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;}
+      .png-hero-dark__heading{font-family:var(--png-font-display);font-size:36px;font-weight:400;color:#fff;line-height:1.15;margin:0 0 16px;}
+      .png-hero-dark__subtext{font-family:var(--png-font-body);font-size:15px;color:rgba(255,255,255,.6);line-height:1.6;margin:0 0 24px;max-width:480px;}
+      .png-hero-dark__actions{display:flex;gap:12px;flex-wrap:wrap;}
+      .png-hero-dark__btn-primary{display:inline-block;background:#C17A3A;color:#fff;padding:12px 28px;border-radius:5px;font-family:var(--png-font-body);font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap;}
+      .png-hero-dark__btn-ghost{display:inline-block;background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:12px 28px;border-radius:5px;font-family:var(--png-font-body);font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap;}
+      .png-hero-dark__image{width:420px;flex-shrink:0;}
+      .png-hero-dark__img{width:100%;max-width:420px;height:auto;border-radius:8px;display:block;}
+      .png-hero-dark__trust{display:flex;align-items:center;gap:24px;padding:0 0 24px;flex-wrap:wrap;}
+      .png-hero-dark__trust-text{font-family:var(--png-font-body);font-size:12px;color:rgba(255,255,255,.5);line-height:1;}
+      .png-hero-dark__stars{color:#C17A3A;font-size:14px;letter-spacing:1px;line-height:1;}
+      @media (max-width:768px){
+        .png-ab__desktop{display:none;}
+        .png-ab__mobile{display:flex;align-items:center;justify-content:center;gap:6px;}
+        .png-hero-dark__inner{padding:32px 20px 0;}
+        .png-hero-dark__columns{flex-direction:column;gap:24px;padding-bottom:24px;}
+        .png-hero-dark__image{order:-1;width:100%;}
+        .png-hero-dark__heading{font-size:28px;}
+        .png-hero-dark__actions{flex-direction:column;width:100%;}
+        .png-hero-dark__btn-primary,.png-hero-dark__btn-ghost{width:100%;text-align:center;}
+      }
+    </style>
 
     <!-- Promo & Grow: Preload homepage hero (LCP) -->
     {%- if template == 'index' and settings.homepage_hero_image != blank -%}
@@ -268,7 +325,8 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'custom-styles.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'custom-styles.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'custom-styles.css' | asset_url | stylesheet_tag }}</noscript>
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
