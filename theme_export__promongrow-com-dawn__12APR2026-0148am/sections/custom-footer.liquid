@@ -40,8 +40,8 @@
           <ul class="png-footer__list">
             <li><a href="/pages/reviews">Reviews</a></li>
             <li><a href="/pages/about">About us</a></li>
-            <li><a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener">TikTok</a></li>
+            <li><a href="{{ settings.social_instagram_link | default: 'https://www.instagram.com/promongrow/' }}" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="{{ settings.social_tiktok_link | default: 'https://shop.tiktok.com/us/store/promote-grow-shop/7496238263522330961' }}" target="_blank" rel="noopener noreferrer">TikTok</a></li>
           </ul>
         </div>
       </div>
