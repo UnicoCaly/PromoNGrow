@@ -22,8 +22,14 @@
           "name": "Event Vendor",
           "popular": false,
           "items": [
-            { "type": "fixed", "handle": "10ft-x-10ft-event-tent-canopy", "label": "10ft x 10ft Event Tent" },
-            { "type": "fixed", "handle": "banner-4ft-x-10ft", "label": "Tent Banners" },
+            { "type": "choice", "slot": "tent", "label": "Tent Size", "options": [
+              { "handle": "10ft-x-10ft-event-tent-canopy", "label": "10ft x 10ft Event Tent" },
+              { "handle": "10-x-15-event-tent", "label": "10ft x 15ft Event Tent" },
+              { "handle": "10ft-x-20ft-event-tent-canopy", "label": "10ft x 20ft Event Tent" }
+            ] },
+            { "type": "choice", "slot": "banner", "label": "Banner", "options": [
+              { "handle": "banner-4ft-x-10ft", "label": "Tent Banner — 4ft x 10ft" }
+            ] },
             { "type": "choice", "slot": "throw", "label": "Table Throw", "options": [
               { "handle": "stretch-table-cover", "label": "Stretch Table Cover" },
               { "handle": "8ft-table-throw", "label": "Table Throw" },
@@ -60,8 +66,12 @@
           "name": "Trade Show Starter",
           "popular": false,
           "items": [
-            { "type": "fixed", "handle": "straight-velcro-fabric-pop-up-display", "label": "Straight Tension Fabric Display" },
-            { "type": "fixed", "handle": "pillowcase-backdrop-fabric-tension-display", "label": "Pillowcase Backdrop" }
+            { "type": "choice", "slot": "display", "label": "Display", "options": [
+              { "handle": "straight-velcro-fabric-pop-up-display", "label": "Straight Tension Fabric Display" }
+            ] },
+            { "type": "choice", "slot": "backdrop", "label": "Backdrop", "options": [
+              { "handle": "pillowcase-backdrop-fabric-tension-display", "label": "Pillowcase Backdrop" }
+            ] }
           ]
         }
       ]
