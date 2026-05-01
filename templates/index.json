@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -16,15 +7,11 @@
         "heading": "Your brand, built to show up.",
         "subtext": "Custom tents, backdrops, flags, and signage — produced and delivered nationwide in 5 business days.",
         "primary_label": "Shop bundles",
-        "primary_url": "",
+        "primary_url": "/collections/bundles",
         "secondary_label": "Get a quote",
-        "secondary_url": "",
+        "secondary_url": "/pages/contact",
         "image": "shopify://shop_images/IMG_4753_2.jpg"
       }
-    },
-    "trust-bar": {
-      "type": "custom-trust-bar",
-      "settings": {}
     },
     "categories": {
       "type": "custom-categories",
@@ -82,7 +69,6 @@
         "cat-accessories",
         "cat-wraps"
       ],
-      "disabled": true,
       "settings": {
         "heading": "Shop by category",
         "view_all_url": ""
@@ -188,20 +174,13 @@
         "heading": "What our clients say",
         "meta": "4.8 average from 19 Google reviews"
       }
-    },
-    "pagefly-home": {
-      "type": "pagefly-home",
-      "disabled": true,
-      "settings": {}
     }
   },
   "order": [
     "hero",
-    "trust-bar",
     "categories",
     "how-it-works",
     "best-sellers",
-    "testimonials",
-    "pagefly-home"
+    "testimonials"
   ]
 }
