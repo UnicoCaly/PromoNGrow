@@ -1,69 +1,496 @@
-<!-- Promo & Grow: Bundle Builder — Package Tiers + Add-ons -->
+<!-- Promo & Grow: Dynamic Bundle Builder (JS-powered) -->
 {%- comment -%}
-  Only renders on the Bundles collection (handle "bundles"),
-  OR when force_show is enabled via theme customizer (for the dedicated collection.bundles template).
+  Renders only on the Bundles collection (handle "bundles") OR when force_show is true.
+  All product data is fetched live from Shopify's AJAX API on page load.
+  Bundle config lives in the JSON script block below — easy to edit, no Liquid logic needed.
 {%- endcomment -%}
+
 {%- if collection.handle == 'bundles' or section.settings.force_show -%}
-<section class="png-section-white">
+<section class="png-bb-section" data-bundle-builder>
   <div class="page-width">
 
-    <!-- Eyebrow -->
-    <span class="png-eyebrow">Choose your package</span>
+    <span class="png-eyebrow">{{ section.settings.eyebrow | default: 'Build your bundle' }}</span>
+    <h2 class="png-bb-section__heading">{{ section.settings.heading | default: 'Pick a bundle. Save 15%.' }}</h2>
 
-    <!-- Package Tier Cards -->
-    <div class="png-tiers">
+    <!-- Bundle config: JS reads this on load -->
+    <script type="application/json" data-bundle-config>
+    {
+      "discount": 0.15,
+      "bundles": [
+        {
+          "id": "event-vendor",
+          "name": "Event Vendor",
+          "popular": false,
+          "items": [
+            { "type": "fixed", "handle": "10ft-x-10ft-event-tent-canopy", "label": "10ft x 10ft Event Tent" },
+            { "type": "fixed", "handle": "banner-4ft-x-10ft", "label": "Tent Banners" },
+            { "type": "choice", "slot": "throw", "label": "Table Throw", "options": [
+              { "handle": "stretch-table-cover", "label": "Stretch Table Cover" },
+              { "handle": "8ft-table-throw", "label": "Table Throw" },
+              { "handle": "6ft-table-runner-with-solid-blank-table-throw", "label": "Table Runner + Blank" }
+            ] }
+          ]
+        },
+        {
+          "id": "event-pro",
+          "name": "Event Pro",
+          "popular": true,
+          "items": [
+            { "type": "choice", "slot": "tent", "label": "Tent Size", "options": [
+              { "handle": "10ft-x-10ft-event-tent-canopy", "label": "10ft x 10ft Event Tent" },
+              { "handle": "10-x-15-event-tent", "label": "10ft x 15ft Event Tent" },
+              { "handle": "10ft-x-20ft-event-tent-canopy", "label": "10ft x 20ft Event Tent" }
+            ] },
+            { "type": "choice", "slot": "flag", "label": "Flag", "options": [
+              { "handle": "feather-convex-flag-copy", "label": "Teardrop Flag" },
+              { "handle": "rectangle-flag", "label": "Rectangle Flag" },
+              { "handle": "feather-convex-flag", "label": "Feather Convex Flag" },
+              { "handle": "feather-angled-flag", "label": "Feather Angled Flag" },
+              { "handle": "econo-feather-flag", "label": "Econo Feather Flag" }
+            ] },
+            { "type": "choice", "slot": "throw", "label": "Table Throw", "options": [
+              { "handle": "stretch-table-cover", "label": "Stretch Table Cover" },
+              { "handle": "8ft-table-throw", "label": "Table Throw" },
+              { "handle": "6ft-table-runner-with-solid-blank-table-throw", "label": "Table Runner + Blank" }
+            ] }
+          ]
+        },
+        {
+          "id": "trade-show-starter",
+          "name": "Trade Show Starter",
+          "popular": false,
+          "items": [
+            { "type": "fixed", "handle": "straight-velcro-fabric-pop-up-display", "label": "Straight Tension Fabric Display" },
+            { "type": "fixed", "handle": "pillowcase-backdrop-fabric-tension-display", "label": "Pillowcase Backdrop" }
+          ]
+        }
+      ]
+    }
+    </script>
 
-      <!-- Essential -->
-      <div class="png-tier-card">
-        <span class="png-tier-card__name">Essential</span>
-        <span class="png-tier-card__price">{{ section.settings.price_essential | default: '$595' }}</span>
-        <p class="png-tier-card__contents">Canopy + frame<br>Carry bag</p>
-        <a href="{{ section.settings.link_essential | default: '#' }}" class="png-tier-card__btn png-tier-card__btn--outline">Select</a>
-      </div>
+    <!-- Bundle cards -->
+    <div class="png-bb__grid">
 
-      <!-- Pro (Popular) -->
-      <div class="png-tier-card png-tier-card--popular">
-        <span class="png-tier-card__badge">Popular</span>
-        <span class="png-tier-card__name">Pro</span>
-        <span class="png-tier-card__price">{{ section.settings.price_pro | default: '$895' }}</span>
-        <p class="png-tier-card__contents">+ back wall<br>+ stake kit</p>
-        <a href="{{ section.settings.link_pro | default: '#' }}" class="png-tier-card__btn png-tier-card__btn--filled">Select</a>
-      </div>
+      <!-- Card 1: Event Vendor -->
+      <article class="png-bb__card" data-bundle-id="event-vendor">
+        <span class="png-bb__name">Event Vendor</span>
+        <h3 class="png-bb__title">Booth-ready in 5 days</h3>
+        <div class="png-bb__items" data-bundle-items></div>
+        <div class="png-bb__pricing" data-bundle-pricing>
+          <span class="png-bb__regular" data-bundle-regular>—</span>
+          <span class="png-bb__bundle-price" data-bundle-price>—</span>
+          <span class="png-bb__savings" data-bundle-savings></span>
+        </div>
+        <button type="button" class="png-bb__add" data-bundle-add disabled>
+          <span data-bundle-btn-text>Loading bundle...</span>
+        </button>
+      </article>
 
-      <!-- Complete -->
-      <div class="png-tier-card">
-        <span class="png-tier-card__name">Complete</span>
-        <span class="png-tier-card__price">{{ section.settings.price_complete | default: '$1,295' }}</span>
-        <p class="png-tier-card__contents">+ side walls<br>+ table throw</p>
-        <a href="{{ section.settings.link_complete | default: '#' }}" class="png-tier-card__btn png-tier-card__btn--outline">Select</a>
-      </div>
+      <!-- Card 2: Event Pro (popular) -->
+      <article class="png-bb__card png-bb__card--popular" data-bundle-id="event-pro">
+        <span class="png-bb__popular-badge">Most popular</span>
+        <span class="png-bb__name">Event Pro</span>
+        <h3 class="png-bb__title">Customize every piece</h3>
+        <div class="png-bb__items" data-bundle-items></div>
+        <div class="png-bb__pricing" data-bundle-pricing>
+          <span class="png-bb__regular" data-bundle-regular>—</span>
+          <span class="png-bb__bundle-price" data-bundle-price>—</span>
+          <span class="png-bb__savings" data-bundle-savings></span>
+        </div>
+        <button type="button" class="png-bb__add" data-bundle-add disabled>
+          <span data-bundle-btn-text>Loading bundle...</span>
+        </button>
+      </article>
+
+      <!-- Card 3: Trade Show Starter -->
+      <article class="png-bb__card" data-bundle-id="trade-show-starter">
+        <span class="png-bb__name">Trade Show Starter</span>
+        <h3 class="png-bb__title">Backdrop-first setup</h3>
+        <div class="png-bb__items" data-bundle-items></div>
+        <div class="png-bb__pricing" data-bundle-pricing>
+          <span class="png-bb__regular" data-bundle-regular>—</span>
+          <span class="png-bb__bundle-price" data-bundle-price>—</span>
+          <span class="png-bb__savings" data-bundle-savings></span>
+        </div>
+        <button type="button" class="png-bb__add" data-bundle-add disabled>
+          <span data-bundle-btn-text>Loading bundle...</span>
+        </button>
+      </article>
 
     </div>
 
-    <!-- Optional Add-ons -->
-    <div class="png-addons">
-      <h3 class="png-addons__heading">Optional add-ons</h3>
-      <ul class="png-addons__list">
-        <li class="png-addons__item">
-          <span class="png-addons__checkbox" aria-hidden="true"></span>
-          <span class="png-addons__label">Side walls (set of 2)</span>
-          <span class="png-addons__price">+$180</span>
-        </li>
-        <li class="png-addons__item">
-          <span class="png-addons__checkbox" aria-hidden="true"></span>
-          <span class="png-addons__label">Attachable flags (set of 2)</span>
-          <span class="png-addons__price">+$120</span>
-        </li>
-        <li class="png-addons__item">
-          <span class="png-addons__checkbox" aria-hidden="true"></span>
-          <span class="png-addons__label">Rush production (3 days)</span>
-          <span class="png-addons__price png-addons__price--copper">+$238</span>
-        </li>
-      </ul>
+    <!-- Custom Bundle CTA -->
+    <div class="png-bb__custom-cta">
+      <div class="png-bb__custom-cta-text">
+        <h3 class="png-bb__custom-cta-heading">Need something different?</h3>
+        <p class="png-bb__custom-cta-subtext">We build custom bundles for any event. Tell us what you need.</p>
+      </div>
+      <div class="png-bb__custom-cta-actions">
+        <a href="/pages/contact" class="png-btn-primary">Get a quote</a>
+        <a href="tel:8448833308" class="png-bb__custom-cta-ghost">(844) 883-3308</a>
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.querySelector('[data-bundle-builder]');
+  if (!root) return;
+
+  /* --- Read bundle config --- */
+  var configEl = root.querySelector('[data-bundle-config]');
+  if (!configEl) return;
+  var config;
+  try {
+    config = JSON.parse(configEl.textContent);
+  } catch (e) {
+    console.error('[bundle-builder] Invalid config JSON', e);
+    return;
+  }
+
+  var DISCOUNT = config.discount || 0.15;
+
+  /* --- Product cache --- */
+  var productCache = {};
+  var productPromises = {};
+
+  function fetchProduct(handle) {
+    if (productPromises[handle]) return productPromises[handle];
+    productPromises[handle] = fetch('/products/' + encodeURIComponent(handle) + '.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error('Product not found: ' + handle);
+        return r.json();
+      })
+      .then(function (data) {
+        var p = data.product;
+        if (!p) throw new Error('Empty product: ' + handle);
+        var firstAvailable = (p.variants || []).find(function (v) { return v.available; }) || p.variants[0];
+        if (!firstAvailable) throw new Error('No variants: ' + handle);
+        var thumb = '';
+        if (p.image && p.image.src) thumb = p.image.src;
+        else if (p.images && p.images[0]) thumb = p.images[0].src;
+        productCache[handle] = {
+          handle: handle,
+          title: p.title,
+          variantId: firstAvailable.id,
+          price: parseInt(firstAvailable.price * 100, 10) ? parseInt(firstAvailable.price * 100, 10) : Math.round(parseFloat(firstAvailable.price) * 100),
+          thumb: thumb,
+          available: firstAvailable.available
+        };
+        return productCache[handle];
+      })
+      .catch(function (err) {
+        console.warn('[bundle-builder] ' + err.message);
+        productCache[handle] = null;
+        return null;
+      });
+    return productPromises[handle];
+  }
+
+  /* --- Money formatter --- */
+  function formatMoney(cents) {
+    if (cents == null || isNaN(cents)) return '—';
+    var dollars = cents / 100;
+    return '$' + dollars.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  /* --- Render a fixed item row --- */
+  function renderFixedRow(item, product) {
+    var row = document.createElement('div');
+    row.className = 'png-bb__item';
+    row.setAttribute('data-handle', item.handle);
+    if (!product) {
+      row.classList.add('png-bb__item--error');
+      row.innerHTML =
+        '<div class="png-bb__thumb png-bb__thumb--ph"></div>' +
+        '<div class="png-bb__item-info">' +
+          '<span class="png-bb__item-title">' + escapeHtml(item.label) + '</span>' +
+          '<span class="png-bb__item-badge">Included</span>' +
+        '</div>' +
+        '<span class="png-bb__item-price">Price unavailable</span>';
+      return row;
+    }
+    var thumbHtml = product.thumb
+      ? '<img class="png-bb__thumb" src="' + buildThumbUrl(product.thumb) + '" alt="" loading="lazy" width="40" height="40">'
+      : '<div class="png-bb__thumb png-bb__thumb--ph"></div>';
+    row.innerHTML =
+      thumbHtml +
+      '<div class="png-bb__item-info">' +
+        '<span class="png-bb__item-title">' + escapeHtml(product.title) + '</span>' +
+        '<span class="png-bb__item-badge">Included</span>' +
+      '</div>' +
+      '<span class="png-bb__item-price">' + formatMoney(product.price) + '</span>';
+    return row;
+  }
+
+  /* --- Render a choice (dropdown) row --- */
+  function renderChoiceRow(item, products, bundleId) {
+    var row = document.createElement('div');
+    row.className = 'png-bb__item png-bb__item--choice';
+    row.setAttribute('data-slot', item.slot);
+
+    var firstValid = products.find(function (p) { return p; });
+    var thumb = firstValid && firstValid.thumb
+      ? '<img class="png-bb__thumb" data-choice-thumb src="' + buildThumbUrl(firstValid.thumb) + '" alt="" loading="lazy" width="40" height="40">'
+      : '<div class="png-bb__thumb png-bb__thumb--ph" data-choice-thumb></div>';
+
+    var optionsHtml = item.options.map(function (opt, i) {
+      var p = products[i];
+      var priceLabel = p ? ' — ' + formatMoney(p.price) : ' — unavailable';
+      var disabled = p ? '' : ' disabled';
+      return '<option value="' + escapeHtml(opt.handle) + '"' + disabled + '>' +
+        escapeHtml(opt.label) + priceLabel +
+      '</option>';
+    }).join('');
+
+    row.innerHTML =
+      thumb +
+      '<div class="png-bb__item-info">' +
+        '<span class="png-bb__item-label">' + escapeHtml(item.label) + '</span>' +
+        '<select class="png-bb__select" data-choice-select data-bundle="' + escapeHtml(bundleId) + '" data-slot="' + escapeHtml(item.slot) + '">' +
+          optionsHtml +
+        '</select>' +
+      '</div>' +
+      '<span class="png-bb__item-price" data-choice-price>' + (firstValid ? formatMoney(firstValid.price) : '—') + '</span>';
+    return row;
+  }
+
+  /* --- Build smaller thumbnail URL for performance --- */
+  function buildThumbUrl(src) {
+    if (!src) return '';
+    /* Insert _80x80 size hint before extension if pattern matches */
+    return src.replace(/(\.(jpe?g|png|webp|gif))(\?|$)/i, '_80x80$1$3');
+  }
+
+  /* --- Escape HTML --- */
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* --- Calculate bundle totals --- */
+  function calculateBundle(card, bundleConfig) {
+    var total = 0;
+    var allValid = true;
+    var variantIds = [];
+
+    bundleConfig.items.forEach(function (item) {
+      if (item.type === 'fixed') {
+        var p = productCache[item.handle];
+        if (!p) { allValid = false; return; }
+        total += p.price;
+        variantIds.push(p.variantId);
+      } else if (item.type === 'choice') {
+        var sel = card.querySelector('[data-choice-select][data-slot="' + item.slot + '"]');
+        if (!sel) return;
+        var handle = sel.value;
+        var p = productCache[handle];
+        if (!p) { allValid = false; return; }
+        total += p.price;
+        variantIds.push(p.variantId);
+      }
+    });
+
+    return { total: total, variantIds: variantIds, valid: allValid };
+  }
+
+  /* --- Update pricing display for a card --- */
+  function updateCardPricing(card, bundleConfig) {
+    var calc = calculateBundle(card, bundleConfig);
+    var regularEl = card.querySelector('[data-bundle-regular]');
+    var priceEl = card.querySelector('[data-bundle-price]');
+    var savingsEl = card.querySelector('[data-bundle-savings]');
+    var btn = card.querySelector('[data-bundle-add]');
+    var btnText = card.querySelector('[data-bundle-btn-text]');
+
+    if (!calc.valid || calc.total === 0) {
+      regularEl.textContent = 'Price unavailable';
+      priceEl.textContent = '';
+      savingsEl.textContent = '';
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.textContent = 'Unavailable';
+      return;
+    }
+
+    var bundlePrice = Math.round(calc.total * (1 - DISCOUNT));
+    var savings = calc.total - bundlePrice;
+
+    regularEl.textContent = 'Regular: ' + formatMoney(calc.total);
+    priceEl.textContent = 'Bundle: ' + formatMoney(bundlePrice);
+    savingsEl.textContent = 'Save ' + formatMoney(savings) + ' (' + Math.round(DISCOUNT * 100) + '%)';
+
+    if (btn) btn.disabled = false;
+    if (btnText) btnText.textContent = 'Add bundle to cart';
+
+    /* Stash variant IDs and bundle name on the button for the add handler */
+    btn.setAttribute('data-variants', calc.variantIds.join(','));
+  }
+
+  /* --- Update choice price + thumb when dropdown changes --- */
+  function handleChoiceChange(card, bundleConfig, sel) {
+    var slot = sel.getAttribute('data-slot');
+    var row = sel.closest('.png-bb__item');
+    var priceEl = row.querySelector('[data-choice-price]');
+    var thumbEl = row.querySelector('[data-choice-thumb]');
+    var p = productCache[sel.value];
+
+    if (priceEl) priceEl.textContent = p ? formatMoney(p.price) : '—';
+    if (thumbEl && p && p.thumb) {
+      var newThumb;
+      if (thumbEl.tagName === 'IMG') {
+        thumbEl.src = buildThumbUrl(p.thumb);
+      } else {
+        newThumb = document.createElement('img');
+        newThumb.className = 'png-bb__thumb';
+        newThumb.setAttribute('data-choice-thumb', '');
+        newThumb.src = buildThumbUrl(p.thumb);
+        newThumb.alt = '';
+        newThumb.loading = 'lazy';
+        newThumb.width = 40;
+        newThumb.height = 40;
+        thumbEl.replaceWith(newThumb);
+      }
+    }
+
+    updateCardPricing(card, bundleConfig);
+  }
+
+  /* --- Add to cart --- */
+  function handleAddToCart(card, bundleConfig) {
+    var btn = card.querySelector('[data-bundle-add]');
+    var btnText = card.querySelector('[data-bundle-btn-text]');
+    if (!btn || btn.disabled) return;
+
+    var variantIds = (btn.getAttribute('data-variants') || '').split(',').filter(Boolean).map(function (id) { return parseInt(id, 10); });
+    if (variantIds.length === 0) return;
+
+    var originalText = btnText.textContent;
+    btn.disabled = true;
+    btnText.textContent = 'Adding...';
+
+    var items = variantIds.map(function (id) {
+      return {
+        id: id,
+        quantity: 1,
+        properties: { '_bundle': bundleConfig.name }
+      };
+    });
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ items: items })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('Cart add failed');
+        return r.json();
+      })
+      .then(function () {
+        btnText.textContent = '✓ Added!';
+        updateCartCount();
+        document.dispatchEvent(new CustomEvent('cart:item-added', {
+          detail: { bundle: bundleConfig.name, count: items.length }
+        }));
+        setTimeout(function () {
+          btnText.textContent = originalText;
+          btn.disabled = false;
+        }, 2000);
+      })
+      .catch(function (err) {
+        console.error('[bundle-builder] Cart add failed', err);
+        btnText.textContent = 'Try again';
+        setTimeout(function () {
+          btnText.textContent = originalText;
+          btn.disabled = false;
+        }, 2500);
+      });
+  }
+
+  /* --- Update header cart count bubble --- */
+  function updateCartCount() {
+    fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (cart) {
+        var bubble = document.querySelector('#cart-icon-bubble .cart-count-bubble');
+        var emptyIcon = document.querySelector('#cart-icon-bubble .icon-cart-empty');
+        if (cart.item_count > 0) {
+          if (bubble) {
+            var span = bubble.querySelector('span[aria-hidden]');
+            if (span) span.textContent = cart.item_count < 100 ? cart.item_count : '99+';
+          } else {
+            /* Bubble doesn't exist yet — create one */
+            var iconWrap = document.querySelector('#cart-icon-bubble');
+            if (iconWrap) {
+              var newBubble = document.createElement('div');
+              newBubble.className = 'cart-count-bubble';
+              newBubble.innerHTML = '<span aria-hidden="true">' + cart.item_count + '</span>' +
+                '<span class="visually-hidden">' + cart.item_count + ' items</span>';
+              iconWrap.appendChild(newBubble);
+            }
+          }
+        }
+      })
+      .catch(function () { /* silent */ });
+  }
+
+  /* --- Hydrate a single bundle card --- */
+  function hydrateBundle(bundleConfig) {
+    var card = root.querySelector('.png-bb__card[data-bundle-id="' + bundleConfig.id + '"]');
+    if (!card) return;
+
+    /* Collect handles to fetch */
+    var handles = [];
+    bundleConfig.items.forEach(function (item) {
+      if (item.type === 'fixed') {
+        handles.push(item.handle);
+      } else if (item.type === 'choice') {
+        item.options.forEach(function (opt) { handles.push(opt.handle); });
+      }
+    });
+
+    Promise.all(handles.map(fetchProduct)).then(function () {
+      /* Build item rows */
+      var itemsContainer = card.querySelector('[data-bundle-items]');
+      itemsContainer.innerHTML = '';
+
+      bundleConfig.items.forEach(function (item) {
+        if (item.type === 'fixed') {
+          var p = productCache[item.handle];
+          itemsContainer.appendChild(renderFixedRow(item, p));
+        } else if (item.type === 'choice') {
+          var products = item.options.map(function (opt) { return productCache[opt.handle]; });
+          itemsContainer.appendChild(renderChoiceRow(item, products, bundleConfig.id));
+        }
+      });
+
+      /* Wire up dropdown listeners */
+      card.querySelectorAll('[data-choice-select]').forEach(function (sel) {
+        sel.addEventListener('change', function () {
+          handleChoiceChange(card, bundleConfig, sel);
+        });
+      });
+
+      /* Initial pricing */
+      updateCardPricing(card, bundleConfig);
+
+      /* Wire up add-to-cart */
+      var btn = card.querySelector('[data-bundle-add]');
+      btn.addEventListener('click', function () {
+        handleAddToCart(card, bundleConfig);
+      });
+    });
+  }
+
+  /* --- Init --- */
+  config.bundles.forEach(hydrateBundle);
+})();
+</script>
 {%- endif -%}
 
 {% schema %}
@@ -81,49 +508,16 @@
       "default": false
     },
     {
-      "type": "header",
-      "content": "Essential tier"
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Build your bundle"
     },
     {
       "type": "text",
-      "id": "price_essential",
-      "label": "Price",
-      "default": "$595"
-    },
-    {
-      "type": "url",
-      "id": "link_essential",
-      "label": "Product link"
-    },
-    {
-      "type": "header",
-      "content": "Pro tier"
-    },
-    {
-      "type": "text",
-      "id": "price_pro",
-      "label": "Price",
-      "default": "$895"
-    },
-    {
-      "type": "url",
-      "id": "link_pro",
-      "label": "Product link"
-    },
-    {
-      "type": "header",
-      "content": "Complete tier"
-    },
-    {
-      "type": "text",
-      "id": "price_complete",
-      "label": "Price",
-      "default": "$1,295"
-    },
-    {
-      "type": "url",
-      "id": "link_complete",
-      "label": "Product link"
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pick a bundle. Save 15%."
     }
   ],
   "presets": [
