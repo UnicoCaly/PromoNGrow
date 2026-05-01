@@ -1,16 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "custom-hero",
       "settings": {
+        "image": "shopify://shop_images/IMG_4753_2.jpg",
         "eyebrow": "Custom event displays",
         "heading": "Your brand, built to show up.",
         "subtext": "Custom tents, backdrops, flags, and signage — produced and delivered nationwide in 5 business days.",
         "primary_label": "Shop bundles",
         "primary_url": "/collections/bundles",
         "secondary_label": "Get a quote",
-        "secondary_url": "/pages/contact",
-        "image": "shopify://shop_images/IMG_4753_2.jpg"
+        "secondary_url": "/pages/contact"
       }
     },
     "categories": {
@@ -22,6 +31,7 @@
             "title": "Bundles",
             "subtitle": "Save 15%+ →",
             "highlight_subtitle": true,
+            "image": "shopify://shop_images/ChatGPT_Image_Jan_22_2026_07_30_55_AM.png",
             "link": "/collections/bundles"
           }
         },
@@ -29,8 +39,9 @@
           "type": "category",
           "settings": {
             "title": "Tents",
-            "subtitle": "From $495",
+            "subtitle": "From $800",
             "highlight_subtitle": false,
+            "image": "shopify://shop_images/Run_CLub_Bunble_-_Tent_Flag_Table_Throw_-_Promo_N_Grow.png",
             "link": "/collections/tents-canopies"
           }
         },
@@ -38,27 +49,30 @@
           "type": "category",
           "settings": {
             "title": "Displays",
-            "subtitle": "From $295",
+            "subtitle": "5 Day Delivery",
             "highlight_subtitle": false,
+            "image": "shopify://shop_images/ChatGPT_Image_Oct_1_2025_08_40_08_PM.png",
             "link": "/collections/backdrop-display"
           }
         },
         "cat-accessories": {
           "type": "category",
           "settings": {
-            "title": "Accessories",
-            "subtitle": "From $95",
+            "title": "Best Sellers",
+            "subtitle": "",
             "highlight_subtitle": false,
-            "link": "/collections/accessories"
+            "image": "shopify://shop_images/Firefly_Imagen_a_branded_pop_up_tent_with_branded_table_cloth_and_backdrop_for_a_market_business_10913.png",
+            "link": "shopify://collections/best-sellers"
           }
         },
         "cat-wraps": {
           "type": "category",
           "settings": {
-            "title": "Wraps",
-            "subtitle": "From $195",
+            "title": "Flags",
+            "subtitle": "5 Styles Available",
             "highlight_subtitle": false,
-            "link": "/collections/wraps"
+            "image": "shopify://shop_images/471F022D-2B3D-49A5-8A2D-22F9FD3AA7CD.png",
+            "link": "shopify://collections/flags"
           }
         }
       },
@@ -71,7 +85,7 @@
       ],
       "settings": {
         "heading": "Shop by category",
-        "view_all_url": ""
+        "view_all_url": "shopify://collections"
       }
     },
     "how-it-works": {
