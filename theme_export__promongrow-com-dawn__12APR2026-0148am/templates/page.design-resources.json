@@ -1,9 +1,9 @@
 {
   "sections": {
-    "design-resources": {
+    "main": {
       "type": "custom-design-resources",
       "settings": {}
     }
   },
-  "order": ["design-resources"]
+  "order": ["main"]
 }
