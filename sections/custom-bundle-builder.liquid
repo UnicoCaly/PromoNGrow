@@ -499,8 +499,22 @@
     });
   }
 
-  /* --- Init --- */
-  config.bundles.forEach(hydrateBundle);
+  /* --- Init: defer hydration so first paint isn't blocked --- */
+  function startHydration() {
+    config.bundles.forEach(hydrateBundle);
+  }
+  function scheduleHydration() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(startHydration, { timeout: 1500 });
+    } else {
+      setTimeout(startHydration, 100);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleHydration);
+  } else {
+    scheduleHydration();
+  }
 })();
 </script>
 {%- endif -%}

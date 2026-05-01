@@ -186,9 +186,10 @@
   </div>
 </section>
 
-<!-- Copy prompt JS -->
+<!-- Copy prompt JS (deferred to idle) -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+(function () {
+  function init() {
     document.querySelectorAll('.png-dr-copy-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var pre = this.closest('.png-dr-prompt-card__body').querySelector('.png-dr-prompt-card__text');
@@ -207,7 +208,15 @@
         toggle.textContent = this.open ? '\u2212' : '+';
       });
     });
-  });
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(init, { timeout: 2000 });
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 </script>
 
 {% schema %}

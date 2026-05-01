@@ -41,49 +41,62 @@
 </div>
 
 <script>
+/* Promo & Grow: defer popup setup until after first paint + interactivity */
 (function () {
-  var POPUP_KEY = 'png_confidence_popup_shown';
-  var popup = document.getElementById('png-popup-confidence');
-  if (!popup) return;
+  /* Total delay before popup appears = SETUP_DELAY (script attach) + DISPLAY_DELAY (visible) */
+  var SETUP_DELAY = 3500;
+  var DISPLAY_DELAY = 1500;
 
-  function closePopup() {
-    popup.hidden = true;
-    document.body.style.overflow = '';
-    sessionStorage.setItem(POPUP_KEY, '1');
+  /* Bail early on non-product pages so we never schedule the work */
+  if (window.location.pathname.indexOf('/products/') === -1) return;
+
+  function init() {
+    var POPUP_KEY = 'png_confidence_popup_shown';
+    var popup = document.getElementById('png-popup-confidence');
+    if (!popup) return;
+    if (sessionStorage.getItem(POPUP_KEY)) return;
+
+    /* Skip returning customers */
+    var isReturning = false;
+    try {
+      if (window.__st && window.__st.cid) isReturning = true;
+    } catch (e) {}
+    if (document.querySelector('meta[name="customer"]')) isReturning = true;
+    if (isReturning) return;
+
+    function closePopup() {
+      popup.hidden = true;
+      document.body.style.overflow = '';
+      sessionStorage.setItem(POPUP_KEY, '1');
+    }
+
+    popup.querySelectorAll('[data-popup-close]').forEach(function (el) {
+      el.addEventListener('click', closePopup);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !popup.hidden) closePopup();
+    });
+
+    /* Show after a short additional delay */
+    setTimeout(function () {
+      if (sessionStorage.getItem(POPUP_KEY)) return;
+      popup.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }, DISPLAY_DELAY);
   }
 
-  popup.querySelectorAll('[data-popup-close]').forEach(function (el) {
-    el.addEventListener('click', closePopup);
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !popup.hidden) closePopup();
-  });
-
-  /* Only show on product pages, for new visitors, once per session */
-  var isProductPage = window.location.pathname.indexOf('/products/') !== -1;
-  if (!isProductPage) return;
-  if (sessionStorage.getItem(POPUP_KEY)) return;
-
-  /* Check if returning customer (has customer object or prior orders cookie) */
-  var isReturning = false;
-  try {
-    if (window.__st && window.__st.cid) isReturning = true;
-    if (document.cookie.indexOf('_shopify_sa_t') !== -1) {
-      /* Has had a previous session — could be returning, but we'll be generous */
+  function schedule() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(init, { timeout: SETUP_DELAY + 1000 });
+    } else {
+      setTimeout(init, SETUP_DELAY);
     }
-  } catch (e) {}
-
-  /* For Shopify: check if customer is logged in */
-  if (document.querySelector('meta[name="customer"]')) isReturning = true;
-
-  if (isReturning) return;
-
-  /* Show after 5 seconds */
-  setTimeout(function () {
-    if (sessionStorage.getItem(POPUP_KEY)) return;
-    popup.hidden = false;
-    document.body.style.overflow = 'hidden';
-  }, 5000);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(schedule, SETUP_DELAY); });
+  } else {
+    setTimeout(schedule, SETUP_DELAY);
+  }
 })();
 </script>

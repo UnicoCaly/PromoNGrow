@@ -93,14 +93,24 @@
 
 <script>
 (function () {
-  /* Close the More dropdown when clicking outside or pressing Escape */
-  var moreEl = document.querySelector('.png-nav-more__details');
-  if (!moreEl) return;
-  document.addEventListener('click', function (e) {
-    if (!moreEl.contains(e.target)) moreEl.removeAttribute('open');
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') moreEl.removeAttribute('open');
-  });
+  /* Close the More dropdown when clicking outside or pressing Escape.
+     Deferred so it doesn't compete with first paint. */
+  function init() {
+    var moreEl = document.querySelector('.png-nav-more__details');
+    if (!moreEl) return;
+    document.addEventListener('click', function (e) {
+      if (!moreEl.contains(e.target)) moreEl.removeAttribute('open');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') moreEl.removeAttribute('open');
+    });
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(init, { timeout: 2000 });
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 500); });
+  } else {
+    setTimeout(init, 500);
+  }
 })();
 </script>

@@ -37,7 +37,8 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+(function () {
+  function initTabs() {
     document.querySelectorAll('.png-tabs__tab').forEach(function (tab) {
       tab.addEventListener('click', function () {
         var index = this.getAttribute('data-tab-index');
@@ -59,7 +60,15 @@
         }
       });
     });
-  });
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initTabs, { timeout: 2000 });
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs);
+  } else {
+    initTabs();
+  }
+})();
 </script>
 
 {% schema %}

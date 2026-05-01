@@ -51,10 +51,6 @@
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
 
-    {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
-
     {{ content_for_header }}
 
     {%- liquid
@@ -390,7 +386,11 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    <!-- Promo & Grow: Purchase Popups -->
+    {%- if settings.animations_reveal_on_scroll -%}
+      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    <!-- Promo & Grow: Purchase Popups (deferred via internal setTimeout) -->
     {%- render 'popup-bundle-savings' -%}
     {%- render 'popup-confidence' -%}
   </body>
