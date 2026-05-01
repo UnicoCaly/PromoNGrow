@@ -2,13 +2,14 @@
 {%- if shop.brand.logo -%}
   {{
     shop.brand.logo
-    | image_url: width: 400
+    | image_url: width: 240
     | image_tag:
       class: 'png-logo-img',
       alt: shop.name,
       loading: 'eager',
-      sizes: '200px',
-      widths: '100, 150, 200, 300, 400'
+      fetchpriority: 'high',
+      sizes: '120px',
+      widths: '80, 120, 160, 240'
   }}
 {%- else -%}
   <span class="png-logo" aria-label="Promo and Grow">

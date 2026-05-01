@@ -8,6 +8,24 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Promo & Grow — Performance",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Homepage hero preload"
+      },
+      {
+        "type": "paragraph",
+        "content": "Set this to the same image as the homepage hero so it preloads early for faster LCP. Leave empty to skip preload."
+      },
+      {
+        "type": "image_picker",
+        "id": "homepage_hero_image",
+        "label": "Homepage hero image (preload)"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

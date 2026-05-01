@@ -225,7 +225,7 @@
       return row;
     }
     var thumbHtml = product.thumb
-      ? '<img class="png-bb__thumb" src="' + buildThumbUrl(product.thumb) + '" alt="" loading="lazy" width="40" height="40">'
+      ? '<img class="png-bb__thumb" src="' + buildThumbUrl(product.thumb) + '" alt="' + escapeHtml(product.title) + '" loading="lazy" decoding="async" width="40" height="40">'
       : '<div class="png-bb__thumb png-bb__thumb--ph"></div>';
     row.innerHTML =
       thumbHtml +
@@ -245,7 +245,7 @@
 
     var firstValid = products.find(function (p) { return p; });
     var thumb = firstValid && firstValid.thumb
-      ? '<img class="png-bb__thumb" data-choice-thumb src="' + buildThumbUrl(firstValid.thumb) + '" alt="" loading="lazy" width="40" height="40">'
+      ? '<img class="png-bb__thumb" data-choice-thumb src="' + buildThumbUrl(firstValid.thumb) + '" alt="' + escapeHtml(firstValid.title || item.label) + '" loading="lazy" decoding="async" width="40" height="40">'
       : '<div class="png-bb__thumb png-bb__thumb--ph" data-choice-thumb></div>';
 
     var optionsHtml = item.options.map(function (opt, i) {
@@ -355,13 +355,15 @@
       var newThumb;
       if (thumbEl.tagName === 'IMG') {
         thumbEl.src = buildThumbUrl(p.thumb);
+        thumbEl.alt = p.title || '';
       } else {
         newThumb = document.createElement('img');
         newThumb.className = 'png-bb__thumb';
         newThumb.setAttribute('data-choice-thumb', '');
         newThumb.src = buildThumbUrl(p.thumb);
-        newThumb.alt = '';
+        newThumb.alt = p.title || '';
         newThumb.loading = 'lazy';
+        newThumb.decoding = 'async';
         newThumb.width = 40;
         newThumb.height = 40;
         thumbEl.replaceWith(newThumb);

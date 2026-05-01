@@ -15,7 +15,7 @@
             endif
           -%}
           {%- if footer_logo != blank -%}
-            {{ footer_logo | image_url: width: 400 | image_tag: class: 'png-footer__logo-img', alt: shop.name, loading: 'lazy', widths: '200,300,400', sizes: '200px' }}
+            {{ footer_logo | image_url: width: 200 | image_tag: class: 'png-footer__logo-img', alt: shop.name, loading: 'lazy', widths: '100,150,200', sizes: '150px' }}
           {%- else -%}
             <span class="png-footer__logo-fallback">
               <span class="png-footer__logo-fallback-text">PROMO</span><span class="png-footer__logo-fallback-amp">&amp;</span><span class="png-footer__logo-fallback-text">GROW</span>

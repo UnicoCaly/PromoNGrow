@@ -20,6 +20,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
+    <!-- Promo & Grow: Preload homepage hero (LCP) -->
+    {%- if template == 'index' and settings.homepage_hero_image != blank -%}
+      <link
+        rel="preload"
+        as="image"
+        href="{{ settings.homepage_hero_image | image_url: width: 840 }}"
+        imagesrcset="{{ settings.homepage_hero_image | image_url: width: 420 }} 420w, {{ settings.homepage_hero_image | image_url: width: 600 }} 600w, {{ settings.homepage_hero_image | image_url: width: 840 }} 840w"
+        imagesizes="(max-width: 768px) 100vw, 420px"
+        fetchpriority="high">
+    {%- endif -%}
+
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}

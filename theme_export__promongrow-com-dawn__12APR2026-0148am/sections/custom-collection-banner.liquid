@@ -41,12 +41,14 @@
         {%- if collection.image -%}
           {{
             collection.image
-            | image_url: width: 600
+            | image_url: width: 800
             | image_tag:
               class: 'png-collection-banner__img',
               loading: 'eager',
-              sizes: '(min-width: 750px) 35vw, 100vw',
-              widths: '300, 400, 600'
+              fetchpriority: 'high',
+              sizes: '(max-width: 768px) 100vw, 35vw',
+              widths: '400, 600, 800',
+              alt: collection.image.alt | default: collection.title
           }}
         {%- else -%}
           <div class="png-collection-banner__placeholder">

@@ -27,7 +27,8 @@
             | image_tag:
               class: 'png-hero-dark__img',
               loading: 'eager',
-              sizes: '(min-width: 769px) 420px, 100vw',
+              fetchpriority: 'high',
+              sizes: '(max-width: 768px) 100vw, 420px',
               widths: '420, 600, 840',
               alt: section.settings.image.alt | default: shop.name
           }}

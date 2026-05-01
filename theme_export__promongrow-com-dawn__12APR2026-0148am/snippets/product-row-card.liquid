@@ -26,9 +26,10 @@
         | image_url: width: 160
         | image_tag:
           class: 'png-product-row__img',
-          loading: lazy_load,
-          sizes: '80px',
-          widths: '80, 160'
+          loading: 'lazy',
+          sizes: '(max-width: 768px) 100vw, 80px',
+          widths: '80, 120, 160',
+          alt: card_product.featured_image.alt | default: card_product.title
       }}
     {%- else -%}
       {{ 'product-1' | placeholder_svg_tag: 'png-product-row__placeholder' }}
