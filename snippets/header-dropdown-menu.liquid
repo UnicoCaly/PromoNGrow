@@ -50,5 +50,58 @@
         </span>
       </a>
     </li>
+    <!-- 6. More (dropdown of remaining collections) -->
+    {%- liquid
+      assign main_handles = 'bundles,tents-canopies,backdrop-display,flags,wraps,frontpage,all' | split: ','
+      assign extra_collections = ''
+      for col in collections
+        unless main_handles contains col.handle
+          assign extra_collections = extra_collections | append: col.handle | append: '|'
+        endunless
+      endfor
+    -%}
+    {%- if extra_collections != blank -%}
+      <li class="png-nav-more">
+        <details class="png-nav-more__details">
+          <summary class="png-nav-link png-nav-more__summary header__menu-item list-menu__item link link--text focus-inset">
+            <span class="png-nav-item-wrap">
+              <span class="png-nav-title">
+                {{ section.settings.nav_more_label | default: 'More' }}
+                <span class="png-nav-more__caret" aria-hidden="true">&#9662;</span>
+              </span>
+              <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_6 | default: 'All collections' }}</span>
+            </span>
+          </summary>
+          <ul class="png-nav-more__menu" role="list">
+            {%- for col in collections -%}
+              {%- unless main_handles contains col.handle -%}
+                <li>
+                  <a href="{{ col.url }}" class="png-nav-more__link">
+                    {{ col.title | escape }}
+                    {%- if col.products_count > 0 -%}
+                      <span class="png-nav-more__count">{{ col.products_count }}</span>
+                    {%- endif -%}
+                  </a>
+                </li>
+              {%- endunless -%}
+            {%- endfor -%}
+          </ul>
+        </details>
+      </li>
+    {%- endif -%}
   </ul>
 </nav>
+
+<script>
+(function () {
+  /* Close the More dropdown when clicking outside or pressing Escape */
+  var moreEl = document.querySelector('.png-nav-more__details');
+  if (!moreEl) return;
+  document.addEventListener('click', function (e) {
+    if (!moreEl.contains(e.target)) moreEl.removeAttribute('open');
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') moreEl.removeAttribute('open');
+  });
+})();
+</script>

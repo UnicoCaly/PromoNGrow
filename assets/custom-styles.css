@@ -259,6 +259,101 @@ p, li, td, th, label, input, select, textarea {
   color: var(--png-copper);
 }
 
+/* "More" dropdown */
+.png-nav-more {
+  position: relative;
+}
+
+.png-nav-more__details {
+  position: relative;
+}
+
+.png-nav-more__summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.png-nav-more__summary::-webkit-details-marker {
+  display: none;
+}
+
+.png-nav-more__caret {
+  display: inline-block;
+  font-size: 8px;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+  color: var(--png-text-muted);
+}
+
+.png-nav-more__details[open] .png-nav-more__caret {
+  transform: rotate(180deg);
+}
+
+.png-nav-more__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 0.5px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 8px 0;
+  min-width: 200px;
+  list-style: none;
+  margin: 0;
+  z-index: 100;
+  animation: pngNavMoreFade 0.15s ease;
+}
+
+@keyframes pngNavMoreFade {
+  from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.png-nav-more__menu li {
+  list-style: none;
+}
+
+.png-nav-more__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--png-navy);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.png-nav-more__link:hover {
+  background: var(--png-offwhite);
+  color: var(--png-copper);
+}
+
+.png-nav-more__count {
+  font-size: 10px;
+  color: var(--png-text-muted);
+  margin-left: 12px;
+  font-weight: 400;
+}
+
+@media (max-width: 749px) {
+  .png-nav-more__menu {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+  @keyframes pngNavMoreFade {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
 /* Sticky header: compact state */
 .shopify-section-header-sticky .header-wrapper {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
