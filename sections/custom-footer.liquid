@@ -5,22 +5,11 @@
       <!-- Logo + Tagline -->
       <div class="png-footer__brand">
         <a href="{{ routes.root_url }}" class="png-footer__logo" aria-label="Promo and Grow home">
-          {%- liquid
-            assign footer_logo = shop.brand.logo
-            if footer_logo == blank
-              assign footer_logo = shop.brand.square_logo
-            endif
-            if footer_logo == blank
-              assign footer_logo = settings.logo
-            endif
-          -%}
-          {%- if footer_logo != blank -%}
-            {{ footer_logo | image_url: width: 200 | image_tag: class: 'png-footer__logo-img', alt: shop.name, loading: 'lazy', widths: '100,150,200', sizes: '150px' }}
-          {%- else -%}
-            <span class="png-footer__logo-fallback">
-              <span class="png-footer__logo-fallback-text">PROMO</span><span class="png-footer__logo-fallback-amp">&amp;</span><span class="png-footer__logo-fallback-text">GROW</span>
-            </span>
-          {%- endif -%}
+          {% if shop.brand.logo %}
+            {{ shop.brand.logo | image_url: width: 160 | image_tag: class: 'footer-logo', loading: 'lazy', style: 'max-height: 48px; width: auto; display: block; margin-bottom: 8px; filter: brightness(0) invert(1);' }}
+          {% else %}
+            <span style="font-size: 16px; font-weight: 500; color: #fff; letter-spacing: 0.5px;">PROMO <span style="color: #C17A3A; font-weight: 400;">&</span> GROW</span>
+          {% endif %}
         </a>
         <p class="png-footer__tagline">Custom event displays. Produced and delivered in 5 days.</p>
       </div>
