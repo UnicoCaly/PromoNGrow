@@ -2017,16 +2017,23 @@ a.png-link-cta::after {
   margin: 0 0 8px;
 }
 
-.png-contact-info__phone {
+.png-contact-info__phone,
+.png-contact-info__email {
   font-family: var(--png-font-display);
   font-size: 20px;
   color: var(--png-navy);
   text-decoration: none;
   display: block;
   margin-bottom: 4px;
+  word-break: break-word;
 }
 
-.png-contact-info__phone:hover {
+.png-contact-info__email {
+  font-size: 17px;
+}
+
+.png-contact-info__phone:hover,
+.png-contact-info__email:hover {
   color: var(--png-copper);
 }
 
