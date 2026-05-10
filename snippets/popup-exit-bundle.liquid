@@ -1,0 +1,379 @@
+<!-- Promo & Grow: Exit-Intent Bundle Popup -->
+{%- comment -%}
+  Renders only on product + collection pages.
+  Skips homepage, cart, checkout, and account pages.
+  Fires on desktop mouseout-to-top OR rapid mobile scroll-up.
+  Shows once per session, armed after 5 seconds on page.
+{%- endcomment -%}
+
+{%- liquid
+  assign show_popup = false
+  if template contains 'product' or template contains 'collection'
+    assign show_popup = true
+  endif
+  if template == 'index'
+    assign show_popup = false
+  endif
+  if template contains 'cart' or template contains 'checkout' or template contains 'account' or template contains 'customers'
+    assign show_popup = false
+  endif
+-%}
+
+{%- if show_popup -%}
+  {%- assign tent_product = all_products['10ft-x-10ft-event-tent-canopy'] -%}
+  {%- assign flag_product = all_products['feather-convex-flag-copy'] -%}
+  {%- assign throw_product = all_products['stretch-table-cover'] -%}
+
+<div id="png-exit-popup" class="png-exit" hidden>
+  <div class="png-exit__overlay" data-exit-close></div>
+  <div class="png-exit__modal" role="dialog" aria-modal="true" aria-labelledby="png-exit-heading">
+    <button class="png-exit__close" type="button" data-exit-close aria-label="Close">&times;</button>
+
+    <div class="png-exit__images">
+      {%- if tent_product.featured_image -%}
+        {{ tent_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: '10ft Event Tent', widths: '100,200', sizes: '100px' }}
+      {%- else -%}
+        <div class="png-exit__img png-exit__img--ph"></div>
+      {%- endif -%}
+      {%- if flag_product.featured_image -%}
+        {{ flag_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: 'Teardrop Flag', widths: '100,200', sizes: '100px' }}
+      {%- else -%}
+        <div class="png-exit__img png-exit__img--ph"></div>
+      {%- endif -%}
+      {%- if throw_product.featured_image -%}
+        {{ throw_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: 'Table Cover', widths: '100,200', sizes: '100px' }}
+      {%- else -%}
+        <div class="png-exit__img png-exit__img--ph"></div>
+      {%- endif -%}
+    </div>
+
+    <div class="png-exit__text">
+      <p class="png-exit__eyebrow">Before you go &mdash;</p>
+      <h2 id="png-exit-heading" class="png-exit__heading">Bundle and save 15%</h2>
+      <p class="png-exit__sub">Tent + flag + table throw. One order. 5-day delivery.</p>
+    </div>
+
+    <div class="png-exit__price">
+      <p class="png-exit__price-main" data-exit-price>Starting at $668</p>
+      <p class="png-exit__price-savings" data-exit-savings>(saves you $100+)</p>
+    </div>
+
+    <a href="/collections/bundles" class="png-exit__cta">View bundles &mdash; save 15%</a>
+    <button class="png-exit__dismiss" type="button" data-exit-close>No thanks, I'll keep browsing</button>
+  </div>
+</div>
+
+<style>
+  .png-exit {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .png-exit:not([hidden]) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .png-exit__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  .png-exit__modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    max-width: 420px;
+    width: calc(100% - 32px);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease;
+  }
+  .png-exit:not([hidden]) .png-exit__modal {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .png-exit__close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ccc;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .png-exit__close:hover {
+    color: #666;
+  }
+  .png-exit__images {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 4px 0 18px;
+  }
+  .png-exit__img {
+    width: 100px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+  .png-exit__img--ph {
+    background: #f5f5f5;
+    border: 0.5px solid #eee;
+  }
+  .png-exit__text {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .png-exit__eyebrow {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    margin: 0 0 6px;
+  }
+  .png-exit__heading {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #1B2838;
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+  .png-exit__sub {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    color: #6C757D;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .png-exit__price {
+    background: #F7F7F5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .png-exit__price-main {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #1B2838;
+    margin: 0 0 2px;
+  }
+  .png-exit__price-savings {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: #1E6B4A;
+    margin: 0;
+  }
+  .png-exit__cta {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: #C17A3A;
+    color: #fff;
+    padding: 14px;
+    border-radius: 5px;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+    margin-bottom: 12px;
+  }
+  .png-exit__cta:hover {
+    background: #A8682F;
+    color: #fff;
+  }
+  .png-exit__dismiss {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+  }
+  .png-exit__dismiss:hover {
+    color: #666;
+  }
+  @media (max-width: 480px) {
+    .png-exit__modal { padding: 24px 20px; }
+    .png-exit__heading { font-size: 22px; }
+    .png-exit__img { width: 80px; }
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+  var SESSION_KEY = 'png_exit_shown';
+  var PAGE_DELAY = 5000;       /* ms before detection is armed */
+  var MOBILE_BP = 768;         /* mobile breakpoint */
+  var MOBILE_DELTA = 100;      /* px upward in window */
+  var MOBILE_WINDOW = 300;     /* ms window for measuring scroll velocity */
+  var DISCOUNT = 0.15;         /* must match bundle builder */
+
+  /* Defensive bails (Liquid already gated, but belt + suspenders) */
+  if (sessionStorage.getItem(SESSION_KEY)) return;
+  var path = window.location.pathname;
+  if (path === '/' || path === '') return;
+  if (path.indexOf('/cart') === 0 || path.indexOf('/checkout') === 0) return;
+  if (path.indexOf('/account') === 0) return;
+
+  var popup = document.getElementById('png-exit-popup');
+  if (!popup) return;
+
+  /* Event Pro bundle slots — must mirror sections/custom-bundle-builder.liquid */
+  var EVENT_PRO_SLOTS = {
+    tent:  ['10ft-x-10ft-event-tent-canopy', '10-x-15-event-tent', '10ft-x-20ft-event-tent-canopy'],
+    flag:  ['feather-convex-flag-copy', 'rectangle-flag', 'feather-convex-flag', 'feather-angled-flag', 'econo-feather-flag'],
+    throw: ['stretch-table-cover', '8ft-table-throw', '6ft-table-runner-with-solid-blank-table-throw']
+  };
+
+  var priceCache = {};
+  var pricingResult = null; /* { price, savings } once computed */
+
+  function fmtMoney(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function fetchHandle(handle) {
+    if (priceCache[handle] !== undefined) return Promise.resolve(priceCache[handle]);
+    return fetch('/products/' + encodeURIComponent(handle) + '.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !data.product) { priceCache[handle] = null; return null; }
+        var v = (data.product.variants || []).filter(function (v) { return v.available; })[0]
+              || data.product.variants[0];
+        var price = v ? parseFloat(v.price) : null;
+        priceCache[handle] = price;
+        return price;
+      })
+      .catch(function () { priceCache[handle] = null; return null; });
+  }
+
+  function fetchSlot(handles) {
+    return Promise.all(handles.map(fetchHandle)).then(function (prices) {
+      var valid = prices.filter(function (p) { return typeof p === 'number'; });
+      if (valid.length === 0) return null;
+      return Math.min.apply(null, valid);
+    });
+  }
+
+  function computePricing() {
+    return Promise.all([
+      fetchSlot(EVENT_PRO_SLOTS.tent),
+      fetchSlot(EVENT_PRO_SLOTS.flag),
+      fetchSlot(EVENT_PRO_SLOTS.throw)
+    ]).then(function (slotPrices) {
+      if (slotPrices.some(function (p) { return p == null; })) return null;
+      var total = slotPrices.reduce(function (sum, p) { return sum + p; }, 0);
+      var bundlePrice = total * (1 - DISCOUNT);
+      var savings = total - bundlePrice;
+      return { price: bundlePrice, savings: savings };
+    }).catch(function () { return null; });
+  }
+
+  function applyPricingToDom() {
+    if (!pricingResult) return;
+    var priceEl = popup.querySelector('[data-exit-price]');
+    var savingsEl = popup.querySelector('[data-exit-savings]');
+    if (priceEl) priceEl.textContent = 'Starting at ' + fmtMoney(pricingResult.price);
+    if (savingsEl) savingsEl.textContent = '(saves you ' + fmtMoney(pricingResult.savings) + '+)';
+  }
+
+  /* Kick off pricing fetch in the background — by the time popup fires,
+     prices are usually ready. If not, the hardcoded fallback in HTML shows. */
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(function () {
+      computePricing().then(function (result) {
+        pricingResult = result;
+        applyPricingToDom();
+      });
+    }, { timeout: 4000 });
+  } else {
+    setTimeout(function () {
+      computePricing().then(function (result) {
+        pricingResult = result;
+        applyPricingToDom();
+      });
+    }, 1500);
+  }
+
+  var armed = false;
+  var triggered = false;
+
+  function show() {
+    if (triggered) return;
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+    triggered = true;
+    sessionStorage.setItem(SESSION_KEY, '1');
+    /* If pricing hasn't arrived yet, give it one more chance synchronously */
+    applyPricingToDom();
+    popup.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    popup.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  popup.querySelectorAll('[data-exit-close]').forEach(function (el) {
+    el.addEventListener('click', close);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !popup.hidden) close();
+  });
+
+  /* Arm detection after page-delay */
+  setTimeout(function () { armed = true; }, PAGE_DELAY);
+
+  /* Desktop: cursor leaves the document through the top */
+  document.addEventListener('mouseout', function (e) {
+    if (!armed || triggered) return;
+    if (window.innerWidth < MOBILE_BP) return;
+    /* Only fire when leaving the viewport entirely */
+    if (e.relatedTarget || e.toElement) return;
+    if (e.clientY < 10) show();
+  });
+
+  /* Mobile: rapid upward scroll near top */
+  if (window.innerWidth < MOBILE_BP) {
+    var samples = [];
+    window.addEventListener('scroll', function () {
+      if (!armed || triggered) return;
+      var now = Date.now();
+      var y = window.scrollY;
+      /* Keep only samples within the time window */
+      samples = samples.filter(function (s) { return now - s.t < MOBILE_WINDOW; });
+      samples.push({ t: now, y: y });
+      if (samples.length < 2) return;
+      var startY = samples[0].y;
+      var deltaUp = startY - y; /* positive = moved upward */
+      if (deltaUp > MOBILE_DELTA && y < 200) {
+        show();
+      }
+    }, { passive: true });
+  }
+})();
+</script>
+{%- endif -%}
