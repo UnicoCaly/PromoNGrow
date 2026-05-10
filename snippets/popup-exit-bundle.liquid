@@ -54,8 +54,8 @@
     </div>
 
     <div class="png-exit__price">
-      <p class="png-exit__price-main" data-exit-price>Starting at $668</p>
-      <p class="png-exit__price-savings" data-exit-savings>(saves you $100+)</p>
+      <p class="png-exit__price-main">Starting at $910</p>
+      <p class="png-exit__price-savings">(saves you $160+)</p>
     </div>
 
     <a href="/collections/bundles" class="png-exit__cta">View bundles &mdash; save 15%</a>
@@ -228,7 +228,6 @@
   var MOBILE_BP = 768;         /* mobile breakpoint */
   var MOBILE_DELTA = 100;      /* px upward in window */
   var MOBILE_WINDOW = 300;     /* ms window for measuring scroll velocity */
-  var DISCOUNT = 0.15;         /* must match bundle builder */
 
   /* Defensive bails (Liquid already gated, but belt + suspenders) */
   if (sessionStorage.getItem(SESSION_KEY)) return;
@@ -240,83 +239,6 @@
   var popup = document.getElementById('png-exit-popup');
   if (!popup) return;
 
-  /* Event Pro bundle slots — must mirror sections/custom-bundle-builder.liquid */
-  var EVENT_PRO_SLOTS = {
-    tent:  ['10ft-x-10ft-event-tent-canopy', '10-x-15-event-tent', '10ft-x-20ft-event-tent-canopy'],
-    flag:  ['feather-convex-flag-copy', 'rectangle-flag', 'feather-convex-flag', 'feather-angled-flag', 'econo-feather-flag'],
-    throw: ['stretch-table-cover', '8ft-table-throw', '6ft-table-runner-with-solid-blank-table-throw']
-  };
-
-  var priceCache = {};
-  var pricingResult = null; /* { price, savings } once computed */
-
-  function fmtMoney(n) {
-    return '$' + Math.round(n).toLocaleString('en-US');
-  }
-
-  function fetchHandle(handle) {
-    if (priceCache[handle] !== undefined) return Promise.resolve(priceCache[handle]);
-    return fetch('/products/' + encodeURIComponent(handle) + '.json')
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data || !data.product) { priceCache[handle] = null; return null; }
-        var v = (data.product.variants || []).filter(function (v) { return v.available; })[0]
-              || data.product.variants[0];
-        var price = v ? parseFloat(v.price) : null;
-        priceCache[handle] = price;
-        return price;
-      })
-      .catch(function () { priceCache[handle] = null; return null; });
-  }
-
-  function fetchSlot(handles) {
-    return Promise.all(handles.map(fetchHandle)).then(function (prices) {
-      var valid = prices.filter(function (p) { return typeof p === 'number'; });
-      if (valid.length === 0) return null;
-      return Math.min.apply(null, valid);
-    });
-  }
-
-  function computePricing() {
-    return Promise.all([
-      fetchSlot(EVENT_PRO_SLOTS.tent),
-      fetchSlot(EVENT_PRO_SLOTS.flag),
-      fetchSlot(EVENT_PRO_SLOTS.throw)
-    ]).then(function (slotPrices) {
-      if (slotPrices.some(function (p) { return p == null; })) return null;
-      var total = slotPrices.reduce(function (sum, p) { return sum + p; }, 0);
-      var bundlePrice = total * (1 - DISCOUNT);
-      var savings = total - bundlePrice;
-      return { price: bundlePrice, savings: savings };
-    }).catch(function () { return null; });
-  }
-
-  function applyPricingToDom() {
-    if (!pricingResult) return;
-    var priceEl = popup.querySelector('[data-exit-price]');
-    var savingsEl = popup.querySelector('[data-exit-savings]');
-    if (priceEl) priceEl.textContent = 'Starting at ' + fmtMoney(pricingResult.price);
-    if (savingsEl) savingsEl.textContent = '(saves you ' + fmtMoney(pricingResult.savings) + '+)';
-  }
-
-  /* Kick off pricing fetch in the background — by the time popup fires,
-     prices are usually ready. If not, the hardcoded fallback in HTML shows. */
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(function () {
-      computePricing().then(function (result) {
-        pricingResult = result;
-        applyPricingToDom();
-      });
-    }, { timeout: 4000 });
-  } else {
-    setTimeout(function () {
-      computePricing().then(function (result) {
-        pricingResult = result;
-        applyPricingToDom();
-      });
-    }, 1500);
-  }
-
   var armed = false;
   var triggered = false;
 
@@ -325,8 +247,6 @@
     if (sessionStorage.getItem(SESSION_KEY)) return;
     triggered = true;
     sessionStorage.setItem(SESSION_KEY, '1');
-    /* If pricing hasn't arrived yet, give it one more chance synchronously */
-    applyPricingToDom();
     popup.hidden = false;
     document.body.style.overflow = 'hidden';
   }
