@@ -1,4 +1,9 @@
 <!-- Promo & Grow: Collection Product List (Comparison Grid) -->
+{%- comment -%}
+  Hidden on /collections/bundles — the bundle builder section above already
+  showcases the bundle options, so a duplicate product grid is redundant.
+{%- endcomment -%}
+{%- unless collection.handle == 'bundles' -%}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -82,6 +87,7 @@
     </div>
   {%- endpaginate -%}
 </div>
+{%- endunless -%}
 
 {% schema %}
 {
