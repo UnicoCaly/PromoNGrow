@@ -1,0 +1,86 @@
+{%- comment -%}
+  Supplementary Product JSON-LD for AEO/GEO.
+
+  Why this exists:
+  - Shopify's built-in `product | structured_data` filter uses `shop.name` for `brand.name`.
+    Until "Store name" is changed in Shopify admin → Settings → Store details from "My Store"
+    to "Promo & Grow", every product page shows brand "My Store" — bad for AI trust signals.
+  - Shopify's built-in filter also doesn't include AggregateRating until reviews are stored as
+    product metafields (e.g., via Judge.me). This block surfaces the store-wide 4.8★ × 19
+    reviews as a product-level aggregate so AI shopping engines pick it up.
+
+  Search engines merge multiple JSON-LD Product blocks by @id, so this block augments —
+  it does not duplicate — Shopify's main product schema.
+
+  Usage: render in main-product.liquid after the existing product structured_data block.
+{%- endcomment -%}
+
+{%- if request.page_type == 'product' and product != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "{{ request.origin }}{{ product.url }}#product",
+  "brand": {
+    "@type": "Brand",
+    "name": "Promo & Grow",
+    "url": "{{ request.origin }}"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Promo & Grow",
+    "url": "{{ request.origin }}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "19",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Endy S." },
+      "reviewBody": "Very friendly, accommodating, and professional quality finish. My go-to for all event branding."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Greg B." },
+      "reviewBody": "Excellent advice, multiple options, excellent pricing. Helped our startup have a very successful first year."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Tiffany P." },
+      "reviewBody": "Turn around time was amazing, the work was flawless. Friendly, reliable, quality and time efficient."
+    }
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "lowPrice": "{{ product.price_min | money_without_currency | strip_html }}",
+    "highPrice": "{{ product.price_max | money_without_currency | strip_html }}",
+    "offerCount": "{{ product.variants.size }}",
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "@id": "{{ request.origin }}/#store",
+      "name": "Promo & Grow"
+    },
+    "deliveryLeadTime": {
+      "@type": "QuantitativeValue",
+      "minValue": 5,
+      "maxValue": 5,
+      "unitCode": "DAY"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  }
+}
+</script>
+{%- endif -%}

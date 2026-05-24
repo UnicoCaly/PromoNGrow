@@ -429,26 +429,88 @@
 {% endjavascript %}
 
 <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "{{ request.origin }}/#store",
+  "name": "Promo & Grow",
+  "alternateName": ["Promo and Grow", "Promote & Grow Shop", "PromoNGrow"],
+  "description": "Custom event displays — tents, backdrops, flags, table throws, and wraps for small businesses, event planners, and trade show teams. Produced and delivered in 5 business days. Made in the USA. 20+ years in production.",
+  "url": {{ request.origin | json }},
+  {% if settings.logo %}"logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+  "image": {{ settings.logo | image_url: width: 1200 | prepend: "https:" | json }},{% endif %}
+  "telephone": "+1-844-883-3308",
+  "email": "hello@promongrow.com",
+  "priceRange": "$$",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Cash, Credit Card, Debit Card, Apple Pay, Google Pay, Shop Pay",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "10514 Long Beach Blvd",
+    "addressLocality": "Lynwood",
+    "addressRegion": "CA",
+    "postalCode": "90262",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.9303,
+    "longitude": -118.2114
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "United States" },
+    { "@type": "City", "name": "Los Angeles" },
+    { "@type": "City", "name": "Pasadena" },
+    { "@type": "City", "name": "Lynwood" },
+    { "@type": "AdministrativeArea", "name": "Southern California" }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/promongrow/",
+    "https://www.yelp.com/biz/promote-and-grow-lynwood"
+    {%- if settings.social_facebook_link != blank -%}, {{ settings.social_facebook_link | json }}{%- endif -%}
+    {%- if settings.social_youtube_link != blank -%}, {{ settings.social_youtube_link | json }}{%- endif -%}
+    {%- if settings.social_tiktok_link != blank -%}, {{ settings.social_tiktok_link | json }}{%- endif -%}
+    {%- if settings.social_twitter_link != blank -%}, {{ settings.social_twitter_link | json }}{%- endif -%}
+    {%- if settings.social_pinterest_link != blank -%}, {{ settings.social_pinterest_link | json }}{%- endif -%}
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "19",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Carlos A. Diaz Jr."
+  },
+  "parentOrganization": {
     "@type": "Organization",
-    "name": {{ shop.name | json }},
-    {% if settings.logo %}
-      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-    {% endif %}
-    "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tiktok_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
-    "url": {{ request.origin | append: page.url | json }}
-  }
+    "name": "Proágo Branding Dept.",
+    "url": "https://proago.club"
+  },
+  "knowsAbout": [
+    "Custom event tents",
+    "Trade show displays",
+    "Step and repeat backdrops",
+    "Custom table throws",
+    "Teardrop flags",
+    "Feather flags",
+    "Vehicle wraps",
+    "Wall wraps",
+    "Pop-up canopies",
+    "Tension fabric displays"
+  ],
+  "slogan": "Your brand, built to show up."
+}
 </script>
 
 {%- if request.page_type == 'index' -%}

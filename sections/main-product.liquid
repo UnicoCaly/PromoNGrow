@@ -721,6 +721,9 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
+
+    {%- render 'png-product-supplement-schema' -%}
+    {%- render 'png-breadcrumb-schema' -%}
   </div>
 </product-info>
 
