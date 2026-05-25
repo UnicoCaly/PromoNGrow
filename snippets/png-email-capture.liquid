@@ -1,0 +1,201 @@
+{%- comment -%}
+  Promo & Grow — Inline email capture block
+
+  Soft entry for visitors not ready to quote yet. Per spec §4:
+    "Get our catalog + a free proof on your first order"
+
+  Backend: Shopify's native {% form 'customer' %} — adds the email to the
+  customers list with email_marketing_state=SUBSCRIBED. Feeds into the
+  Email subscribers segment used by the campaign emails.
+
+  Optional placement_eyebrow + placement_heading arguments override the defaults
+  so the same snippet can serve different surfaces (footer, sidebar, PDP-below-fold).
+
+  Usage:
+    {%- render 'png-email-capture' -%}
+    {%- render 'png-email-capture', placement_heading: 'Custom heading' -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign eyebrow = placement_eyebrow | default: 'Not ready to quote?'
+  assign heading = placement_heading | default: 'Get our catalog + a free proof on your first order.'
+  assign sub = placement_sub | default: 'One email a month. Real customer setups, file-prep tips, and seasonal bundles. Unsubscribe anytime.'
+-%}
+
+<section class="png-email-capture" aria-label="Subscribe to Promo & Grow updates">
+  <div class="png-email-capture__inner">
+    <p class="png-email-capture__eyebrow">{{ eyebrow }}</p>
+    <h2 class="png-email-capture__heading">{{ heading }}</h2>
+    <p class="png-email-capture__sub">{{ sub }}</p>
+
+    {%- form 'customer', class: 'png-email-capture__form', id: 'png-email-capture-form' -%}
+      <input type="hidden" name="contact[tags]" value="png-email-capture">
+      <input type="hidden" name="form_type" value="customer">
+
+      {%- if form.posted_successfully? -%}
+        <p class="png-email-capture__success" role="status">
+          <span aria-hidden="true">✓</span> You're in. Watch your inbox for the catalog.
+        </p>
+      {%- else -%}
+        <div class="png-email-capture__row">
+          <label class="png-email-capture__label" for="png-email-capture-input">
+            <span class="png-email-capture__visually-hidden">Email address</span>
+          </label>
+          <input
+            id="png-email-capture-input"
+            type="email"
+            name="contact[email]"
+            required
+            placeholder="you@business.com"
+            autocomplete="email"
+            class="png-email-capture__input"
+          >
+          <button type="submit" class="png-email-capture__submit" data-png-event="email_captured">
+            Send the catalog
+          </button>
+        </div>
+        {%- if form.errors -%}
+          <p class="png-email-capture__error" role="alert">
+            {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+<style>
+  .png-email-capture {
+    background: #1B2838;
+    color: #FFFFFF;
+    padding: 4rem 2rem;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .png-email-capture__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .png-email-capture__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 0.8rem;
+  }
+
+  .png-email-capture__heading {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 1.25;
+    color: #FFFFFF;
+    margin: 0 0 1rem;
+  }
+
+  .png-email-capture__sub {
+    font-size: 1.3rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 auto 2rem;
+    max-width: 520px;
+  }
+
+  .png-email-capture__row {
+    display: flex;
+    gap: 0.6rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .png-email-capture__input {
+    flex: 1 1 auto;
+    padding: 1.2rem 1.4rem;
+    font-size: 1.4rem;
+    color: #1B2838;
+    background: #FFFFFF;
+    border: 0;
+    border-radius: 5px;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+  .png-email-capture__input:focus {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(193, 122, 58, 0.5);
+  }
+
+  .png-email-capture__submit {
+    flex: 0 0 auto;
+    padding: 1.2rem 2rem;
+    background: #C17A3A;
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+
+  .png-email-capture__submit:hover { background: #A8682F; }
+
+  .png-email-capture__success {
+    background: rgba(30, 107, 74, 0.15);
+    color: #FFFFFF;
+    border: 1px solid rgba(30, 107, 74, 0.4);
+    padding: 1.2rem;
+    border-radius: 5px;
+    margin: 0;
+    font-size: 1.35rem;
+  }
+
+  .png-email-capture__success span {
+    color: #6DD49E;
+    font-weight: 700;
+    margin-right: 0.5rem;
+  }
+
+  .png-email-capture__error {
+    color: #FFB89A;
+    font-size: 1.2rem;
+    margin: 0.8rem 0 0;
+  }
+
+  .png-email-capture__visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  @media (max-width: 600px) {
+    .png-email-capture { padding: 3rem 1.5rem; }
+    .png-email-capture__heading { font-size: 2rem; }
+    .png-email-capture__row { flex-direction: column; }
+    .png-email-capture__submit { width: 100%; }
+  }
+</style>
+
+<script>
+  (function () {
+    var form = document.getElementById('png-email-capture-form');
+    if (!form) return;
+    form.addEventListener('submit', function () {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'email_captured',
+        source: 'png-email-capture'
+      });
+    });
+  })();
+</script>
