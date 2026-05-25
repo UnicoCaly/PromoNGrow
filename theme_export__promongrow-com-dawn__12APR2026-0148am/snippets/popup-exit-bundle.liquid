@@ -17,6 +17,19 @@
   if template contains 'cart' or template contains 'checkout' or template contains 'account' or template contains 'customers'
     assign show_popup = false
   endif
+
+  comment
+    Tier detection: on quote-first product pages, swap the bundle promo for a
+    free-proof CTA (more relevant to the high-ticket custom buyer about to bounce).
+    On collection pages and checkout-first product pages, keep the bundle promo.
+  endcomment
+  assign quote_first_types = 'Bundle,Event Displays & Backdrops,Event Tents & Canopies,Wall Art,Prints & Wraps' | split: ','
+  assign exit_variant = 'bundle'
+  if template contains 'product' and product != blank
+    if quote_first_types contains product.type
+      assign exit_variant = 'free-proof'
+    endif
+  endif
 -%}
 
 {%- if show_popup -%}
@@ -24,42 +37,75 @@
   {%- assign flag_product = all_products['feather-convex-flag-copy'] -%}
   {%- assign throw_product = all_products['stretch-table-cover'] -%}
 
-<div id="png-exit-popup" class="png-exit" hidden>
+<div id="png-exit-popup" class="png-exit" data-exit-variant="{{ exit_variant }}" hidden>
   <div class="png-exit__overlay" data-exit-close></div>
   <div class="png-exit__modal" role="dialog" aria-modal="true" aria-labelledby="png-exit-heading">
     <button class="png-exit__close" type="button" data-exit-close aria-label="Close">&times;</button>
 
-    <div class="png-exit__images">
-      {%- if tent_product.featured_image -%}
-        {{ tent_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: '10ft Event Tent', widths: '100,200', sizes: '100px' }}
-      {%- else -%}
-        <div class="png-exit__img png-exit__img--ph"></div>
-      {%- endif -%}
-      {%- if flag_product.featured_image -%}
-        {{ flag_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: 'Teardrop Flag', widths: '100,200', sizes: '100px' }}
-      {%- else -%}
-        <div class="png-exit__img png-exit__img--ph"></div>
-      {%- endif -%}
-      {%- if throw_product.featured_image -%}
-        {{ throw_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: 'Table Cover', widths: '100,200', sizes: '100px' }}
-      {%- else -%}
-        <div class="png-exit__img png-exit__img--ph"></div>
-      {%- endif -%}
-    </div>
+    {%- if exit_variant == 'free-proof' -%}
+      {%- comment -%} Quote-first variant: free-proof CTA that opens the quote modal {%- endcomment -%}
+      <div class="png-exit__text png-exit__text--proof">
+        <span class="png-exit__proof-eyebrow">Free · No Charge · No Commitment</span>
+        <h2 id="png-exit-heading" class="png-exit__heading">Before you go — get a free proof.</h2>
+        <p class="png-exit__sub png-exit__sub--proof">
+          Send us your logo and we'll mock up exactly what your <strong>{{ product.title }}</strong> will look like — back to you in 24 business hours. Nothing prints without your approval.
+        </p>
+      </div>
 
-    <div class="png-exit__text">
-      <p class="png-exit__eyebrow">Before you go &mdash;</p>
-      <h2 id="png-exit-heading" class="png-exit__heading">Bundle and save 15%</h2>
-      <p class="png-exit__sub">Tent + flag + table throw. One order. 5-day delivery.</p>
-    </div>
+      <ul class="png-exit__proof-trust">
+        <li><span class="png-exit__check" aria-hidden="true">✓</span> Free digital proof, every time</li>
+        <li><span class="png-exit__check" aria-hidden="true">✓</span> 5-day delivery, guaranteed</li>
+        <li><span class="png-exit__check" aria-hidden="true">✓</span> 4.8★ · 19 Google reviews</li>
+      </ul>
 
-    <div class="png-exit__price">
-      <p class="png-exit__price-main">Starting at $910</p>
-      <p class="png-exit__price-savings">(saves you $160+)</p>
-    </div>
+      <button
+        type="button"
+        class="png-exit__cta"
+        data-quote-modal-trigger
+        data-product-handle="{{ product.handle }}"
+        data-product-title="{{ product.title | escape }}"
+        data-product-type="{{ product.type | escape }}"
+        data-png-source="exit-intent"
+        data-exit-close
+      >
+        Get a free proof &rarr;
+      </button>
+      <button class="png-exit__dismiss" type="button" data-exit-close>No thanks, I'll keep browsing</button>
 
-    <a href="/collections/bundles" class="png-exit__cta">View bundles &mdash; save 15%</a>
-    <button class="png-exit__dismiss" type="button" data-exit-close>No thanks, I'll keep browsing</button>
+    {%- else -%}
+      {%- comment -%} Default bundle variant: collection pages + checkout-first products {%- endcomment -%}
+      <div class="png-exit__images">
+        {%- if tent_product.featured_image -%}
+          {{ tent_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: '10ft Event Tent', widths: '100,200', sizes: '100px' }}
+        {%- else -%}
+          <div class="png-exit__img png-exit__img--ph"></div>
+        {%- endif -%}
+        {%- if flag_product.featured_image -%}
+          {{ flag_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: 'Teardrop Flag', widths: '100,200', sizes: '100px' }}
+        {%- else -%}
+          <div class="png-exit__img png-exit__img--ph"></div>
+        {%- endif -%}
+        {%- if throw_product.featured_image -%}
+          {{ throw_product.featured_image | image_url: width: 200 | image_tag: class: 'png-exit__img', loading: 'lazy', alt: 'Table Cover', widths: '100,200', sizes: '100px' }}
+        {%- else -%}
+          <div class="png-exit__img png-exit__img--ph"></div>
+        {%- endif -%}
+      </div>
+
+      <div class="png-exit__text">
+        <p class="png-exit__eyebrow">Before you go &mdash;</p>
+        <h2 id="png-exit-heading" class="png-exit__heading">Bundle and save 15%</h2>
+        <p class="png-exit__sub">Tent + flag + table throw. One order. 5-day delivery.</p>
+      </div>
+
+      <div class="png-exit__price">
+        <p class="png-exit__price-main">Starting at $910</p>
+        <p class="png-exit__price-savings">(saves you $160+)</p>
+      </div>
+
+      <a href="/collections/bundles" class="png-exit__cta">View bundles &mdash; save 15%</a>
+      <button class="png-exit__dismiss" type="button" data-exit-close>No thanks, I'll keep browsing</button>
+    {%- endif -%}
   </div>
 </div>
 
@@ -217,6 +263,43 @@
     .png-exit__modal { padding: 24px 20px; }
     .png-exit__heading { font-size: 22px; }
     .png-exit__img { width: 80px; }
+  }
+
+  /* Quote-first variant: free-proof CTA */
+  .png-exit__text--proof { text-align: center; margin: 0 0 18px; }
+  .png-exit__proof-eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1E6B4A;
+    margin: 4px 0 14px;
+  }
+  .png-exit__sub--proof { color: #495057; line-height: 1.55; }
+  .png-exit__sub--proof strong { color: #1B2838; }
+  .png-exit__proof-trust {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    text-align: left;
+    background: #F7F7F5;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .png-exit__proof-trust li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1B2838;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .png-exit__proof-trust li + li { margin-top: 4px; }
+  .png-exit__check {
+    color: #1E6B4A;
+    font-weight: 700;
+    flex: 0 0 14px;
   }
 </style>
 

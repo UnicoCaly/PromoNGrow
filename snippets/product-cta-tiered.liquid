@@ -43,6 +43,11 @@
 <div class="png-cta-tier png-cta-tier--{{ tier }}" data-cta-tier="{{ tier }}">
 
   {%- if tier == 'quote-first' -%}
+    <p class="png-cta-tier__framing">
+      <span class="png-cta-tier__framing-label">Custom-priced</span>
+      <span class="png-cta-tier__framing-sep" aria-hidden="true">&middot;</span>
+      Free quote back in 24 business hours
+    </p>
     <a href="{{ quote_url }}"
        class="png-cta-tier__primary png-cta-tier__primary--quote"
        data-quote-modal-trigger

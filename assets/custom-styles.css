@@ -2036,6 +2036,25 @@ html[data-product-tier="quote-first"] .shopify-payment-button {
   margin: 8px 0 16px;
 }
 
+/* "Custom-priced · Free quote in 24 hrs" framing eyebrow */
+.png-cta-tier__framing {
+  font-family: var(--png-font-body);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--png-text-secondary);
+  margin: 0;
+  text-align: center;
+}
+.png-cta-tier__framing-label {
+  color: var(--png-copper);
+  font-weight: 600;
+}
+.png-cta-tier__framing-sep {
+  margin: 0 6px;
+  color: #ccc;
+}
+
 /* Primary "Get a Free Proof" button — copper, large */
 .png-cta-tier__primary {
   display: block;
