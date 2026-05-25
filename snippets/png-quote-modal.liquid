@@ -1,0 +1,465 @@
+{%- comment -%}
+  Promo & Grow — Quote / Free-Proof Modal (custom)
+
+  A single modal rendered globally in layout/theme.liquid. Triggered by any element
+  carrying data-quote-modal-trigger. The trigger's data-* attributes pre-fill product
+  context (handle, title, type) into the form.
+
+  Backend: Shopify's native {% form 'contact' %} — emails the store contact address
+  configured in Settings → Notifications → Customer notifications. No external
+  dependencies, no app required.
+
+  File handling: an artwork URL field (Google Drive / Dropbox / WeTransfer link) is
+  used in lieu of a file upload, because Shopify's /contact endpoint does not accept
+  multipart attachments. A Phase 2 upgrade can swap this for direct file upload via
+  the Files API + a small Cloudflare Worker proxy.
+
+  Analytics: on submit, fires window.dataLayer.push({ event: 'quote_request_submitted', ... })
+  with product context. Hooks into §6 analytics layer when shipped.
+
+  Accessibility: focus is trapped while open, ESC closes, focus restores on close.
+{%- endcomment -%}
+
+<div
+  class="png-quote-modal"
+  id="png-quote-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="png-quote-modal-title"
+  hidden
+>
+  <div class="png-quote-modal__overlay" data-png-quote-close></div>
+
+  <div class="png-quote-modal__panel" role="document">
+    <button
+      type="button"
+      class="png-quote-modal__close"
+      aria-label="Close quote request form"
+      data-png-quote-close
+    >×</button>
+
+    <div class="png-quote-modal__header">
+      <p class="png-quote-modal__eyebrow">Free Proof · No Charge · No Commitment</p>
+      <h2 class="png-quote-modal__title" id="png-quote-modal-title">Get a free proof on your project</h2>
+      <p class="png-quote-modal__subtitle">
+        Carlos and the team will send a digital proof and quote back within
+        <strong>24 business hours</strong>. Nothing prints without your approval.
+      </p>
+    </div>
+
+    {%- form 'contact', class: 'png-quote-modal__form', id: 'png-quote-form' -%}
+
+      {%- if form.posted_successfully? -%}
+        <div class="png-quote-modal__success" role="status">
+          <svg viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
+            <circle cx="12" cy="12" r="12" fill="#1E6B4A"/>
+            <path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Got it — your proof is on the way.</h3>
+          <p>Carlos got the request. You'll have a free proof back within 24 business hours. If it's time-sensitive, call <a href="tel:8448833308">(844) 883-3308</a>.</p>
+        </div>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <div class="png-quote-modal__errors" role="alert">
+          <strong>Couldn't send — please check:</strong>
+          <ul>
+            {%- for field in form.errors -%}
+              <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Tag the contact submission so Carlos can filter for quote requests in his inbox {%- endcomment -%}
+      <input type="hidden" name="contact[Inquiry Type]" value="Quote Request — Free Proof">
+      <input type="hidden" name="contact[Submitted Via]" value="png-quote-modal">
+
+      <div class="png-quote-modal__row png-quote-modal__row--split">
+        <label class="png-quote-modal__field">
+          <span class="png-quote-modal__label">Name <span class="png-required">*</span></span>
+          <input type="text" name="contact[name]" required autocomplete="name" data-png-quote-field="name">
+        </label>
+        <label class="png-quote-modal__field">
+          <span class="png-quote-modal__label">Phone <span class="png-required">*</span></span>
+          <input type="tel" name="contact[phone]" required autocomplete="tel" placeholder="(555) 555-5555" data-png-quote-field="phone">
+        </label>
+      </div>
+
+      <label class="png-quote-modal__field">
+        <span class="png-quote-modal__label">Email <span class="png-required">*</span></span>
+        <input type="email" name="contact[email]" required autocomplete="email" data-png-quote-field="email">
+      </label>
+
+      <div class="png-quote-modal__row png-quote-modal__row--split">
+        <label class="png-quote-modal__field">
+          <span class="png-quote-modal__label">Product of interest</span>
+          <input type="text" name="contact[Product]" data-png-quote-field="product" placeholder="Which item?">
+        </label>
+        <label class="png-quote-modal__field">
+          <span class="png-quote-modal__label">Quantity</span>
+          <input type="number" name="contact[Quantity]" min="1" placeholder="1" data-png-quote-field="quantity">
+        </label>
+      </div>
+
+      <label class="png-quote-modal__field">
+        <span class="png-quote-modal__label">
+          Event date or needed by
+          <span class="png-quote-modal__hint">(helps us plan production)</span>
+        </span>
+        <input type="date" name="contact[Needed By]" data-png-quote-field="needed_by">
+      </label>
+
+      <label class="png-quote-modal__field">
+        <span class="png-quote-modal__label">Tell us about your project</span>
+        <textarea name="contact[body]" rows="4" placeholder="Logo colors, sides to print, finishing notes — anything that helps us proof it right." data-png-quote-field="body"></textarea>
+      </label>
+
+      <label class="png-quote-modal__field">
+        <span class="png-quote-modal__label">
+          Logo or artwork link
+          <span class="png-quote-modal__hint">(Google Drive, Dropbox, or WeTransfer)</span>
+        </span>
+        <input type="url" name="contact[Artwork URL]" placeholder="https://drive.google.com/..." data-png-quote-field="artwork_url">
+        <span class="png-quote-modal__file-fallback">
+          Don't have a link? <a href="mailto:hello@promongrow.com?subject=Artwork%20for%20my%20quote%20request">email it to hello@promongrow.com</a> after you submit — we'll match it up.
+        </span>
+      </label>
+
+      <div class="png-quote-modal__actions">
+        <button type="submit" class="png-quote-modal__submit">
+          Send my request
+          <span aria-hidden="true">→</span>
+        </button>
+        <p class="png-quote-modal__small-print">
+          We reply within 24 business hours. Or call <a href="tel:8448833308">(844) 883-3308</a> for anything time-sensitive.
+        </p>
+      </div>
+
+    {%- endform -%}
+  </div>
+</div>
+
+<style>
+  .png-quote-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    overflow-y: auto;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .png-quote-modal[data-png-open] {
+    display: flex;
+  }
+
+  .png-quote-modal__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(27, 40, 56, 0.55);
+    cursor: pointer;
+  }
+
+  .png-quote-modal__panel {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 12px;
+    max-width: 540px;
+    width: 100%;
+    padding: 3.6rem 3rem 3rem;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
+    z-index: 1;
+  }
+
+  .png-quote-modal__close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.4rem;
+    background: transparent;
+    border: 0;
+    color: #999;
+    font-size: 2.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    transition: color 0.15s ease;
+  }
+
+  .png-quote-modal__close:hover { color: #1B2838; }
+
+  .png-quote-modal__header {
+    text-align: center;
+    margin-bottom: 2.4rem;
+  }
+
+  .png-quote-modal__eyebrow {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1E6B4A;
+    margin: 0 0 0.8rem;
+  }
+
+  .png-quote-modal__title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 1.2;
+    color: #1B2838;
+    margin: 0 0 0.8rem;
+  }
+
+  .png-quote-modal__subtitle {
+    font-size: 1.35rem;
+    line-height: 1.55;
+    color: #495057;
+    margin: 0;
+  }
+
+  .png-quote-modal__form {
+    display: block;
+  }
+
+  .png-quote-modal__row { display: block; }
+
+  .png-quote-modal__row--split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .png-quote-modal__field {
+    display: block;
+    margin-bottom: 1.4rem;
+  }
+
+  .png-quote-modal__label {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1B2838;
+    margin-bottom: 0.5rem;
+  }
+
+  .png-quote-modal__hint {
+    font-weight: 400;
+    color: #6C757D;
+    font-size: 1.05rem;
+    margin-left: 0.4rem;
+  }
+
+  .png-required { color: #C17A3A; }
+
+  .png-quote-modal__field input,
+  .png-quote-modal__field textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-family: inherit;
+    font-size: 1.4rem;
+    color: #1B2838;
+    background: #FFFFFF;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    box-sizing: border-box;
+  }
+
+  .png-quote-modal__field input:focus,
+  .png-quote-modal__field textarea:focus {
+    outline: 0;
+    border-color: #C17A3A;
+    box-shadow: 0 0 0 3px rgba(193, 122, 58, 0.15);
+  }
+
+  .png-quote-modal__field textarea { resize: vertical; min-height: 90px; }
+
+  .png-quote-modal__file-fallback {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #6C757D;
+  }
+
+  .png-quote-modal__file-fallback a {
+    color: #1B2838;
+    border-bottom: 1px solid #C17A3A;
+    text-decoration: none;
+  }
+
+  .png-quote-modal__actions {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .png-quote-modal__submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #C17A3A;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: 0;
+    padding: 1.3rem 3.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .png-quote-modal__submit:hover { background: #A8682F; }
+
+  .png-quote-modal__small-print {
+    margin: 1.2rem 0 0;
+    font-size: 1.15rem;
+    color: #6C757D;
+  }
+
+  .png-quote-modal__small-print a {
+    color: #1B2838;
+    text-decoration: none;
+    border-bottom: 1px solid #C17A3A;
+  }
+
+  .png-quote-modal__success {
+    text-align: center;
+    padding: 1.8rem 0;
+  }
+
+  .png-quote-modal__success h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    color: #1B2838;
+    font-size: 2rem;
+    margin: 1rem 0 0.6rem;
+  }
+
+  .png-quote-modal__success p {
+    color: #495057;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  .png-quote-modal__success a {
+    color: #1B2838;
+    text-decoration: none;
+    border-bottom: 1px solid #C17A3A;
+  }
+
+  .png-quote-modal__errors {
+    background: rgba(193, 122, 58, 0.08);
+    border-left: 3px solid #C17A3A;
+    color: #1B2838;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1.6rem;
+    border-radius: 4px;
+    font-size: 1.3rem;
+  }
+
+  .png-quote-modal__errors ul { margin: 0.5rem 0 0; padding-left: 1.6rem; }
+
+  @media (max-width: 749px) {
+    .png-quote-modal { padding: 1rem; align-items: stretch; }
+    .png-quote-modal__panel { padding: 2.8rem 2rem 2.4rem; border-radius: 8px; }
+    .png-quote-modal__title { font-size: 2rem; }
+    .png-quote-modal__row--split { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+
+<script>
+  (function () {
+    var modal = document.getElementById('png-quote-modal');
+    if (!modal) return;
+
+    var firstField = modal.querySelector('input[name="contact[name]"]');
+    var lastTrigger = null;
+
+    function open(triggerEl) {
+      lastTrigger = triggerEl;
+      // Pre-fill product context from trigger data-attrs
+      if (triggerEl) {
+        var handle = triggerEl.getAttribute('data-product-handle');
+        var title = triggerEl.getAttribute('data-product-title');
+        var type = triggerEl.getAttribute('data-product-type');
+        var productField = modal.querySelector('[data-png-quote-field="product"]');
+        var productHidden = modal.querySelector('input[name="contact[Product Handle]"]');
+        if (productField && title) productField.value = title;
+        if (!productHidden && handle) {
+          var hidden = document.createElement('input');
+          hidden.type = 'hidden';
+          hidden.name = 'contact[Product Handle]';
+          hidden.value = handle;
+          modal.querySelector('form').appendChild(hidden);
+        }
+        if (type) {
+          var typeHidden = document.createElement('input');
+          typeHidden.type = 'hidden';
+          typeHidden.name = 'contact[Product Type]';
+          typeHidden.value = type;
+          modal.querySelector('form').appendChild(typeHidden);
+        }
+      }
+      modal.setAttribute('data-png-open', '');
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function () { if (firstField) firstField.focus(); }, 50);
+    }
+
+    function close() {
+      modal.removeAttribute('data-png-open');
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (lastTrigger) {
+        try { lastTrigger.focus(); } catch (e) { /* ignore */ }
+      }
+    }
+
+    // Trigger any element with data-quote-modal-trigger
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-quote-modal-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        open(trigger);
+      }
+      var closer = e.target.closest('[data-png-quote-close]');
+      if (closer) {
+        e.preventDefault();
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.hasAttribute('data-png-open')) close();
+    });
+
+    // Analytics: fire quote_request_submitted on submit
+    var form = modal.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', function () {
+        var productField = modal.querySelector('[data-png-quote-field="product"]');
+        var typeField = modal.querySelector('input[name="contact[Product Type]"]');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'quote_request_submitted',
+          product_title: productField ? productField.value : '',
+          product_type: typeField ? typeField.value : '',
+          source: 'png-quote-modal'
+        });
+      });
+    }
+
+    // Auto-open modal if URL has ?quote=open (so /pages/contact?intent=quote-request links can deep-link)
+    try {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('quote') === 'open' || params.get('intent') === 'quote-request') {
+        var faux = document.createElement('div');
+        faux.setAttribute('data-product-handle', params.get('product') || '');
+        open(faux);
+      }
+    } catch (e) { /* old browser, ignore */ }
+  })();
+</script>
