@@ -50,6 +50,12 @@
 
 {%- elsif tier == 'quote-first' and placement == 'primary' -%}
   <div class="png-quote-cta-block">
+    <p class="png-quote-cta-framing">
+      <span class="png-quote-cta-framing-label">Custom-priced</span>
+      <span class="png-quote-cta-framing-sep" aria-hidden="true">·</span>
+      Free quote back in 24 business hours
+    </p>
+
     <a
       href="{{ contact_fallback }}"
       class="png-cta-quote-primary"
@@ -96,6 +102,26 @@
   /* === Promo & Grow tier-aware CTA styles === */
   .png-quote-cta-block {
     margin: 0 0 1.5rem;
+  }
+
+  .png-quote-cta-framing {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6C757D;
+    margin: 0 0 0.8rem;
+    text-align: center;
+  }
+
+  .png-quote-cta-framing-label {
+    color: #C17A3A;
+    font-weight: 600;
+  }
+
+  .png-quote-cta-framing-sep {
+    margin: 0 0.5rem;
+    color: #CCC;
   }
 
   .png-cta-quote-primary {

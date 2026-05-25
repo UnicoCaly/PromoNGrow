@@ -1,0 +1,139 @@
+{%- comment -%}
+  Promo & Grow — Mobile sticky click-to-call CTA
+
+  Appears as a fixed bar at the bottom of mobile PDPs. Houses two actions:
+    - Tap-to-call (844) 883-3308 — copper, lead-converting per spec
+    - "Get a Free Proof" / "Get a Quote" link (tier-aware) — opens quote modal when shipped,
+      falls back to /pages/contact
+
+  Desktop hides this entirely (>= 750px). On mobile, body gets a padding-bottom buffer so
+  content isn't hidden behind the bar.
+
+  Usage (PDP only — render once at the bottom of sections/main-product.liquid):
+    {%- render 'png-mobile-sticky-cta', product: product -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign quote_first_types = 'Bundle,Event Displays & Backdrops,Event Tents & Canopies,Wall Art,Prints & Wraps' | split: ','
+  assign checkout_first_types = 'Flags & Banners,Table Covers & Throws,Tent Accessories' | split: ','
+
+  assign secondary_label = 'Get a Free Proof'
+  if checkout_first_types contains product.type
+    assign secondary_label = 'Get a Quote'
+  endif
+
+  assign contact_fallback = '/pages/contact?product=' | append: product.handle | append: '&intent=quote-request'
+-%}
+
+<div class="png-mobile-sticky-cta" data-png-mobile-sticky aria-label="Quick contact bar">
+  <a
+    href="tel:8448833308"
+    class="png-mobile-sticky-cta__call"
+    data-png-event="click_to_call"
+    data-png-source="mobile-sticky"
+  >
+    <svg class="png-mobile-sticky-cta__icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.65 1.33a1.4 1.4 0 0 1 1.98.13l1.46 1.95a1.4 1.4 0 0 1-.18 1.86L5.74 6.43a8.5 8.5 0 0 0 3.83 3.83l1.16-1.17a1.4 1.4 0 0 1 1.86-.18l1.95 1.46a1.4 1.4 0 0 1 .13 1.98l-1.31 1.31a2.5 2.5 0 0 1-2.97.41 17 17 0 0 1-6.93-6.93 2.5 2.5 0 0 1 .41-2.97z" fill="currentColor"/>
+    </svg>
+    <span class="png-mobile-sticky-cta__call-label">Call (844) 883-3308</span>
+  </a>
+
+  <a
+    href="{{ contact_fallback }}"
+    class="png-mobile-sticky-cta__quote"
+    data-quote-modal-trigger
+    data-product-handle="{{ product.handle }}"
+    data-product-title="{{ product.title | escape }}"
+    data-product-type="{{ product.type | escape }}"
+    data-png-source="mobile-sticky"
+  >
+    {{ secondary_label }} →
+  </a>
+</div>
+
+<style>
+  .png-mobile-sticky-cta {
+    display: none;
+  }
+
+  @media (max-width: 749px) {
+    .png-mobile-sticky-cta {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      gap: 0;
+      padding: 0;
+      background: #FFFFFF;
+      box-shadow: 0 -2px 12px rgba(27, 40, 56, 0.10);
+      border-top: 1px solid #EEEEEE;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .png-mobile-sticky-cta__call,
+    .png-mobile-sticky-cta__quote {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1.2rem 0.6rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.15s ease;
+    }
+
+    .png-mobile-sticky-cta__call {
+      background: #FFFFFF;
+      color: #1B2838;
+      border-right: 1px solid #EEEEEE;
+    }
+
+    .png-mobile-sticky-cta__call:active {
+      background: #F7F7F5;
+    }
+
+    .png-mobile-sticky-cta__quote {
+      background: #C17A3A;
+      color: #FFFFFF;
+    }
+
+    .png-mobile-sticky-cta__quote:active {
+      background: #A8682F;
+    }
+
+    .png-mobile-sticky-cta__icon {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 14px;
+    }
+
+    .png-mobile-sticky-cta__call-label {
+      letter-spacing: 0.01em;
+    }
+
+    /* Buffer so content doesn't hide behind the fixed bar.
+       Applied to the closest ancestor with main-product class via the parent reset below. */
+    body.png-has-sticky-cta {
+      padding-bottom: 56px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    if (window.innerWidth < 750) {
+      document.body.classList.add('png-has-sticky-cta');
+    }
+    window.addEventListener('resize', function () {
+      if (window.innerWidth < 750) {
+        document.body.classList.add('png-has-sticky-cta');
+      } else {
+        document.body.classList.remove('png-has-sticky-cta');
+      }
+    });
+  })();
+</script>
