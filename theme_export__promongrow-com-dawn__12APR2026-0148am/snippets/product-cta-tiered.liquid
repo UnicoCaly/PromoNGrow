@@ -1,0 +1,78 @@
+<!-- Promo & Grow: Tiered Product CTA (Concierge Conversion §1) -->
+{%- comment -%}
+  Reads product.type and renders the appropriate CTA tier.
+
+  QUOTE-FIRST (high-ticket custom, primary = "Get a Free Proof"):
+    - Event Tents & Canopies
+    - Event Displays & Backdrops
+    - Bundle
+    - Wall Art
+    - any untyped product (safe default)
+
+  CHECKOUT-FIRST (simpler bulk-friendly, primary = "Add to cart"):
+    - Flags & Banners
+    - Table Covers & Throws
+    - Tent Accessories
+
+  Dawn's buy_buttons block handles the actual add-to-cart form.
+  This snippet sits ABOVE buy_buttons. For quote-first tier, an inline
+  script sets `<html data-product-tier="quote-first">` so CSS restyles
+  Dawn's add-to-cart button to a ghost/secondary appearance.
+
+  Quote CTAs link to /pages/contact with ref + handle params for now.
+  §2 will swap to a quote modal — query params survive the migration.
+{%- endcomment -%}
+
+{%- liquid
+  assign t = product.type | downcase | strip
+  assign tier = 'quote-first'
+  if t == 'flags & banners' or t == 'table covers & throws' or t == 'tent accessories'
+    assign tier = 'checkout-first'
+  endif
+
+  comment
+    Build the quote-link URL with tracking + pre-fill params.
+    refs: "proof" for quote-first CTAs, "bulk" for checkout-first CTAs.
+  endcomment
+  assign quote_url = '/pages/contact?ref=proof&handle=' | append: product.handle
+  assign bulk_url  = '/pages/contact?ref=bulk&handle='  | append: product.handle
+-%}
+
+<div class="png-cta-tier png-cta-tier--{{ tier }}" data-cta-tier="{{ tier }}">
+
+  {%- if tier == 'quote-first' -%}
+    <a href="{{ quote_url }}"
+       class="png-cta-tier__primary png-cta-tier__primary--quote"
+       data-cta="get-proof"
+       data-product-type="{{ product.type | escape }}"
+       data-product-handle="{{ product.handle }}">
+      Get a Free Proof <span class="png-cta-tier__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  {%- endif -%}
+
+  <p class="png-cta-tier__proof-note">
+    <span class="png-cta-tier__check" aria-hidden="true">&#10003;</span>
+    <span>
+      <strong>Free digital proof before production.</strong>
+      Nothing prints without your approval.
+    </span>
+  </p>
+
+  {%- if tier == 'checkout-first' -%}
+    <a href="{{ bulk_url }}"
+       class="png-cta-tier__bulk-link"
+       data-cta="bulk-quote"
+       data-product-type="{{ product.type | escape }}"
+       data-product-handle="{{ product.handle }}">
+      Ordering several? Get a bulk quote <span aria-hidden="true">&rarr;</span>
+    </a>
+  {%- endif -%}
+
+</div>
+
+<script>
+  /* Promo & Grow: mark page tier so CSS can restyle Dawn's add-to-cart button. */
+  (function () {
+    document.documentElement.setAttribute('data-product-tier', '{{ tier }}');
+  })();
+</script>
