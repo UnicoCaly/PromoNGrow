@@ -110,6 +110,9 @@
 
     {{ content_for_header }}
 
+    <!-- Promo & Grow: Tracking pixels (Meta + Google Ads — set IDs in Theme settings) -->
+    {%- render 'png-tracking-pixels' -%}
+
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
       assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'

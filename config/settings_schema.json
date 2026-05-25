@@ -26,6 +26,41 @@
     ]
   },
   {
+    "name": "Promo & Grow — Tracking & Analytics",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Paste your pixel IDs once. Both tags fire automatically site-wide and hook into the concierge funnel events (quote submissions, click-to-call, email captures) — no extra setup needed."
+      },
+      {
+        "type": "header",
+        "content": "Meta Pixel"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta Pixel ID",
+        "info": "15–16 digit numeric ID from business.facebook.com → Events Manager"
+      },
+      {
+        "type": "header",
+        "content": "Google Ads"
+      },
+      {
+        "type": "text",
+        "id": "google_ads_id",
+        "label": "Google Ads Conversion ID",
+        "info": "Format: AW-XXXXXXXXXX (from ads.google.com → Tools → Conversions)"
+      },
+      {
+        "type": "text",
+        "id": "google_ads_quote_label",
+        "label": "Quote conversion label",
+        "info": "Optional. The label after the slash in a conversion send_to value, e.g. 'abc123XYZ'. Leave blank if you only need remarketing (no conversion tracking)."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

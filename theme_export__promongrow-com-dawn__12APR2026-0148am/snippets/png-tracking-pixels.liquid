@@ -1,0 +1,188 @@
+{%- comment -%}
+  Promo & Grow — Tracking pixels (Meta + Google Ads remarketing)
+
+  Conditionally injects pixel base code if the respective IDs are configured
+  in theme settings. Each pixel automatically:
+    1) Fires PageView/page_view on every page
+    2) Fires ViewContent on product pages (Liquid-rendered with product data)
+    3) Hooks into the §6 analytics event bus to map concierge events:
+        quote_request_submitted -> Lead (Meta) + Google Ads conversion
+        email_captured          -> Subscribe (Meta)
+        click_to_call           -> Contact (Meta)
+        cta_clicked             -> ViewContent (Meta) when triggered from PDP
+
+  Verify after deploy:
+    - Meta Pixel Helper (Chrome ext) — should show your pixel ID + PageView fire
+    - Tag Assistant Legacy / Google Tag Assistant — should show gtag firing
+
+  Setup notes for Carlos:
+    - Get Meta Pixel ID: business.facebook.com → Events Manager → Data Sources
+    - Get Google Ads Conversion ID: ads.google.com → Tools → Conversions
+      Format: AW-XXXXXXXXXX
+    - For Google conversion tracking on quote submits, also paste the conversion
+      label (the part after the slash in send_to). For remarketing-only, leave blank.
+
+  Alternative (modern Shopify pattern): Settings → Customer events → Add custom pixel.
+  That route handles consent better via the customer-events sandbox. This theme-level
+  install is the spec's "[CC]" path and works without app permissions.
+{%- endcomment -%}
+
+{%- assign meta_id = settings.meta_pixel_id | strip -%}
+{%- assign gads_id = settings.google_ads_id | strip -%}
+{%- assign gads_label = settings.google_ads_quote_label | strip -%}
+
+{%- if meta_id != blank or gads_id != blank -%}
+  <!-- Promo & Grow: tracking pixels (live when IDs set in Theme settings → Tracking & Analytics) -->
+
+  {%- if meta_id != blank -%}
+    <!-- Meta Pixel base code -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '{{ meta_id }}');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" alt=""
+           src="https://www.facebook.com/tr?id={{ meta_id }}&ev=PageView&noscript=1">
+    </noscript>
+  {%- endif -%}
+
+  {%- if gads_id != blank -%}
+    <!-- Google tag (gtag.js) for Google Ads remarketing + conversions -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ gads_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ gads_id }}');
+    </script>
+  {%- endif -%}
+
+  <!-- Promo & Grow: bridge §6 concierge events → pixel events -->
+  <script>
+  (function () {
+    'use strict';
+
+    {%- if template contains 'product' and product -%}
+      /* ViewContent — fired on product pages with real product data */
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') {
+            fbq('track', 'ViewContent', {
+              content_ids: ['{{ product.id }}'],
+              content_name: {{ product.title | json }},
+              content_type: 'product',
+              content_category: {{ product.type | json }},
+              value: {{ product.price | divided_by: 100.0 }},
+              currency: '{{ shop.currency }}'
+            });
+          }
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'view_item', {
+              currency: '{{ shop.currency }}',
+              value: {{ product.price | divided_by: 100.0 }},
+              items: [{
+                item_id: '{{ product.id }}',
+                item_name: {{ product.title | json }},
+                item_category: {{ product.type | json }},
+                price: {{ product.price | divided_by: 100.0 }}
+              }]
+            });
+          }
+        {%- endif -%}
+      } catch (e) { /* don't block page on pixel errors */ }
+    {%- endif -%}
+
+    /* Quote submitted — strongest concierge conversion */
+    document.addEventListener('png:quote_request_submitted', function (e) {
+      var detail = (e && e.detail) || {};
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {
+              content_name: detail.product_title || '',
+              content_category: detail.product_type || '',
+              source: detail.source || 'png-quote-modal'
+            });
+          }
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              currency: '{{ shop.currency }}',
+              source: detail.source || 'png-quote-modal'
+            });
+            {%- if gads_label != blank -%}
+              gtag('event', 'conversion', {
+                send_to: '{{ gads_id }}/{{ gads_label }}'
+              });
+            {%- endif -%}
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Email captured */
+    document.addEventListener('png:email_captured', function () {
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') fbq('track', 'Subscribe');
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'sign_up', { method: 'email_capture' });
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Click-to-call — high-intent signal */
+    document.addEventListener('png:click_to_call', function (e) {
+      var detail = (e && e.detail) || {};
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') {
+            fbq('track', 'Contact', {
+              source: detail.source || 'unknown'
+            });
+          }
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'click_to_call', {
+              source: detail.source || 'unknown'
+            });
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Quote modal opened — engagement signal, not a conversion */
+    document.addEventListener('png:quote_modal_opened', function () {
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') fbq('trackCustom', 'QuoteModalOpened');
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Exit intent popup shown */
+    document.addEventListener('png:exit_intent_shown', function (e) {
+      var detail = (e && e.detail) || {};
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') {
+            fbq('trackCustom', 'ExitIntentShown', { variant: detail.variant });
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+  })();
+  </script>
+{%- endif -%}
