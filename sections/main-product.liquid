@@ -464,6 +464,7 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
+                {%- render 'png-product-cta', product: product, placement: 'primary' -%}
                 {%- render 'buy-buttons',
                   block: block,
                   product: product,
@@ -471,6 +472,7 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+                {%- render 'png-product-cta', product: product, placement: 'secondary' -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">

@@ -1,0 +1,195 @@
+{%- comment -%}
+  Promo & Grow — Tier-Aware Product CTA
+
+  Reads product.type and renders the appropriate CTA arrangement.
+
+  Quote-first tier:
+    - Hero "Get a Free Proof →" copper button (placement: primary)
+    - "Free proof before you pay" trust line (placement: primary)
+    - Below buy-buttons, the secondary placement renders nothing (buy-buttons stays as the
+      self-checkout fallback for the rare visitor who knows exactly what they want)
+
+  Checkout-first tier:
+    - Primary placement renders nothing (the native buy-buttons stays as the hero CTA)
+    - Secondary placement renders: "Ordering several? Get a bulk quote →" text link
+
+  Defaults to quote-first for untyped products (safer for custom).
+  Skips the easify_addon_product Shopify-system type.
+
+  Usage in main-product.liquid:
+    {%- render 'png-product-cta', product: product, placement: 'primary' -%}
+    {%- render 'buy-buttons', ... -%}
+    {%- render 'png-product-cta', product: product, placement: 'secondary' -%}
+
+  Button behavior:
+    Both the primary "Get a Free Proof" button and the secondary "Get a bulk quote" link
+    carry a data-quote-modal-trigger attribute. When the quote modal (§2) is loaded, JS
+    intercepts the click and opens the modal pre-filled with product context. Until the
+    modal ships, the href falls back to /pages/contact?product={handle}&intent=quote-request
+    so the CTA still works end-to-end (lands on the contact page).
+{%- endcomment -%}
+
+{%- liquid
+  assign quote_first_types = 'Bundle,Event Displays & Backdrops,Event Tents & Canopies,Wall Art,Prints & Wraps' | split: ','
+  assign checkout_first_types = 'Flags & Banners,Table Covers & Throws,Tent Accessories' | split: ','
+  assign skip_types = 'easify_addon_product' | split: ','
+
+  assign tier = 'quote-first'
+  if checkout_first_types contains product.type
+    assign tier = 'checkout-first'
+  endif
+  if skip_types contains product.type
+    assign tier = 'skip'
+  endif
+
+  assign contact_fallback = '/pages/contact?product=' | append: product.handle | append: '&intent=quote-request'
+-%}
+
+{%- if tier == 'skip' -%}
+  {%- comment -%} Shopify-system product type — render nothing {%- endcomment -%}
+
+{%- elsif tier == 'quote-first' and placement == 'primary' -%}
+  <div class="png-quote-cta-block">
+    <a
+      href="{{ contact_fallback }}"
+      class="png-cta-quote-primary"
+      data-quote-modal-trigger
+      data-product-handle="{{ product.handle }}"
+      data-product-title="{{ product.title | escape }}"
+      data-product-type="{{ product.type | escape }}"
+    >
+      Get a Free Proof
+      <span class="png-cta-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <div class="png-free-proof-banner">
+      <svg class="png-free-proof-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <circle cx="8" cy="8" r="8" fill="#1E6B4A"/>
+        <path d="M4.5 8.2l2.4 2.3 4.6-4.6" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="png-free-proof-text">
+        <strong>Free proof before you pay.</strong> Nothing prints without your approval.
+      </span>
+    </div>
+  </div>
+
+{%- elsif tier == 'checkout-first' and placement == 'secondary' -%}
+  <p class="png-bulk-quote-link-wrapper">
+    <a
+      href="{{ contact_fallback }}"
+      class="png-bulk-quote-link"
+      data-quote-modal-trigger
+      data-quote-modal-intent="bulk"
+      data-product-handle="{{ product.handle }}"
+      data-product-title="{{ product.title | escape }}"
+      data-product-type="{{ product.type | escape }}"
+    >
+      Ordering several? <span class="png-bulk-quote-link-emphasis">Get a bulk quote →</span>
+    </a>
+  </p>
+
+{%- endif -%}
+
+{%- comment -%} Scoped styles — keeps the snippet self-contained. {%- endcomment -%}
+{%- unless placement == 'secondary' -%}
+<style>
+  /* === Promo & Grow tier-aware CTA styles === */
+  .png-quote-cta-block {
+    margin: 0 0 1.5rem;
+  }
+
+  .png-cta-quote-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 1.4rem 2.6rem;
+    background: #C17A3A;
+    color: #FFFFFF;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.18s ease;
+    box-shadow: 0 1px 2px rgba(27, 40, 56, 0.08);
+  }
+
+  .png-cta-quote-primary:hover,
+  .png-cta-quote-primary:focus-visible {
+    background: #A8682F;
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+  .png-cta-arrow {
+    font-size: 1.5rem;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.18s ease;
+  }
+
+  .png-cta-quote-primary:hover .png-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  .png-free-proof-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 0.9rem 1.2rem;
+    background: rgba(30, 107, 74, 0.06);
+    border-left: 3px solid #1E6B4A;
+    border-radius: 4px;
+  }
+
+  .png-free-proof-check {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .png-free-proof-text {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: #1B2838;
+  }
+
+  .png-free-proof-text strong {
+    font-weight: 600;
+  }
+
+  /* Secondary placement: "Ordering several? Get a bulk quote →" */
+  .png-bulk-quote-link-wrapper {
+    margin: 1.2rem 0 0;
+    text-align: center;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.3rem;
+    color: #6C757D;
+  }
+
+  .png-bulk-quote-link {
+    color: #1B2838;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  .png-bulk-quote-link:hover .png-bulk-quote-link-emphasis,
+  .png-bulk-quote-link:focus-visible .png-bulk-quote-link-emphasis {
+    color: #A8682F;
+  }
+
+  .png-bulk-quote-link-emphasis {
+    color: #C17A3A;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
+{%- endunless -%}
