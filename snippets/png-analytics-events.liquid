@@ -1,0 +1,111 @@
+{%- comment -%}
+  Promo & Grow — Analytics events (§6 of Concierge Conversion System spec)
+
+  Global event listener that pushes to window.dataLayer so GA4 / GTM / any other
+  tag manager can pick them up. Also re-emits as CustomEvent on document so other
+  scripts can listen.
+
+  Events fired here:
+    click_to_call            tel: link clicks, source param = mobile-sticky / footer / pdp-trust / etc.
+    cta_clicked              any data-quote-modal-trigger click (logged before modal opens)
+    exit_intent_shown        exit popup becomes visible
+    exit_intent_dismissed    exit popup closed without conversion (X / overlay / "no thanks")
+
+  Already fired by other snippets (kept where they are):
+    quote_request_submitted  png-quote-modal form submit
+    email_captured           png-email-capture form submit
+
+  Usage: rendered once globally in layout/theme.liquid just before </body>.
+
+  GA4 mapping suggestion (set up in GA4 admin → Events → Mark as conversion):
+    - quote_request_submitted → conversion
+    - email_captured → conversion
+    - click_to_call → conversion (it's a meaningful intent signal even if it ghosts)
+{%- endcomment -%}
+
+<script>
+(function () {
+  'use strict';
+  if (typeof window === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+
+  function push(event, data) {
+    var payload = Object.assign({ event: event, page_path: window.location.pathname }, data || {});
+    window.dataLayer.push(payload);
+    try { document.dispatchEvent(new CustomEvent('png:' + event, { detail: payload })); } catch (e) { /* old browser, ignore */ }
+  }
+
+  // 1. click_to_call — any tel: link click
+  document.addEventListener('click', function (e) {
+    var tel = e.target.closest('a[href^="tel:"]');
+    if (tel) {
+      push('click_to_call', {
+        phone: tel.getAttribute('href').replace('tel:', ''),
+        source: tel.getAttribute('data-png-source') || 'unknown',
+        page_template: document.body.getAttribute('data-template') || 'unknown'
+      });
+    }
+
+    // 2. cta_clicked — any quote modal trigger click
+    var trigger = e.target.closest('[data-quote-modal-trigger]');
+    if (trigger) {
+      push('cta_clicked', {
+        cta_type: 'quote_modal_trigger',
+        product_handle: trigger.getAttribute('data-product-handle') || '',
+        product_title: trigger.getAttribute('data-product-title') || '',
+        product_type: trigger.getAttribute('data-product-type') || '',
+        source: trigger.getAttribute('data-png-source') || 'pdp-primary'
+      });
+    }
+  }, true);
+
+  // 3. exit_intent_shown / dismissed — observe the existing popup-exit-bundle markup
+  var exitPopup = document.getElementById('png-exit-popup');
+  if (exitPopup) {
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (m.attributeName === 'hidden') {
+          if (!exitPopup.hasAttribute('hidden')) {
+            push('exit_intent_shown', {
+              variant: exitPopup.getAttribute('data-exit-variant') || 'unknown'
+            });
+          }
+        }
+      });
+    });
+    observer.observe(exitPopup, { attributes: true });
+
+    // Dismissed = user clicked any data-exit-close while popup was open
+    document.addEventListener('click', function (e) {
+      var closer = e.target.closest('[data-exit-close]');
+      if (closer && !exitPopup.hasAttribute('hidden')) {
+        // Only count as "dismissed" if it's NOT the conversion CTA inside the popup
+        var converted = closer.matches('[data-quote-modal-trigger]') || closer.matches('.png-exit__cta');
+        if (!converted) {
+          push('exit_intent_dismissed', {
+            variant: exitPopup.getAttribute('data-exit-variant') || 'unknown'
+          });
+        }
+      }
+    });
+  }
+
+  // 4. quote_modal opened (lifecycle marker; complements quote_request_submitted)
+  var quoteModal = document.getElementById('png-quote-modal');
+  if (quoteModal) {
+    var qObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (m.attributeName === 'data-png-open' && quoteModal.hasAttribute('data-png-open')) {
+          push('quote_modal_opened', {});
+        }
+      });
+    });
+    qObserver.observe(quoteModal, { attributes: true });
+  }
+
+  // Sanity: log to console in dev/staging only
+  if (window.Shopify && window.Shopify.designMode) {
+    document.addEventListener('png:quote_request_submitted', function (e) { console.log('[png-analytics]', e.detail); });
+  }
+})();
+</script>
