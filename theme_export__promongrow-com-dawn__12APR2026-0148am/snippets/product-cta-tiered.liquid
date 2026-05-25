@@ -31,11 +31,13 @@
   endif
 
   comment
-    Build the quote-link URL with tracking + pre-fill params.
-    refs: "proof" for quote-first CTAs, "bulk" for checkout-first CTAs.
+    Quote CTAs use data-quote-modal-trigger so JS opens the §2 modal
+    and pre-fills product context. The href deep-links to /pages/contact
+    with ?intent=quote-request, which the modal's auto-open also matches
+    (JS-disabled fallback path).
   endcomment
-  assign quote_url = '/pages/contact?ref=proof&handle=' | append: product.handle
-  assign bulk_url  = '/pages/contact?ref=bulk&handle='  | append: product.handle
+  assign quote_url = '/pages/contact?intent=quote-request&product=' | append: product.handle
+  assign bulk_url  = '/pages/contact?intent=quote-request&ref=bulk&product=' | append: product.handle
 -%}
 
 <div class="png-cta-tier png-cta-tier--{{ tier }}" data-cta-tier="{{ tier }}">
@@ -43,8 +45,10 @@
   {%- if tier == 'quote-first' -%}
     <a href="{{ quote_url }}"
        class="png-cta-tier__primary png-cta-tier__primary--quote"
+       data-quote-modal-trigger
        data-cta="get-proof"
        data-product-type="{{ product.type | escape }}"
+       data-product-title="{{ product.title | escape }}"
        data-product-handle="{{ product.handle }}">
       Get a Free Proof <span class="png-cta-tier__arrow" aria-hidden="true">&rarr;</span>
     </a>
@@ -61,8 +65,10 @@
   {%- if tier == 'checkout-first' -%}
     <a href="{{ bulk_url }}"
        class="png-cta-tier__bulk-link"
+       data-quote-modal-trigger
        data-cta="bulk-quote"
        data-product-type="{{ product.type | escape }}"
+       data-product-title="{{ product.title | escape }}"
        data-product-handle="{{ product.handle }}">
       Ordering several? Get a bulk quote <span aria-hidden="true">&rarr;</span>
     </a>
