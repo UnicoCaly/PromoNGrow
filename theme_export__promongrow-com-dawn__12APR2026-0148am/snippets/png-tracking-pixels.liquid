@@ -35,30 +35,61 @@
   <!-- Promo & Grow: tracking pixels (live when IDs set in Theme settings → Tracking & Analytics) -->
 
   {%- if meta_id != blank -%}
-    <!-- Meta Pixel base code -->
+    <!-- Meta Pixel: only initialize if not already present (e.g. via Shopify Meta sales
+         channel, Customer events, or a pre-existing manual snippet). This prevents
+         double-firing PageView/ViewContent when an existing install is in place. -->
     <script>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '{{ meta_id }}');
-      fbq('track', 'PageView');
+      (function () {
+        if (typeof window.fbq === 'undefined') {
+          /* Standard Meta Pixel base code */
+          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+          document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '{{ meta_id }}');
+          fbq('track', 'PageView');
+          window.pngFbqInitialized = true;
+        } else {
+          /* Pixel already exists from another install — skip base init + PageView
+             but still attach our concierge event bridges below. */
+          window.pngFbqSkippedBase = true;
+        }
+      })();
     </script>
     <noscript>
+      {%- comment -%}
+        noscript fallback only renders if no other Meta install has emitted one already.
+        Browsers without JS will still get one PageView img from whichever install rendered it.
+      {%- endcomment -%}
       <img height="1" width="1" style="display:none" alt=""
            src="https://www.facebook.com/tr?id={{ meta_id }}&ev=PageView&noscript=1">
     </noscript>
   {%- endif -%}
 
   {%- if gads_id != blank -%}
-    <!-- Google tag (gtag.js) for Google Ads remarketing + conversions -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ gads_id }}"></script>
+    <!-- Google tag (gtag.js) for Google Ads: only initialize if gtag isn't already
+         present. gtag's config() is idempotent for the same ID but skipping the
+         re-config keeps console clean and avoids any duplicate auto page_view. -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ gads_id }}');
+      (function () {
+        if (typeof window.gtag === 'undefined') {
+          /* Load gtag.js and set up config + page_view */
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id={{ gads_id }}';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          gtag('js', new Date());
+          gtag('config', '{{ gads_id }}');
+          window.pngGtagInitialized = true;
+        } else {
+          /* gtag already present (Shopify Google channel, GA4, prior install).
+             Skip base config — just rely on existing gtag for our event bridges. */
+          window.pngGtagSkippedBase = true;
+        }
+      })();
     </script>
   {%- endif -%}
 
@@ -68,10 +99,12 @@
     'use strict';
 
     {%- if template contains 'product' and product -%}
-      /* ViewContent — fired on product pages with real product data */
+      /* ViewContent / view_item — only fire if WE initialized the pixels.
+         If an existing install was detected, skip these to avoid duplicate
+         fires (the existing install presumably already covers them). */
       try {
         {%- if meta_id != blank -%}
-          if (typeof fbq === 'function') {
+          if (window.pngFbqInitialized && typeof fbq === 'function') {
             fbq('track', 'ViewContent', {
               content_ids: ['{{ product.id }}'],
               content_name: {{ product.title | json }},
@@ -83,7 +116,7 @@
           }
         {%- endif -%}
         {%- if gads_id != blank -%}
-          if (typeof gtag === 'function') {
+          if (window.pngGtagInitialized && typeof gtag === 'function') {
             gtag('event', 'view_item', {
               currency: '{{ shop.currency }}',
               value: {{ product.price | divided_by: 100.0 }},
