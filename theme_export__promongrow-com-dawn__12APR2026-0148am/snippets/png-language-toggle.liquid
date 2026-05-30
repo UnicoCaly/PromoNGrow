@@ -1,0 +1,35 @@
+{%- comment -%}
+  Promo & Grow — Language toggle (EN / ES)
+
+  Renders ONLY when more than one published language exists (i.e. after Spanish
+  is added in Settings → Languages / Markets). Until then it outputs nothing —
+  safe to ship now with zero visible change.
+
+  Uses Shopify's native {% form 'localization' %} so switching is server-side
+  (SEO-safe, real localized URLs) and preserves the current page via return_to.
+
+  Optional param: place ('header' | 'footer') for context-specific styling.
+{%- endcomment -%}
+
+{%- if localization.available_languages.size > 1 -%}
+  {%- assign png_place = place | default: 'header' -%}
+  <localization-form class="png-lang png-lang--{{ png_place }}">
+    {%- form 'localization', id: 'png-lang-form-' | append: png_place, class: 'png-lang__form' -%}
+      <input type="hidden" name="return_to" value="{{ request.path }}">
+      <div class="png-lang__options" role="group" aria-label="Language">
+        {%- for language in localization.available_languages -%}
+          <button
+            type="submit"
+            name="locale_code"
+            value="{{ language.iso_code }}"
+            class="png-lang__btn{% if language.iso_code == localization.language.iso_code %} png-lang__btn--active{% endif %}"
+            lang="{{ language.iso_code }}"
+            {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}
+          >
+            {{ language.iso_code | upcase }}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endform -%}
+  </localization-form>
+{%- endif -%}

@@ -285,6 +285,8 @@
         {%- endcase -%}
       {%- endfor -%}
 
+      {%- render 'png-language-toggle', place: 'header' -%}
+
       <a href="/pages/contact" class="png-header-cta small-hide">Get a quote</a>
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">

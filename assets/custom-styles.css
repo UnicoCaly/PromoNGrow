@@ -465,6 +465,59 @@ p, li, td, th, label, input, select, textarea {
   transition: background-color 0.2s ease;
 }
 
+/* ---------- Language toggle (EN / ES) ---------- */
+.png-lang__form {
+  margin: 0;
+}
+.png-lang__options {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--png-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.png-lang__btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--png-text-muted);
+  padding: 5px 9px;
+  line-height: 1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.png-lang__btn + .png-lang__btn {
+  border-left: 1px solid var(--png-border);
+}
+.png-lang__btn:hover {
+  color: var(--png-navy);
+}
+.png-lang__btn--active {
+  background: var(--png-navy);
+  color: #fff;
+}
+/* Footer placement: lighter borders on the dark footer */
+.png-lang--footer .png-lang__options {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.png-lang--footer .png-lang__btn {
+  color: rgba(255, 255, 255, 0.55);
+}
+.png-lang--footer .png-lang__btn + .png-lang__btn {
+  border-left-color: rgba(255, 255, 255, 0.18);
+}
+.png-lang--footer .png-lang__btn:hover {
+  color: #fff;
+}
+.png-lang--footer .png-lang__btn--active {
+  background: #fff;
+  color: var(--png-navy);
+}
+
 .png-header-cta:hover {
   background-color: var(--png-copper-hover);
   color: #fff;
