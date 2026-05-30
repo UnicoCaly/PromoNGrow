@@ -72,8 +72,15 @@
       {%- endif -%}
 
       {%- comment -%} Tag the contact submission so Carlos can filter for quote requests in his inbox {%- endcomment -%}
-      <input type="hidden" name="contact[Inquiry Type]" value="Quote Request — Free Proof">
+      {%- liquid
+        assign png_inquiry_type = 'Quote Request — Free Proof'
+        if request.locale.iso_code != 'en'
+          assign png_inquiry_type = '[' | append: request.locale.iso_code | upcase | append: '] ' | append: png_inquiry_type
+        endif
+      -%}
+      <input type="hidden" name="contact[Inquiry Type]" value="{{ png_inquiry_type }}">
       <input type="hidden" name="contact[Submitted Via]" value="png-quote-modal">
+      <input type="hidden" name="contact[Language]" value="{{ request.locale.iso_code }}">
 
       <div class="png-quote-modal__row png-quote-modal__row--split">
         <label class="png-quote-modal__field">
