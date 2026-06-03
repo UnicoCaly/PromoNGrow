@@ -3140,3 +3140,31 @@ img {
 img[loading="lazy"] {
   aspect-ratio: attr(width) / attr(height);
 }
+
+
+/* ==========================================================================
+   Judge.me floating review tab — recolor to brand navy
+   ========================================================================== */
+.jdgm-rev-tab,
+#jdgm-rev-tab,
+.jdgm-all-reviews-tab,
+.jdgm-rev-tab--floating {
+  background-color: #1B2838 !important;
+  background: #1B2838 !important;
+  color: #FFFFFF !important;
+  border-color: #1B2838 !important;
+}
+.jdgm-rev-tab:hover,
+#jdgm-rev-tab:hover,
+.jdgm-all-reviews-tab:hover,
+.jdgm-rev-tab--floating:hover {
+  background-color: #2E3E50 !important;
+  background: #2E3E50 !important;
+  color: #FFFFFF !important;
+}
+/* Star characters inside the tab keep the brand copper accent */
+.jdgm-rev-tab .jdgm-star,
+#jdgm-rev-tab .jdgm-star,
+.jdgm-all-reviews-tab .jdgm-star {
+  color: #C17A3A !important;
+}
