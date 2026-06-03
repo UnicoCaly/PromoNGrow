@@ -945,8 +945,12 @@ a.png-link-cta::after {
   transition: transform 0.3s ease;
 }
 
-.png-category-card:hover .png-category-card__image {
-  transform: scale(1.02);
+/* Hover-zoom only on real pointer devices — prevents sticky-hover
+   scale glitch when tapping/scrolling on touchscreens */
+@media (hover: hover) {
+  .png-category-card:hover .png-category-card__image {
+    transform: scale(1.02);
+  }
 }
 
 .png-category-card__image-wrapper {
@@ -1216,8 +1220,10 @@ a.png-link-cta::after {
   transition: transform 0.3s ease;
 }
 
-.card:hover .card__media img {
-  transform: scale(1.02);
+@media (hover: hover) {
+  .card:hover .card__media img {
+    transform: scale(1.02);
+  }
 }
 
 
@@ -2522,8 +2528,7 @@ button,
 .png-dr-copy-btn,
 .png-dr-dl-btn,
 .png-hero-dark__btn-primary,
-.png-hero-dark__btn-ghost,
-.png-header-cta {
+.png-hero-dark__btn-ghost {
   text-transform: none !important;
   letter-spacing: 0;
   border-radius: 5px;
@@ -3117,13 +3122,6 @@ button,
   }
 }
 
-/* Contain layout shifts */
-.png-hero-dark__image,
-.png-category-card__image-wrapper,
-.png-collection-banner__image {
-  contain: layout style;
-}
-
 /* Smooth scrolling (only if no preference) */
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -3131,15 +3129,14 @@ button,
   }
 }
 
-/* Image rendering hints */
-img {
-  content-visibility: auto;
-}
-
-/* Ensure no CLS from lazy images */
-img[loading="lazy"] {
-  aspect-ratio: attr(width) / attr(height);
-}
+/* NOTE (perf audit): removed `img { content-visibility: auto }` and
+   `img[loading="lazy"] { aspect-ratio: attr(width)/attr(height) }`.
+   - content-visibility:auto caused images to blank/flicker as they
+     scrolled into view on mobile (off-screen render skipping with no
+     reserved size).
+   - attr() is invalid for aspect-ratio in current browsers (no-op).
+   Shopify's image_tag already emits real width/height attributes, so
+   the browser reserves space and prevents CLS without extra CSS. */
 
 
 /* ==========================================================================
