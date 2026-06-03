@@ -3144,27 +3144,29 @@ img[loading="lazy"] {
 
 /* ==========================================================================
    Judge.me floating review tab — recolor to brand navy
+   Live markup uses .jdgm-revs-tab (the floating bar) and .jdgm-revs-tab-btn.
    ========================================================================== */
-.jdgm-rev-tab,
-#jdgm-rev-tab,
-.jdgm-all-reviews-tab,
-.jdgm-rev-tab--floating {
+.jdgm-revs-tab,
+.jdgm-revs-tab-btn,
+.jdgm-all-reviews-rating-wrapper .jdgm-revs-tab {
   background-color: #1B2838 !important;
   background: #1B2838 !important;
   color: #FFFFFF !important;
   border-color: #1B2838 !important;
 }
-.jdgm-rev-tab:hover,
-#jdgm-rev-tab:hover,
-.jdgm-all-reviews-tab:hover,
-.jdgm-rev-tab--floating:hover {
+.jdgm-revs-tab:hover,
+.jdgm-revs-tab-btn:hover {
   background-color: #2E3E50 !important;
   background: #2E3E50 !important;
   color: #FFFFFF !important;
 }
-/* Star characters inside the tab keep the brand copper accent */
-.jdgm-rev-tab .jdgm-star,
-#jdgm-rev-tab .jdgm-star,
-.jdgm-all-reviews-tab .jdgm-star {
+/* Force text/icon legibility inside the tab */
+.jdgm-revs-tab *,
+.jdgm-revs-tab-btn * {
+  color: #FFFFFF !important;
+}
+/* Keep any star glyphs in brand copper */
+.jdgm-revs-tab .jdgm-star,
+.jdgm-revs-tab-btn .jdgm-star {
   color: #C17A3A !important;
 }
