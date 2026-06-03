@@ -1,0 +1,70 @@
+{%- comment -%}
+  Promo & Grow — Locale link safety-net
+
+  Many internal links in custom sections are hardcoded root-relative
+  (e.g. /collections/bundles, /pages/contact). Under Shopify Markets,
+  language is keyed off the URL path prefix (e.g. /es), so a hardcoded
+  link drops the visitor back to the primary language.
+
+  This script runs ONLY on non-primary locales and rewrites same-origin,
+  root-relative links to carry the current locale prefix. It's a UX
+  safety-net; SEO crawlers still get clean per-locale URLs via hreflang
+  and the Liquid-localized nav.
+
+  Rendered once globally in layout/theme.liquid.
+{%- endcomment -%}
+
+{%- assign png_root = routes.root_url -%}
+{%- if png_root != '/' -%}
+  <script>
+  (function () {
+    'use strict';
+    var PREFIX = {{ png_root | json }};           /* e.g. "/es" */
+    if (!PREFIX || PREFIX === '/') return;
+
+    /* Paths that must NOT be prefixed (Shopify system + assets) */
+    var SKIP = /^\/(cdn|cart|checkout|account|apps|services|\.well-known|admin)(\/|$|\.)/i;
+
+    function localize(a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      /* root-relative only: starts with single slash, not "//" */
+      if (href.charAt(0) !== '/' || href.charAt(1) === '/') return;
+      /* already prefixed with this locale? */
+      if (href === PREFIX || href.indexOf(PREFIX + '/') === 0) return;
+      /* skip Shopify system/asset paths */
+      if (SKIP.test(href)) return;
+      /* skip explicit opt-outs (e.g. the language form itself) */
+      if (a.hasAttribute('data-no-locale')) return;
+      a.setAttribute('href', PREFIX + href);
+    }
+
+    function run(root) {
+      var links = (root || document).querySelectorAll('a[href^="/"]');
+      for (var i = 0; i < links.length; i++) localize(links[i]);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { run(document); });
+    } else {
+      run(document);
+    }
+
+    /* Re-localize links injected later (popups, bundle builder, modal) */
+    if ('MutationObserver' in window) {
+      var mo = new MutationObserver(function (muts) {
+        for (var i = 0; i < muts.length; i++) {
+          var nodes = muts[i].addedNodes;
+          for (var j = 0; j < nodes.length; j++) {
+            var n = nodes[j];
+            if (n.nodeType !== 1) continue;
+            if (n.tagName === 'A') localize(n);
+            else if (n.querySelectorAll) run(n);
+          }
+        }
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
+  })();
+  </script>
+{%- endif -%}

@@ -1,13 +1,22 @@
 {% comment %}
   Promo & Grow: 5-item navigation with benefit subtitles.
   Subtitles are configurable via the Header section schema in theme customizer.
+  Links are locale-aware: png_loc prefixes the current locale path (e.g. /es)
+  so navigation stays in-language under Shopify Markets.
 {% endcomment %}
+
+{%- liquid
+  assign png_loc = routes.root_url
+  if png_loc == '/'
+    assign png_loc = ''
+  endif
+-%}
 
 <nav class="header__inline-menu">
   <ul class="png-nav list-menu list-menu--inline" role="list">
     <!-- 1. Bundles -->
     <li>
-      <a href="/collections/bundles" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+      <a href="{{ png_loc }}/collections/bundles" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
         <span class="png-nav-item-wrap">
           <span class="png-nav-title">Bundles</span>
           <span class="png-nav-subtitle png-nav-subtitle--copper">{{ section.settings.nav_subtitle_1 | default: 'Save 15%+' }}</span>
@@ -16,7 +25,7 @@
     </li>
     <!-- 2. Tents -->
     <li>
-      <a href="/collections/tents-canopies" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+      <a href="{{ png_loc }}/collections/tents-canopies" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
         <span class="png-nav-item-wrap">
           <span class="png-nav-title">Tents</span>
           <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_2 | default: 'Free 3D preview' }}</span>
@@ -25,7 +34,7 @@
     </li>
     <!-- 3. Displays -->
     <li>
-      <a href="/collections/backdrop-display" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+      <a href="{{ png_loc }}/collections/backdrop-display" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
         <span class="png-nav-item-wrap">
           <span class="png-nav-title">Displays</span>
           <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_3 | default: 'SEG + popup' }}</span>
@@ -34,7 +43,7 @@
     </li>
     <!-- 4. Flags -->
     <li>
-      <a href="/collections/flags" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+      <a href="{{ png_loc }}/collections/flags" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
         <span class="png-nav-item-wrap">
           <span class="png-nav-title">Flags</span>
           <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_4 | default: '5 styles · small → large' }}</span>
@@ -43,7 +52,7 @@
     </li>
     <!-- 5. Wraps -->
     <li>
-      <a href="/collections/wraps" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
+      <a href="{{ png_loc }}/collections/wraps" class="png-nav-link header__menu-item list-menu__item link link--text focus-inset">
         <span class="png-nav-item-wrap">
           <span class="png-nav-title">Wraps</span>
           <span class="png-nav-subtitle">{{ section.settings.nav_subtitle_5 | default: 'Walls + backdrops' }}</span>
