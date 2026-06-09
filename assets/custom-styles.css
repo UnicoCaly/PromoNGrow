@@ -2226,6 +2226,71 @@ html[data-product-tier="quote-first"] .shopify-payment-button {
 }
 
 
+/* ---------- PDP Process Ribbon (buy → design → approve → deliver) ---------- */
+.png-process-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 14px 0 4px;
+  padding: 14px 12px;
+  background: var(--png-offwhite);
+  border: 1px solid var(--png-border);
+  border-radius: 10px;
+}
+.png-process-ribbon__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  text-align: center;
+}
+.png-process-ribbon__num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--png-navy);
+  color: var(--png-navy);
+  font-family: var(--png-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.png-process-ribbon__num--accent {
+  background: var(--png-copper);
+  border-color: var(--png-copper);
+  color: #fff;
+}
+.png-process-ribbon__label {
+  font-family: var(--png-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--png-text-secondary);
+  line-height: 1.3;
+}
+.png-process-ribbon__arrow {
+  color: #ccc;
+  font-size: 12px;
+  flex: 0 0 auto;
+}
+@media (max-width: 520px) {
+  .png-process-ribbon__arrow {
+    display: none;
+  }
+  .png-process-ribbon {
+    flex-wrap: wrap;
+    gap: 12px 4px;
+  }
+  .png-process-ribbon__step {
+    flex: 0 0 calc(50% - 4px);
+  }
+}
+
+
 /* ---------- Tiered CTA (Concierge Conversion §1) ---------- */
 .png-cta-tier {
   display: flex;

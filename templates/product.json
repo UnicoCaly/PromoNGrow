@@ -60,6 +60,12 @@
             "show_gift_card_recipient": false
           }
         },
+        "process_ribbon": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-process-ribbon' %}"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -74,6 +80,7 @@
         "quantity_selector",
         "tiered_cta",
         "buy_buttons",
+        "process_ribbon",
         "description"
       ],
       "settings": {
