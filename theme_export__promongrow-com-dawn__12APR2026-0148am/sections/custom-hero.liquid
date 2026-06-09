@@ -56,6 +56,83 @@
   </div>
 </section>
 
+{%- comment -%} 4-Door Intent Router — embedded in hero so it always renders on the homepage {%- endcomment -%}
+{%- if section.settings.show_router -%}
+  {%- liquid
+    assign loc = routes.root_url
+    if loc == '/'
+      assign loc = ''
+    endif
+  -%}
+  <section class="png-router">
+    <div class="page-width">
+      {%- if section.settings.router_heading != blank -%}
+        <h2 class="png-router__heading">{{ section.settings.router_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.router_sub != blank -%}
+        <p class="png-router__sub">{{ section.settings.router_sub }}</p>
+      {%- endif -%}
+      <div class="png-router__grid">
+
+        <a href="{{ loc }}/pages/contact?intent=quote-request"
+           class="png-router__door png-router__door--primary"
+           data-quote-modal-trigger
+           data-intent-door="free-proof">
+          <span class="png-router__ic" aria-hidden="true">&#10003;</span>
+          <span class="png-router__label">{{ section.settings.door1_label | default: 'Get a Free Proof' }}</span>
+          <span class="png-router__sublabel">{{ section.settings.door1_sub | default: 'See it before you pay. No commitment.' }}</span>
+          <span class="png-router__cta">{{ section.settings.door1_cta | default: 'Start free proof' }} &rarr;</span>
+        </a>
+
+        <a href="{{ loc }}{{ section.settings.door2_link | default: '/collections/bundles' }}"
+           class="png-router__door"
+           data-intent-door="bundles">
+          <span class="png-router__ic" aria-hidden="true">&#9733;</span>
+          <span class="png-router__label">{{ section.settings.door2_label | default: 'Shop Bundles' }}</span>
+          <span class="png-router__sublabel">{{ section.settings.door2_sub | default: 'Tent + flag + throw. Save 15%+.' }}</span>
+          <span class="png-router__cta">{{ section.settings.door2_cta | default: 'Build a bundle' }} &rarr;</span>
+        </a>
+
+        <a href="{{ loc }}{{ section.settings.door3_link | default: '/collections/all' }}"
+           class="png-router__door"
+           data-intent-door="buy-online">
+          <span class="png-router__ic" aria-hidden="true">&#128722;</span>
+          <span class="png-router__label">{{ section.settings.door3_label | default: 'Buy Online' }}</span>
+          <span class="png-router__sublabel">{{ section.settings.door3_sub | default: 'Know what you need? Shop the catalog.' }}</span>
+          <span class="png-router__cta">{{ section.settings.door3_cta | default: 'Browse all' }} &rarr;</span>
+        </a>
+
+        <a href="tel:{{ section.settings.router_phone | default: '8448833308' }}"
+           class="png-router__door"
+           data-intent-door="talk-to-us"
+           data-png-source="intent-router">
+          <span class="png-router__ic" aria-hidden="true">&#9742;</span>
+          <span class="png-router__label">{{ section.settings.door4_label | default: 'Talk to Us' }}</span>
+          <span class="png-router__sublabel">{{ section.settings.door4_sub | default: 'Custom job? Call and we will scope it.' }}</span>
+          <span class="png-router__cta">{{ section.settings.door4_cta | default: '(844) 883-3308' }}</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var doors = document.querySelectorAll('.png-router [data-intent-door]');
+      if (!doors.length) return;
+      doors.forEach(function (d) {
+        d.addEventListener('click', function () {
+          try {
+            window.dataLayer = window.dataLayer || [];
+            var payload = { event: 'intent_door', door: d.getAttribute('data-intent-door') };
+            window.dataLayer.push(payload);
+            document.dispatchEvent(new CustomEvent('png:intent_door', { detail: payload }));
+          } catch (e) {}
+        });
+      });
+    })();
+  </script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Hero",
@@ -66,6 +143,25 @@
       "id": "image",
       "label": "Hero image"
     },
+    { "type": "header", "content": "Intent Router (4 doors, below hero)" },
+    { "type": "checkbox", "id": "show_router", "label": "Show intent router", "default": true },
+    { "type": "text", "id": "router_heading", "label": "Router heading", "default": "How can we help today?" },
+    { "type": "text", "id": "router_sub", "label": "Router subheading", "default": "Pick the path that fits — buy now, bundle and save, or get a free proof first." },
+    { "type": "text", "id": "door1_label", "label": "Door 1 label", "default": "Get a Free Proof" },
+    { "type": "text", "id": "door1_sub", "label": "Door 1 sublabel", "default": "See it before you pay. No commitment." },
+    { "type": "text", "id": "door1_cta", "label": "Door 1 CTA", "default": "Start free proof" },
+    { "type": "text", "id": "door2_label", "label": "Door 2 label", "default": "Shop Bundles" },
+    { "type": "text", "id": "door2_sub", "label": "Door 2 sublabel", "default": "Tent + flag + throw. Save 15%+." },
+    { "type": "text", "id": "door2_cta", "label": "Door 2 CTA", "default": "Build a bundle" },
+    { "type": "text", "id": "door2_link", "label": "Door 2 link", "default": "/collections/bundles" },
+    { "type": "text", "id": "door3_label", "label": "Door 3 label", "default": "Buy Online" },
+    { "type": "text", "id": "door3_sub", "label": "Door 3 sublabel", "default": "Know what you need? Shop the catalog." },
+    { "type": "text", "id": "door3_cta", "label": "Door 3 CTA", "default": "Browse all" },
+    { "type": "text", "id": "door3_link", "label": "Door 3 link", "default": "/collections/all" },
+    { "type": "text", "id": "door4_label", "label": "Door 4 label", "default": "Talk to Us" },
+    { "type": "text", "id": "door4_sub", "label": "Door 4 sublabel", "default": "Custom job? Call and we will scope it." },
+    { "type": "text", "id": "door4_cta", "label": "Door 4 CTA", "default": "(844) 883-3308" },
+    { "type": "text", "id": "router_phone", "label": "Router phone (digits only)", "default": "8448833308" },
     {
       "type": "text",
       "id": "eyebrow",

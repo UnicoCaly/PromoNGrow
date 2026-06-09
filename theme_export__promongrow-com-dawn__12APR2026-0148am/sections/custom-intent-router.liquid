@@ -1,0 +1,130 @@
+{%- comment -%}
+  Promo & Grow — 4-Door Intent Router (War-Room steal: ExpoMarketing)
+
+  Routes cold homepage traffic by intent instead of dumping everyone at a
+  checkout they won't use. Four doors:
+    1. Get a Free Proof  → opens the quote modal (concierge bridge, Track A)
+    2. Shop Bundles      → /collections/bundles (save 15%)
+    3. Buy Online        → /collections/all (self-serve, Track B path)
+    4. Talk to Us        → tel: click-to-call
+
+  Each door fires png:intent_door for analytics so we can see which door
+  cold traffic chooses (feeds the funnel dashboard).
+
+  Door labels/links/sublabels are all editable in the theme customizer.
+{%- endcomment -%}
+
+{%- liquid
+  assign loc = routes.root_url
+  if loc == '/'
+    assign loc = ''
+  endif
+-%}
+
+<section class="png-router">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="png-router__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="png-router__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <div class="png-router__grid">
+
+      {%- comment -%} Door 1 — Free Proof (opens quote modal) {%- endcomment -%}
+      <a href="{{ loc }}/pages/contact?intent=quote-request"
+         class="png-router__door png-router__door--primary"
+         data-quote-modal-trigger
+         data-intent-door="free-proof">
+        <span class="png-router__ic" aria-hidden="true">&#10003;</span>
+        <span class="png-router__label">{{ section.settings.door1_label | default: 'Get a Free Proof' }}</span>
+        <span class="png-router__sublabel">{{ section.settings.door1_sub | default: 'See it before you pay. No commitment.' }}</span>
+        <span class="png-router__cta">{{ section.settings.door1_cta | default: 'Start free proof' }} &rarr;</span>
+      </a>
+
+      {%- comment -%} Door 2 — Bundles {%- endcomment -%}
+      <a href="{{ loc }}{{ section.settings.door2_link | default: '/collections/bundles' }}"
+         class="png-router__door"
+         data-intent-door="bundles">
+        <span class="png-router__ic" aria-hidden="true">&#9733;</span>
+        <span class="png-router__label">{{ section.settings.door2_label | default: 'Shop Bundles' }}</span>
+        <span class="png-router__sublabel">{{ section.settings.door2_sub | default: 'Tent + flag + throw. Save 15%+.' }}</span>
+        <span class="png-router__cta">{{ section.settings.door2_cta | default: 'Build a bundle' }} &rarr;</span>
+      </a>
+
+      {%- comment -%} Door 3 — Buy Online {%- endcomment -%}
+      <a href="{{ loc }}{{ section.settings.door3_link | default: '/collections/all' }}"
+         class="png-router__door"
+         data-intent-door="buy-online">
+        <span class="png-router__ic" aria-hidden="true">&#128722;</span>
+        <span class="png-router__label">{{ section.settings.door3_label | default: 'Buy Online' }}</span>
+        <span class="png-router__sublabel">{{ section.settings.door3_sub | default: 'Know what you need? Shop the catalog.' }}</span>
+        <span class="png-router__cta">{{ section.settings.door3_cta | default: 'Browse all' }} &rarr;</span>
+      </a>
+
+      {%- comment -%} Door 4 — Talk to Us (click-to-call) {%- endcomment -%}
+      <a href="tel:{{ section.settings.phone_digits | default: '8448833308' }}"
+         class="png-router__door"
+         data-intent-door="talk-to-us"
+         data-png-source="intent-router">
+        <span class="png-router__ic" aria-hidden="true">&#9742;</span>
+        <span class="png-router__label">{{ section.settings.door4_label | default: 'Talk to Us' }}</span>
+        <span class="png-router__sublabel">{{ section.settings.door4_sub | default: 'Custom job? Call and we will scope it.' }}</span>
+        <span class="png-router__cta">{{ section.settings.door4_cta | default: '(844) 883-3308' }}</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var doors = document.querySelectorAll('[data-intent-door]');
+    if (!doors.length) return;
+    doors.forEach(function (d) {
+      d.addEventListener('click', function () {
+        try {
+          window.dataLayer = window.dataLayer || [];
+          var payload = { event: 'intent_door', door: d.getAttribute('data-intent-door') };
+          window.dataLayer.push(payload);
+          document.dispatchEvent(new CustomEvent('png:intent_door', { detail: payload }));
+        } catch (e) {}
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Intent Router",
+  "tag": "section",
+  "class": "png-router-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How can we help today?" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Pick the path that fits — buy now, bundle and save, or get a free proof first." },
+    { "type": "header", "content": "Door 1 — Free Proof (opens quote modal)" },
+    { "type": "text", "id": "door1_label", "label": "Label", "default": "Get a Free Proof" },
+    { "type": "text", "id": "door1_sub", "label": "Sublabel", "default": "See it before you pay. No commitment." },
+    { "type": "text", "id": "door1_cta", "label": "CTA text", "default": "Start free proof" },
+    { "type": "header", "content": "Door 2 — Bundles" },
+    { "type": "text", "id": "door2_label", "label": "Label", "default": "Shop Bundles" },
+    { "type": "text", "id": "door2_sub", "label": "Sublabel", "default": "Tent + flag + throw. Save 15%+." },
+    { "type": "text", "id": "door2_cta", "label": "CTA text", "default": "Build a bundle" },
+    { "type": "text", "id": "door2_link", "label": "Link", "default": "/collections/bundles" },
+    { "type": "header", "content": "Door 3 — Buy Online" },
+    { "type": "text", "id": "door3_label", "label": "Label", "default": "Buy Online" },
+    { "type": "text", "id": "door3_sub", "label": "Sublabel", "default": "Know what you need? Shop the catalog." },
+    { "type": "text", "id": "door3_cta", "label": "CTA text", "default": "Browse all" },
+    { "type": "text", "id": "door3_link", "label": "Link", "default": "/collections/all" },
+    { "type": "header", "content": "Door 4 — Talk to Us" },
+    { "type": "text", "id": "door4_label", "label": "Label", "default": "Talk to Us" },
+    { "type": "text", "id": "door4_sub", "label": "Sublabel", "default": "Custom job? Call and we will scope it." },
+    { "type": "text", "id": "door4_cta", "label": "CTA text", "default": "(844) 883-3308" },
+    { "type": "text", "id": "phone_digits", "label": "Phone (digits only)", "default": "8448833308" }
+  ],
+  "presets": [
+    { "name": "Intent Router" }
+  ]
+}
+{% endschema %}
