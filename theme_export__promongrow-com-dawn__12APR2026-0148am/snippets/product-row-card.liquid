@@ -38,6 +38,9 @@
 
   <div class="png-product-row__info">
     <h3 class="png-product-row__title">{{ card_product.title }}</h3>
+    <div class="png-product-row__stars jdgm-widget jdgm-preview-badge"
+         data-id="{{ card_product.id }}"
+         data-template="index"></div>
     {%- if card_product.metafields.custom.specs != blank -%}
       <p class="png-product-row__specs">{{ card_product.metafields.custom.specs }}</p>
     {%- elsif card_product.variants.size > 1 -%}

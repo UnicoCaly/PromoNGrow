@@ -24,6 +24,12 @@
           "type": "price",
           "settings": {}
         },
+        "review_stars": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-review-stars' %}"
+          }
+        },
         "custom_trust": {
           "type": "custom_liquid",
           "settings": {
@@ -62,6 +68,7 @@
       "block_order": [
         "title",
         "price",
+        "review_stars",
         "custom_trust",
         "variant_picker",
         "quantity_selector",
