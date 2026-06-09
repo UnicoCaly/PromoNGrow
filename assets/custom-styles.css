@@ -161,6 +161,10 @@ p, li, td, th, label, input, select, textarea {
   color: #999;
   white-space: nowrap;
 }
+.png-ab__text strong {
+  color: var(--png-navy);
+  font-weight: 600;
+}
 
 .png-ab__divider {
   color: #e0e0e0;
