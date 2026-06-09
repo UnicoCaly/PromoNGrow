@@ -1,0 +1,17 @@
+{%- comment -%}
+  Promo & Grow — PDP star badge (decision-moment social proof)
+
+  Drops Judge.me's preview-badge container right under the title/price.
+  Judge.me's already-loaded storefront JS scans for .jdgm-preview-badge
+  and fills it with the product's average stars + review count, linking
+  down to the full reviews widget already rendered lower on the page.
+
+  If a product has no reviews, Judge.me renders nothing here — safe.
+  Wrapped so we can style spacing without touching Judge.me internals.
+{%- endcomment -%}
+
+<div class="png-pdp-stars">
+  <div class="jdgm-widget jdgm-preview-badge"
+       data-id="{{ product.id }}"
+       data-template="product"></div>
+</div>

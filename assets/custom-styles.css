@@ -1870,6 +1870,28 @@ a.png-link-cta::after {
   line-height: 1.3;
 }
 
+/* Per-grid star ratings (Judge.me preview badge inside collection cards) */
+.png-product-row__stars {
+  margin: 1px 0 3px;
+  line-height: 1;
+}
+.png-product-row__stars:empty {
+  display: none;
+}
+.png-product-row__stars .jdgm-prev-badge__stars {
+  color: #C17A3A !important;
+  font-size: 12px;
+}
+.png-product-row__stars .jdgm-prev-badge__text {
+  font-family: var(--png-font-body);
+  font-size: 10px;
+  color: var(--png-text-muted);
+}
+/* hide zero-review badges so empty cards don't show 'No reviews' */
+.png-product-row__stars .jdgm-prev-badge[data-number-of-reviews="0"] {
+  display: none;
+}
+
 .png-product-row__specs {
   font-family: var(--png-font-body);
   font-size: 11px;
@@ -2027,6 +2049,23 @@ a.png-link-cta::after {
 }
 
 /* Product trust badges */
+/* PDP star badge (Judge.me preview badge) — decision-moment proof */
+.png-pdp-stars {
+  margin: 6px 0 10px;
+}
+.png-pdp-stars .jdgm-prev-badge__stars {
+  color: #C17A3A !important; /* brand copper stars */
+}
+.png-pdp-stars .jdgm-prev-badge__text {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  color: #6C757D;
+}
+/* hide empty badge so it never leaves a gap before reviews load */
+.png-pdp-stars .jdgm-prev-badge[data-average-rating="0.00"] {
+  display: none;
+}
+
 .png-product-badges {
   display: flex;
   flex-wrap: wrap;
