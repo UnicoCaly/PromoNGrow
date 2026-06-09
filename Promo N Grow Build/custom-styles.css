@@ -161,6 +161,10 @@ p, li, td, th, label, input, select, textarea {
   color: #999;
   white-space: nowrap;
 }
+.png-ab__text strong {
+  color: var(--png-navy);
+  font-weight: 600;
+}
 
 .png-ab__divider {
   color: #e0e0e0;
@@ -851,6 +855,102 @@ a.png-link-cta::after {
   }
   .png-hero-dark__trust-text {
     font-size: 11px;
+  }
+}
+
+
+/* ---------- Intent Router (4 doors) ---------- */
+.png-router {
+  background: var(--png-white);
+  padding: 40px 0;
+}
+.png-router__heading {
+  font-family: var(--png-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--png-navy);
+  text-align: center;
+  margin: 0 0 6px;
+}
+.png-router__sub {
+  font-family: var(--png-font-body);
+  font-size: 14px;
+  color: var(--png-text-secondary);
+  text-align: center;
+  margin: 0 auto 24px;
+  max-width: 560px;
+}
+.png-router__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.png-router__door {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 20px 18px;
+  border: 1px solid var(--png-border);
+  border-radius: 12px;
+  background: var(--png-white);
+  text-decoration: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+.png-router__door:hover {
+  border-color: var(--png-copper);
+  box-shadow: 0 6px 18px rgba(27, 40, 56, 0.07);
+  transform: translateY(-2px);
+}
+.png-router__door--primary {
+  background: var(--png-navy);
+  border-color: var(--png-navy);
+}
+.png-router__ic {
+  font-size: 20px;
+  color: var(--png-copper);
+  line-height: 1;
+}
+.png-router__door--primary .png-router__ic {
+  color: var(--png-copper);
+}
+.png-router__label {
+  font-family: var(--png-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--png-navy);
+}
+.png-router__door--primary .png-router__label {
+  color: #fff;
+}
+.png-router__sublabel {
+  font-family: var(--png-font-body);
+  font-size: 12px;
+  color: var(--png-text-secondary);
+  line-height: 1.45;
+  flex: 1;
+}
+.png-router__door--primary .png-router__sublabel {
+  color: rgba(255, 255, 255, 0.6);
+}
+.png-router__cta {
+  font-family: var(--png-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--png-copper);
+  margin-top: 4px;
+}
+@media (max-width: 900px) {
+  .png-router__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .png-router__grid {
+    grid-template-columns: 1fr;
+  }
+  .png-router {
+    padding: 28px 0;
   }
 }
 
