@@ -5,11 +5,14 @@
       <!-- Logo + Tagline -->
       <div class="png-footer__brand">
         <a href="{{ routes.root_url }}" class="png-footer__logo" aria-label="Promo and Grow home">
-          {% if shop.brand.logo %}
-            {{ shop.brand.logo | image_url: width: 160 | image_tag: class: 'footer-logo', loading: 'lazy', style: 'max-height: 48px; width: auto; display: block; margin-bottom: 8px; filter: brightness(0) invert(1);' }}
-          {% else %}
-            <span style="font-size: 16px; font-weight: 500; color: #fff; letter-spacing: 0.5px;">PROMO <span style="color: #C17A3A; font-weight: 400;">&</span> GROW</span>
-          {% endif %}
+          {%- comment -%}
+            Text logo in the footer: the brand PNG has a light/opaque background,
+            so the brightness/invert white-out trick produced a solid white block.
+            The text treatment always renders cleanly white-on-navy and is on-brand.
+            To use an image instead, upload a transparent WHITE logo to
+            Settings > Brand and swap this for {{ shop.brand.logo | image_url ... }}.
+          {%- endcomment -%}
+          <span class="png-footer__wordmark">PROMO <span class="png-footer__amp">&amp;</span> GROW</span>
         </a>
         <p class="png-footer__tagline">Custom event displays. Produced and delivered in 5 days.</p>
       </div>

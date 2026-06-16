@@ -139,7 +139,8 @@
       "settings": {
         "heading": "Need help with artwork?",
         "text": "Design not included — but we make it easy. Use our free Canva templates and AI prompt guides to create print-ready files in minutes.",
-        "link_label": "Design resources"
+        "link_label": "Design resources",
+        "link": "/pages/design-resources"
       }
     },
     "related-products": {

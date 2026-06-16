@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo &amp; Grow — Competitive War-Room &amp; Game Plan · 6.08.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF; --offwhite:#F7F7F5; --navy:#1B2838; --slate:#2E3E50;
+  --copper:#C17A3A; --copper-h:#A8682F; --green:#1E6B4A; --txt2:#6C757D;
+  --muted:#999999; --border:#EEEEEE; --red:#B3402F; --amber:#C9912F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--navy);background:var(--white);line-height:1.55;font-size:15px}
+h1,h2,h3,h4,.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+a{color:var(--copper);text-decoration:none}
+a:hover{color:var(--copper-h)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.eyebrow{font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--copper)}
+.lead{color:var(--slate);font-size:16px}
+small,.small{font-size:12px;color:var(--txt2)}
+
+/* Header */
+header.hero{background:var(--navy);color:#fff;padding:54px 0 46px}
+header.hero .eyebrow{color:#E6B989}
+header.hero h1{font-size:38px;line-height:1.1;margin:10px 0 14px;color:#fff}
+header.hero p{color:#C9D2DC;max-width:760px;font-size:16px}
+.hero-meta{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:40px;padding:5px 13px;font-size:12px;color:#E8EDF2}
+
+/* Sticky nav */
+nav.sticky{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--border)}
+nav.sticky .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+nav.sticky a{font-size:12.5px;font-weight:500;color:var(--slate);padding:6px 11px;border-radius:6px}
+nav.sticky a:hover{background:var(--offwhite);color:var(--navy)}
+
+section{padding:46px 0;border-bottom:1px solid var(--border)}
+section.alt{background:var(--offwhite)}
+section h2{font-size:27px;margin-bottom:6px}
+section .kicker{margin-bottom:22px;color:var(--slate);max-width:820px}
+
+/* Spine cards */
+.spine{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.track{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px;border-top:4px solid var(--copper)}
+.track.b{border-top-color:var(--green)}
+.track h3{font-size:20px;margin-bottom:4px}
+.track .tag{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--copper)}
+.track.b .tag{color:var(--green)}
+.track ul{margin:12px 0 0 0;list-style:none}
+.track li{padding:6px 0 6px 22px;position:relative;font-size:14px;border-top:1px solid var(--border)}
+.track li:before{content:"";position:absolute;left:2px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--copper)}
+.track.b li:before{background:var(--green)}
+
+/* Funnel stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.stat{background:var(--navy);color:#fff;border-radius:12px;padding:18px}
+.stat .n{font-family:'DM Serif Display',serif;font-size:30px;line-height:1}
+.stat .l{font-size:11.5px;color:#AEBAC6;margin-top:7px;letter-spacing:.3px}
+.stat.green{background:var(--green)}
+.stat.copper{background:var(--copper)}
+
+/* Competitor cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 18px 6px}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h3{font-size:19px}
+.card .url{font-size:12px}
+.badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:4px 9px;border-radius:30px;white-space:nowrap}
+.b-self{background:#E7F1EC;color:var(--green)}
+.b-hybrid{background:#FBEFE0;color:var(--copper-h)}
+.b-quote{background:#EDEFF2;color:var(--slate)}
+.card .price{font-size:12.5px;color:var(--txt2);margin:8px 0 10px}
+.card .snap{font-size:13.5px;color:var(--slate)}
+details{margin:12px 0 8px;border-top:1px solid var(--border);padding-top:8px}
+details summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--copper);list-style:none;padding:4px 0}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:"▸ ";color:var(--copper)}
+details[open] summary:before{content:"▾ "}
+details .body{font-size:13px;color:var(--slate);padding:6px 0 4px}
+details .body b{color:var(--navy)}
+details .body p{margin:7px 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{font-size:10.5px;padding:3px 8px;border-radius:20px;background:var(--offwhite);border:1px solid var(--border);color:var(--slate)}
+.chip.c{background:#E7F1EC;color:var(--green);border-color:#CFE6DA}
+.chip.l{background:#FBF3E3;color:var(--amber);border-color:#EFDFBE}
+.chip.u{background:#F2F2F2;color:var(--muted);border-color:#E6E6E6}
+
+/* Matrix */
+.matrix-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;margin-top:8px}
+table.matrix{border-collapse:collapse;width:100%;min-width:880px;font-size:12.5px}
+table.matrix th,table.matrix td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+table.matrix thead th{background:var(--navy);color:#fff;font-weight:500;font-size:11.5px;position:sticky;top:0}
+table.matrix thead th.pngnow{background:var(--slate)}
+table.matrix thead th.pngt{background:var(--copper)}
+table.matrix td.row{text-align:left;font-weight:500;color:var(--navy);background:var(--offwhite);position:sticky;left:0;min-width:190px;border-right:2px solid var(--border)}
+.y{color:var(--green);font-weight:700}
+.n{color:var(--muted)}
+.p{color:var(--amber);font-weight:700}
+td.pngt{background:#FBF4EC}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--txt2)}
+
+/* Journey */
+.journeys{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px}
+.jrow{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.jrow.target{border-left:4px solid var(--green)}
+.jrow.now{border-left:4px solid var(--red)}
+.jrow.best{border-left:4px solid var(--copper)}
+.jrow h4{font-size:15px;margin-bottom:10px;font-family:'DM Sans';font-weight:700}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.step{background:var(--offwhite);border:1px solid var(--border);border-radius:8px;padding:7px 11px;font-size:12px;color:var(--slate)}
+.step.dead{background:#F7ECEA;border-color:#E8CFCB;color:var(--red)}
+.step.win{background:#E7F1EC;border-color:#CFE6DA;color:var(--green)}
+.arrow{color:var(--muted);font-size:13px}
+
+/* Ad table */
+table.ads{border-collapse:collapse;width:100%;margin-top:8px;font-size:13px}
+table.ads th,table.ads td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--border)}
+table.ads thead th{background:var(--offwhite);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--slate)}
+.note{background:#fff;border:1px solid var(--border);border-left:4px solid var(--copper);border-radius:8px;padding:14px 16px;margin-top:16px;font-size:13.5px;color:var(--slate)}
+
+/* Game plan phases */
+.phase{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:14px}
+.phase h3{font-size:18px}
+.phase .when{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--copper)}
+.gate{background:var(--navy);color:#E8EDF2;border-radius:8px;padding:11px 14px;font-size:12.5px;margin-top:12px}
+.gate b{color:#fff}
+
+/* Backlog */
+.backlog{margin-top:8px}
+.bgroup{background:#fff;border:1px solid var(--border);border-radius:12px;padding:6px 18px 12px;margin-top:14px}
+.bgroup h3{font-size:16px;margin:14px 0 6px;font-family:'DM Sans';font-weight:700}
+.task{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:13.5px}
+.task:first-of-type{border-top:none}
+.box{width:15px;height:15px;border:2px solid var(--copper);border-radius:4px;flex:none;margin-top:2px}
+.owner{font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 7px;border-radius:20px;flex:none;margin-top:1px}
+.o-cc{background:#E7EEF6;color:#2E5A8A}.o-ai{background:#F0E9F6;color:#6A4A8A}
+.o-c{background:#FBEFE0;color:var(--copper-h)}.o-v{background:#E7F1EC;color:var(--green)}
+.pri{font-size:9.5px;font-weight:700;color:var(--red);margin-left:auto;flex:none;margin-top:2px}
+
+/* Wedge */
+.wedges{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:10px}
+.wedge{background:var(--navy);color:#fff;border-radius:12px;padding:16px;text-align:center}
+.wedge .ic{font-size:22px}
+.wedge h4{font-family:'DM Sans';font-weight:700;font-size:13.5px;margin:8px 0 5px;color:#fff}
+.wedge p{font-size:11.5px;color:#AEBAC6}
+
+footer{background:var(--navy);color:#AEBAC6;padding:34px 0;font-size:12.5px}
+footer a{color:#E6B989}
+footer h4{color:#fff;font-size:13px;margin-bottom:8px;font-family:'DM Sans';font-weight:700}
+.srcs{columns:2;column-gap:30px;margin-top:6px}
+.srcs a{display:block;margin-bottom:4px}
+
+@media(max-width:760px){
+  .spine,.cards,.stats,.wedges{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  header.hero h1{font-size:29px}
+  .srcs{columns:1}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Promo &amp; Grow · Competitive War-Room &amp; Game Plan</div>
+    <h1>How the winners sell custom displays online —<br>and the plan to out-convert them.</h1>
+    <p>A top-down teardown of six direct competitors (user journeys + ad posture), the conversion-mechanic gaps that explain 20 years of "nice catalog, no carts," and a two-track game plan built to plug straight into your 90-Day Roadmap. Spine: <b style="color:#fff">bank revenue through the concierge bridge now, build the self-serve machine in parallel.</b></p>
+    <div class="hero-meta">
+      <span class="pill">Prepared 6.08.2026</span>
+      <span class="pill">6 competitors · journey + ad analysis</span>
+      <span class="pill">Both-sequenced spine</span>
+      <span class="pill">Cowork-ready backlog inside</span>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky"><div class="wrap">
+  <a href="#spine">The Spine</a>
+  <a href="#competitors">Teardowns</a>
+  <a href="#matrix">Gap Matrix</a>
+  <a href="#journeys">Journeys</a>
+  <a href="#ads">Ad Intel</a>
+  <a href="#plan">Game Plan</a>
+  <a href="#backlog">Build Backlog</a>
+  <a href="#wedges">Our Wedges</a>
+</div></nav>
+
+<!-- SPINE -->
+<section id="spine">
+  <div class="wrap">
+    <div class="eyebrow">01 · The Strategy Spine</div>
+    <h2>Two tracks, sequenced — not one bet.</h2>
+    <p class="kicker">Your own 180-day data settled the debate: the business converts through a human concierge close, not the web cart. So we don't gamble the bridge revenue on a self-serve rebuild. We run the proven close <b>now</b> and engineer the self-serve machine <b>alongside it</b> — and every concierge order documents what the website must eventually do on its own.</p>
+    <div class="spine">
+      <div class="track a">
+        <span class="tag">Track A · Now (revenue)</span>
+        <h3>The Concierge Bridge</h3>
+        <p class="small">Give cold traffic a low-friction on-ramp into the close that already works: <b>"Get a Free Proof."</b> Measure quote requests, not checkouts.</p>
+        <ul>
+          <li>Tiered CTA: quote-first on tents/displays/bundles, cart-first on flags/covers</li>
+          <li>Free-proof form → instant auto-reply + speed-to-lead alert → draft order</li>
+          <li>Trust stack on every PDP (reviews, free-proof-before-pay, 5-day, how-it-works)</li>
+          <li>Pixels installed now · Venus works warm leads · gate before paid</li>
+        </ul>
+      </div>
+      <div class="track b">
+        <span class="tag">Track B · Build-toward (the machine)</span>
+        <h3>Self-Serve Checkout</h3>
+        <p class="small">Engineer the $1,500 add-to-cart the way Expoprint &amp; Signwin do — so it's safe enough for a stranger to buy without you.</p>
+        <ul>
+          <li>Package-ize SKUs + visible "buy → design → approve → deliver" ribbon</li>
+          <li>Self-serve design: locked Canva templates now → 3D configurator later</li>
+          <li>"Free AI Artwork Check" (Signwin already proves the market wants it)</li>
+          <li>Bilingual Spanish + Shop Pay installments — moats none of them combine</li>
+        </ul>
+      </div>
+    </div>
+    <div class="eyebrow" style="margin-top:26px">The funnel truth we're fixing</div>
+    <div class="stats">
+      <div class="stat"><div class="n">3,936</div><div class="l">sessions / 180 days</div></div>
+      <div class="stat copper"><div class="n">7</div><div class="l">add-to-cart actions (0.18%)</div></div>
+      <div class="stat green"><div class="n">31</div><div class="l">orders — via concierge close</div></div>
+      <div class="stat"><div class="n">$20K</div><div class="l">2,000 sess × 2.5% × $400 AOV</div></div>
+    </div>
+    <p class="small" style="margin-top:10px">More orders than carts = revenue runs through the human close. The leak is at the top: cold visitors have nothing to do but a checkout they'll never use. The whole plan builds + feeds the "Get a Free Proof" on-ramp.</p>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section id="competitors" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">02 · Competitor Teardowns</div>
+    <h2>Six players, three journey models.</h2>
+    <p class="kicker">Your named three (Packeze, Expoprint, Instent) plus the SEG specialists (Signwin, Displays2go, ExpoMarketing). Open each card for the full journey, conversion mechanics, ad posture, and what to steal. Badges: <span class="badge b-self">Self-serve</span> checkout-first · <span class="badge b-hybrid">Hybrid</span> buy + quote · <span class="badge b-quote">Quote-led</span> concierge.</p>
+
+    <div class="cards">
+
+      <!-- Expoprint -->
+      <div class="card">
+        <div class="top">
+          <div><h3>Expoprint</h3><div class="url"><a href="https://expoprint.io" target="_blank">expoprint.io</a></div></div>
+          <span class="badge b-self">Self-serve</span>
+        </div>
+        <div class="price">10×10 tent from <b>$595</b> · booths to ~$10k · made-to-order · CA LLC, ~23-mo domain</div>
+        <div class="snap"><b>The blueprint for Track B.</b> "Design &amp; Order Event Displays in Minutes — customize in 3D." A real self-serve high-ticket flow built on a proprietary 3D studio.</div>
+        <details>
+          <summary>Full teardown</summary>
+          <div class="body">
+            <p><b>Journey:</b> Product page (3D badge + trust chips: Free Design · Free Artwork Fix · 3D Tool) → configurator (size, walls, turnaround/Rush inside the PDP) → <b>3D Design Studio</b> at app.expoprint.io (drop multiple products into one real-time scene, add logo/text, save to account) → <b>Add to cart → Shopify checkout</b> → mandatory <b>free PDF proof before production</b>. CTA is "Add to cart," not "Request a quote."</p>
+            <p><b>Artwork — 3 lanes:</b> DIY in the 3D tool · free pro design in 30–60 min w/ unlimited revisions · upload your own + templates. Removes the "I don't have art ready" objection entirely.</p>
+            <p><b>Mechanics:</b> instant price ✓ · 3D ✓ · reviews on-page ✓ (self-hosted) · on-time guarantee ✓ (no price-beat) · "no promo codes" (anti-discount) · phone ✓ · chat was offline · turnaround 5–15 days (a fuzzy range).</p>
+            <div class="chips"><span class="chip">Meta: <span class="chip u">Unknown</span></span><span class="chip">Google: Likely Search · <span class="chip u">unconfirmed</span></span><span class="chip">GTM present</span></div>
+            <p><b>Steal:</b> the multi-product 3D scene + saved projects; three artwork lanes on every PDP; buy-then-proof model with an "As Easy as 1-2-3" strip.</p>
+            <p><b>Beat them:</b> your <b>hard 5-day</b> promise beats their "5–15 day" range; bilingual + real LA production vs. their global facility network; offer the <b>free proof before payment</b> (they gate it post-purchase) + a price-beat.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Signwin -->
+      <div class="card">
+        <div class="top">
+          <div><h3>Signwin</h3><div class="url"><a href="https://www.signwindisplay.com" target="_blank">signwindisplay.com</a></div></div>
+          <span class="badge b-self">Self-serve</span>
+        </div>
+        <div class="price">SEG backwalls ~<b>$1,899–$4,599</b> · flags from ~$30 · US (City of Industry, CA)</div>
+        <div class="snap"><b>Your closest SEG analog.</b> "Lowest Price · Shortest Turnaround · Fastest Free Shipping." Already badges a <b>"Free AI Auto-Check Artwork"</b> — validating your Phase-3 file checker.</div>
+        <details>
+          <summary>Full teardown</summary>
+          <div class="body">
+            <p><b>Journey:</b> Pure self-serve. Category → SEG product → configure size/sides → add to cart → checkout. Persistent CTAs: <b>"Upload Artwork"</b> + phone. Three artwork paths, all pre-payment: free DIY design tool · free artwork proof · in-house mockup.</p>
+            <p><b>Mechanics:</b> instant price ✓ · free proof before pay ✓ · <b>AI auto file-check ✓</b> (rare) · lowest-price + 100% satisfaction guarantees ✓ · 4-hour rush ✓ · Trustpilot ✓ · no live chat ✗ · no 3D ✗ · no financing ✗.</p>
+            <div class="chips"><span class="chip">Meta: <span class="chip l">Likely</span></span><span class="chip">Google: <span class="chip u">Unknown</span> (probable Shopping)</span><span class="chip">SEO-first</span></div>
+            <p><b>Steal:</b> badge a named <b>"Free AI Artwork Check"</b>; stack the trust banner (price + satisfaction + fast shipping + free proof) site-wide; make rush turnaround a headline.</p>
+            <p><b>Beat them:</b> real human concierge + bilingual (they have no live chat); a free <b>human</b> proof for less design-savvy buyers; 5-day as a named guarantee vs. their generic "shortest."</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Packeze -->
+      <div class="card">
+        <div class="top">
+          <div><h3>Packeze</h3><div class="url"><a href="https://packeze.com" target="_blank">packeze.com</a> <span class="small">(the "Packaze")</span></div></div>
+          <span class="badge b-self">Self-serve</span>
+        </div>
+        <div class="price">Tents from <b>$999</b> · displays $1,499 · backdrops $299 · yard signs from $1.50</div>
+        <div class="snap"><b>Near 1:1 product twin.</b> Self-serve checkout with a visible 4-step model and a low-ticket yard-sign wedge that funds high-ticket cross-sell.</div>
+        <details>
+          <summary>Full teardown</summary>
+          <div class="body">
+            <p><b>Journey:</b> Pre-bundled packages (Standard/Premium by footprint), "Starting at $X," <b>pay first → design → approve → deliver</b> shown as an explicit 4-step graphic. Quote form + design services as the bespoke fallback. Proof happens <b>after</b> payment.</p>
+            <p><b>Mechanics:</b> instant price ✓ · Shop Pay financing ✓ · live chat ✓ · phone ✓ · EVENT10 10%-off ✓ · Trustpilot ~78 (mixed — late/partial orders, wrong canopy grade) · no 3D ✗ · no pre-pay proof ✗ · weak guarantee.</p>
+            <div class="chips"><span class="chip">Meta: <span class="chip l">Likely</span></span><span class="chip">Google: <span class="chip u">Unknown</span></span><span class="chip">"ad-agency" brand</span></div>
+            <p><b>Steal:</b> the 4-step reassurance ribbon on every high-ticket PDP; tiered packages with one "Starting at $X"; a category-specific first-order code (EVENT10).</p>
+            <p><b>Beat them:</b> 5-day vs their 7–10 days; <b>free proof before you pay</b> (they make you pay first — their mixed reviews expose the trust gap); owned LA production + bilingual vs broker-flavored QC complaints.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Instent -->
+      <div class="card">
+        <div class="top">
+          <div><h3>Instent</h3><div class="url"><a href="https://www.instent.com" target="_blank">instent.com</a> <span class="small">(not instatent.com — parked)</span></div></div>
+          <span class="badge b-hybrid">Hybrid</span>
+        </div>
+        <div class="price">Tent-only from <b>$413</b> · packages $704–$1,817 · 25-yr manufacturer, Huntington Beach</div>
+        <div class="snap"><b>The premium, service-led manufacturer.</b> "100,000+ tents sold." Leads with free design + free proof and a named account-manager team.</div>
+        <details>
+          <summary>Full teardown</summary>
+          <div class="body">
+            <p><b>Journey:</b> Hybrid leaning consultative — buy pages exist (WooCommerce, strike-through sale pricing) but dominant CTA is <b>free quote + free design</b>, "an account manager, project manager &amp; designer by your side." <b>Free digital proof before production</b> (paid hard proof optional).</p>
+            <p><b>Mechanics:</b> free proof before pay ✓ · Reviews.io <b>226 @ 4.92★</b> ✓ · 10-day standard / <b>24-hr rush</b> ✓ · size-segmented SEO pages ✓ · named-human trust block ✓ · financing unknown · no 3D ✗.</p>
+            <div class="chips"><span class="chip">Meta: <span class="chip c">Confirmed page</span> · creatives <span class="chip u">unknown</span></span><span class="chip">Google: <span class="chip l">Likely Shopping</span></span></div>
+            <p><b>Steal:</b> market "free design + free proof" as loudly as they do; add a 24-hr rush upsell; size-segmented landing pages (10×10 / 10×15 / 10×20); a named "meet your team" reassurance block (productize the concierge).</p>
+            <p><b>Beat them:</b> 5-day default beats their 10-day standard; bilingual Spanish (they're English-only premium); free proof on <b>every</b> order, no hard-proof upsell.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Displays2go -->
+      <div class="card">
+        <div class="top">
+          <div><h3>Displays2go</h3><div class="url"><a href="https://www.displays2go.com" target="_blank">displays2go.com</a></div></div>
+          <span class="badge b-hybrid">Hybrid</span>
+        </div>
+        <div class="price">SEG ~<b>$825–$3,160</b> · 50-yr mega-catalog · "1.6M businesses"</div>
+        <div class="snap"><b>The scale catalog.</b> Self-serve + web-invoice rail, per-product star ratings on the grid, and free booth-design services.</div>
+        <details>
+          <summary>Full teardown</summary>
+          <div class="body">
+            <p><b>Journey:</b> Faceted category (filter by price/size/SEG/illuminated) → priced SKU → <b>Add to Cart</b> → upload art via "Artwork Manager" (proof after order). Parallel "Request a Web Invoice" + "Talk to an expert" for complex booths.</p>
+            <p><b>Mechanics:</b> instant price ✓ · <b>per-grid star ratings ✓</b> (Reviews.io 6,200+) · live chat 8a–8p ✓ · 10% off first $300+ ✓ · free booth-design service ✓ · proof before pay ✗ · restrictive returns ✗ · no 3D/AI/financing ✗.</p>
+            <div class="chips"><span class="chip">Meta: <span class="chip l">Likely</span></span><span class="chip">Google: <span class="chip l">Likely Search+Shopping</span></span><span class="chip">High domain authority</span></div>
+            <p><b>Steal:</b> star ratings <b>on the collection grid</b> (decision-moment proof); "10% off first $300+" + email capture; faceted filtering so cold buyers self-qualify into the right SKU; a "Start Your Project" design-service tile.</p>
+            <p><b>Beat them:</b> free proof before payment; 5-day on custom (their "same-day ship" excludes custom SEG); a warmer, friendlier, bilingual concierge vs a 1.6M-customer catalog with restrictive returns.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- ExpoMarketing -->
+      <div class="card">
+        <div class="top">
+          <div><h3>ExpoMarketing</h3><div class="url"><a href="https://expomarketing.com" target="_blank">expomarketing.com</a></div></div>
+          <span class="badge b-hybrid">Hybrid</span>
+        </div>
+        <div class="price">Buy-online <b>$510–$10,780</b> · premium exhibit house since 1991 · Tustin, CA</div>
+        <div class="snap"><b>The intent-routing model.</b> Four segmented homepage "doors" send each buyer to the right path. Clients: Uber, Sony. Confirmed Google Ads + Meta Pixel.</div>
+        <details>
+          <summary>Full teardown</summary>
+          <div class="body">
+            <p><b>Journey:</b> Homepage routes by intent — <b>Buy Online</b> ("200+ displays ship in 3–5 days," Shop now) · <b>Signature</b> ("Get a free rendering") · <b>Rentals</b> ("Schedule a consultation") · <b>Custom Builds</b> ("Schedule a consultation"). Self-serve for stock sizes; quote/render for custom. Prices visible even on premium SKUs.</p>
+            <p><b>Mechanics:</b> instant price on catalog ✓ · "free rendering" lead-gen ✓ · satisfaction + Made-in-USA badges ✓ · 4.7★ ~99 reviews ✓ · phone ✓ · 3–5 day buy-online ✓ · no self-serve design tool ✗ · no chat/financing ✗.</p>
+            <div class="chips"><span class="chip">Meta: <span class="chip l">Pixel confirmed</span> · creatives <span class="chip u">unknown</span></span><span class="chip">Google: <span class="chip c">Confirmed (LeadIQ)</span></span></div>
+            <p><b>Steal:</b> the <b>4-door intent router</b> on the homepage (cleanest model for sequencing self-serve vs concierge); "Get a free rendering" as the custom CTA; rent-vs-buy FAQ that coaches the buyer; show prices to qualify budget before a call.</p>
+            <p><b>Beat them:</b> true self-serve + instant pricing across the whole range (they push most custom to "Book a call"); 5-day beats their timelines; bilingual concierge warmth at an accessible price point.</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MATRIX -->
+<section id="matrix">
+  <div class="wrap">
+    <div class="eyebrow">03 · The Gap Matrix</div>
+    <h2>Where you stand today — and the target.</h2>
+    <p class="kicker">Conversion mechanics across all six competitors vs. Promo &amp; Grow now vs. the build-toward. Read the last two columns together: the gap between them <i>is</i> the game plan. Note the bottom four rows — no competitor combines what you can.</p>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th class="row" style="position:sticky;left:0;background:var(--navy)">Mechanic</th>
+            <th>Expoprint</th><th>Signwin</th><th>Packeze</th><th>Instent</th><th>Displays2go</th><th>ExpoMktg</th>
+            <th class="pngnow">PNG&nbsp;now</th><th class="pngt">PNG&nbsp;target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="row">Instant price on PDP</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="p">△</td><td class="y">✓</td><td class="y">✓</td><td class="p">△</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">3D / live configurator</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Free proof BEFORE payment</td><td class="p">△</td><td class="y">✓</td><td class="n">✗</td><td class="y">✓</td><td class="n">✗</td><td class="p">△</td><td class="y">✓</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Reviews on product page</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="p">△</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Strong guarantee (price/reprint)</td><td class="p">△</td><td class="y">✓</td><td class="n">✗</td><td class="p">△</td><td class="p">△</td><td class="p">△</td><td class="p">△</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Financing / installments</td><td class="n">?</td><td class="n">✗</td><td class="y">✓</td><td class="n">?</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Live chat</td><td class="p">△</td><td class="n">✗</td><td class="y">✓</td><td class="p">△</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Phone prominent</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Hard turnaround promise</td><td class="p">△</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="p">△</td><td class="y">✓</td><td class="y">✓</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">First-order offer</td><td class="n">✗</td><td class="p">△</td><td class="y">✓</td><td class="p">△</td><td class="y">✓</td><td class="n">✗</td><td class="y">✓</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Self-serve design / templates</td><td class="y">✓</td><td class="y">✓</td><td class="p">△</td><td class="p">△</td><td class="p">△</td><td class="n">✗</td><td class="p">△</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">AI / auto file check</td><td class="n">✗</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Bilingual Spanish</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="p">△</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">Real owned US production</td><td class="n">✗</td><td class="y">✓</td><td class="p">△</td><td class="y">✓</td><td class="p">△</td><td class="y">✓</td><td class="y">✓</td><td class="pngt y">✓</td></tr>
+          <tr><td class="row">5-day default delivery</td><td class="n">✗</td><td class="p">△</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td><td class="p">△</td><td class="y">✓</td><td class="pngt y">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend"><span><span class="y">✓</span> has it</span><span><span class="p">△</span> partial / weak</span><span><span class="n">✗</span> missing</span><span><span class="n">?</span> unverified</span></div>
+    <p class="small" style="margin-top:12px"><b>Read-out:</b> You already win the rows nobody else stacks — <b>free proof before pay + 5-day + owned LA production + bilingual</b>. You're behind on the <b>self-serve</b> rows (3D, instant config, AI check, financing) and the <b>trust-surfacing</b> rows (reviews on the PDP, a hard guarantee). Track A closes the trust rows fast; Track B closes the self-serve rows over the quarter.</p>
+  </div>
+</section>
+
+<!-- JOURNEYS -->
+<section id="journeys" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">04 · User-Journey Model</div>
+    <h2>Three journeys: yours now, best-in-class, your target.</h2>
+    <p class="kicker">The fix isn't a better catalog — it's a different door. Today the only door is a checkout cold buyers won't use. Best-in-class routes buyers by intent. Your target keeps the concierge close that works and adds the self-serve lane beside it.</p>
+    <div class="journeys">
+      <div class="jrow now">
+        <h4>① Promo &amp; Grow — today (the dead end)</h4>
+        <div class="flow">
+          <span class="step">Cold visit</span><span class="arrow">→</span>
+          <span class="step">Nice product page</span><span class="arrow">→</span>
+          <span class="step dead">Only door: "Add to cart" $1,580</span><span class="arrow">→</span>
+          <span class="step dead">Stranger won't pay sight-unseen</span><span class="arrow">→</span>
+          <span class="step dead">Leaves / or calls Carlos</span>
+        </div>
+      </div>
+      <div class="jrow best">
+        <h4>② Best-in-class — intent routing (ExpoMarketing / Expoprint / Instent)</h4>
+        <div class="flow">
+          <span class="step">Cold visit</span><span class="arrow">→</span>
+          <span class="step">Intent router: Buy online vs. Get a free proof/rendering</span><span class="arrow">→</span>
+          <span class="step win">Self-serve: 3D config → checkout → free proof</span>
+          <span class="arrow">/</span>
+          <span class="step win">Custom: free rendering → human → close</span><span class="arrow">→</span>
+          <span class="step win">Reviews + guarantee + 5-day reduce risk</span>
+        </div>
+      </div>
+      <div class="jrow target">
+        <h4>③ Promo &amp; Grow — target (both-sequenced)</h4>
+        <div class="flow">
+          <span class="step">Cold visit / ad / GBP</span><span class="arrow">→</span>
+          <span class="step win">Tiered CTA by product type</span><span class="arrow">→</span>
+          <span class="step win">Quote-first (tents/displays): "Get a Free Proof" → Venus → invoice</span>
+          <span class="arrow">/</span>
+          <span class="step win">Cart-first (flags/covers): checkout</span><span class="arrow">→</span>
+          <span class="step win">Trust stack: proof-before-pay · 4.8★ on PDP · 5-day · bilingual</span><span class="arrow">→</span>
+          <span class="step win">Every close → SOP → feeds self-serve build</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADS -->
+<section id="ads">
+  <div class="wrap">
+    <div class="eyebrow">05 · Ad Intelligence (Meta + Google)</div>
+    <h2>Who's advertising — and the honest confidence on it.</h2>
+    <p class="kicker">The Meta Ad Library and Google Ads Transparency Center render their creatives in JavaScript that automated fetching can't read, so I confirmed advertising <i>posture</i> (active pages, tracking stacks, Shopping signals) but not the exact creatives. Nothing below is fabricated — confidence is labeled, and there's a step to pull the live creatives in a real browser.</p>
+    <table class="ads">
+      <thead><tr><th>Competitor</th><th>Meta</th><th>Google</th><th>Signal / source</th></tr></thead>
+      <tbody>
+        <tr><td><b>ExpoMarketing</b></td><td>Pixel confirmed; creatives unknown</td><td><b>Confirmed running</b></td><td>LeadIQ tech stack: Google Ads + FB Pixel; PPC landing pages</td></tr>
+        <tr><td><b>Instent</b></td><td>Active page; creatives unknown</td><td>Likely Search + Shopping</td><td>Shopping-integrated store; high-intent landing pages</td></tr>
+        <tr><td><b>Displays2go</b></td><td>Likely (scale + 10%-off hook)</td><td>Likely Search + Shopping</td><td>GTM + ahrefs verification; 1.6M-customer catalog</td></tr>
+        <tr><td><b>Packeze</b></td><td>Likely (promo-code funnels)</td><td>Unknown</td><td>"Ad-agency" brand; FB/IG/TikTok/LinkedIn</td></tr>
+        <tr><td><b>Signwin</b></td><td>Likely (heavy promo cadence)</td><td>Unknown (probable Shopping)</td><td>Active FB + YouTube; "cheap &amp; fast" SEO catalog</td></tr>
+        <tr><td><b>Expoprint</b></td><td>Unknown</td><td>Likely Search (organic-strong)</td><td>GTM present; programmatic SEO landing pages</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>Pull the live creatives (15 min, do before paid launch):</b> open <a href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a> (set country = US, search each brand's Page) and <a href="https://adstransparency.google.com" target="_blank">Google Ads Transparency Center</a> (search each domain). Screenshot the offers, hooks, and formats. <b>Connect Claude-in-Chrome and I'll run this sweep for you</b> and drop the creatives + angle breakdown straight into this war-room.
+    </div>
+    <p class="small" style="margin-top:14px"><b>Angles to steal when you launch paid (Phase 4):</b> lead retargeting with "Free proof on your custom setup — before you pay"; Google Search/Shopping on high-intent terms ("custom 10×10 tent," "SEG backwall," "custom feather flags Los Angeles"); the bilingual + "Made in LA, delivered in 5 days" hook none of them run. Hold cost-per-sale under ~$60–70.</p>
+  </div>
+</section>
+
+<!-- GAME PLAN -->
+<section id="plan" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">06 · The Top-Down Game Plan</div>
+    <h2>Plugged into your 90-Day Roadmap.</h2>
+    <p class="kicker">Same gated discipline you already wrote (prove organic → then cold email → then paid). The competitive findings sharpen each phase. Owners: <span class="owner o-c">C</span> Carlos/VA · <span class="owner o-cc">CC</span> Claude Code · <span class="owner o-ai">AI</span> Claude admin · <span class="owner o-v">V</span> Venus.</p>
+
+    <div class="phase">
+      <span class="when">Phase 1 · Weeks 1–2 · Verify the bridge</span>
+      <h3>Make the concierge on-ramp real — and start collecting ad data.</h3>
+      <p class="body small">Ship the tiered "Get a Free Proof" CTA + quote form + auto-reply. Put the trust stack on every PDP — and steal now: <b>free-proof-BEFORE-pay banner</b> (beats Packeze/Displays2go), <b>reviews on the PDP with count</b> (Displays2go), <b>stacked trust ribbon</b> (Signwin). <b>Install Meta Pixel + Google remarketing tag immediately</b> — the data-loss clock. Direct-Response test the form on a phone.</p>
+      <div class="gate"><b>Gate:</b> funnel mechanically verified, pixels collecting → start the organic baseline count.</div>
+    </div>
+
+    <div class="phase">
+      <span class="when">Phase 2 · Weeks 3–4 · Organic baseline</span>
+      <h3>Prove cold traffic converts into quote requests — no spend yet.</h3>
+      <p class="body small">Optimize GBP (drives calls), fire VIP + South Gate outreach, let SEO/AEO compound, publish 1–2 FAQ articles. Add the <b>4-door intent router</b> to the homepage (ExpoMarketing) and <b>size-segmented landing pages</b> 10×10/10×15/10×20 (Instent). Venus works warm leads.</p>
+      <div class="gate"><b>Gate (green light for paid):</b> quote requests ~2 → 20+/mo, add-to-action 0.18% → 1%+.</div>
+    </div>
+
+    <div class="phase">
+      <span class="when">Phase 3 · Weeks 5–8 · Cold email</span>
+      <h3>Sequence the LA-metro ICP (only after the funnel proves out).</h3>
+      <p class="body small">Separate sending domain. Field-marketing brands, breweries, event agencies, schools/districts, franchises — local first, bilingual where it fits. Drive to the free proof, not a hard sell (your 13%-click "reply to me" insight).</p>
+      <div class="gate"><b>Gate:</b> replies/quote requests at benchmark (reply 2–5%, positive 1–3%).</div>
+    </div>
+
+    <div class="phase">
+      <span class="when">Phase 4 · Weeks 9–12 · Paid + retargeting</span>
+      <h3>Retarget the pixel audience first, then high-intent search.</h3>
+      <p class="body small">$5–10/day retargeting ("free proof before you pay"), then Google Search/Shopping on the high-intent terms. Run the live Ad-Library sweep first to counter-program competitor angles. Pre-flight checklist every launch; cost-per-sale &lt; ~$60–70.</p>
+      <div class="gate"><b>Gate:</b> profitable cost-per-sale on one channel → scale into Oct–Nov peak.</div>
+    </div>
+
+    <div class="phase" style="border-left:4px solid var(--green)">
+      <span class="when" style="color:var(--green)">Track B · Parallel · The self-serve machine</span>
+      <h3>Build the $1,500-checkout the market already proves works.</h3>
+      <p class="body small"><b>B1</b> Package-ize SKUs + visible 4-step ribbon (Packeze). <b>B2</b> Locked Canva templates per SKU now → 3D configurator later (Expoprint). <b>B3</b> "Free AI Artwork Check" — your Phase-3 file checker, badged (Signwin proves demand). <b>B4</b> Shop Pay Installments. <b>B5</b> Bilingual go-live, hero pages first — the moat. Every Venus close gets documented (SOP/Loom) → maps exactly what the site must self-serve next.</p>
+    </div>
+
+    <div class="eyebrow" style="margin-top:24px">Weekly 10-minute dashboard</div>
+    <p class="small">Quote requests (the #1 number now) · calls/GBP actions · add-to-action rate · orders + revenue + AOV · quote→paid % · (Phase 3+) cold-email reply rate · (Phase 4+) cost-per-sale by channel.</p>
+  </div>
+</section>
+
+<!-- BACKLOG -->
+<section id="backlog">
+  <div class="wrap">
+    <div class="eyebrow">07 · Cowork-Ready Build Backlog</div>
+    <h2>The punch list to build from.</h2>
+    <p class="kicker">Prioritized, owner-tagged, ready to drop into a Cowork session. <span class="pri">★</span> = highest leverage / do first.</p>
+    <div class="backlog">
+
+      <div class="bgroup">
+        <h3>Track A — Concierge bridge (this week)</h3>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>Tiered CTA snippet: "Get a Free Proof" (quote-first) on tents/displays/bundles/wall-art; "Add to cart" (cart-first) on flags/covers/accessories</span><span class="pri">★</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>Free-proof quote form (name/email/phone/product/qty/date/notes/logo upload) → instant auto-reply + Carlos/Venus alert → draft order; fire <code>quote_request_submitted</code></span><span class="pri">★</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-c">C</span><span>Install Meta Pixel + Google remarketing tag and verify (Pixel Helper + Tag Assistant)</span><span class="pri">★</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>PDP trust stack: free-proof-BEFORE-pay banner + Judge.me/Google reviews on page with 4.8★ count + "Starting at $X" + how-it-works 3-step</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>Homepage 4-door intent router (Buy online · Get a free proof · Bundles · Talk to us) — steal from ExpoMarketing</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>Per-grid star ratings on collection pages — steal from Displays2go</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>Site-wide stacked trust ribbon: 5-day delivery · Free proof before you pay · Made in LA · 4.8★ — steal from Signwin</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-c">C</span><span>Mobile sticky click-to-call (copper) on all PDPs; confirm abandoned-cart automation ON</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-ai">AI</span><span>3-touch unpaid-quote follow-up sequence (Day 1 / 3 / 7)</span></div>
+      </div>
+
+      <div class="bgroup">
+        <h3>Track A — Organic baseline (weeks 3–4)</h3>
+        <div class="task"><span class="box"></span><span class="owner o-c">C</span><span>GBP overhaul: full service list, categories, photos, weekly post, reply to every review</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-v">V</span><span>VIP outreach (Josh @ Donut Media, Pathita) + South Gate institutional pitch; work warm repliers</span><span class="pri">★</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-ai">AI</span><span>Size-segmented SEO landing pages: 10×10 / 10×15 / 10×20 + 1–2 AEO/FAQ articles — steal from Instent</span></div>
+      </div>
+
+      <div class="bgroup">
+        <h3>Track B — Self-serve machine (parallel)</h3>
+        <div class="task"><span class="box"></span><span class="owner o-ai">AI</span><span>Package-ize high-ticket SKUs (Standard/Pro/Complete) + visible "buy → design → approve → deliver" ribbon — steal from Packeze</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-ai">AI</span><span>Locked Canva templates per SKU (bleed/safe-area locked) + "Design in Canva" button on PDPs</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>"Free AI Artwork Check" V1 (metadata: dimensions/DPI/bleed/color) — badge it; Signwin proves the market</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-c">C</span><span>Enable Shop Pay Installments on high-ticket SKUs</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-cc">CC</span><span>Bilingual Spanish go-live via Shopify Markets — hero pages first, paste PNG-Spanish-Money-Page-Copy</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-v">V</span><span>Document every concierge close (SOP/Loom) → backlog of what the site must self-serve → roadmap a 3D configurator (Expoprint model)</span></div>
+      </div>
+
+      <div class="bgroup">
+        <h3>Ad intel + paid (gated to Phase 4)</h3>
+        <div class="task"><span class="box"></span><span class="owner o-ai">AI</span><span>Live Ad-Library sweep (Meta + Google Transparency) via Claude-in-Chrome → capture competitor offers/hooks/formats</span></div>
+        <div class="task"><span class="box"></span><span class="owner o-c">C</span><span>Retargeting $5–10/day ("free proof before you pay"), then Google Search/Shopping on high-intent terms; CPS &lt; $60–70</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WEDGES -->
+<section id="wedges" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">08 · Your Unfair Advantages</div>
+    <h2>What no competitor combines.</h2>
+    <p class="kicker">Every one of the six is missing at least one of these. You can stack all five — that's the positioning spine for the site, the ads, and Venus's pitch.</p>
+    <div class="wedges">
+      <div class="wedge"><div class="ic">⚡</div><h4>5-Day Delivery</h4><p>A hard, named promise — most quote 7–15 days.</p></div>
+      <div class="wedge"><div class="ic">✓</div><h4>Free Proof Before You Pay</h4><p>Half of them proof only after payment.</p></div>
+      <div class="wedge"><div class="ic">🗣️</div><h4>Bilingual Spanish</h4><p>Zero of the six do it. Open Hispanic SMB lane.</p></div>
+      <div class="wedge"><div class="ic">🏭</div><h4>Real LA Production</h4><p>Owned, 20 yrs — not a global broker network.</p></div>
+      <div class="wedge"><div class="ic">🤖</div><h4>AI Artwork Check</h4><p>Coming — only Signwin badges it today.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h4>Sources &amp; method</h4>
+    <p class="small" style="color:#AEBAC6">Competitor data gathered 6.08.2026 via live site review + web search. Ad posture confirmed via active brand pages, tech-stack intel (LeadIQ), and Shopping signals; <b>live ad creatives not pulled</b> (Meta Ad Library + Google Transparency are JavaScript-gated) — confidence labeled throughout, nothing fabricated. Internal data from PNG-Master-Context-Playbook, PNG-90-Day-Execution-Roadmap, PNG-Concierge-Conversion-Build-Spec, and Shopify analytics.</p>
+    <div class="srcs">
+      <a href="https://expoprint.io" target="_blank">expoprint.io</a>
+      <a href="https://www.signwindisplay.com" target="_blank">signwindisplay.com</a>
+      <a href="https://packeze.com" target="_blank">packeze.com</a>
+      <a href="https://www.instent.com" target="_blank">instent.com</a>
+      <a href="https://www.displays2go.com" target="_blank">displays2go.com</a>
+      <a href="https://expomarketing.com" target="_blank">expomarketing.com</a>
+      <a href="https://westshade.com/10x10-custom-canopy-tent/" target="_blank">westshade.com (benchmark)</a>
+      <a href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a>
+      <a href="https://adstransparency.google.com" target="_blank">Google Ads Transparency</a>
+    </div>
+    <p class="small" style="margin-top:18px;color:#7E8B98">© 2026 Promo &amp; Grow · Powered by Proágo Branding Dept. · Competitive War-Room v1 · 6.08.2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

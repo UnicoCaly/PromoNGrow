@@ -1,0 +1,553 @@
+/* ==========================================================================
+   Promo & Grow — Custom Design System
+   Built on Shopify Dawn theme
+   Option C: White canvas, navy + copper accents
+   ========================================================================== */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Brand Colors */
+  --png-navy: #1B2838;
+  --png-slate: #2E3E50;
+  --png-copper: #C17A3A;
+  --png-copper-hover: #A8682F;
+  --png-white: #FFFFFF;
+  --png-offwhite: #F7F7F5;
+  --png-trust-green: #1E6B4A;
+
+  /* Text Colors */
+  --png-text-primary: #1B2838;
+  --png-text-secondary: #6C757D;
+  --png-text-muted: #999999;
+
+  /* Borders */
+  --png-border: #EEEEEE;
+  --png-border-hover: #DDDDDD;
+
+  /* Spacing */
+  --png-section-padding: 64px;
+  --png-card-padding: 20px;
+  --png-card-radius: 8px;
+  --png-btn-radius: 5px;
+  --png-grid-gap: 16px;
+
+  /* Typography */
+  --png-font-display: 'DM Serif Display', Georgia, serif;
+  --png-font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+
+/* ---------- Base Typography ---------- */
+body,
+.shopify-section,
+.shopify-section * {
+  font-family: var(--png-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3,
+.h1, .h2, .h3,
+.section-header__title,
+.rich-text__heading {
+  font-family: var(--png-font-display);
+  font-weight: 400;
+  color: var(--png-text-primary);
+  line-height: 1.2;
+}
+
+h1, .h1 { font-size: 32px; }
+h2, .h2 { font-size: 22px; }
+h3, .h3 { font-size: 18px; }
+
+p, li, td, th, label, input, select, textarea {
+  color: var(--png-text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* ---------- Announcement Bar ---------- */
+.announcement-bar {
+  background-color: var(--png-navy) !important;
+  border: none;
+}
+
+.announcement-bar__message {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-family: var(--png-font-body);
+  letter-spacing: 0.3px;
+}
+
+.announcement-bar a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* ---------- Header / Navigation ---------- */
+.header {
+  background-color: var(--png-white);
+  border-bottom: 0.5px solid var(--png-border);
+  padding: 14px 0;
+}
+
+.header__heading-link {
+  font-family: var(--png-font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--png-text-primary);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+.header__menu-item,
+.header__menu-item span {
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--png-slate);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.header__menu-item:hover span {
+  color: var(--png-copper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/* ---------- Buttons ---------- */
+/* Primary CTA — Copper */
+.button--primary,
+.shopify-payment-button button,
+button.png-btn-primary {
+  background-color: var(--png-copper) !important;
+  color: var(--png-white) !important;
+  border: none !important;
+  border-radius: var(--png-btn-radius);
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 26px;
+  transition: background-color 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0.3px;
+}
+
+.button--primary:hover,
+.shopify-payment-button button:hover,
+button.png-btn-primary:hover {
+  background-color: var(--png-copper-hover) !important;
+}
+
+/* Secondary CTA — Navy */
+.button--secondary,
+button.png-btn-secondary {
+  background-color: var(--png-navy) !important;
+  color: var(--png-white) !important;
+  border: none !important;
+  border-radius: var(--png-btn-radius);
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 26px;
+  text-transform: none;
+}
+
+/* Ghost / Outline Button */
+button.png-btn-ghost,
+.button--tertiary {
+  background: transparent;
+  color: var(--png-navy);
+  border: 1.5px solid var(--png-navy);
+  border-radius: var(--png-btn-radius);
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 26px;
+  text-transform: none;
+}
+
+/* Link-style CTA */
+a.png-link-cta {
+  color: var(--png-navy);
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a.png-link-cta:hover {
+  color: var(--png-copper);
+}
+
+a.png-link-cta::after {
+  content: ' →';
+}
+
+
+/* ---------- Eyebrow Labels ---------- */
+.png-eyebrow {
+  font-family: var(--png-font-body);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--png-copper);
+  margin-bottom: 12px;
+  display: block;
+}
+
+
+/* ---------- Section Alternation ---------- */
+.png-section-white {
+  background: var(--png-white);
+  padding: var(--png-section-padding) 0;
+}
+
+.png-section-offwhite {
+  background: var(--png-offwhite);
+  padding: var(--png-section-padding) 0;
+  border-radius: 10px;
+  margin: 0 var(--page-width-margin, 40px);
+}
+
+.png-section-navy {
+  background: var(--png-navy);
+  padding: 28px 32px;
+  border-radius: 10px;
+  margin: 0 var(--page-width-margin, 40px);
+}
+
+
+/* ---------- Trust Bar ---------- */
+.png-trust-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 0.5px solid var(--png-border);
+}
+
+.png-trust-bar__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--png-text-muted);
+}
+
+.png-trust-bar__stars {
+  color: var(--png-copper);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.png-trust-bar__divider {
+  color: #e0e0e0;
+}
+
+.png-trust-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--png-trust-green);
+}
+
+
+/* ---------- Category Grid ---------- */
+.png-category-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--png-grid-gap);
+}
+
+.png-category-card {
+  text-decoration: none;
+}
+
+.png-category-card__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--png-card-radius);
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.png-category-card:hover .png-category-card__image {
+  transform: scale(1.02);
+}
+
+.png-category-card__title {
+  font-family: var(--png-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--png-text-primary);
+  margin: 0;
+}
+
+.png-category-card__subtitle {
+  font-size: 11px;
+  color: var(--png-text-muted);
+  margin: 3px 0 0;
+}
+
+.png-category-card__subtitle--savings {
+  color: var(--png-trust-green);
+}
+
+@media (max-width: 749px) {
+  .png-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ---------- How It Works ---------- */
+.png-steps {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr 24px 1fr;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.png-step__number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--png-navy);
+  color: var(--png-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--png-font-body);
+}
+
+.png-step__number--accent {
+  border: none;
+  background: var(--png-copper);
+  color: var(--png-white);
+}
+
+.png-step__title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--png-text-primary);
+  margin: 0 0 4px;
+}
+
+.png-step__description {
+  font-size: 11px;
+  color: var(--png-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.png-step__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 14px;
+  color: #ddd;
+  font-size: 14px;
+}
+
+@media (max-width: 749px) {
+  .png-steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .png-step__arrow {
+    display: none;
+  }
+}
+
+
+/* ---------- Review Cards ---------- */
+.png-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--png-grid-gap);
+}
+
+.png-review-card {
+  padding: var(--png-card-padding);
+  border: 0.5px solid var(--png-border);
+  border-radius: var(--png-card-radius);
+  background: var(--png-white);
+}
+
+.png-review-card__stars {
+  color: var(--png-copper);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.png-review-card__quote {
+  font-size: 12px;
+  color: var(--png-text-secondary);
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.png-review-card__author {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--png-text-primary);
+  margin: 0;
+}
+
+@media (max-width: 749px) {
+  .png-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---------- CTA Banner ---------- */
+.png-cta-banner {
+  background: var(--png-navy);
+  border-radius: 10px;
+  padding: 28px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.png-cta-banner__title {
+  font-family: var(--png-font-display);
+  font-size: 18px;
+  color: var(--png-white);
+  margin: 0 0 4px;
+}
+
+.png-cta-banner__subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+@media (max-width: 749px) {
+  .png-cta-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+}
+
+
+/* ---------- Product Cards (Collection + Homepage) ---------- */
+.card--card,
+.card--standard {
+  border: 0.5px solid var(--png-border);
+  border-radius: var(--png-card-radius);
+  overflow: hidden;
+  background: var(--png-white);
+}
+
+.card__heading a,
+.card__heading {
+  font-family: var(--png-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--png-text-primary);
+  text-decoration: none;
+}
+
+.price__regular .price-item,
+.price .price-item {
+  font-family: var(--png-font-body);
+  font-size: 14px;
+  color: var(--png-text-secondary);
+}
+
+.card__media img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card__media img {
+  transform: scale(1.02);
+}
+
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--png-white);
+  border-top: 0.5px solid var(--png-border);
+  padding: 48px 0 32px;
+}
+
+.footer__content-bottom {
+  border-top: 0.5px solid var(--png-border);
+  padding-top: 16px;
+  margin-top: 24px;
+}
+
+.copyright__content,
+.footer-block__heading,
+.footer a {
+  font-family: var(--png-font-body);
+}
+
+.copyright__content {
+  font-size: 10px;
+  color: #ccc;
+}
+
+
+/* ---------- Product Page ---------- */
+.product__title {
+  font-family: var(--png-font-display);
+  font-size: 28px;
+  color: var(--png-text-primary);
+}
+
+.product__description p {
+  font-size: 14px;
+  color: var(--png-text-secondary);
+  line-height: 1.7;
+}
+
+
+/* ---------- Utility Classes ---------- */
+.png-text-copper { color: var(--png-copper); }
+.png-text-navy { color: var(--png-navy); }
+.png-text-green { color: var(--png-trust-green); }
+.png-text-muted { color: var(--png-text-muted); }
+
+.png-bg-white { background: var(--png-white); }
+.png-bg-offwhite { background: var(--png-offwhite); }
+.png-bg-navy { background: var(--png-navy); }
+
+
+/* ---------- Global Overrides ---------- */
+/* Remove Dawn's default focus outlines and replace with subtle ones */
+*:focus-visible {
+  outline: 2px solid var(--png-copper);
+  outline-offset: 2px;
+}
+
+/* Clean up Dawn's default button styles */
+.button,
+button {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Remove any remaining template artifacts */
+.banner__box,
+.slideshow__text {
+  background: transparent;
+}
