@@ -1,0 +1,213 @@
+{%- comment -%}
+  Promo & Grow — Size-Segmented SEO Landing Section (War-Room steal: Instent)
+
+  A reusable, fully-configurable landing section for high-intent search terms
+  (e.g. "custom 10x10 tent"). One section, driven entirely by schema settings +
+  FAQ blocks, so each size page (10x10 / 10x15 / 10x20) just sets different copy
+  and points at its product handle.
+
+  Structure (top to bottom):
+    1. Navy hero: eyebrow, H1 (the keyword), intro, dual CTA (Free Proof + Buy)
+    2. "What you get" benefit list (two columns)
+    3. Spec strip
+    4. FAQ accordion (AEO surface — the Spanish/English question blocks)
+    5. Closing CTA band
+
+  CTAs:
+    - Primary "Get a Free Proof" opens the quote modal (data-quote-modal-trigger),
+      pre-filled with the target product.
+    - Secondary "See the product" links to the product page (locale-aware).
+  Both fire existing analytics via the global event bus.
+{%- endcomment -%}
+
+{%- liquid
+  assign loc = routes.root_url
+  if loc == '/'
+    assign loc = ''
+  endif
+  assign target = all_products[section.settings.product_handle]
+  assign product_url = loc | append: '/products/' | append: section.settings.product_handle
+-%}
+
+<section class="png-seo">
+  <!-- 1. Hero -->
+  <div class="png-seo__hero">
+    <div class="page-width png-seo__hero-inner">
+      <div class="png-seo__hero-text">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="png-seo__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        <h1 class="png-seo__h1">{{ section.settings.heading | default: 'Custom 10x10 Event Tent' }}</h1>
+        <p class="png-seo__intro">{{ section.settings.intro }}</p>
+        <div class="png-seo__cta-row">
+          <a href="{{ product_url }}?intent=quote-request"
+             class="png-seo__btn-primary"
+             data-quote-modal-trigger
+             data-cta="seo-free-proof"
+             data-product-handle="{{ section.settings.product_handle }}"
+             {% if target %}data-product-title="{{ target.title | escape }}" data-product-type="{{ target.type | escape }}"{% endif %}>
+            {{ section.settings.primary_cta | default: 'Get a Free Proof' }} &rarr;
+          </a>
+          <a href="{{ product_url }}" class="png-seo__btn-ghost">
+            {{ section.settings.secondary_cta | default: 'See the product' }}
+          </a>
+        </div>
+        <div class="png-seo__hero-trust">
+          <span class="png-seo__hero-trust-item"><span class="png-seo__dot" aria-hidden="true"></span>{{ section.settings.trust_1 | default: '5-day delivery, guaranteed' }}</span>
+          <span class="png-seo__hero-trust-item">{{ section.settings.trust_2 | default: 'Free proof before you pay' }}</span>
+          <span class="png-seo__hero-trust-item">{{ section.settings.trust_3 | default: 'Made in LA' }}</span>
+        </div>
+      </div>
+      {%- if section.settings.image != blank -%}
+        <div class="png-seo__hero-media">
+          {{ section.settings.image | image_url: width: 760 | image_tag: class: 'png-seo__hero-img', loading: 'eager', fetchpriority: 'high', widths: '380,560,760', sizes: '(max-width:768px) 100vw, 420px', alt: section.settings.heading | default: shop.name }}
+        </div>
+      {%- elsif target.featured_image -%}
+        <div class="png-seo__hero-media">
+          {{ target.featured_image | image_url: width: 760 | image_tag: class: 'png-seo__hero-img', loading: 'eager', fetchpriority: 'high', widths: '380,560,760', sizes: '(max-width:768px) 100vw, 420px', alt: target.title }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- 2. What you get -->
+  {%- if section.settings.benefits != blank -%}
+    <div class="png-seo__benefits page-width">
+      {%- if section.settings.benefits_heading != blank -%}
+        <h2 class="png-seo__h2">{{ section.settings.benefits_heading }}</h2>
+      {%- endif -%}
+      <div class="png-seo__benefits-body rte">{{ section.settings.benefits }}</div>
+    </div>
+  {%- endif -%}
+
+  <!-- 3. Spec strip -->
+  {%- assign has_specs = false -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'spec' -%}{%- assign has_specs = true -%}{%- endif -%}{%- endfor -%}
+  {%- if has_specs -%}
+    <div class="png-seo__specs page-width">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'spec' -%}
+          <div class="png-seo__spec" {{ block.shopify_attributes }}>
+            <span class="png-seo__spec-label">{{ block.settings.label }}</span>
+            <span class="png-seo__spec-value">{{ block.settings.value }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <!-- 4. FAQ (AEO surface) -->
+  {%- assign has_faq = false -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'faq' -%}{%- assign has_faq = true -%}{%- endif -%}{%- endfor -%}
+  {%- if has_faq -%}
+    <div class="png-seo__faq page-width">
+      <h2 class="png-seo__h2">{{ section.settings.faq_heading | default: 'Common questions' }}</h2>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq' -%}
+          <details class="png-seo__faq-item" {{ block.shopify_attributes }}>
+            <summary class="png-seo__faq-q">
+              <span>{{ block.settings.question }}</span>
+              <span class="png-seo__faq-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="png-seo__faq-a rte">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <!-- 5. Closing CTA -->
+  <div class="png-seo__close page-width">
+    <div class="png-seo__close-band">
+      <div class="png-seo__close-text">
+        <h2 class="png-seo__close-h">{{ section.settings.close_heading | default: 'Ready to see your design?' }}</h2>
+        <p class="png-seo__close-sub">{{ section.settings.close_sub | default: 'Send your logo. Get a free proof back — no charge, no commitment.' }}</p>
+      </div>
+      <div class="png-seo__close-actions">
+        <a href="{{ product_url }}?intent=quote-request"
+           class="png-seo__btn-primary"
+           data-quote-modal-trigger
+           data-cta="seo-free-proof-close"
+           data-product-handle="{{ section.settings.product_handle }}"
+           {% if target %}data-product-title="{{ target.title | escape }}" data-product-type="{{ target.type | escape }}"{% endif %}>
+          {{ section.settings.primary_cta | default: 'Get a Free Proof' }} &rarr;
+        </a>
+        <a href="tel:8448833308" class="png-seo__btn-ghost" data-png-source="seo-landing">(844) 883-3308</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} FAQ structured data for AEO / rich results {%- endcomment -%}
+{%- if has_faq -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- assign first = true -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq' -%}
+          {%- unless first %},{% endunless -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | strip_html | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+          }
+          {%- assign first = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "SEO Landing",
+  "tag": "section",
+  "class": "png-seo-section",
+  "settings": [
+    { "type": "text", "id": "product_handle", "label": "Target product handle", "default": "10ft-x-10ft-event-tent-canopy", "info": "The product this page promotes (e.g. 10ft-x-10ft-event-tent-canopy)" },
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Custom event tents" },
+    { "type": "text", "id": "heading", "label": "H1 heading (the keyword)", "default": "Custom 10x10 Event Tent" },
+    { "type": "textarea", "id": "intro", "label": "Intro paragraph", "default": "Full-color custom 10x10 canopy tent, printed edge-to-edge and delivered in 5 business days. Free proof before you pay." },
+    { "type": "image_picker", "id": "image", "label": "Hero image (optional — falls back to product image)" },
+    { "type": "text", "id": "primary_cta", "label": "Primary CTA", "default": "Get a Free Proof" },
+    { "type": "text", "id": "secondary_cta", "label": "Secondary CTA", "default": "See the product" },
+    { "type": "text", "id": "trust_1", "label": "Trust 1", "default": "5-day delivery, guaranteed" },
+    { "type": "text", "id": "trust_2", "label": "Trust 2", "default": "Free proof before you pay" },
+    { "type": "text", "id": "trust_3", "label": "Trust 3", "default": "Made in LA" },
+    { "type": "header", "content": "What you get" },
+    { "type": "text", "id": "benefits_heading", "label": "Section heading", "default": "What you get" },
+    { "type": "richtext", "id": "benefits", "label": "Benefits (rich text / list)" },
+    { "type": "header", "content": "FAQ" },
+    { "type": "text", "id": "faq_heading", "label": "FAQ heading", "default": "Common questions" },
+    { "type": "header", "content": "Closing CTA" },
+    { "type": "text", "id": "close_heading", "label": "Heading", "default": "Ready to see your design?" },
+    { "type": "text", "id": "close_sub", "label": "Subtext", "default": "Send your logo. Get a free proof back — no charge, no commitment." }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spec",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Material" },
+        { "type": "text", "id": "value", "label": "Value", "default": "600D polyester" }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How fast do I get my tent?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Five business days from approved proof to ship — guaranteed, nationwide.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "SEO Landing" }
+  ]
+}
+{% endschema %}
