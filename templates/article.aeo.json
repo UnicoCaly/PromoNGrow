@@ -22,7 +22,7 @@
     "aeo-faq": {
       "type": "custom-aeo-faq",
       "blocks": {
-        "faq-1": { "type": "faq", "settings": { "question": "How fast is delivery?", "answer": "<p>Five business days from approved proof to ship — guaranteed, nationwide.</p>" } },
+        "faq-1": { "type": "faq", "settings": { "question": "How fast is delivery?", "answer": "<p>Five business days from approved proof to ship — nationwide.</p>" } },
         "faq-2": { "type": "faq", "settings": { "question": "Do I see a proof before I pay?", "answer": "<p>Yes. We send a free digital proof and nothing goes to production until you approve it.</p>" } }
       },
       "block_order": ["faq-1", "faq-2"],
