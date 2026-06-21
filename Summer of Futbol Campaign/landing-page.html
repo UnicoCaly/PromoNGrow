@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  PROMO & GROW — "Summer of Fútbol" Watch-Party Proof Landing Page (ENGLISH)
+  Path: /pages/watch-party-proof  (EN primary)
+  ----------------------------------------------------------------------------
+  EN / ES LANGUAGE NOTE:
+  This is the ENGLISH page. The Spanish twin lives at /pages/proof-es and uses
+  the EXACT same structure/markup with the ES copy from the source file
+  (03-Funnel-Landing-Page.md). The language toggle (top-right) links EN <-> ES;
+  navy text, copper underline on the active language. A Spanglish hero/CTA/
+  thank-you variant also exists in the source for Carlos to A/B test on paid
+  social — NOT included on this page.
+  ----------------------------------------------------------------------------
+  GUARDRAILS BAKED IN: FIFA-safe (no FIFA/World Cup/Mundial/emblem/trophy/crest).
+  No fake urgency / no countdown timers. Real photos only — placeholder blocks
+  with build notes for Carlos; never AI / never random stock. Only code is
+  SHOWUP (free shipping over $500). Bundle: starting at $857, save 15%.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Your Free Proof — Promo &amp; Grow | Summer of Fútbol Watch-Party Kit</title>
+  <meta name="description" content="Send us your logo today, get a free proof back, and be booth-ready in 5 business days — tent, table throw, and flag in your colors. Free proof before you pay." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1B2838;
+      --copper: #C17A3A;
+      --copper-dark: #A8642C;
+      --green: #1E6B4A;
+      --white: #FFFFFF;
+      --offwhite: #F7F7F5;
+      --slate: #2E3E50;
+      --border: #E3E3DF;
+      --content: 720px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--navy);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: "DM Serif Display", Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin: 0 0 .5em;
+    }
+
+    p { margin: 0 0 1em; }
+
+    a { color: var(--copper); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    section { padding: 56px 0; }
+    .bg-offwhite { background: var(--offwhite); }
+    .bg-navy { background: var(--navy); }
+
+    /* ---------- Top language toggle bar ---------- */
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .brandmark {
+      font-family: "DM Serif Display", Georgia, serif;
+      font-size: 20px;
+      letter-spacing: .3px;
+      color: var(--navy);
+    }
+    .brandmark .amp { color: var(--copper); }
+    .lang-toggle { font-size: 14px; font-weight: 700; }
+    .lang-toggle a, .lang-toggle span { color: var(--navy); }
+    .lang-toggle .active {
+      color: var(--navy);
+      border-bottom: 2px solid var(--copper);
+      padding-bottom: 2px;
+    }
+    .lang-toggle .sep { color: var(--border); margin: 0 6px; border: 0; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-block;
+      background: var(--copper);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.2;
+      padding: 16px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(27,40,56,.12);
+      transition: background .15s ease;
+    }
+    .btn:hover { background: var(--copper-dark); color: var(--white); text-decoration: none; }
+    .btn-block { display: block; width: 100%; }
+
+    /* ---------- Hero ---------- */
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin: 0 0 14px;
+    }
+    .hero h1 { font-size: clamp(38px, 9vw, 60px); margin-bottom: 18px; }
+    .hero .subhead { font-size: 19px; color: var(--navy); max-width: 620px; }
+    .call-line { font-size: 15px; color: var(--navy); margin: 16px 0 6px; }
+    .call-line a { font-weight: 700; }
+    .signature { font-style: italic; font-size: 15px; color: var(--navy); margin: 0 0 4px; }
+    .es-flag { color: var(--navy); }
+
+    .trust-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-top: 26px;
+      padding: 14px 0;
+      font-size: 14px;
+      color: var(--navy);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+    }
+    .trust-strip span { white-space: nowrap; }
+    .ico { color: var(--green); font-weight: 700; }
+    .star { color: var(--copper); }
+
+    /* ---------- Photo placeholder ---------- */
+    .photo-ph {
+      background: var(--offwhite);
+      border: 2px dashed var(--copper);
+      border-radius: 12px;
+      padding: 44px 24px;
+      text-align: center;
+      color: var(--slate);
+    }
+    .photo-ph .ph-title { font-weight: 700; color: var(--navy); font-size: 18px; margin-bottom: 6px; }
+    .photo-ph .ph-sub { font-size: 14px; color: var(--slate); margin: 0; }
+    .photo-ph .ph-icon { font-size: 30px; display: block; margin-bottom: 10px; }
+
+    /* ---------- Offer ---------- */
+    .offer-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px 28px;
+      position: relative;
+      box-shadow: 0 4px 18px rgba(27,40,56,.06);
+    }
+    .save-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .5px;
+      padding: 7px 12px;
+      border-radius: 6px;
+    }
+    .kit-list { list-style: none; padding: 0; margin: 22px 0; }
+    .kit-list li {
+      padding: 14px 0 14px 30px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .kit-list li:last-child { border-bottom: none; }
+    .kit-list li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 22px;
+      width: 9px;
+      height: 9px;
+      background: var(--copper);
+      border-radius: 50%;
+    }
+    .kit-list .es { font-style: italic; color: var(--slate); }
+
+    .offer-block {
+      background: var(--offwhite);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin: 22px 0;
+    }
+    .offer-price { font-size: 22px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .offer-price .pro { font-weight: 400; font-style: italic; color: var(--slate); font-size: 16px; }
+    .ship-line { font-size: 15px; color: var(--navy); margin: 0; }
+    .green-dot { color: var(--green); font-weight: 700; }
+    .green-text { color: var(--green); font-weight: 700; }
+    .addons { font-size: 14px; color: var(--slate); margin: 16px 0 22px; }
+    .addons strong { color: var(--navy); }
+
+    /* ---------- Lead-time math timeline ---------- */
+    .math-table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 15px; }
+    .math-table th, .math-table td {
+      text-align: left;
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--navy);
+    }
+    .math-table thead th {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--slate);
+      border-bottom: 2px solid var(--border);
+    }
+    .step-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--copper);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .step-dot.done { background: var(--green); }
+    .math-table tr.final td { background: var(--offwhite); font-weight: 700; }
+    .urgency {
+      background: var(--offwhite);
+      border-left: 4px solid var(--copper);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      font-size: 16px;
+      color: var(--navy);
+      margin: 22px 0;
+    }
+
+    /* ---------- How it works ---------- */
+    .steps { display: grid; gap: 18px; margin: 26px 0 18px; }
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 22px 22px 22px;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--copper);
+      color: var(--copper);
+      font-family: "DM Serif Display", serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .step-card h3 { font-size: 21px; margin-bottom: 8px; }
+    .smallprint { font-size: 14px; color: var(--slate); font-style: italic; margin: 0; }
+
+    /* ---------- Trust stack ---------- */
+    .trust-tiles { list-style: none; padding: 0; margin: 22px 0; display: grid; gap: 14px; }
+    .trust-tiles li {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 16px;
+      color: var(--navy);
+    }
+    .trust-tiles .tile-ico { font-weight: 700; margin-right: 6px; }
+    .trust-tiles .tile-note { display: block; font-size: 14px; color: var(--slate); margin-top: 4px; font-style: italic; }
+    .guarantee {
+      background: var(--green);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 16px;
+      margin: 22px 0;
+    }
+    .guarantee strong { color: var(--white); }
+    .logo-strip-ph { margin-top: 18px; }
+    .pull-quote {
+      font-style: italic;
+      color: var(--navy);
+      border-left: 4px solid var(--copper);
+      padding: 6px 0 6px 18px;
+      margin: 22px 0 0;
+      font-size: 17px;
+    }
+    .pull-quote cite { display: block; font-style: normal; font-size: 14px; color: var(--slate); margin-top: 8px; }
+
+    /* ---------- Form ---------- */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 26px;
+      box-shadow: 0 4px 18px rgba(27,40,56,.06);
+    }
+    .form-sub { color: var(--navy); margin-bottom: 22px; }
+    .field { margin-bottom: 18px; }
+    .field > label.lbl {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .req { color: var(--copper); font-weight: 700; }
+    .opt { color: var(--slate); font-weight: 400; font-style: italic; }
+    .helper { display: block; font-size: 13px; color: var(--slate); margin-top: 4px; font-weight: 400; }
+    .field input[type="text"],
+    .field input[type="tel"],
+    .field input[type="email"],
+    .field input[type="date"],
+    .field input[type="file"],
+    .field select {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .field input:focus, .field select:focus {
+      outline: 2px solid var(--copper);
+      outline-offset: 1px;
+      border-color: var(--copper);
+    }
+    .checks { display: grid; gap: 8px; }
+    .check-row { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--navy); }
+    .check-row input { margin-top: 4px; flex: 0 0 auto; }
+    .consent {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+    .consent .fineprint { color: var(--slate); font-style: italic; }
+    .reassure {
+      background: var(--green);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 15px;
+      margin: 14px 0 12px;
+    }
+    .fallback { font-size: 15px; color: var(--navy); margin: 0; }
+
+    /* ---------- FAQ ---------- */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 36px 18px 0;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--navy);
+      position: relative;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 4px;
+      top: 16px;
+      color: var(--copper);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .faq-item[open] summary::after { content: "\2212"; }
+    .faq-answer { padding: 0 0 18px; color: var(--navy); font-size: 16px; }
+    .faq-cta { margin-top: 24px; }
+
+    /* ---------- Footer ---------- */
+    .footer { color: var(--white); }
+    .footer .wrap { padding-top: 44px; padding-bottom: 44px; }
+    .footer .brandmark { color: var(--white); font-size: 26px; }
+    .footer .tagline { font-style: italic; color: #C6D0DA; margin: 4px 0 18px; }
+    .footer p { color: #D8DEE5; font-size: 15px; }
+    .footer a { color: var(--copper); font-weight: 700; }
+    .footer .promise { font-style: italic; color: #C6D0DA; margin: 18px 0; }
+    .footer .copyright {
+      border-top: 1px solid rgba(255,255,255,.16);
+      padding-top: 18px;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #AAB6C2;
+    }
+
+    /* ---------- Sticky mobile bar ---------- */
+    .sticky-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      box-shadow: 0 -3px 14px rgba(27,40,56,.10);
+      display: none;
+    }
+    .sticky-bar .btn { width: 100%; }
+
+    @media (max-width: 720px) {
+      section { padding: 44px 0; }
+      .sticky-bar { display: block; }
+      body { padding-bottom: 78px; }
+    }
+
+    @media (min-width: 560px) {
+      .steps { grid-template-columns: 1fr 1fr 1fr; }
+      .trust-tiles { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================== TOP BAR + LANGUAGE TOGGLE ====================== -->
+  <header class="topbar">
+    <div class="wrap">
+      <span class="brandmark">PROMO <span class="amp">&amp;</span> GROW</span>
+      <nav class="lang-toggle" aria-label="Language">
+        <span class="active" aria-current="true">EN</span>
+        <span class="sep">|</span>
+        <!-- ES twin: same structure, ES copy from source file -->
+        <a href="/pages/proof-es" hreflang="es">ES</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================ SECTION A — HERO ============================ -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">SUMMER OF FÚTBOL · LYNWOOD + LA</p>
+      <h1>Start the 5-day clock.</h1>
+      <p class="subhead">The matches run through July 19. Send us your logo today, get a free proof back, and be booth-ready in 5 business days — tent, table throw, and flag in your colors. No "buy now." Just a free proof and a real person who picks up.</p>
+
+      <p><a class="btn" href="#proof-form">Get My Free Proof &rarr;</a></p>
+
+      <p class="call-line">Or call Venus: <a href="tel:+18448833308">(844) 883-3308</a> · <em class="es-flag">Hablamos español</em> · 10am–4pm PT</p>
+      <p class="signature"><em>You bring the ganas. We'll make sure you show up like a pro.</em></p>
+
+      <div class="trust-strip" role="list" aria-label="Trust highlights">
+        <span role="listitem"><span class="ico">&#10004;</span> Free proof before you pay</span>
+        <span role="listitem"><span class="star">&#9733;</span> 4.8 on Google</span>
+        <span role="listitem">20+ years in LA</span>
+        <span role="listitem">Made in the USA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REAL PHOTO PLACEHOLDER (HERO) ===================== -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <!--
+        CARLOS: Drop in a REAL photo here — a real client's branded 10x10 tent on a
+        patio at dusk (taquería/brewery setting, people watching a match on a TV).
+        Honest production or client-supplied photo. NEVER an AI render, never random
+        stock. Add descriptive alt text. Logo sits bottom-left of the image.
+      -->
+      <div class="photo-ph" role="img" aria-label="Placeholder for a real client photo of a branded watch-party tent on a patio">
+        <span class="ph-icon" aria-hidden="true">&#128247;</span>
+        <p class="ph-title">Real photo here — NO AI</p>
+        <p class="ph-sub">Real client tent on a patio at dusk · taquería / brewery watch party · logo bottom-left.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION B — THE OFFER: KIT ==================== -->
+  <section class="bg-offwhite">
+    <div class="wrap">
+      <h2>The Watch-Party Kit</h2>
+      <p>Your patio. Your logo. Your team's colors. Everything a watch-party spot needs to look like <em>the</em> spot in the neighborhood.</p>
+
+      <!--
+        CARLOS: Real photo of the three pieces together — a real client tent + draped
+        table throw + feather flag, same logo on all three. Production/client photo only.
+      -->
+      <div class="offer-card">
+        <span class="save-badge" aria-label="Save 15 percent">SAVE 15%</span>
+
+        <ul class="kit-list">
+          <li><strong>Custom tent</strong> <span class="es">(carpa)</span> — your logo on the canopy, your colors on the legs. 10x10 best seller.</li>
+          <li><strong>Table throw</strong> <span class="es">(mantel con logo)</span> — draped, fitted, or stretch. Front and center on the bar.</li>
+          <li><strong>Feather flag</strong> <span class="es">(bandera)</span> — out on the sidewalk so the whole block knows the game's on here.</li>
+        </ul>
+
+        <div class="offer-block">
+          <p class="offer-price">Starting at $857 · save 15% <span class="pro">(our Event Pro Bundle)</span></p>
+          <p class="ship-line"><span class="green-dot">&#128994;</span> <span class="green-text">Free shipping on orders over $500 with code SHOWUP</span> (first order)</p>
+        </div>
+
+        <p class="addons">Want more presence? Ask about a <strong>step-&amp;-repeat fan photo wall</strong> <em>(fondo step-&amp;-repeat)</em>, extra <strong>feather flags</strong>, and <strong>"Games shown here / Aquí pasamos los partidos"</strong> storefront signage.</p>
+
+        <a class="btn btn-block" href="#proof-form">Get a Free Proof of My Kit &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== SECTION C — THE REAL LEAD-TIME MATH =============== -->
+  <section>
+    <div class="wrap">
+      <h2>Here's the math — no countdown, just real dates.</h2>
+      <p>We don't do fake timers. We do a real 5-business-day build. Here's exactly how the calendar works if you order this week:</p>
+
+      <!--
+        CARLOS / BUILD: This is honest urgency, NOT a countdown timer. Regenerate the
+        example dates from the live go-live date — ideally auto-populate "today."
+        The dates below are the source-file example (Mon, June 15 → about June 25–26).
+      -->
+      <table class="math-table">
+        <thead>
+          <tr><th scope="col">Step</th><th scope="col">What happens</th><th scope="col">When</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="step-dot">1</span></td>
+            <td>You order + send your logo</td>
+            <td><strong>Today (e.g. Mon, June 15)</strong></td>
+          </tr>
+          <tr>
+            <td><span class="step-dot">2</span></td>
+            <td>Venus sends your free proof</td>
+            <td><strong>Same day</strong></td>
+          </tr>
+          <tr>
+            <td><span class="step-dot">3</span></td>
+            <td>You approve → we build</td>
+            <td><strong>5 business days</strong></td>
+          </tr>
+          <tr>
+            <td><span class="step-dot">4</span></td>
+            <td>Ships to your door</td>
+            <td><strong>+2–3 days</strong></td>
+          </tr>
+          <tr class="final">
+            <td><span class="step-dot done" aria-label="done">&#10003;</span></td>
+            <td>In your hands — ready for the next match weekend</td>
+            <td>About June 25–26</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="urgency"><strong>The Final is around July 19.</strong> To have your kit for a specific match weekend, the move is simple: <strong>order about 10 days ahead</strong>, so the 5-day build plus shipping land in time. Order early in the week and you've got room to spare. We'll give you the exact date for <em>your</em> weekend on the call — no guessing, no pressure.</p>
+
+      <a class="btn" href="#proof-form">Lock In My Date &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ================ SECTION D — HOW IT WORKS (3 steps) ================ -->
+  <section class="bg-offwhite">
+    <div class="wrap">
+      <h2>Three steps. That's it.</h2>
+
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Send your logo.</h3>
+          <p>Drop it in the form below, or text it to Venus. No clean file? We'll work with what you've got and point you to free Canva templates.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Approve your free proof.</h3>
+          <p>Venus sends a proof back the same day — your design, your colors, on the actual products. You only move forward when it looks right. No charge to see it.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Booth-ready in 5 days.</h3>
+          <p>Approve it and we build. 5 business days, Made in the USA, right here in Los Ángeles. Then it ships to your door.</p>
+        </div>
+      </div>
+
+      <p class="smallprint">Design not included — but we proof every order before printing, so nothing goes to production until you say "that's it."</p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION E — TRUST STACK ===================== -->
+  <section>
+    <div class="wrap">
+      <h2>Why neighborhood spots trust us</h2>
+
+      <ul class="trust-tiles">
+        <li><span class="tile-ico ico">&#10004;</span><strong>Free proof before you pay.</strong> See it first. Always.</li>
+        <li><span class="tile-ico star">&#9733;</span><strong>4.8 on Google</strong> from ~20 local reviews.</li>
+        <li><span class="tile-ico" aria-hidden="true">&#128296;</span><strong>20+ years</strong> printing for LA businesses <span class="tile-note">(you may know us as PrintCo Direct — same shop, new name: Promo &amp; Grow).</span></li>
+        <li><span class="tile-ico" aria-hidden="true">&#127482;&#127480;</span><strong>Made in the USA</strong> <span class="tile-note">— hecho en Los Ángeles.</span></li>
+      </ul>
+
+      <div class="guarantee">
+        <span aria-hidden="true">&#128994;</span> <strong>The 5-Day Promise.</strong> Approve your proof and your order is built in 5 business days. That's the deal, in writing.
+      </div>
+
+      <!--
+        CARLOS: Replace with a REAL grayscale logo strip — real past-client logos
+        (local breweries, music labels, botánicas, taquerías) ONCE permissions are
+        confirmed in writing. NO third-party sports crests — client's OWN logos only.
+      -->
+      <div class="photo-ph logo-strip-ph" role="img" aria-label="Placeholder for a grayscale strip of real past-client logos">
+        <span class="ph-icon" aria-hidden="true">&#127991;</span>
+        <p class="ph-title">Real client logo strip here — NO AI</p>
+        <p class="ph-sub">Grayscale logos of real past clients, once written permissions are confirmed. Client's OWN logos only — no sports crests.</p>
+      </div>
+
+      <!--
+        CARLOS: Replace with 3–4 REAL job photos — finished tent on a patio, branded
+        table throw on a bar-top, feather flag on a sidewalk. Real production/client
+        photos, never AI.
+      -->
+      <div class="photo-ph logo-strip-ph" role="img" aria-label="Placeholder for 3 to 4 real job photos">
+        <span class="ph-icon" aria-hidden="true">&#128247;</span>
+        <p class="ph-title">Real job photos here — NO AI</p>
+        <p class="ph-sub">3–4 finished jobs: tent on a patio, table throw on a bar-top, feather flag on a sidewalk.</p>
+      </div>
+
+      <!-- CARLOS: Replace with a VERBATIM real Google review + real client name + business. -->
+      <blockquote class="pull-quote">
+        "[PLACEHOLDER — verbatim real Google review, e.g. 'Carlos and Venus got our tent done fast and it looked exactly like the proof. We'll be back.']"
+        <cite>— [Real client name + business]</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============== SECTION F — THE "GET A FREE PROOF" FORM ============== -->
+  <section class="bg-offwhite" id="proof-form">
+    <div class="wrap">
+      <div class="form-card">
+        <h2>Get your free proof</h2>
+        <p class="form-sub">Takes 60 seconds. Venus reaches out within the hour — by text or call, your choice. No payment, no commitment, just to see your design.</p>
+
+        <!--
+          WIRING NOTE (Carlos):
+          - Replace action="#REPLACE_WITH_LEAD_HANDLER" with PNG's lead handler:
+            the quote app endpoint, a Shopify contact form action, or an email/CRM
+            webhook (e.g. a Zapier/Make catch hook that pipes into the quote app).
+          - On submit, fire BOTH speed-to-lead auto-replies (Part 2 of the source):
+            email via the OWNED warm domain (promongrow.com) + SMS ONLY if the consent
+            box is checked. Then redirect to the thank-you screen (Part 3).
+          - Ping Venus immediately for <1hr human speed-to-lead — that's the whole promise.
+          - enctype is multipart so the optional logo file uploads.
+        -->
+        <form method="post" action="#REPLACE_WITH_LEAD_HANDLER" enctype="multipart/form-data">
+
+          <div class="field">
+            <label class="lbl" for="name">Your name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="business">Business name <span class="req">*</span></label>
+            <input type="text" id="business" name="business" autocomplete="organization" required />
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="phone">Phone / WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-help" required />
+            <span class="helper" id="phone-help">Best number to text you a proof</span>
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <fieldset class="field" style="border:none;margin:0 0 18px;padding:0;">
+            <legend class="lbl" style="padding:0;">What do you need? <span class="req">*</span></legend>
+            <div class="checks">
+              <label class="check-row"><input type="checkbox" name="needs" value="Tent/canopy" /> Tent/canopy</label>
+              <label class="check-row"><input type="checkbox" name="needs" value="Table throw" /> Table throw</label>
+              <label class="check-row"><input type="checkbox" name="needs" value="Feather flag" /> Feather flag</label>
+              <label class="check-row"><input type="checkbox" name="needs" value="The full Watch-Party Kit" /> The full Watch-Party Kit</label>
+              <label class="check-row"><input type="checkbox" name="needs" value="Step-&-repeat photo wall" /> Step-&amp;-repeat photo wall</label>
+              <label class="check-row"><input type="checkbox" name="needs" value="Storefront signage" /> Storefront signage</label>
+              <label class="check-row"><input type="checkbox" name="needs" value="Not sure yet — help me pick" /> Not sure yet — help me pick</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label class="lbl" for="event-date">Your event / match weekend <span class="req">*</span></label>
+            <input type="date" id="event-date" name="event_date" aria-describedby="date-help" required />
+            <span class="helper" id="date-help">So we can run the 5-day math for you</span>
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="invest">Roughly what are you looking to invest? <span class="req">*</span></label>
+            <select id="invest" name="invest" required>
+              <option value="" disabled selected>Choose one…</option>
+              <option value="Under $250">Under $250</option>
+              <option value="$250–$500">$250–$500</option>
+              <option value="$500–$900">$500–$900 (most Watch-Party Kits land here)</option>
+              <option value="$900–$1,500">$900–$1,500</option>
+              <option value="$1,500+">$1,500+</option>
+              <option value="Not sure — want guidance">Not sure — want guidance</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="logo">Upload your logo <span class="opt">(optional)</span></label>
+            <input type="file" id="logo" name="logo" accept=".png,.jpg,.jpeg,.pdf,.ai" aria-describedby="logo-help" />
+            <span class="helper" id="logo-help">PNG, JPG, PDF, or AI. No file? Skip it — we'll help.</span>
+          </div>
+
+          <div class="field consent">
+            <label class="check-row">
+              <input type="checkbox" name="consent" value="yes" required />
+              <span>I agree to be contacted by phone, text, or email about my proof. <span class="fineprint">(TCPA opt-in — message/data rates may apply. Reply STOP to opt out.)</span></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-block">Send Me My Free Proof &rarr;</button>
+
+          <p class="reassure"><span aria-hidden="true">&#128994;</span> No payment now. You'll see your design before anything is printed.</p>
+          <p class="fallback">Rather just talk? Call or text Venus: <a href="tel:+18448833308">(844) 883-3308</a> · 10am–4pm PT</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION G — FAQ =========================== -->
+  <section>
+    <div class="wrap">
+      <h2>Real questions, real answers</h2>
+
+      <details class="faq-item">
+        <summary>Can you really get it done in time for game day?</summary>
+        <div class="faq-answer">Yes — that's the whole promise. A real 5-business-day build, not a maybe. Tell Venus your match weekend and she'll do the date math with you on the spot. Order early in the week and you've got margin to spare.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if the design comes out wrong, or I don't like it?</summary>
+        <div class="faq-answer">You won't get surprised. We send a free proof first — your logo, your colors, on the actual product — and <strong>nothing goes to print until you approve it.</strong> That's why "free proof before you pay" is the first thing we say.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this going to be expensive?</summary>
+        <div class="faq-answer">The Watch-Party Kit starts at <strong>$857 with 15% off</strong>, and orders over $500 ship free with code <strong>SHOWUP</strong>. Most spots land in the $500–$900 range for the full kit — premium quality at neighborhood-fair pricing, and you'll see the exact number on your invoice before you pay a cent.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can you design it for me?</summary>
+        <div class="faq-answer">Design isn't a service we sell — but you're not on your own. We point you to <strong>free Canva templates</strong>, and we <strong>proof every single order before printing</strong>, so we catch issues with you and make sure it looks right. Most folks send a logo and we take it from there.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>I used to order from PrintCo Direct — is this the same shop?</summary>
+        <div class="faq-answer">Same shop, same team, same quality — new name. <strong>PrintCo Direct is now Promo &amp; Grow.</strong> Carlos and Venus are still right here in Lynwood.</div>
+      </details>
+
+      <p class="faq-cta"><a class="btn" href="sms:+18448833308">Still have a question? Text Venus &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ========================= SECTION H — FOOTER ========================= -->
+  <footer class="bg-navy footer">
+    <div class="wrap">
+      <span class="brandmark">PROMO <span class="amp" style="color:var(--copper);">&amp;</span> GROW</span>
+      <p class="tagline">Your event. Your brand. Done right.</p>
+
+      <p>
+        <span aria-hidden="true">&#128222;</span> <a href="tel:+18448833308">(844) 883-3308</a> ·
+        <span aria-hidden="true">&#9993;</span> <a href="mailto:hello@promongrow.com">hello@promongrow.com</a> ·
+        <span aria-hidden="true">&#127760;</span> <a href="https://promongrow.com">promongrow.com</a>
+      </p>
+      <p><span aria-hidden="true">&#128345;</span> Hours: 10am–4pm PT · <em>Hablamos español</em></p>
+      <p><span aria-hidden="true">&#128205;</span> Lynwood, Los Ángeles, CA · Made in the USA</p>
+
+      <p class="promise"><em>Get a free proof. No "buy now," ever — just a real person who picks up.</em></p>
+
+      <p class="copyright">© 2026 Promo &amp; Grow — Powered by Proago Branding Dept.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== STICKY MOBILE CTA BAR ===================== -->
+  <div class="sticky-bar" role="region" aria-label="Quick action">
+    <a class="btn" href="#proof-form">Get a Free Proof</a>
+  </div>
+
+</body>
+</html>

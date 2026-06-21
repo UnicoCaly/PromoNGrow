@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Venus — Follow-Up Playbook & Work Queue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2838; --slate:#2E3E50; --copper:#C17A3A; --green:#1E6B4A;
+    --off:#F7F7F5; --line:#E3E3DF; --muted:#6C757D;
+  }
+  @page{ size:Letter; margin:0.5in; }
+  *{ box-sizing:border-box; }
+  body{ font-family:'DM Sans',-apple-system,Helvetica,Arial,sans-serif; color:var(--navy);
+        font-size:10.2px; line-height:1.45; margin:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  h1,h2,h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; margin:0; }
+  .page{ page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  .band{ background:var(--navy); color:#fff; padding:14px 16px; border-radius:8px; display:flex;
+          justify-content:space-between; align-items:flex-end; margin-bottom:12px; }
+  .wm{ font-size:15px; letter-spacing:.5px; font-weight:500; }
+  .wm .amp{ color:var(--copper); }
+  .band h1{ font-size:21px; color:#fff; line-height:1; }
+  .band .sub{ font-size:9px; color:rgba(255,255,255,.7); text-transform:uppercase; letter-spacing:1.5px; }
+  .eyebrow{ font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--copper); font-weight:500; margin:11px 0 4px; }
+  .rules{ background:var(--off); border-left:3px solid var(--copper); padding:8px 12px; border-radius:4px; margin-bottom:8px; }
+  .rules b{ color:var(--navy); }
+  table{ width:100%; border-collapse:collapse; margin:3px 0 6px; }
+  th,td{ text-align:left; padding:4px 7px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{ background:var(--navy); color:#fff; font-size:8.6px; text-transform:uppercase; letter-spacing:.6px; font-weight:500; }
+  td{ font-size:9.6px; }
+  tr:nth-child(even) td{ background:var(--off); }
+  .moves{ margin:2px 0 0; padding-left:0; list-style:none; counter-reset:m; }
+  .moves li{ position:relative; padding:3px 0 3px 26px; border-bottom:1px solid var(--line); }
+  .moves li:before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:3px;
+      width:17px; height:17px; background:var(--copper); color:#fff; border-radius:50%; text-align:center;
+      font-weight:700; font-size:9px; line-height:17px; }
+  .moves b{ color:var(--navy); }
+  .tmpl{ background:var(--off); border:1px solid var(--line); border-radius:6px; padding:7px 10px; margin:5px 0; }
+  .tmpl .lbl{ font-size:8.5px; text-transform:uppercase; letter-spacing:.8px; color:var(--copper); font-weight:700; margin-bottom:2px; }
+  .tmpl p{ margin:0; font-size:9.6px; color:var(--slate); font-style:italic; }
+  .cols{ display:flex; gap:14px; }
+  .col{ flex:1; }
+  .tier{ font-family:'DM Serif Display',Georgia,serif; font-size:13px; margin:9px 0 2px; padding-bottom:2px; border-bottom:2px solid var(--line); }
+  .pill{ display:inline-block; font-family:'DM Sans',sans-serif; font-size:8px; font-weight:700; color:#fff;
+         border-radius:10px; padding:1px 7px; vertical-align:middle; margin-right:6px; }
+  .p0{ background:#B0413E; } .p1{ background:var(--copper); } .p2{ background:var(--green); } .p3{ background:var(--slate); }
+  .note{ font-size:9.4px; color:var(--muted); margin:2px 0 4px; }
+  .foot{ margin-top:10px; padding-top:6px; border-top:1px solid var(--line); font-size:8.4px; color:var(--muted);
+         display:flex; justify-content:space-between; }
+  .green{ color:var(--green); font-weight:700; }
+  .star{ color:var(--copper); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — PLAYBOOK -->
+<div class="page">
+  <div class="band">
+    <div><div class="wm">PROMO <span class="amp">&amp;</span> GROW</div><div class="sub">Concierge Sales · Venus</div></div>
+    <h1>Follow-Up &amp; Close Playbook</h1>
+  </div>
+
+  <div class="rules">
+    <b>Two rules that run everything:</b> &nbsp;①&nbsp; <b>No quote dies from silence</b> — every quote runs the cadence until it's Won, Nurture, or Dead. &nbsp;②&nbsp; <b>No lead sits without a next step</b> — every lead has a next action + date. Empty next-step = a leak.
+    <div class="note" style="margin:4px 0 0;">Most deals close on the <b>3rd–6th</b> touch. The money is in the follow-up — but persistence ≠ pestering. Every touch carries a <i>reason</i> and is <i>easy to reply to</i>.</div>
+  </div>
+
+  <div class="eyebrow">The standard cadence — every sent quote</div>
+  <table>
+    <tr><th style="width:14%">Touch</th><th style="width:13%">When</th><th style="width:16%">Channel</th><th>What to say</th></tr>
+    <tr><td>1 — Deliver</td><td>Same day</td><td>Their channel</td><td>Quote + free-proof offer + "5 business days from proof approval"</td></tr>
+    <tr><td>2 — Re-open</td><td>Day 1–2</td><td>Call → text</td><td>"Want me to start your free proof so you can see it?"</td></tr>
+    <tr><td>3 — Help</td><td>Day 3</td><td>Email/text</td><td>"Any questions before [event date]? Happy to hop on a quick call."</td></tr>
+    <tr><td>4 — Deadline</td><td>Day 7</td><td>Call/text</td><td>"Your event's coming — want to start the 5-day clock?"</td></tr>
+    <tr><td><b>5 — TAKEAWAY</b></td><td>Day 10–12</td><td>Text/email</td><td><b>The breakup / 1-2-3 reply</b> (below) — usually the highest-response touch</td></tr>
+    <tr><td>6+ — Nurture</td><td>Monthly</td><td>Email</td><td>Soft value; new season/offer; don't hound</td></tr>
+  </table>
+  <div class="note">After the takeaway with no reply → mark <b>Nurture</b>, route to the email sequence, set a 30-day re-touch, and <b>move on. Stop dialing daily.</b></div>
+
+  <div class="cols">
+    <div class="col">
+      <div class="eyebrow">When a deal goes COLD — change the pattern</div>
+      <ul class="moves">
+        <li><b>Switch the channel.</b> Called 3×? Text or email — lower pressure, often gets the reply.</li>
+        <li><b>Switch the time.</b> Try early AM or just after lunch.</li>
+        <li><b>The takeaway / breakup.</b> Highest re-engage move — signal you'll close the file.</li>
+        <li><b>Shrink the ask.</b> Down-sell to the easy yes (a smaller tier / one piece).</li>
+        <li><b>Diagnostic question.</b> "Is it timing, budget, or do you need to run it by someone?"</li>
+        <li><b>The 1/2/3 reply.</b> Make it a 2-second tap. Even a "3" frees the slot.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="eyebrow">Objection → the move</div>
+      <table>
+        <tr><th style="width:40%">They say</th><th>The move</th></tr>
+        <tr><td><i>(silence)</i></td><td>Takeaway + 1/2/3 reply</td></tr>
+        <tr><td>"More than I wanted to spend"</td><td>Down-sell a tier; restate free proof + 5-day; <b>never below the floor</b> → ask Carlos</td></tr>
+        <tr><td>"Let me think about it"</td><td>The diagnostic question — surface the real blocker</td></tr>
+        <tr><td>"Just send me info"</td><td>"Happy to — what's the one thing you need to decide?"</td></tr>
+        <tr><td>"Check with my boss/partner"</td><td>"Want it in one sheet you can forward?"</td></tr>
+      </table>
+      <div class="eyebrow">Decide — don't drift (within ~2 weeks)</div>
+      <div class="note"><span class="green">WON</span> → tag <code>stage:won</code>, hand to fulfillment. &nbsp; <b>NURTURE</b> → tag <code>stage:nurture</code>, email re-touch ~30 days. &nbsp; <b>DEAD</b> → tag <code>stage:lost</code>, close out.</div>
+    </div>
+  </div>
+
+  <div class="eyebrow">Say-it-out-loud templates (ganas voice)</div>
+  <div class="cols">
+    <div class="col">
+      <div class="tmpl"><div class="lbl">The takeaway (revive a cold deal)</div><p>"Hey [name] — Venus from Promo &amp; Grow. No quiero seguir llamándote 🙂. Your [proof/quote] is ready, but I won't hold your production slot if timing changed. Reply <b>1</b> (lock it in), <b>2</b> (love it, not yet), or <b>3</b> (pass) — lo que sea, sin pena. If it's budget or timing, dime y lo resolvemos."</p></div>
+      <div class="tmpl"><div class="lbl">The down-sell (easy yes)</div><p>"Totalmente entiendo que [full order] es una decisión grande. ¿Quieres empezar con [smaller piece] so you're moving now, y el resto cuando estés listo? Te mando un free proof hoy — en 5 días hábiles estás listo. ¿Te lo envío?"</p></div>
+    </div>
+    <div class="col">
+      <div class="tmpl"><div class="lbl">The diagnostic</div><p>"Sin presión, [name] — para ayudarte mejor: ¿es el timing, el presupuesto, o lo tienes que consultar con alguien? Whatever it is, I'll work with you."</p></div>
+      <div class="tmpl"><div class="lbl">Monthly nurture (re-touch)</div><p>"¡Hola [name]! Pensé en ti — [season/event] is coming up. Sigo teniendo tu info; want me to put together a quick free proof so you're ready? No compromiso."</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Promo &amp; Grow · Concierge Sales Playbook</span><span>Quote from the Master Price Sheet · 5 business days <b>from proof approval</b> · built 2026-06-17</span></div>
+</div>
+
+<!-- PAGE 2 — WORK QUEUE -->
+<div class="page">
+  <div class="band">
+    <div><div class="wm">PROMO <span class="amp">&amp;</span> GROW</div><div class="sub">Daily Work Queue · 10am–4pm PT</div></div>
+    <h1>Venus — Work Queue</h1>
+  </div>
+  <div class="note"><b>Work top-down.</b> Call first (text/email if no answer) → lead with the relationship + a specific reason → offer the <b>free proof</b> → quote from the Master Price Sheet → log it + tag it + set the next-action date. Speed wins. <b>Exclude</b> institutional accounts (sogate.org / DNC) — those are Carlos's.</div>
+
+  <div class="tier"><span class="pill p0">TIER 0</span>Revive the open deals (don't dial daily — run the takeaway)</div>
+  <table>
+    <tr><th style="width:26%">Deal</th><th style="width:14%">Value</th><th>Move</th></tr>
+    <tr><td><b>#D77 — Del Rio Brewing</b> (ask for Temo)</td><td>$3,400</td><td>Takeaway / 1-2-3 reply (text + email). If budget's the blocker, offer a smaller config.</td></tr>
+    <tr><td><b>Smile Klub Dental</b></td><td>$1,788 / $4,800</td><td>Down-sell to the $1,788 easy-yes + free proof today.</td></tr>
+  </table>
+
+  <div class="tier"><span class="pill p1">TIER 1</span>Fresh inbound — check first thing &amp; all day</div>
+  <div class="note">The <b>Summer of Fútbol email</b> went out — replies/clicks land in <b>hello@promongrow.com</b> + <b>#promo-and-grow</b>. <b>Respond within minutes</b> — hottest leads of the day. Hero offer = the Watch-Party Kit (Event Pro Bundle).</div>
+
+  <div class="tier"><span class="pill p2">TIER 2</span>Reorder / upsell recent buyers (warm, untouched)</div>
+  <div class="note">Print orders (NCR / cards / postcards) = consumables → <b>easy reorders</b>. Banner / board / brand buyers → <b>cross-sell tents, table covers, flags, displays</b> (the AOV upgrade).</div>
+  <table>
+    <tr><th style="width:27%">Customer</th><th style="width:10%">Last / $</th><th style="width:24%">Bought</th><th>The angle</th></tr>
+    <tr><td><span class="star">★</span> <b>Pathita Whitaker</b> (Tao Kae Noi)</td><td>May 11 · $1,873 (LTV $2,566)</td><td>3,000 brochures / sell sheets</td><td>3rd-touch VIP. Reorder + <b>cross-sell a trade-show display / tent</b>.</td></tr>
+    <tr><td><b>German Hernandez</b> (Airgas)</td><td>Jun 15 · $139</td><td>48×36 banner</td><td>Small order, but <b>Airgas = a 62-order whale</b> — connect the bigger account.</td></tr>
+    <tr><td><b>Irais Aguiar</b> (Premier Installations)</td><td>May 26 · $878</td><td>1,000 NCR forms</td><td>Reorder NCR + cross-sell jobsite banners / signage.</td></tr>
+    <tr><td><b>Diana</b></td><td>May 19 · $620</td><td>2,000 NCR invoice books</td><td>Reorder invoices when low.</td></tr>
+    <tr><td><b>Jessi Ortiz</b> (reactivated)</td><td>May 12 · $443</td><td>5,000 postcards</td><td>Reorder / next mail campaign.</td></tr>
+    <tr><td><b>Cynthia Hernandez</b></td><td>Jun 1 · $277</td><td>5× event banners</td><td><b>Cross-sell</b> — runs events: tent / table cover / flags.</td></tr>
+    <tr><td><b>Cristian Lopez</b> (Salsa Culichi 🌶️)</td><td>Apr 23 · $186</td><td>PVC sign boards</td><td>Food brand → <b>prime tent / cover / flag</b> cross-sell.</td></tr>
+    <tr><td><b>Juan Morales</b> (Villa Hallmark)</td><td>Jun 2 · $291</td><td>2,000 business cards</td><td>Reorder cards + cross-sell.</td></tr>
+    <tr><td><b>Erika Castillo</b> (California Plates)</td><td>May 4 · $304</td><td>500 NCR</td><td>Reorder NCR + cross-sell.</td></tr>
+    <tr><td><b>Paulo Sanchez</b></td><td>Apr 29 · $274</td><td>5,000 business cards</td><td>Reorder cards.</td></tr>
+    <tr><td><b>Ofer Hetsroni</b> (Arrow Remodeling)</td><td>May 7 · $316</td><td>sign boards</td><td>Reorder + linked to "Arrow Construction" on the reactivation list.</td></tr>
+  </table>
+
+  <div class="tier"><span class="pill p3">TIER 3</span>Reactivation — hot 23 + whales (when Tiers 0–2 are worked)</div>
+  <div class="note">Start with the whales — <b>Alegre 174 · Copies 129 · Airgas 62 · Medella 47</b> — and the 23 hottest (6–12 mo). Angle: <i>"We now do custom event tents &amp; displays in 5 days — got a booth or event coming up?"</i></div>
+
+  <div class="foot"><span>Promo &amp; Grow · Venus Work Queue</span><span>Auto-refreshes from live orders each weekday morning · built 2026-06-17</span></div>
+</div>
+
+</body>
+</html>

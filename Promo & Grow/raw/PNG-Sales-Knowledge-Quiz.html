@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promo &amp; Grow — Sales Knowledge Check</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap');
+:root{--navy:#1B2838;--copper:#C17A3A;--green:#1E6B4A;--off:#F7F7F5;--ink:#2c3742;--mut:#64727d;--red:#b23b3b;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--off);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.55;}
+.wrap{max-width:780px;margin:0 auto;padding:28px 20px 80px;}
+.band{background:var(--navy);color:#fff;border-radius:14px;padding:22px 24px;position:relative;overflow:hidden;}
+.band:after{content:"";position:absolute;left:0;bottom:0;height:5px;width:100%;background:var(--copper);}
+.wm{font-family:'DM Serif Display',Georgia,serif;font-size:26px}.wm b{color:var(--copper);font-weight:400}
+.sub{color:#aeb9c1;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+h1{font-family:'DM Serif Display',Georgia,serif;color:var(--navy);font-weight:400;font-size:30px;margin:24px 0 4px}
+.lead{color:var(--mut);margin:0 0 8px}
+.q{background:#fff;border:1px solid #e4e7e9;border-radius:12px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.qn{font-weight:700;color:var(--navy)}
+.cat{display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:6px}
+.opt{display:block;border:1px solid #d9dde0;border-radius:9px;padding:10px 12px;margin:8px 0;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--copper)}
+.opt input{margin-right:9px}
+.opt.correct{border-color:var(--green);background:#eaf3ee}
+.opt.wrong{border-color:var(--red);background:#f7ebeb}
+.exp{display:none;margin-top:8px;padding:10px 12px;border-left:3px solid var(--copper);background:#faf5ef;font-size:14px;color:#42505a;border-radius:0 8px 8px 0}
+.exp.show{display:block}
+.bar{position:sticky;bottom:0;background:rgba(247,247,245,.96);backdrop-filter:blur(4px);padding:14px 0;margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{font-family:'DM Sans',sans-serif;font-weight:700;border:none;border-radius:10px;padding:12px 20px;cursor:pointer;font-size:15px}
+.primary{background:var(--copper);color:#fff}.ghost{background:#fff;color:var(--navy);border:1px solid #d9dde0}
+#score{font-family:'DM Serif Display',Georgia,serif;font-size:22px;color:var(--navy)}
+.tag{font-weight:700}
+.pass{color:var(--green)}.fail{color:var(--copper)}
+.foot{color:var(--mut);font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="band"><div class="wm">Promo <b>&amp;</b> Grow</div><div class="sub">Sales knowledge check</div></div>
+  <h1>How well do you know the playbook?</h1>
+  <p class="lead">15 questions across products, pricing, process, voice, and guardrails. <strong>85%+ (13/15) = Foundations Certified.</strong> Re-take it weekly — repetition is how it sticks.</p>
+  <div id="quiz"></div>
+  <div class="bar">
+    <button class="primary" onclick="grade()">Check my score</button>
+    <button class="ghost" onclick="reset()">Retake</button>
+    <span id="score"></span>
+  </div>
+  <p class="foot">Tu evento, tu marca, hecho bien. · Pairs with the Cheat Sheet, Workbook, and Role-Play drills.</p>
+</div>
+<script>
+const Q=[
+ {c:"Promise",q:"What's our delivery promise?",a:["5 business days (4 on print), guaranteed","2 weeks","Same day","10–14 business days"],correct:0,e:"5 business days is the hero stat (4 on print). Competitors quote 7–14."},
+ {c:"Pricing",q:"What's the price of a 10x10 tent Complete Set?",a:["$800","$1,115","$1,600","$2,500"],correct:2,e:"10x10 Complete Set = $1,600 (tent + walls + bag). Tent Only is $800."},
+ {c:"Pricing",q:"On a 10x10 tent, which costs more?",a:["Half Wall","Full Wall","They're the same","Tent Only"],correct:1,e:"Full Wall ($1,270) is more than Half Wall ($1,115) — more fabric. (This was recently corrected in Shopify.)"},
+ {c:"Floor",q:"What's the minimum order?",a:["$50","$100","$250","No minimum"],correct:1,e:"$100 minimum order. Below it, raise to $100 or add setup/handling."},
+ {c:"Guardrails",q:"A customer wants a vehicle wrap and a full brand guide. You…",a:["Quote it yourself","Decline the customer","Pitch it, then escalate to Carlos / Proágo","Offer a discount"],correct:2,e:"Bigger branding (wraps, channel letters, brand systems) is Proágo/Carlos work. Pitch it, hand it up — it's upside, not a dead end."},
+ {c:"Guardrails",q:"Someone from the City of South Gate (@sogate.org) emails for a reorder. You…",a:["Call them right away","Do not contact — it's tagged DNC, Carlos handles it","Quote it and CC Carlos","Add them to the reactivation list"],correct:1,e:"Institutional accounts (South Gate, Lynwood, Nova) are Carlos's. Never contact anything tagged DNC:*."},
+ {c:"Objections",q:"What's the objection-handling framework?",a:["ABC — Always Be Closing","LAER — Listen, Acknowledge, Explore, Respond","FAB — Features, Advantages, Benefits","The hard close"],correct:1,e:"LAER: Listen fully, Acknowledge, Explore the real concern, Respond. For price, add Feel-Felt-Found."},
+ {c:"Objections",q:"Best first move when they say \"that's more than I wanted to spend\"?",a:["Immediately offer a discount","Acknowledge, explore their target, offer a smaller tier + free proof","Hold firm and repeat the price","End the call"],correct:1,e:"Explore the real budget and offer a tier — never just discount (hold the floor). Keep the free proof in play."},
+ {c:"Pricing",q:"A customer wants a custom item that's not on the price sheet. You…",a:["Guess a fair price","Ask Carlos for the number (route-through)","Use the lowest catalog price","Tell them we can't do it"],correct:1,e:"Not on the sheet / custom → route-through to Carlos. Never guess a price."},
+ {c:"Pricing",q:"How is a 13oz banner priced?",a:["Flat $50","Width × height (ft) × $5/sq ft, round half-feet up","By the hour","$1 per inch"],correct:1,e:"Banner = W × H (ft) × $5/sq ft. Round any half-foot up to the next whole foot."},
+ {c:"Pricing",q:"1,000 standard business cards costs about…",a:["$25","$108","$291","$498"],correct:1,e:"1,000 = ~$108. (100 = $25; 5,000 = ~$291.)"},
+ {c:"Process",q:"How do most PNG orders actually come through?",a:["The website 'Add to Cart'","The concierge close — draft order → invoice → paid","Walk-ins","Amazon"],correct:1,e:"The human concierge close converts far better than the web cart. Build the draft, send the invoice."},
+ {c:"Process",q:"What's the #1 factor in winning a warm lead?",a:["The lowest price","Speed-to-lead — respond in minutes","A fancy proposal","Calling after hours"],correct:1,e:"First to respond usually wins. Respond within minutes, same business day at worst."},
+ {c:"Reactivation",q:"How do you open a reactivation call with a lapsed PrintCo customer?",a:["\"Want to buy a tent?\"","\"PrintCo Direct is now Promo & Grow — same shop, leveled up\"","\"You haven't ordered in a while\"","\"We have a sale\""],correct:1,e:"The reframe: warm reconnect, same trusted shop. Then offer the reorder or the new event line."},
+ {c:"Floor",q:"Can you offer 20% off to close a hesitant customer?",a:["Yes, whatever it takes","No — no discounts without Carlos; hold the floor","Only on tents","Only on Fridays"],correct:1,e:"No discounts without Carlos's OK (Week 1, all quotes reviewed). Explore the need instead of cutting price."}
+];
+const quiz=document.getElementById('quiz');
+function render(){quiz.innerHTML='';Q.forEach((it,i)=>{
+ let opts=it.a.map((o,j)=>`<label class="opt" id="o${i}_${j}"><input type="radio" name="q${i}" value="${j}">${o}</label>`).join('');
+ quiz.insertAdjacentHTML('beforeend',`<div class="q"><span class="cat">${it.c}</span><div class="qn">${i+1}. ${it.q}</div>${opts}<div class="exp" id="e${i}"></div></div>`);
+});}
+function grade(){let s=0;Q.forEach((it,i)=>{
+ const sel=document.querySelector(`input[name="q${i}"]:checked`);
+ it.a.forEach((o,j)=>{const el=document.getElementById(`o${i}_${j}`);el.classList.remove('correct','wrong');});
+ const cor=document.getElementById(`o${i}_${it.correct}`);cor.classList.add('correct');
+ if(sel){const pick=+sel.value;if(pick===it.correct){s++;}else{document.getElementById(`o${i}_${pick}`).classList.add('wrong');}}
+ const e=document.getElementById('e'+i);e.textContent=(sel&&+sel.value===it.correct?'✓ ':'→ ')+it.e;e.classList.add('show');
+});
+ const pct=Math.round(s/Q.length*100);const pass=s>=13;
+ document.getElementById('score').innerHTML=`You scored <span class="tag ${pass?'pass':'fail'}">${s}/${Q.length} (${pct}%)</span> — ${pass?'Foundations Certified! 🎉':'almost — review and retake.'}`;
+ window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function reset(){render();document.getElementById('score').textContent='';window.scrollTo({top:0,behavior:'smooth'});}
+render();
+</script>
+</body>
+</html>

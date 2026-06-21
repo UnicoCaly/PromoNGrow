@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Apollo · Two-Brand Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#1B2838; --slate:#2E3E50; --copper:#C17A3A; --green:#1E6B4A; --off:#F7F7F5; --line:#E3E3DF; --muted:#6C757D; }
+  @page{ size:Letter; margin:0.5in; }
+  *{ box-sizing:border-box; }
+  body{ font-family:'DM Sans',-apple-system,Helvetica,Arial,sans-serif; color:var(--navy); font-size:10.4px; line-height:1.5; margin:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  h1,h2,h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; margin:0; }
+  .page{ page-break-after:always; } .page:last-child{ page-break-after:auto; }
+  .band{ background:var(--navy); color:#fff; padding:14px 16px; border-radius:8px; display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:14px; }
+  .wm{ font-size:15px; letter-spacing:.5px; font-weight:500; } .wm .amp{ color:var(--copper); }
+  .band h1{ font-size:20px; color:#fff; } .band .sub{ font-size:9px; color:rgba(255,255,255,.7); text-transform:uppercase; letter-spacing:1.5px; }
+  .eyebrow{ font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--copper); font-weight:500; margin:13px 0 5px; }
+  .lead{ background:var(--off); border-left:3px solid var(--copper); padding:9px 13px; border-radius:4px; font-size:10.4px; }
+  /* architecture diagram */
+  .arch{ margin:6px 0 2px; }
+  .node{ border:1.5px solid var(--navy); border-radius:8px; padding:8px 12px; text-align:center; background:#fff; }
+  .node .t{ font-weight:700; font-size:11px; } .node .s{ font-size:8.8px; color:var(--muted); }
+  .top{ width:60%; margin:0 auto; background:var(--navy); color:#fff; border-color:var(--navy); }
+  .top .s{ color:rgba(255,255,255,.7); }
+  .conn{ width:2px; height:14px; background:var(--navy); margin:0 auto; }
+  .split{ position:relative; height:14px; }
+  .split:before{ content:""; position:absolute; top:0; left:25%; right:25%; height:2px; background:var(--navy); }
+  .split:after{ content:""; position:absolute; top:0; left:25%; width:2px; height:14px; background:var(--navy); box-shadow:0 0 0 0 #000; }
+  .split .r{ position:absolute; top:0; right:25%; width:2px; height:14px; background:var(--navy); }
+  .brands{ display:flex; gap:18px; }
+  .brand{ flex:1; border-radius:8px; overflow:hidden; border:1.5px solid var(--line); }
+  .brand .hd{ padding:7px 10px; color:#fff; font-family:'DM Serif Display',Georgia,serif; font-size:13px; }
+  .png .hd{ background:var(--copper); } .pc .hd{ background:var(--slate); }
+  .brand table{ width:100%; border-collapse:collapse; }
+  .brand td{ padding:4px 9px; border-bottom:1px solid var(--line); font-size:9.4px; vertical-align:top; }
+  .brand td.k{ width:34%; color:var(--muted); text-transform:uppercase; font-size:8px; letter-spacing:.5px; }
+  .brand tr:last-child td{ border-bottom:none; }
+  .shared{ margin-top:14px; background:var(--off); border:1.5px dashed var(--muted); border-radius:8px; padding:8px 12px; text-align:center; font-size:9.6px; }
+  .shared b{ color:var(--navy); }
+  table.steps{ width:100%; border-collapse:collapse; margin-top:2px; }
+  .steps td{ padding:5px 8px; border-bottom:1px solid var(--line); vertical-align:top; font-size:10px; }
+  .num{ width:22px; } .num span{ display:inline-block; width:18px; height:18px; line-height:18px; text-align:center; border-radius:50%; background:var(--copper); color:#fff; font-weight:700; font-size:9.5px; }
+  .cols{ display:flex; gap:16px; } .col{ flex:1; }
+  .do{ border-radius:6px; padding:8px 11px; font-size:9.6px; }
+  .do.yes{ background:#EAF3EE; border-left:3px solid var(--green); } .do.no{ background:#F6ECE6; border-left:3px solid #B0413E; }
+  .do .h{ font-weight:700; font-size:9px; text-transform:uppercase; letter-spacing:.8px; margin-bottom:3px; }
+  .do.yes .h{ color:var(--green); } .do.no .h{ color:#B0413E; }
+  .do ul{ margin:0; padding-left:15px; } .do li{ margin:2px 0; }
+  .foot{ margin-top:12px; padding-top:6px; border-top:1px solid var(--line); font-size:8.4px; color:var(--muted); display:flex; justify-content:space-between; }
+  .pill{ display:inline-block; font-size:8px; font-weight:700; color:#fff; border-radius:10px; padding:1px 8px; }
+</style></head><body>
+
+<!-- PAGE 1 — ARCHITECTURE -->
+<div class="page">
+  <div class="band"><div><div class="wm">PROMO <span class="amp">&amp;</span> GROW &nbsp;·&nbsp; PROÁGO</div><div class="sub">Apollo · One License, Two Brands</div></div><h1>Account Architecture</h1></div>
+
+  <div class="lead"><b>The principle:</b> Apollo bills <b>per seat</b>, not per brand. One login runs both businesses — you separate them with a <b>dedicated sending mailbox per brand</b> plus folders, lists, labels, and sequences. No second license needed (until a second <i>person</i> operates one brand).</div>
+
+  <div class="eyebrow">The architecture</div>
+  <div class="arch">
+    <div class="node top"><div class="t">1 APOLLO ACCOUNT · 1 SEAT</div><div class="s">Operated by Carlos · shared database + credit pool</div></div>
+    <div class="conn"></div>
+    <div class="split"><span class="r"></span></div>
+    <div class="brands">
+      <div class="brand png">
+        <div class="hd">PROMO &amp; GROW &nbsp;<span class="pill" style="background:rgba(0,0,0,.18)">PNG</span></div>
+        <table>
+          <tr><td class="k">Mailbox</td><td><b>outreach@promotengrow.com</b><br><span style="color:var(--muted)">(cold domain · warm 2 wks)</span></td></tr>
+          <tr><td class="k">Folder</td><td><b>PNG</b></td></tr>
+          <tr><td class="k">Lists</td><td>PNG · Event Planners LA · PNG · Breweries …</td></tr>
+          <tr><td class="k">Sequences</td><td>PNG · Cold Email (bilingual) → <b>PNG mailbox</b></td></tr>
+          <tr><td class="k">Label</td><td>brand = PNG</td></tr>
+        </table>
+      </div>
+      <div class="brand pc">
+        <div class="hd">PROÁGO BRANDING &nbsp;<span class="pill" style="background:rgba(0,0,0,.18)">PC</span></div>
+        <table>
+          <tr><td class="k">Mailbox</td><td><b>carlos@proagobranding.co</b><br><span style="color:var(--muted)">(already connected · default)</span></td></tr>
+          <tr><td class="k">Folder</td><td><b>PC</b></td></tr>
+          <tr><td class="k">Lists</td><td>PC · …</td></tr>
+          <tr><td class="k">Sequences</td><td>PC · … → <b>PC mailbox</b></td></tr>
+          <tr><td class="k">Label</td><td>brand = PC</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="shared"><b>SHARED across both brands:</b> &nbsp;contact database &nbsp;·&nbsp; monthly credit pool &nbsp;·&nbsp; unsubscribe / suppression list &nbsp;·&nbsp; account analytics</div>
+  </div>
+
+  <div class="cols" style="margin-top:6px;">
+    <div class="col"><div class="eyebrow">Why this works</div>
+      <ul style="margin:0;padding-left:15px;font-size:9.8px;">
+        <li><b>Deliverability is per-domain</b>, not per-account — each brand's domain keeps its own reputation.</li>
+        <li>The sending mailbox <b>is</b> the brand identity on every email.</li>
+        <li>Folders + prefixes make mis-sends obvious before you hit launch.</li>
+      </ul>
+    </div>
+    <div class="col"><div class="eyebrow">Current state (6/17)</div>
+      <ul style="margin:0;padding-left:15px;font-size:9.8px;">
+        <li>✅ 1 mailbox connected: <b>carlos@proagobranding.co</b> (Proágo)</li>
+        <li>⬜ 0 sequences yet — clean slate</li>
+        <li>⬜ <b>P&amp;G mailbox not yet connected</b> — the one gap to fix before any PNG send</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Apollo · Two-Brand Setup · Page 1 — Architecture</span><span>built 2026-06-17</span></div>
+</div>
+
+<!-- PAGE 2 — WALKTHROUGH -->
+<div class="page">
+  <div class="band"><div><div class="wm">PROMO <span class="amp">&amp;</span> GROW &nbsp;·&nbsp; PROÁGO</div><div class="sub">Apollo · One License, Two Brands</div></div><h1>Setup Walkthrough</h1></div>
+
+  <div class="eyebrow">Step by step (≈30 min, one-time)</div>
+  <table class="steps">
+    <tr><td class="num"><span>1</span></td><td><b>Add the P&amp;G mailbox.</b> Apollo → Settings → Mailboxes → <i>Link Mailbox</i>. Connect a cold-sending inbox on <b>promotengrow.com</b> (or outreach@promongrow.com). Set daily send limits low at first.</td></tr>
+    <tr><td class="num"><span>2</span></td><td><b>Warm it ~2 weeks.</b> Turn on Apollo's warm-up (or a warmer) before real volume — protects deliverability and keeps you out of spam.</td></tr>
+    <tr><td class="num"><span>3</span></td><td><b>Create two folders:</b> <code>PNG</code> and <code>PC</code> (for sequences + lists). Everything lives in one or the other — nothing loose.</td></tr>
+    <tr><td class="num"><span>4</span></td><td><b>Adopt the prefix rule.</b> Every list, sequence, and saved search starts with <code>PNG ·</code> or <code>PC ·</code>. No exceptions — this is what prevents mix-ups.</td></tr>
+    <tr><td class="num"><span>5</span></td><td><b>Label every contact</b> by brand (a custom field or tag: PNG / PC) as you add or import them.</td></tr>
+    <tr><td class="num"><span>6</span></td><td><b>Bind sequence → mailbox.</b> When you build a sequence, set the sending mailbox to that brand's inbox. <b>PNG sequences → promotengrow.com</b>; PC sequences → proagobranding.co.</td></tr>
+    <tr><td class="num"><span>7</span></td><td><b>Pre-launch check (every time):</b> confirm folder, prefix, and <b>sender mailbox</b> match the brand before you hit start. 5 seconds; saves a brand-bleed disaster.</td></tr>
+    <tr><td class="num"><span>8</span></td><td><b>Watch the credit meter.</b> Both brands draw the same monthly pool — glance at usage so one brand's prospecting doesn't starve the other.</td></tr>
+  </table>
+
+  <div class="cols">
+    <div class="col"><div class="do yes"><div class="h">✓ Do</div><ul>
+      <li>One mailbox <b>per brand</b>, on its own domain</li>
+      <li>Prefix everything <code>PNG ·</code> / <code>PC ·</code></li>
+      <li>Confirm the sender before every launch</li>
+      <li>Keep each domain's SPF/DKIM/DMARC clean</li>
+      <li>Tag/label contacts by brand</li>
+    </ul></div></div>
+    <div class="col"><div class="do no"><div class="h">✕ Don't</div><ul>
+      <li>Send P&amp;G outreach from the Proágo mailbox</li>
+      <li>Mix both brands' leads in one untagged list</li>
+      <li>Run cold volume on a brand-new, un-warmed inbox</li>
+      <li>Assume reporting is per-brand (filter by sequence)</li>
+      <li>Buy a 2nd license before a 2nd <i>person</i> needs one</li>
+    </ul></div></div>
+  </div>
+
+  <div class="eyebrow">When a 2nd license actually earns its cost</div>
+  <div style="font-size:10px;">A different <b>person</b> operates one brand independently (Venus on P&amp;G + a Proágo teammate) · you need clean <b>billing separation</b> (Proágo's costs on Proágo's books) · credit consumption <b>outgrows</b> one plan. Until then — one seat, two mailboxes.</div>
+
+  <div class="foot"><span>Apollo · Two-Brand Setup · Page 2 — Walkthrough</span><span>see wiki: apollo-two-brand-setup</span></div>
+</div>
+
+</body></html>

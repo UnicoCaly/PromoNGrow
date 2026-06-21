@@ -8,7 +8,7 @@
         "spec-3": { "type": "spec", "settings": { "label": "Frame", "value": "Reinforced aluminum, pop-up" } },
         "spec-4": { "type": "spec", "settings": { "label": "Setup", "value": "Under 5 minutes, no tools" } },
         "spec-5": { "type": "spec", "settings": { "label": "Turnaround", "value": "5 business days" } },
-        "faq-1": { "type": "faq", "settings": { "question": "How fast do I get a custom 10x20 tent?", "answer": "<p>Five business days from approved proof to ship — guaranteed, nationwide.</p>" } },
+        "faq-1": { "type": "faq", "settings": { "question": "How fast do I get a custom 10x20 tent?", "answer": "<p>Five business days from approved proof to ship — nationwide.</p>" } },
         "faq-2": { "type": "faq", "settings": { "question": "Is a 10x20 better than two 10x10s?", "answer": "<p>For a double-booth space, yes — one continuous 20-foot canopy reads as a single brand moment instead of two tents pushed together.</p>" } },
         "faq-3": { "type": "faq", "settings": { "question": "Do I see it before it prints?", "answer": "<p>Always. Nothing prints until you approve the free digital proof.</p>" } },
         "faq-4": { "type": "faq", "settings": { "question": "Will the print fade outdoors?", "answer": "<p>No. Dye sublimation bonds the ink into the fabric so it holds color in sun and weather.</p>" } }

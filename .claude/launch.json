@@ -6,6 +6,12 @@
       "runtimeExecutable": "shopify",
       "runtimeArgs": ["theme", "dev", "--path", "theme_export__promongrow-com-dawn__12APR2026-0148am"],
       "port": 9293
+    },
+    {
+      "name": "png-campaign-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4599"],
+      "port": 4599
     }
   ]
 }

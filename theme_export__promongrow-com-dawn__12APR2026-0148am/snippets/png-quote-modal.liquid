@@ -58,6 +58,30 @@
           <h3>Got it — your proof is on the way.</h3>
           <p>Carlos got the request. You'll have a free proof back within 24 business hours. If it's time-sensitive, call <a href="tel:8448833308">(844) 883-3308</a>.</p>
         </div>
+
+        {%- comment -%}
+          Quote-submit conversions fire HERE, on the server-rendered success page. The JS submit handler below only does a dataLayer.push and the browser then navigates away, so a beacon fired on-submit dies in the page unload; and the png-tracking-pixels.liquid listener ('png:quote_request_submitted') is never dispatched. This is the reliable fire point. (Wiring audited + fixed 2026-06-20 — see wiki conversion-tracking-setup.)
+        {%- endcomment -%}
+        {%- assign gads_id = settings.google_ads_id | strip -%}
+        {%- assign gads_label = settings.google_ads_quote_label | strip -%}
+        {%- assign meta_id = settings.meta_pixel_id | strip -%}
+        <script>
+          (function () {
+            try {
+              {%- if meta_id != blank -%}
+              if (typeof fbq === 'function') { fbq('track', 'Lead', { source: 'png-quote-modal' }); }
+              {%- endif -%}
+              {%- if gads_id != blank -%}
+              if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', { currency: '{{ shop.currency }}', source: 'png-quote-modal' });
+                {%- if gads_label != blank -%}
+                gtag('event', 'conversion', { send_to: '{{ gads_id }}/{{ gads_label }}' });
+                {%- endif -%}
+              }
+              {%- endif -%}
+            } catch (e) {}
+          })();
+        </script>
       {%- endif -%}
 
       {%- if form.errors -%}

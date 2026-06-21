@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNG Growth Offensive — Game Plan & Projections</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#1B2838; --navy2:#243446; --copper:#C17A3A; --green:#1E6B4A;
+    --off:#F7F7F5; --ink:#16212C; --muted:#8A98A6; --line:rgba(255,255,255,.08);
+    --card:#1f2e3e; --good:#3FA776; --warn:#E0A03C; --bad:#D9695A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--navy);color:var(--off);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 22px 80px}
+  h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;letter-spacing:.2px}
+  .serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+  header.hero{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:28px}
+  .kicker{color:var(--copper);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+  header.hero h1{font-size:40px;line-height:1.1;margin:8px 0 6px}
+  header.hero p{color:var(--muted);max-width:760px;font-size:15px}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .pill{background:var(--navy2);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:12.5px;color:#cdd7e0}
+  .pill b{color:#fff}
+  section{margin:40px 0}
+  .acttag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+    padding:5px 12px;border-radius:6px;margin-bottom:14px}
+  .act1{background:rgba(30,107,74,.18);color:#6fd3a4;border:1px solid rgba(30,107,74,.5)}
+  .act2{background:rgba(217,105,90,.16);color:#f0a193;border:1px solid rgba(217,105,90,.45)}
+  .act3{background:rgba(193,122,58,.18);color:#e6b074;border:1px solid rgba(193,122,58,.5)}
+  h2.sec{font-size:28px;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+  .alert{background:linear-gradient(180deg,#2a2418,#241f15);border:1px solid rgba(224,160,60,.45);
+    border-left:4px solid var(--warn);border-radius:12px;padding:20px 22px;margin:22px 0}
+  .alert h3{color:var(--warn);font-size:19px;margin-bottom:8px}
+  .alert p{font-size:14px;color:#e9e2d4;margin-bottom:8px}
+  .alert p:last-child{margin-bottom:0}
+  .grid{display:grid;gap:16px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:880px){.g4,.g3,.g2{grid-template-columns:1fr 1fr}header.hero h1{font-size:30px}}
+  @media(max-width:560px){.g4,.g3,.g2{grid-template-columns:1fr}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .kpi .lbl{font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+  .kpi .val{font-family:'DM Serif Display',Georgia,serif;font-size:30px;margin:6px 0 2px;color:#fff}
+  .kpi .val.green{color:var(--good)} .kpi .val.copper{color:#e6b074}
+  .kpi .note{font-size:12px;color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card h3{font-size:18px;margin-bottom:4px}
+  .card .chL{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .chartbox{position:relative;height:300px}
+  .chartbox.tall{height:340px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--copper);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+  td b{color:#fff}
+  .engine{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;position:relative;overflow:hidden}
+  .engine::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green)}
+  .engine.e2::before{background:var(--copper)}
+  .engine h3{font-size:20px;margin-bottom:2px}
+  .engine .tag{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .engine ul{list-style:none;margin-top:6px}
+  .engine li{padding:7px 0 7px 22px;position:relative;font-size:13.5px;color:#dbe3ea;border-bottom:1px solid rgba(255,255,255,.05)}
+  .engine li:last-child{border:0}
+  .engine li::before{content:"▸";position:absolute;left:0;color:var(--copper)}
+  .opt{background:var(--navy2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+  .opt.rec{border-color:rgba(63,167,118,.55);background:rgba(30,107,74,.12)}
+  .opt h4{font-size:15px;margin-bottom:6px;color:#fff}
+  .opt .badge{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--good);margin-left:8px}
+  .opt p{font-size:13px;color:#c3ccd5}
+  .opt .pro{color:#8fd9b3} .opt .con{color:#edb4aa}
+  .redgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:780px){.redgrid{grid-template-columns:1fr}}
+  .red{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:12px;padding:16px}
+  .red .n{font-family:'DM Serif Display',Georgia,serif;color:var(--bad);font-size:22px;float:left;margin:-2px 12px 0 0;line-height:1}
+  .red p{font-size:13px;color:#dbe3ea}
+  .red b{color:#fff}
+  .fix{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--good);border-radius:12px;padding:16px;margin-bottom:12px}
+  .fix .h{font-size:14.5px;font-weight:700;color:#fff;margin-bottom:5px}
+  .fix .maps{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+  .fix p{font-size:13px;color:#dbe3ea}
+  .timeline{position:relative;margin-top:10px}
+  .twk{display:grid;grid-template-columns:90px 1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--line)}
+  .twk:first-child{font-weight:700}
+  .twk>div{padding:11px 12px;font-size:13px}
+  .twk .w{color:var(--copper);font-weight:700}
+  .twk.head>div{color:var(--copper);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  @media(max-width:680px){.twk{grid-template-columns:64px 1fr}.twk .hidem{display:none}}
+  .foot{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#c3ccd5;margin-top:12px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .cta{background:linear-gradient(135deg,#243446,#1c2a39);border:1px solid rgba(193,122,58,.4);border-radius:16px;padding:24px}
+  .cta ol{margin:10px 0 0 20px} .cta li{margin:8px 0;font-size:14px;color:#e3e9ee}
+  .num-strip{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Promo &amp; Grow · Co-CEO Strategy</div>
+    <h1>The Growth Offensive</h1>
+    <p>Activating cold email + light paid to feed Venus — built, attacked by a competitor, and rebuilt to survive the attack. June 15, 2026.</p>
+    <div class="pillrow">
+      <span class="pill">Budget <b>$500–$1k/mo</b></span>
+      <span class="pill">Segment <b>LA-Metro Spanish SMBs</b></span>
+      <span class="pill">Metric <b>Paid revenue / ROAS</b></span>
+      <span class="pill">Closer <b>Venus · 5–10 leads/day</b></span>
+      <span class="pill">Launch <b>This week</b></span>
+      <span class="pill">AOV <b>~$400</b></span>
+    </div>
+  </header>
+
+  <!-- TARGETS -->
+  <div class="grid g4">
+    <div class="kpi"><div class="lbl">90-Day Net-New Target</div><div class="val green">$10–13K</div><div class="note">on top of warm/reactivation base</div></div>
+    <div class="kpi"><div class="lbl">Blended ROAS Goal</div><div class="val copper">≥ 3:1</div><div class="note">measured on closed invoices</div></div>
+    <div class="kpi"><div class="lbl">Cost / Closed Deal</div><div class="val">&lt; $130</div><div class="note">the real efficiency number</div></div>
+    <div class="kpi"><div class="lbl">Speed-to-Lead SLA</div><div class="val">&lt; 1 hr</div><div class="note">the #1 KPI</div></div>
+  </div>
+
+  <!-- READ FIRST -->
+  <div class="alert">
+    <h3>⚠️ Read this first — two collisions in the inputs</h3>
+    <p><b>1. Venus is the throttle, not the budget.</b> At 5–10 leads/day while she's also closing reactivation + live deals, real capacity is ~3–6 quality conversations/day. Every lead past that line rots. The goal is <b>max closed revenue per lead she can work</b> — not max leads.</p>
+    <p><b>2. "Cold email, 50–75/day, this week" isn't safe.</b> A clean domain must warm over 4–6 weeks (start 5–10/day) or it gets blacklisted under 2024+ bulk-sender rules. So <b>this week = paid live + domain starts warming</b>; cold reaches full volume ~week 4–5.</p>
+  </div>
+
+  <!-- ACT 1 -->
+  <section>
+    <span class="acttag act1">Act 1 — The Game Plan</span>
+    <h2 class="sec">Two engines, one funnel into Venus</h2>
+    <p class="sub">Retargeting-first paid (highest-ROAS dollar) + a warmed cold-email machine — both throttled to what Venus can close.</p>
+
+    <div class="grid g2" style="margin-bottom:16px">
+      <div class="engine">
+        <h3>Engine 1 — Light Paid</h3>
+        <div class="tag">Retargeting-first · feeds warm leads now</div>
+        <ul>
+          <li><b>Retargeting</b> ($400) — site visitors, engagers, + past-customer Custom Audience (the reactivation list)</li>
+          <li><b>Google Search</b> ($150) — high-intent local terms: "custom tents los angeles," "carpas personalizadas"</li>
+          <li><b>Meta prospecting</b> ($200) — bilingual lead-form ads, Lookalike of past buyers, LA-metro geo</li>
+          <li>Hook (ES): <i>"Mira tu diseño GRATIS antes de pagar — entrega en 5 días."</i></li>
+          <li>Optimize to <b>Lead</b> events, never phantom web-cart purchases</li>
+        </ul>
+      </div>
+      <div class="engine e2">
+        <h3>Engine 2 — Cold Email</h3>
+        <div class="tag">The "in the pocket" campaign · warms now, fires week 4</div>
+        <ul>
+          <li>Send only from <b>promotengrow.com</b> — never the main domain</li>
+          <li><b>2 inboxes</b>, SPF + DKIM + DMARC, one-click unsubscribe, warmup ON</li>
+          <li>Ramp 10→20→30/inbox → <b>~60/day live ~week 4–5</b></li>
+          <li>List: LA-metro Spanish SMBs (restaurants, vendors, churches, party economy)</li>
+          <li>Bilingual 3-touch; job = <b>start a conversation Venus finishes</b></li>
+          <li>Auto-pause if spam &gt; 0.08% or bounces &gt; 1.5%</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW 1 -->
+    <div class="grid g2">
+      <div class="card">
+        <h3>Monthly paid budget split</h3>
+        <div class="chL">$750/mo midpoint · hardened allocation (incl. Google Search line)</div>
+        <div class="chartbox"><canvas id="budget"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Cold-email warmup ramp</h3>
+        <div class="chL">Total daily sends across 2 inboxes — safe path to the 50–75/day target</div>
+        <div class="chartbox"><canvas id="warmup"></canvas></div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW 2 -->
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card">
+        <h3>90-day closed-revenue projection</h3>
+        <div class="chL">By channel — cold near-zero in month 1 (warming), ramps month 2–3</div>
+        <div class="chartbox tall"><canvas id="proj"></canvas></div>
+        <div class="legend">
+          <span><i class="dot" style="background:#1E6B4A"></i>Retargeting</span>
+          <span><i class="dot" style="background:#3FA776"></i>Google Search</span>
+          <span><i class="dot" style="background:#C17A3A"></i>Meta prospecting</span>
+          <span><i class="dot" style="background:#E0A03C"></i>Cold email</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Steady-state monthly funnel</h3>
+        <div class="chL">Month-3 representative — capped at Venus's real capacity</div>
+        <div class="chartbox tall"><canvas id="funnel"></canvas></div>
+      </div>
+    </div>
+
+    <!-- APOLLO OPTIONS -->
+    <div class="card" style="margin-top:16px">
+      <h3>Your Apollo options (it's tied to Proago — don't mix it)</h3>
+      <div class="chL">How to run PNG cold email without polluting the Proago workspace</div>
+      <div class="opt">
+        <h4>Option A — Add a PNG mailbox to the existing Apollo account</h4>
+        <p><span class="pro">+ Cheapest, no new subscription.</span> <span class="con">– Shares reputation + data with Proago; not truly clean.</span> Fine as a stopgap.</p>
+      </div>
+      <div class="opt">
+        <h4>Option B — Separate Apollo seat/workspace for PNG</h4>
+        <p><span class="pro">+ Fully isolated; Venus gets her own scoped login.</span> <span class="con">– Another seat cost; still using Apollo to send, which it's not best at.</span></p>
+      </div>
+      <div class="opt rec">
+        <h4>Option C — Apollo for data + dedicated sender <span class="badge">★ Recommended</span></h4>
+        <p>Use Apollo to <b>build &amp; verify the list</b>, then <b>send via Instantly/Smartlead</b> on promotengrow.com. <span class="pro">+ Built-in warmup, inbox rotation, spam alarms, one-click unsubscribe, DMARC.</span> <span class="con">– Two tools (~$30–100/mo).</span> Deliverability is the whole ballgame — worth it.</p>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="card" style="margin-top:16px">
+      <h3>Week-by-week (starting this week)</h3>
+      <div class="chL">"This week" honored where safe (paid), respected where it isn't (cold)</div>
+      <div class="timeline">
+        <div class="twk head"><div>Week</div><div>Paid</div><div class="hidem">Cold email</div><div class="hidem">Venus</div></div>
+        <div class="twk"><div class="w">1 · now</div><div>Verify pixel/tag + Lead event; scale retargeting; build lead form + UTM path</div><div class="hidem">Stand up 2 inboxes, SPF/DKIM/DMARC, warmup ON; build list in Apollo</div><div class="hidem">Reactivation + live deals; brief on 1-hr SLA</div></div>
+        <div class="twk"><div class="w">2</div><div>Meta prospecting + Google Search live; watch CPL</div><div class="hidem">Warmup continues; finalize 3-touch sequence</div><div class="hidem">First paid leads trickle in; log source</div></div>
+        <div class="twk"><div class="w">3</div><div>Kill worst ad, double best</div><div class="hidem">Real sends begin ~20–30/day; monitor spam</div><div class="hidem">Paid leads + first cold replies</div></div>
+        <div class="twk"><div class="w">4–5</div><div>First ROAS read on closed invoices</div><div class="hidem">Ramp to 50–75/day</div><div class="hidem">Full inflow at her cap; first cold closes</div></div>
+        <div class="twk"><div class="w">6+</div><div>Reallocate to what's closing</div><div class="hidem">Steady-state; rotate list</div><div class="hidem">Scoreboard review; decide on 2nd closer</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 2 -->
+  <section>
+    <span class="acttag act2">Act 2 — Red-Team</span>
+    <h2 class="sec">How an aggressive competitor beats this plan</h2>
+    <p class="sub">"I run a bigger LA display shop with more budget and an SDR team. Here's where it cracks."</p>
+    <div class="redgrid">
+      <div class="red"><span class="n">1</span><p><b>Your closer is the single point of failure.</b> One closer at 5–10/day, already loaded. I don't beat your marketing — I let leads pile up unworked and reach them first.</p></div>
+      <div class="red"><span class="n">2</span><p><b>You ceded high-intent Google Search.</b> $0 to the person Googling "custom tents LA" right now. I own that auction; you fish where the fish are full.</p></div>
+      <div class="red"><span class="n">3</span><p><b>Your wedge is copyable by Friday.</b> "Free proof + 5-day" is a landing-page change for me. Once your ads prove it converts, I run the same Spanish creative with a bigger budget.</p></div>
+      <div class="red"><span class="n">4</span><p><b>Cold email is a coin flip on a fragile base.</b> One bad list and promotengrow.com is blacklisted. Send from the main domain once and your invoices die — replies already hit SPAM.</p></div>
+      <div class="red"><span class="n">5</span><p><b>"This week" makes you sloppy.</b> Rush cold before warmup → torched domain. Rush a lead form → junk leads. I bet you cut the warmup corner.</p></div>
+      <div class="red"><span class="n">6</span><p><b>ROAS on a small budget is noise.</b> A handful of closes/mo + one lumpy deal swings the number wildly. You'll cut a winner or fund a fluke.</p></div>
+      <div class="red"><span class="n">7</span><p><b>Lead-form ads attract tire-kickers.</b> Cheap CPL, terrible close rate. You celebrate "30 leads!" while cost-per-closed-deal explodes.</p></div>
+      <div class="red"><span class="n">8</span><p><b>The Spanish-SMB niche is tight-knit.</b> One slipped follow-through or late "5-day" delivery under new volume, and word poisons the well. I amplify any stumble.</p></div>
+      <div class="red"><span class="n">9</span><p><b>No retention loop.</b> All acquisition. You pay to win a $400 customer once; I build the reorder engine and win on LTV.</p></div>
+      <div class="red"><span class="n">10</span><p><b>No kill-criteria or attribution discipline.</b> "We'll watch ROAS" isn't a control system. By-memory attribution = you won't even know what worked.</p></div>
+    </div>
+  </section>
+
+  <!-- ACT 3 -->
+  <section>
+    <span class="acttag act3">Act 3 — The Hardened Rebuild</span>
+    <h2 class="sec">Same engines, fortified against every exposure</h2>
+    <p class="sub">Each fix maps to the attack it neutralizes.</p>
+
+    <div class="grid g2">
+      <div>
+        <div class="fix"><div class="h">1 · Capacity is the design center</div><div class="maps">Neutralizes attacks 1, 7</div><p>Size inflow to ~5–6 quality leads/day. Start retargeting-only so first leads close fast. 60-sec qualifier filters tire-kickers. Auto-pause prospecting if backlog &gt; 8 for 3 days — or green-light a 2nd closer.</p></div>
+        <div class="fix"><div class="h">2 · Add a ring-fenced Google Search line</div><div class="maps">Neutralizes attack 2</div><p>Carve $150/mo for 3–5 exact high-intent local terms, geo-fenced, negative-keyworded. Captures the ready-to-buy searcher. New split: $400 / $150 / $200.</p></div>
+        <div class="fix"><div class="h">3 · Protect the wedge with trust</div><div class="maps">Neutralizes attacks 3, 8</div><p>They can copy the words, not owned LA production + a bilingual human who calls in an hour + real relationships. Bundle the offer with logos, tenure ("formerly PrintCo Direct"), job photos, Spanish video testimonial.</p></div>
+      </div>
+      <div>
+        <div class="fix"><div class="h">4 · De-risk deliverability to near-zero</div><div class="maps">Neutralizes attacks 4, 5</div><p>Written rule: cold only from promotengrow.com. Option C (warmup + rotation + spam alarms). No corner-cut on warmup. Auto-pause at 0.08% spam. Separately fix the main-domain SPAM issue.</p></div>
+        <div class="fix"><div class="h">5 · Stable scoreboard, not noisy ROAS</div><div class="maps">Neutralizes attacks 6, 10</div><p>Judge on rolling 60-day cost-per-closed-deal (&lt;$130) + leading indicators. Instrumented attribution (how'd-you-hear + UTM + HubSpot source). Written kill/scale rules.</p></div>
+        <div class="fix"><div class="h">6 · Bolt on the reorder loop</div><div class="maps">Neutralizes attack 9</div><p>Reactivation list = cheapest revenue; retarget past customers while Venus calls them (air + ground). Seasonal reorder triggers. Every new customer enters the loop day one.</p></div>
+      </div>
+    </div>
+
+    <!-- HARDENED SCOREBOARD -->
+    <div class="card" style="margin-top:16px">
+      <h3>The hardened scoreboard</h3>
+      <div class="chL">What we actually watch — leading indicators stabilize before lumpy revenue arrives</div>
+      <table>
+        <tr><th>Metric</th><th>Target</th><th>Why it's here</th></tr>
+        <tr><td><b>Speed-to-lead</b> (lead → first touch)</td><td>&lt; 1 hr</td><td>The #1 lever; guards the capacity exposure</td></tr>
+        <tr><td><b>Untouched-lead backlog</b></td><td>&lt; 8, else throttle</td><td>Demand never outruns Venus</td></tr>
+        <tr><td>Cost per <b>qualified</b> lead</td><td>&lt; $40</td><td>Beats vanity CPL</td></tr>
+        <tr><td>Cost per <b>closed deal</b></td><td>&lt; $130</td><td>The real efficiency number</td></tr>
+        <tr><td>Blended ROAS (closed, 60-day)</td><td>≥ 3:1</td><td>Your goal, measured honestly</td></tr>
+        <tr><td>Cold spam-complaint rate</td><td>&lt; 0.08% (auto-pause)</td><td>Protects the domain</td></tr>
+        <tr><td>Reorder / repeat rate</td><td>trending up</td><td>The LTV moat</td></tr>
+      </table>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta" style="margin-top:16px">
+      <h3>To pull the triggers this week</h3>
+      <ol>
+        <li><b>Green-light Option C</b> (Apollo for data + Instantly/Smartlead for sending) — or pick Option A to save the subscription.</li>
+        <li>Confirm I can <b>set up the 2 promotengrow.com sending inboxes</b> (handled the safe way — never passwords in files).</li>
+        <li>Confirm the <b>$400 / $150 / $200</b> paid split, or adjust within $500–$1k.</li>
+        <li>Say go and I'll <b>draft the bilingual 3-touch sequence + Meta lead-form creative</b>, build the <b>Apollo list</b>, and stand up the <b>revenue-by-source tracker</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="foot">
+    Built to fail safe: paid is reversible day-to-day, cold can't burn the main domain, and Venus can never be buried. We grow exactly as fast as we can close — and not one lead faster.
+    <br><br>Projections are planning estimates at ~$400 AOV and the stated $750/mo midpoint budget; actuals depend on close rate, deliverability, and Venus's realized capacity. Deliverability mechanics per Google/Yahoo/Microsoft bulk-sender rules (2024, hardened Nov 2025). · Promo &amp; Grow · Confidential · June 15, 2026
+  </div>
+</div>
+
+<script>
+Chart.defaults.color = '#8A98A6';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif";
+Chart.defaults.font.size = 12;
+const NAVY='#1B2838', COPPER='#C17A3A', GREEN='#1E6B4A', GREEN2='#3FA776', AMBER='#E0A03C', GRID='rgba(255,255,255,.07)';
+const money = v => '$'+v.toLocaleString();
+
+// Budget donut
+new Chart(document.getElementById('budget'), {
+  type:'doughnut',
+  data:{labels:['Retargeting','Google Search','Meta prospecting'],
+    datasets:[{data:[400,150,200],backgroundColor:[GREEN,GREEN2,COPPER],borderColor:NAVY,borderWidth:3}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+    plugins:{legend:{position:'bottom',labels:{padding:14,boxWidth:12}},
+      tooltip:{callbacks:{label:c=>c.label+': '+money(c.parsed)+'/mo'}}}}
+});
+
+// Warmup ramp
+new Chart(document.getElementById('warmup'), {
+  type:'line',
+  data:{labels:['Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6'],
+    datasets:[{label:'Total cold sends/day',data:[20,40,60,70,70,70],
+      borderColor:COPPER,backgroundColor:'rgba(193,122,58,.15)',fill:true,tension:.35,
+      pointBackgroundColor:COPPER,pointRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},
+      tooltip:{callbacks:{label:c=>c.parsed.y+' emails/day'}},
+      annotation:false},
+    scales:{y:{beginAtZero:true,grid:{color:GRID},title:{display:true,text:'emails / day'}},
+      x:{grid:{display:false}}}}
+});
+
+// 90-day stacked revenue
+new Chart(document.getElementById('proj'), {
+  type:'bar',
+  data:{labels:['Month 1','Month 2','Month 3'],
+    datasets:[
+      {label:'Retargeting',data:[1200,1400,1600],backgroundColor:GREEN,stack:'s'},
+      {label:'Google Search',data:[400,600,800],backgroundColor:GREEN2,stack:'s'},
+      {label:'Meta prospecting',data:[700,900,1100],backgroundColor:COPPER,stack:'s'},
+      {label:'Cold email',data:[0,1500,3000],backgroundColor:AMBER,stack:'s'}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},
+      tooltip:{callbacks:{label:c=>c.dataset.label+': '+money(c.parsed.y)},
+        footerColor:'#fff',
+        footer:items=>'Total: '+money(items.reduce((s,i)=>s+i.parsed.y,0))}},
+    scales:{x:{stacked:true,grid:{display:false}},
+      y:{stacked:true,grid:{color:GRID},ticks:{callback:v=>'$'+(v/1000)+'k'}}}}
+});
+
+// Funnel (horizontal bar)
+new Chart(document.getElementById('funnel'), {
+  type:'bar',
+  data:{labels:['Leads in','Qualified convos','Quotes sent','Closed deals'],
+    datasets:[{data:[120,70,35,14],
+      backgroundColor:[NAVY==='x'?NAVY:'#33648a','#2f7d9a',COPPER,GREEN2],
+      borderRadius:6,barPercentage:.78}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},
+      tooltip:{callbacks:{label:c=>{
+        const d=c.dataset.data, base=d[0];
+        const pct = Math.round(c.parsed.x/base*100);
+        const extra = c.dataIndex===3 ? '  ·  ~'+money(14*400)+' @ $400 AOV' : '';
+        return c.parsed.x+' ('+pct+'% of leads)'+extra;}}}},
+    scales:{x:{beginAtZero:true,grid:{color:GRID}},y:{grid:{display:false}}}}
+});
+</script>
+</body>
+</html>

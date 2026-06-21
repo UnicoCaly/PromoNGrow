@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "f4470919c101ad83",
+    "type": "split",
+    "children": [
+      {
+        "id": "19c0e4ac6e36973d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3ba7f3fb9a5e76ee",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7192ad83033bf5d4",
+    "type": "split",
+    "children": [
+      {
+        "id": "3781a8adc4da7556",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1c60ee6d1dfbb139",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "3eb82a39c799b9ec",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "9cfcd48544b3676b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "dcefa7746ea72a5c",
+    "type": "split",
+    "children": [
+      {
+        "id": "413cd86fd032e51f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6a10f9bacd6c33b1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "f46d6fe6508d2809",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "27f340b45aa6aa95",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "df4a55729d16e642",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "4de4f63cb4f3d004",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "3ba7f3fb9a5e76ee",
+  "lastOpenFiles": [
+    "wiki/concepts/store-and-catalog.md",
+    "wiki/index.md.tmp.1644.f6e245b2fb3c",
+    "wiki/programs/summer-of-futbol-campaign.md.tmp.1644.4ce7e33abaf5",
+    "wiki/concepts/email-campaign-engine.md",
+    "raw/Alex Hermozi - This Email Campaign Generates Sales [Full Breakdown].pdf",
+    "raw/ Cold Emailing in 2026: The Only System SDRs and AEs Need.pdf",
+    "wiki/index.md",
+    "wiki/index.md.tmp.1644.b04675d73355",
+    "wiki/index.md.tmp.1644.67629e4ef93e",
+    "wiki/index.md.tmp.1644.31afbb8128b9",
+    "wiki/deals/venus-work-queue.md.tmp.1644.3b9809a7a119",
+    "wiki/people/venus-sales-playbook.md.tmp.1644.b97ddd4e5317",
+    "wiki/concepts/fulfillment-sop.md.tmp.1644.9ffda730d131",
+    "wiki/concepts/claude-code.md",
+    "wiki/people/carlos.md",
+    "wiki/people/sell-guide.md",
+    "wiki/programs/cold-email-segment-copy.md",
+    "wiki/concepts/apollo-two-brand-setup.md",
+    "wiki/programs/lead-machine.md",
+    "wiki/brand/png-voice.md",
+    "wiki/log.md",
+    "wiki/deals/apollo-net-new-list.md",
+    "wiki/concepts/deal-followup-playbook.md",
+    "wiki/deals/venus-work-queue.md",
+    "wiki/programs/reactivation-outreach.md",
+    "wiki/concepts/theme-build-status.md",
+    "wiki/programs/summer-of-futbol-campaign.md",
+    "wiki/concepts/day-1-run-of-show.md",
+    "wiki/concepts/sop-library.md",
+    "wiki/people/venus-sales-playbook.md",
+    "wiki/people/venus-onboarding-kit.md",
+    "wiki/concepts/competitive-war-room.md",
+    "wiki/programs/meta-lead-form.md",
+    "wiki/programs/cold-email-sequence.md",
+    "wiki/programs/growth-offensive.md",
+    "wiki/brand/spanish-money-page-copy.md",
+    "raw/Promo N Grow Site-4 (1).png",
+    "raw/Promo N Grow Site-6 (1).png",
+    "raw/Promo N Grow Site-5.png",
+    "raw/Promo N Grow Site-7.png",
+    "raw/Promo N Grow Site-8.png",
+    "raw/Promo N Grow Site-11.png",
+    "Untitled.canvas"
+  ]
+}

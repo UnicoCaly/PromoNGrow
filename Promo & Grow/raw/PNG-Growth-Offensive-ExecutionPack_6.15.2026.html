@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PNG Growth Offensive — Execution Pack</title>
+<style>
+  :root{
+    --navy:#1B2838;--navy2:#243446;--copper:#C17A3A;--green:#1E6B4A;--green2:#3FA776;
+    --off:#F7F7F5;--ink:#1a2530;--muted:#62707d;--line:#e4e8ec;--warn:#b9821f;--bad:#c0563f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--off);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.2}
+  a{color:var(--copper);text-decoration:none}
+  /* sticky nav */
+  .nav{position:sticky;top:0;z-index:50;background:var(--navy);box-shadow:0 2px 12px rgba(0,0,0,.18)}
+  .nav-in{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:11px 20px;flex-wrap:wrap}
+  .nav .brand{color:#fff;font-family:'DM Serif Display',Georgia,serif;font-size:18px;margin-right:auto}
+  .nav .brand b{color:var(--copper)}
+  .nav a{color:#cdd7e0;font-size:13px;font-weight:600;padding:7px 13px;border-radius:8px;transition:.15s}
+  .nav a:hover{background:var(--navy2);color:#fff}
+  .wrap{max-width:1000px;margin:0 auto;padding:34px 22px 90px}
+  header.hero{background:linear-gradient(135deg,#1B2838,#243446);color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:30px}
+  .kicker{color:var(--copper);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+  header.hero h1{font-size:38px;margin:8px 0 8px}
+  header.hero p{color:#c3ccd5;max-width:680px;font-size:15px}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 13px;font-size:12.5px;color:#dde4ea}
+  .pill b{color:#fff}
+  section.doc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px 32px;margin-bottom:26px;scroll-margin-top:70px;box-shadow:0 1px 3px rgba(20,33,44,.05)}
+  .doctag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+    padding:5px 12px;border-radius:6px;margin-bottom:12px;background:rgba(193,122,58,.12);color:#9a5e25;border:1px solid rgba(193,122,58,.3)}
+  section.doc h2{font-size:30px;color:var(--navy);margin-bottom:4px}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+  h3.part{font-size:21px;color:var(--navy);margin:30px 0 6px;padding-bottom:7px;border-bottom:2px solid var(--copper)}
+  h4.step{font-size:16px;color:var(--ink);margin:20px 0 4px}
+  h4.step .who{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:5px;margin-left:8px;vertical-align:middle}
+  .w-carlos{background:#e6edf6;color:#2b4a78}
+  .w-claude{background:#e7f1ec;color:#1d6b49}
+  .w-venus{background:#f6ece1;color:#9a5e25}
+  p{margin:9px 0;font-size:14.5px}
+  ul,ol{margin:9px 0 9px 22px}li{margin:5px 0;font-size:14.5px}
+  .callout{border-radius:12px;padding:15px 18px;margin:18px 0;font-size:14px}
+  .c-gold{background:#fbf5e9;border:1px solid #ecd9b0;border-left:4px solid var(--warn)}
+  .c-green{background:#eef6f1;border:1px solid #c8e3d4;border-left:4px solid var(--green)}
+  .c-red{background:#fbeee9;border:1px solid #f0cfc3;border-left:4px solid var(--bad)}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px}
+  th,td{text-align:left;padding:9px 11px;border:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;font-weight:700;font-family:inherit}
+  tr:nth-child(even) td{background:#f7f9fa}
+  code{background:#eef1f3;border:1px solid #dde3e8;border-radius:5px;padding:1px 6px;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:12.5px;color:#243446}
+  /* email cards */
+  .touch{border:1px solid var(--line);border-radius:14px;padding:0;margin:18px 0;overflow:hidden}
+  .touch .th{background:var(--navy);color:#fff;padding:12px 18px;font-family:'DM Serif Display',Georgia,serif;font-size:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+  .touch .th .day{font-size:12px;font-family:inherit;background:var(--copper);padding:3px 10px;border-radius:999px;font-weight:700}
+  .touch .body{padding:16px 18px}
+  .subj{font-size:13px;color:var(--muted);margin:2px 0}
+  .subj b{color:var(--ink)}
+  .email{border-radius:10px;padding:14px 16px;margin:10px 0;font-size:13.5px;white-space:pre-line}
+  .en{background:#f1f5f9;border-left:3px solid var(--navy2)}
+  .es{background:#f6efe7;border-left:3px solid var(--copper)}
+  .lang{font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:5px}
+  .concept{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fafbfc}
+  .concept h4{font-size:15px;color:var(--navy);margin-bottom:8px;font-family:inherit;font-weight:700}
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+  .top{display:inline-block;margin-top:14px;font-size:12.5px;color:var(--muted)}
+  @media print{.nav{position:static;box-shadow:none}body{background:#fff}section.doc{box-shadow:none;break-inside:avoid;border:none;padding:0 0 20px}header.hero{background:#1B2838 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  @media(max-width:640px){header.hero h1{font-size:28px}.nav .brand{width:100%;margin-bottom:4px}}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="nav-in">
+  <span class="brand">Promo&nbsp;&amp;&nbsp;Grow · <b>Execution Pack</b></span>
+  <a href="#runbook">Runbook</a>
+  <a href="#cold">Cold Email</a>
+  <a href="#meta">Meta Creative</a>
+</div></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Growth Offensive · Execution</div>
+    <h1>Cold Email + Ads — Execution Pack</h1>
+    <p>Everything needed to stand up the two engines and feed Venus warm leads. The step-by-step runbook, the bilingual cold sequence, and the Meta lead-form creative — in one place.</p>
+    <div class="pillrow">
+      <span class="pill">Segment <b>LA-Metro Spanish SMBs</b></span>
+      <span class="pill">Budget <b>~$800/mo all-in</b></span>
+      <span class="pill">Metric <b>Paid revenue / ROAS</b></span>
+      <span class="pill">Launch <b>This week</b></span>
+    </div>
+  </header>
+
+  <!-- ============ RUNBOOK ============ -->
+  <section class="doc" id="runbook">
+    <div class="doctag">Document 1 — Implementation Runbook</div>
+    <h2>The step-by-step to stand it all up</h2>
+    <p class="lede">Each step is tagged with who does it — <span class="who w-carlos">Carlos</span> (login/DNS/payment) · <span class="who w-claude">Claude</span> (I can do it) · <span class="who w-venus">Venus</span> (ongoing). Anything touching credentials, DNS, or payment is yours by design.</p>
+
+    <div class="callout c-gold"><b>Golden rules baked in:</b> cold sends only from <code>promotengrow.com</code> (never the main domain) · warm before you blast · throttle to Venus's capacity · log every lead's source · measure cost-per-closed-deal, not vanity leads.</div>
+
+    <h3 class="part">Part A — Cold Email Setup</h3>
+
+    <h4 class="step">A1 · Domain &amp; inboxes <span class="who w-carlos">Carlos · ~45 min</span></h4>
+    <ul>
+      <li>Confirm you own <code>promotengrow.com</code>, separate from main <code>promongrow.com</code> (it is). This is the cold-sending domain — if it takes a hit, invoices stay safe.</li>
+      <li>Set up hosting: <b>Google Workspace</b> (~$6/user/mo) or Microsoft 365.</li>
+      <li>Create <b>2 sending mailboxes</b> with real human identities: <code>venus@promotengrow.com</code> and <code>team@promotengrow.com</code> — each with a name, photo, signature.</li>
+    </ul>
+    <div class="callout c-gold">If <code>promotengrow.com</code> was just registered, it needs the <b>full 4–6 week warmup</b> before real sends — no shortcuts.</div>
+
+    <h4 class="step">A2 · DNS authentication (SPF / DKIM / DMARC) <span class="who w-carlos">Carlos · ~30 min</span></h4>
+    <ul>
+      <li><b>SPF</b> (TXT, host <code>@</code>): <code>v=spf1 include:_spf.google.com ~all</code></li>
+      <li><b>DKIM</b>: generate in Google Admin → Gmail → Authenticate email → publish the <code>google._domainkey</code> TXT → turn on.</li>
+      <li><b>DMARC</b> (TXT, host <code>_dmarc</code>): <code>v=DMARC1; p=none; rua=mailto:dmarc@promotengrow.com; pct=100</code> — start at <code>p=none</code>, move to <code>p=quarantine</code> after ~2 clean weeks.</li>
+      <li><b>Hygiene:</b> turn OFF open-tracking pixels; one plain link max from Touch 2 on (tracking now hurts placement).</li>
+    </ul>
+
+    <h4 class="step">A3 · Sending tool <span class="who w-carlos">Carlos acct</span> <span class="who w-claude">Claude config</span></h4>
+    <p>Option C: Apollo for data, dedicated sender for sending. Sign up for <b>Instantly</b> (~$37/mo) or <b>Smartlead</b> (~$39/mo) — both bring warmup, inbox rotation, spam monitoring, one-click unsubscribe, reply detection. Connect both mailboxes; <b>turn warmup ON now</b>.</p>
+
+    <h4 class="step">A4 · Warmup settings <span class="who w-claude">Claude</span></h4>
+    <ul>
+      <li>Warmup ramp from ~5–10/inbox/day, auto-increase; ~30% warmup reply rate.</li>
+      <li><b>Real-send caps:</b> 30–35/day per inbox → 2 inboxes ≈ <b>60/day</b> (inside the 50–75 target).</li>
+      <li>Window: Tue–Thu, 8am–3pm PT; random 60–180s delays.</li>
+    </ul>
+
+    <h4 class="step">A5 · Build the list in Apollo <span class="who w-claude">Claude · data-only</span></h4>
+    <ul>
+      <li>Geo: LA + South Gate, Lynwood, Huntington Park, Bell, Downey, East LA, Santa Ana radius.</li>
+      <li>1–50 employees; restaurants/food, religious orgs, events/party, auto, retail, personal care, real estate.</li>
+      <li>Titles: Owner, Founder, President, Manager, Marketing. <b>Verified email required.</b> First batch ~300–500.</li>
+      <li>Export → import to cold tool → re-verify (keep bounces &lt; 2%). <b>Don't send from Apollo</b> — data lane only.</li>
+    </ul>
+
+    <h4 class="step">A6 · Load the sequence <span class="who w-claude">Claude</span></h4>
+    <p>Load the 3-touch bilingual sequence; map <code>{{first_name}}</code>, <code>{{business}}</code>, <code>{{city}}</code>, <code>{{product_angle}}</code> (by industry). Touch 1 Day 1 (no link) → Touch 2 Day 3 → Touch 3 Day 7. Auto-stop on reply; suppress unsubscribes.</p>
+
+    <h4 class="step">A7 · Pre-launch deliverability QA <span class="who w-claude">Claude</span></h4>
+    <p>Seed/inbox-placement test — aim <b>≥ 80% inbox</b> before scaling. Confirm replies route to Venus + tag <b>Source = Cold Email</b>.</p>
+
+    <h4 class="step">A8 · Warmup → live ramp</h4>
+    <table>
+      <tr><th>Week</th><th>Per inbox/day</th><th>Total/day</th><th>Mode</th></tr>
+      <tr><td>1 (this week)</td><td>5–10</td><td>warmup only</td><td>warming, no real sends</td></tr>
+      <tr><td>2</td><td>10–20</td><td>warmup only</td><td>warming</td></tr>
+      <tr><td>3</td><td>~20–25</td><td>~40–50</td><td>first real sends</td></tr>
+      <tr><td>4</td><td>~30</td><td>~60</td><td>scaling</td></tr>
+      <tr><td>5+</td><td>30–35</td><td>60–70</td><td>steady-state</td></tr>
+    </table>
+    <div class="callout c-red"><b>Auto-pause trigger:</b> spam complaints &gt; 0.08% or bounces &gt; 1.5% → stop, diagnose, re-verify list. Non-negotiable.</div>
+
+    <h3 class="part">Part B — Paid Ads Setup</h3>
+
+    <h4 class="step">B1 · Tracking foundation (FIRST) <span class="who w-carlos">Carlos</span> <span class="who w-claude">Claude</span></h4>
+    <ul>
+      <li><b>Meta Pixel</b> + Conversions API; create a <b>"Lead"</b> custom conversion (form submit / WhatsApp / phone click).</li>
+      <li><b>Google tag</b>: mark phone-call + form-submit as conversions.</li>
+      <li><b>UTMs:</b> <code>utm_source</code>=meta|google · <code>utm_medium</code>=retargeting|prospecting|cpc · <code>utm_campaign</code>=png_la_smb_2026 — these map straight to the scoreboard's Source column.</li>
+    </ul>
+
+    <h4 class="step">B2 · Audiences <span class="who w-carlos">Carlos upload</span> <span class="who w-claude">Claude spec</span></h4>
+    <ul>
+      <li><b>Custom Audiences:</b> site visitors (180d), IG/FB engagers (365d), video viewers, + <b>Customer-List upload of the reactivation accounts</b> (lapsed buyers see ads while Venus calls).</li>
+      <li><b>Lookalike</b> 1–3% of past buyers / best leads, LA-metro.</li>
+    </ul>
+
+    <h4 class="step">B3 · Meta retargeting campaign <span class="who w-carlos">Carlos</span> <span class="who w-claude">Claude</span></h4>
+    <p>Objective <b>Leads</b> · <b>$400/mo</b> (~$13/day) · warm Custom Audiences · retargeting creative + free-proof visual · destination = Instant Form or click-to-WhatsApp/phone.</p>
+
+    <h4 class="step">B4 · Meta prospecting lead-form <span class="who w-carlos">Carlos</span> <span class="who w-claude">Claude</span></h4>
+    <p>Objective <b>Leads</b> · <b>$200/mo</b> (~$6.50/day) · Lookalike + LA-metro + Spanish · Instant Form with the 6 qualifier questions · load Concepts 1–3 (EN+ES) · thank-you screen promises Venus's call + free proof.</p>
+
+    <h4 class="step">B5 · Google Search campaign <span class="who w-carlos">Carlos</span> <span class="who w-claude">Claude</span></h4>
+    <ul>
+      <li><b>$150/mo</b> (~$5/day) · Search · LA-metro · EN+ES.</li>
+      <li>Ad groups: Tents/Canopies, Banners/Signage, Trade-show. Phrase + exact only.</li>
+      <li>Negatives: free, jobs, hiring, wholesale, DIY, template, rental.</li>
+      <li>2 responsive ads/group leading with free proof + 5-day + bilingual; call extension rings Venus.</li>
+    </ul>
+
+    <h4 class="step">B6 · Lead routing &amp; logging <span class="who w-claude">Claude</span> <span class="who w-carlos">Carlos</span></h4>
+    <p>Instant notifications to Venus (target first touch &lt; 1 hr). Every lead logged to the scoreboard with the right Source.</p>
+
+    <h3 class="part">Part C — Combined Timeline &amp; Ownership</h3>
+    <table>
+      <tr><th>When</th><th>Cold email</th><th>Paid ads</th><th>Owner</th></tr>
+      <tr><td><b>This week</b></td><td>A1–A2 domain+DNS · A3–A4 tool+warmup ON · A5 list · A6 sequence</td><td>B1 tracking+Lead event · B2 audiences · <b>B3 retargeting LIVE</b></td><td>Carlos + Claude</td></tr>
+      <tr><td>Week 2</td><td>warmup · A7 QA</td><td><b>B4 prospecting + B5 Google LIVE</b> · B6 routing</td><td>Claude builds, Carlos approves spend</td></tr>
+      <tr><td>Week 3</td><td><b>first real sends</b> (~40–50/day)</td><td>kill worst ad, scale best</td><td>Claude + Venus</td></tr>
+      <tr><td>Week 4–5</td><td>ramp to 60–70/day</td><td>first ROAS read on closed invoices</td><td>Venus + Claude</td></tr>
+      <tr><td>Week 6+</td><td>steady-state, rotate list</td><td>reallocate to what's closing</td><td>weekly review</td></tr>
+    </table>
+
+    <h4 class="step">Cadence &amp; rules</h4>
+    <p><b>Venus daily (15 min):</b> check leads → call/reply &lt; 1 hr → log source + stage → enter Closed Revenue on Won.</p>
+    <p><b>Weekly (Carlos + Claude):</b> review scoreboard. <b>Scale</b> if rolling cost/close &lt; $130 and Venus has capacity · <b>Fix-or-cut</b> if after 60 days cost/close &gt; $250 · <b>Throttle prospecting</b> if backlog &gt; 8 for 3 days.</p>
+
+    <table>
+      <tr><th>Monthly budget</th><th>Cost</th></tr>
+      <tr><td>Meta retargeting</td><td>$400</td></tr>
+      <tr><td>Meta prospecting</td><td>$200</td></tr>
+      <tr><td>Google Search</td><td>$150</td></tr>
+      <tr><td><b>Paid subtotal</b></td><td><b>$750</b></td></tr>
+      <tr><td>Cold tool (Instantly/Smartlead)</td><td>~$40</td></tr>
+      <tr><td>Google Workspace (2 inboxes)</td><td>~$12</td></tr>
+      <tr><td><b>All-in</b></td><td><b>~$800/mo</b></td></tr>
+    </table>
+    <a href="#runbook" class="top">↑ back to top</a>
+  </section>
+
+  <!-- ============ COLD EMAIL ============ -->
+  <section class="doc" id="cold">
+    <div class="doctag">Document 2 — Cold Email Sequence (EN / ES)</div>
+    <h2>Bilingual 3-touch sequence</h2>
+    <p class="lede">Net-new LA-Metro Spanish SMBs (different from the call-first reactivation list). The job: not to close in the inbox — <b>start a conversation Venus finishes</b>. Lead with the wedge every time: free proof before you pay + 5-day delivery + we speak Spanish.</p>
+
+    <div class="callout c-gold"><b>Send settings:</b> from <code>promotengrow.com</code> only · plain text · Touch 1 = zero links · one link max after · one-line unsubscribe + address on every send · personalize the first line · under ~90 words.</div>
+
+    <div class="touch">
+      <div class="th"><span>Touch 1 — The intro</span><span class="day">Day 1 · no link</span></div>
+      <div class="body">
+        <p class="subj"><b>Subject A:</b> quick idea for {{business}} &nbsp;·&nbsp; <b>B:</b> {{first_name}} — your logo, free mockup &nbsp;·&nbsp; <b>ES:</b> una idea para {{business}}</p>
+        <div class="email en"><span class="lang">English</span>Hi {{first_name}}, I'm Venus with Promo & Grow, a local LA print & display shop. I work with {{city}} businesses like {{business}} on {{product_angle}}.
+Here's what's different about us: I'll send you a free proof with your logo before you pay a cent, and once you approve it we deliver in 5 business days.
+Worth a quick look for {{business}}? Just reply and I'll put a free mockup together.
+— Venus, Promo & Grow (formerly PrintCo Direct)</div>
+        <div class="email es"><span class="lang">Español</span>Hola {{first_name}}, le habla Venus de Promo & Grow, un taller local de impresión y displays aquí en LA. Trabajo con negocios de {{city}} como {{business}} en {{product_angle}}.
+Lo que nos hace diferentes: le mando una prueba GRATIS con su logo antes de que pague nada, y al aprobarla se lo entregamos en 5 días hábiles.
+¿Le interesa para {{business}}? Respóndame y le preparo un diseño gratis.
+— Venus, Promo & Grow (antes PrintCo Direct)</div>
+      </div>
+    </div>
+
+    <div class="touch">
+      <div class="th"><span>Touch 2 — The proof</span><span class="day">Day 3 · one link max</span></div>
+      <div class="body">
+        <p class="subj"><b>Subject:</b> re: quick idea for {{business}} (same thread) · <b>ES:</b> re: una idea para {{business}}</p>
+        <div class="email en"><span class="lang">English</span>Hi {{first_name}}, following up — I know you're busy running {{business}}.
+Quick example of how we work: a {{city}} {{business_type}} came to us last month for {{product_angle}}. We sent a free proof the same day, they tweaked the color, and it was in their hands in 5 days. No upfront risk.
+Want me to do the same for you? Reply YES and I'll start a free mockup — no cost, no commitment.
+— Venus</div>
+        <div class="email es"><span class="lang">Español</span>Hola {{first_name}}, le doy seguimiento — sé que anda ocupado con {{business}}.
+Un ejemplo de cómo trabajamos: un {{business_type}} aquí en {{city}} nos buscó el mes pasado para {{product_angle}}. Le mandamos la prueba gratis el mismo día, ajustó el color, y lo tuvo en sus manos en 5 días. Sin riesgo por adelantado.
+¿Quiere que haga lo mismo para usted? Responda SÍ y le empiezo un diseño gratis — sin costo ni compromiso.
+— Venus</div>
+      </div>
+    </div>
+
+    <div class="touch">
+      <div class="th"><span>Touch 3 — The easy out</span><span class="day">Day 7 · breakup</span></div>
+      <div class="body">
+        <p class="subj"><b>Subject:</b> should I close your file, {{first_name}}? · <b>ES:</b> ¿cierro su archivo, {{first_name}}?</p>
+        <div class="email en"><span class="lang">English</span>Hi {{first_name}}, I don't want to crowd your inbox — last note from me.
+If {{product_angle}} isn't on your radar right now, no worries at all. But if it is, I'd still love to send that free proof with your logo so you can see it before deciding anything.
+Just reply with a word and I'll take it from there. Either way, I'm rooting for {{business}}.
+— Venus, Promo & Grow</div>
+        <div class="email es"><span class="lang">Español</span>Hola {{first_name}}, no quiero llenarle el correo — este es mi último mensaje.
+Si {{product_angle}} no es prioridad ahorita, no hay problema. Pero si sí, con gusto le mando esa prueba gratis con su logo para que la vea antes de decidir.
+Respóndame con una palabra y yo me encargo del resto. De cualquier forma, le echo porras a {{business}}.
+— Venus, Promo & Grow</div>
+      </div>
+    </div>
+
+    <h4 class="step">Snippet library — <code>{{product_angle}}</code> by business type</h4>
+    <table>
+      <tr><th>Business type</th><th>EN</th><th>ES</th></tr>
+      <tr><td>Restaurant / food vendor</td><td>custom tents, table covers & menu signage</td><td>carpas, manteles con logo y señalización de menú</td></tr>
+      <tr><td>Church / ministry</td><td>event banners, backdrops & flyers</td><td>banners para eventos, fondos y volantes</td></tr>
+      <tr><td>Party / quinceañera vendor</td><td>step-&-repeat backdrops, banners & signage</td><td>fondos step-&-repeat, banners y letreros</td></tr>
+      <tr><td>Auto shop</td><td>vehicle magnets, banners & business cards</td><td>imanes para autos, banners y tarjetas</td></tr>
+      <tr><td>Salon / barber</td><td>window graphics, price boards & cards</td><td>gráficos para vidriera, tableros de precios y tarjetas</td></tr>
+      <tr><td>Real-estate team</td><td>yard signs, riders & flyers</td><td>letreros de jardín, riders y volantes</td></tr>
+      <tr><td>Retail / general SMB</td><td>banners, flags & branded display</td><td>banners, banderas y display de marca</td></tr>
+    </table>
+
+    <div class="callout c-green"><b>Reply handoff:</b> any reply → Venus's inbox → first touch &lt; 1 hr → switch to the First-Call Playbook voice (confirm, rapport, find the need, then offer the free proof) → log Source = Cold Email. Positive reply stops the sequence; unsubscribe removes immediately.</div>
+    <a href="#runbook" class="top">↑ back to top</a>
+  </section>
+
+  <!-- ============ META CREATIVE ============ -->
+  <section class="doc" id="meta">
+    <div class="doctag">Document 3 — Meta Lead-Form Creative + Qualifier</div>
+    <h2>Ad copy, qualifier &amp; targeting</h2>
+    <p class="lede">Optimized to <b>Lead</b> events, not phantom web-cart purchases. The 60-second qualifier filters tire-kickers before they reach Venus.</p>
+
+    <table>
+      <tr><th>Campaign</th><th>Budget</th><th>Objective</th><th>Audience</th></tr>
+      <tr><td>Retargeting</td><td>$400/mo</td><td>Leads</td><td>Site visitors, engagers, video viewers + past-customer Custom Audience</td></tr>
+      <tr><td>Prospecting (lead form)</td><td>$200/mo</td><td>Leads</td><td>Lookalike 1–3% + LA-metro geo + SMB interests, language Spanish</td></tr>
+      <tr><td>Google Search (separate)</td><td>$150/mo</td><td>—</td><td>Exact high-intent local terms</td></tr>
+    </table>
+
+    <h3 class="part">Prospecting — lead-form ad copy</h3>
+
+    <div class="concept">
+      <h4>Concept 1 — "See it free first" (risk reversal)</h4>
+      <div class="email en"><span class="lang">EN — primary text</span>Need banners, tents, or signage for your business? See your design FREE — with your logo — before you pay a cent. 👀 We're a local LA shop (formerly PrintCo Direct). Approve your free proof and we deliver in 5 business days. Hablamos español. Tap below and tell us what you need 👇</div>
+      <div class="email es"><span class="lang">ES — primary text</span>¿Necesita banners, carpas o letreros para su negocio? Vea su diseño GRATIS — con su logo — antes de pagar nada. 👀 Somos un taller local en LA (antes PrintCo Direct). Apruebe su prueba gratis y se lo entregamos en 5 días hábiles. Toque abajo y díganos qué necesita 👇</div>
+      <p class="subj"><b>Headline:</b> Free proof with your logo — before you pay · <b>ES:</b> Prueba gratis con su logo — antes de pagar · <b>CTA:</b> Get quote / Solicitar cotización</p>
+    </div>
+
+    <div class="concept">
+      <h4>Concept 2 — "5 days" (speed)</h4>
+      <div class="email en"><span class="lang">EN</span>Event coming up? We print custom tents, table covers, banners & signage in 5 business days — and you see a free proof with your logo before you pay. Local LA shop, bilingual team. Tell us what you need 👇</div>
+      <div class="email es"><span class="lang">ES</span>¿Tiene un evento pronto? Imprimimos carpas, manteles, banners y letreros en 5 días hábiles — y usted ve una prueba gratis con su logo antes de pagar. Taller local en LA, equipo bilingüe. Díganos qué necesita 👇</div>
+      <p class="subj"><b>Headline:</b> Custom displays in 5 days — free proof first · <b>CTA:</b> Get quote / Solicitar cotización</p>
+    </div>
+
+    <div class="concept">
+      <h4>Concept 3 — "Local &amp; bilingual" (trust)</h4>
+      <div class="email es"><span class="lang">ES — Spanish-first</span>Un taller de LA que habla su idioma y le entrega rápido. Carpas, banners, manteles, tarjetas y más — con prueba gratis antes de pagar y entrega en 5 días. Antes nos conocía como PrintCo Direct. Cuéntenos qué necesita 👇</div>
+      <p class="subj"><b>Headline (ES):</b> Impresión local que habla español · <b>CTA:</b> Solicitar cotización</p>
+    </div>
+
+    <h3 class="part">Retargeting — ad copy</h3>
+    <div class="concept">
+      <div class="email en"><span class="lang">EN</span>Still thinking it over? Let's make it easy — we'll send a free proof with your logo, no commitment, so you can see exactly what you're getting. Approve it and it ships in 5 days. Tap to grab your free mockup 👇</div>
+      <div class="email es"><span class="lang">ES</span>¿Todavía lo está pensando? Hagámoslo fácil — le mandamos una prueba gratis con su logo, sin compromiso, para que vea exactamente lo que recibirá. Apruébela y se envía en 5 días. Toque para su diseño gratis 👇</div>
+      <p class="subj"><b>Headline:</b> Your free proof is ready when you are · <b>CTA:</b> Get quote / Solicitar cotización</p>
+    </div>
+
+    <h3 class="part">The 60-second qualifier (Instant Form)</h3>
+    <ol>
+      <li><b>What do you need?</b> Tents/Canopies · Table covers · Banners/Flags · Signage · Business cards/Print · Vehicle magnets/graphics · Other</li>
+      <li><b>Business name</b></li>
+      <li><b>When do you need it / event date?</b> Within 1 week · 2–4 weeks · 1–2 months · Just exploring</li>
+      <li><b>Roughly how much are you looking to invest?</b> Under $250 · $250–$1,000 · $1,000–$3,000 · $3,000+ · Not sure yet</li>
+      <li><b>Best phone / WhatsApp</b> + <b>Email</b> (prefilled)</li>
+      <li><b>Preferred language / Idioma:</b> English · Español</li>
+    </ol>
+    <div class="callout c-green"><b>Keep it to these 6.</b> They give Venus everything to call prepared and skip price-shoppers. Thank-you screen promises her call + the free proof; each submission pings her for first touch &lt; 1 hr; auto-tag Source = Meta Lead.</div>
+
+    <h3 class="part">Creative direction &amp; targeting</h3>
+    <ul>
+      <li><b>Use real proof, not stock:</b> carousel of actual jobs (logos visible) · a "free proof" mockup shot · a 15-sec vertical Reel (blank → logo drops on → "FREE proof" → "5 days" stamp, Spanish VO) · or fast text-on-image in PNG navy/copper.</li>
+      <li><b>Targeting:</b> LA metro (25–30 mi), Spanish-primary + English sets, FB/IG feeds + Stories + Reels.</li>
+      <li><b>Compliance:</b> privacy-policy URL on lead ads; honor opt-outs; don't move lead-ad emails into the cold sequence without consent.</li>
+    </ul>
+    <div class="callout c-gold">I can generate the static creatives (free-proof mockup + text-on-image, EN/ES) with the design tools on request.</div>
+    <a href="#runbook" class="top">↑ back to top</a>
+  </section>
+
+  <div class="foot">
+    Promo &amp; Grow · Growth Offensive Execution Pack · Confidential · June 15, 2026 · Pairs with the Game-Plan Dashboard &amp; the Revenue-by-Source Scoreboard.<br>
+    Deliverability mechanics per Google/Yahoo/Microsoft bulk-sender rules (2024, hardened Nov 2025).
+  </div>
+</div>
+</body>
+</html>

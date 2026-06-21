@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo & Grow — Customer Journey Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2838; --slate:#2E3E50; --copper:#C17A3A; --copper-soft:#E29A5C;
+    --green:#1E6B4A; --white:#FFFFFF; --offwhite:#F7F7F5; --stone:#E8E2D8;
+    --ink:#1B2838; --muted:#6C757D; --line:rgba(27,40,56,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',system-ui,sans-serif;background:var(--offwhite);color:var(--ink);line-height:1.6;padding:48px 20px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+  h1{font-family:'DM Serif Display',Georgia,serif;font-size:42px;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+  h2{font-family:'DM Serif Display',Georgia,serif;font-size:26px;line-height:1.15;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;max-width:640px;margin-bottom:8px}
+  .rule{height:2px;width:64px;background:var(--copper);margin:18px 0 40px}
+  .section{margin:56px 0}
+  .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:18px}
+  .tag.now{background:#F3D9CC;color:#8a4a1f}
+  .tag.ideal{background:#D7E5DD;color:var(--green)}
+  .tag.target{background:var(--navy);color:var(--copper-soft)}
+
+  /* funnel */
+  .stage{display:flex;gap:0;align-items:stretch;background:var(--white);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  .stage .num{flex:0 0 56px;background:var(--navy);color:var(--white);font-family:'DM Serif Display',serif;font-size:22px;display:flex;align-items:center;justify-content:center}
+  .stage .body{padding:16px 20px;flex:1}
+  .stage .body h3{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;margin-bottom:3px}
+  .stage .body p{font-size:13.5px;color:var(--slate)}
+  .stage .metric{flex:0 0 170px;border-left:1px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;justify-content:center;text-align:right}
+  .stage .metric .big{font-family:'DM Serif Display',serif;font-size:24px;line-height:1}
+  .stage .metric .lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+  .leak{border-left:3px solid var(--copper)}
+  .leak .metric .big{color:var(--copper)}
+  .win .metric .big{color:var(--green)}
+  .drop{text-align:center;color:var(--muted);font-size:11px;letter-spacing:.08em;margin:2px 0 8px}
+  .arrow{text-align:center;color:var(--copper);font-size:14px;margin:-2px 0 8px}
+
+  .callout{background:var(--navy);color:var(--offwhite);border-radius:14px;padding:32px 34px;margin:40px 0}
+  .callout .eyebrow{color:var(--copper-soft)}
+  .callout h2{color:var(--white)}
+  .callout p{color:rgba(245,242,237,.85);font-size:15px;margin-top:8px}
+
+  .math{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:24px}
+  .math .cell{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+  .math .cell .big{font-family:'DM Serif Display',serif;font-size:30px;color:var(--navy)}
+  .math .cell .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  .math .eq{font-family:'DM Serif Display',serif;font-size:34px;color:var(--copper);text-align:center;margin:18px 0}
+  .result{background:var(--green);color:var(--white);border-radius:14px;padding:24px;text-align:center;margin-top:10px}
+  .result .big{font-family:'DM Serif Display',serif;font-size:38px}
+  .result .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-top:4px}
+
+  .bridge{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .bridge .b{flex:1;min-width:200px;background:var(--white);border:1px solid var(--line);border-left:3px solid var(--copper);border-radius:10px;padding:16px 18px}
+  .bridge .b h4{font-family:'DM Serif Display',serif;font-size:16px;font-weight:400;margin-bottom:4px}
+  .bridge .b p{font-size:13px;color:var(--slate)}
+  .foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);margin-top:48px;padding-top:18px}
+  @media(max-width:640px){
+    .stage{flex-direction:column}.stage .num{flex:none;padding:8px}.stage .metric{border-left:none;border-top:1px solid var(--line);text-align:left}
+    .math{grid-template-columns:1fr}h1{font-size:32px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Promo &amp; Grow · Strategy</div>
+  <h1>The Customer Journey</h1>
+  <p class="sub">Where buyers are now, where they should be, and the funnel math to $20K/month. Built on real Promo &amp; Grow Shopify data.</p>
+  <div class="rule"></div>
+
+  <!-- CURRENT -->
+  <div class="section">
+    <span class="tag now">Where it is today</span>
+    <h2>The leaky path</h2>
+    <p class="sub">Cold traffic is asked to self-checkout a custom $900 order from a brand it just met. Most don't. The few who convert were already warm.</p>
+    <div style="margin-top:24px"></div>
+
+    <div class="stage"><div class="num">1</div><div class="body"><h3>Discover</h3><p>Finds PNG via search, social, or referral — mostly rented (ad-driven) traffic with no organic engine underneath.</p></div><div class="metric"><div class="big">~2,000</div><div class="lbl">peak monthly sessions</div></div></div>
+    <div class="drop">↓ lands on site</div>
+    <div class="stage leak"><div class="num">2</div><div class="body"><h3>Browse</h3><p>Lands on a product page. Sees price, "Add to Cart," and not much reassurance. Custom anxiety kicks in: <em>will it look right? are they legit? what's MY price?</em></p></div><div class="metric"><div class="big">high</div><div class="lbl">bounce / exit</div></div></div>
+    <div class="drop">↓ the gap — no low-friction next step</div>
+    <div class="stage leak"><div class="num">3</div><div class="body"><h3>Decide</h3><p>Only path offered is full self-checkout. No "get a free proof," no easy way to ask. Cold visitors leave.</p></div><div class="metric"><div class="big">0.2–0.4%</div><div class="lbl">conversion (high-traffic mo.)</div></div></div>
+    <div class="drop">↓ the few who push through</div>
+    <div class="stage"><div class="num">4</div><div class="body"><h3>Buy / Reorder</h3><p>Warm &amp; referral buyers call or email → you build a draft order → invoice → they pay. This motion <strong>works</strong> (2.5–3% in low-traffic months) — it's just starved of volume.</p></div><div class="metric"><div class="big">~$350</div><div class="lbl">avg order value</div></div></div>
+
+    <div class="callout">
+      <div class="eyebrow">The core problem</div>
+      <h2>You don't have a conversion problem. You have a missing bridge.</h2>
+      <p>The concierge close (call → proof → invoice) converts beautifully. But cold organic traffic has no on-ramp into it — the only door is "Add to Cart," which is the wrong door for custom. Volume and the close never meet in the same month.</p>
+    </div>
+  </div>
+
+  <!-- IDEAL -->
+  <div class="section">
+    <span class="tag ideal">Where it should be</span>
+    <h2>The concierge-bridged path</h2>
+    <p class="sub">Give cold traffic a low-friction yes — "Get a Free Proof" — that drops them straight into the close you already win. Keep checkout for the confident.</p>
+    <div style="margin-top:24px"></div>
+
+    <div class="stage win"><div class="num">1</div><div class="body"><h3>Discover (earned)</h3><p>Organic SEO/AEO/GEO + optimized Google Business Profile drives <em>owned</em> traffic. Local "custom event tent LA" searches → calls.</p></div><div class="metric"><div class="big">2,000+</div><div class="lbl">qualified sessions/mo</div></div></div>
+    <div class="arrow">↓</div>
+    <div class="stage win"><div class="num">2</div><div class="body"><h3>Trust</h3><p>PDP now answers the 3 fears: free-proof guarantee, 4.8★ reviews on-page, "starting at" pricing, how-it-works in 3 steps.</p></div><div class="metric"><div class="big">lower</div><div class="lbl">bounce</div></div></div>
+    <div class="arrow">↓</div>
+    <div class="stage win"><div class="num">3</div><div class="body"><h3>Raise hand</h3><p><strong>"Get a Free Proof"</strong> is the hero CTA on custom items — a tiny yes. Checkout stays primary on simple items. Lead is captured either way.</p></div><div class="metric"><div class="big">the bridge</div><div class="lbl">quote request</div></div></div>
+    <div class="arrow">↓</div>
+    <div class="stage win"><div class="num">4</div><div class="body"><h3>Close (concierge)</h3><p>Speed-to-lead reply → free proof → draft order → invoice. Auto follow-up on unpaid quotes recovers the silent drop-offs.</p></div><div class="metric"><div class="big">↑ AOV</div><div class="lbl">good-better-best tiers</div></div></div>
+    <div class="arrow">↓</div>
+    <div class="stage win"><div class="num">5</div><div class="body"><h3>Reorder (LTV)</h3><p>Saved profiles + "fabric refresh" win-back. Brands &amp; institutions (Donut, South Gate) reorder every season.</p></div><div class="metric"><div class="big">repeat</div><div class="lbl">the compounding layer</div></div></div>
+  </div>
+
+  <!-- THE MATH -->
+  <div class="section">
+    <span class="tag target">What we can get it to</span>
+    <h2>The $20K math — already within reach</h2>
+    <p class="sub">You've already hit each of these numbers individually. The game is making all three true in the same month.</p>
+
+    <div class="math">
+      <div class="cell"><div class="big">2,000</div><div class="lbl">qualified sessions</div></div>
+      <div class="cell"><div class="big">2.5%</div><div class="lbl">conversion (proven warm)</div></div>
+      <div class="cell"><div class="big">$400</div><div class="lbl">AOV (bundles lift this)</div></div>
+    </div>
+    <div class="eq">2,000 × 2.5% × $400 =</div>
+    <div class="result"><div class="big">$20,000 / month</div><div class="lbl">the floor, not the ceiling</div></div>
+  </div>
+
+  <!-- BRIDGE PIECES -->
+  <div class="section">
+    <span class="tag ideal">The bridge, in parts</span>
+    <h2>What actually connects volume to the close</h2>
+    <div class="bridge">
+      <div class="b"><h4>Free-proof CTA</h4><p>Low-friction yes for custom items. The single highest-leverage change.</p></div>
+      <div class="b"><h4>Trust on PDP</h4><p>Reviews + proof guarantee + starting price kill the 3 hesitations.</p></div>
+      <div class="b"><h4>Speed-to-lead</h4><p>Reply in minutes, not hours. Biggest predictor of closing a quote.</p></div>
+      <div class="b"><h4>Quote follow-up</h4><p>3-touch sequence on unpaid invoices — recovers silent drop-offs.</p></div>
+      <div class="b"><h4>GBP → calls</h4><p>Local search drives phone calls straight into your best close.</p></div>
+      <div class="b"><h4>Reorder engine</h4><p>Saved profiles + refresh win-backs turn one sale into many.</p></div>
+    </div>
+  </div>
+
+  <!-- ECOSYSTEM -->
+  <div class="callout">
+    <div class="eyebrow">The hidden engine</div>
+    <h2>Proágo + Promo &amp; Grow are one ecosystem</h2>
+    <p>Same tagline ("Helping Brands Promote &amp; Grow"), same LA market, same concierge motion — but they don't feed each other. The agency builds the brand; the store ships the physical presence. A client who gets a logo from Proágo needs tents, throws, and displays from PNG — and vice versa. Cross-routing these two is a near-zero-cost growth channel sitting in plain sight.</p>
+  </div>
+
+  <div class="foot">
+    Built on Promo &amp; Grow Shopify analytics (sessions, conversion, AOV, repeat-buyer data). The uploaded GA4 export was for Proágo Branding Dept. — used here as corroborating evidence and to surface the ecosystem opportunity. Targets are directional, grounded in numbers PNG has already individually achieved.
+  </div>
+
+</div>
+</body>
+</html>
