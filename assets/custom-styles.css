@@ -32,7 +32,7 @@
   --png-grid-gap: 16px;
 
   /* Typography */
-  --png-font-display: 'DM Serif Display', Georgia, serif;
+  --png-font-display: 'Cooper Black', 'DM Serif Display', Georgia, serif;
   --png-font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
 }
 
@@ -687,7 +687,7 @@ a.png-link-cta::after {
 }
 
 .png-hero-dark__heading {
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: var(--png-font-display);
   font-size: 36px;
   font-weight: 400;
   color: #FFFFFF;

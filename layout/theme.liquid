@@ -28,7 +28,8 @@
 
     <!-- Promo & Grow: Critical CSS (above-fold) -->
     <style>
-      :root{--png-navy:#1B2838;--png-copper:#C17A3A;--png-copper-hover:#A8682F;--png-text-primary:#1B2838;--png-text-muted:#999;--png-white:#fff;--png-offwhite:#F7F7F5;--png-trust-green:#1E6B4A;--png-border:#eee;--png-font-display:'DM Serif Display',Georgia,serif;--png-font-body:'DM Sans',system-ui,-apple-system,sans-serif;}
+      @font-face{font-family:'Cooper Black';src:url('{{ "cooper-black.woff2" | asset_url }}') format('woff2');font-weight:normal;font-style:normal;font-display:swap;}
+      :root{--png-navy:#1B2838;--png-copper:#C17A3A;--png-copper-hover:#A8682F;--png-text-primary:#1B2838;--png-text-muted:#999;--png-white:#fff;--png-offwhite:#F7F7F5;--png-trust-green:#1E6B4A;--png-border:#eee;--png-font-display:'Cooper Black','DM Serif Display',Georgia,serif;--png-font-body:'DM Sans',system-ui,-apple-system,sans-serif;}
       body{margin:0;font-family:var(--png-font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
       .png-announcement-bar-section{background:#F7F7F5;}
       .png-announcement-bar-section .utility-bar{display:none;}
