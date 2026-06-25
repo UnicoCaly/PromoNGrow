@@ -29,12 +29,19 @@
   Donut told as "fast" with NO production day-count, nothing cheap-looking.
   ============================================================================
 -->
-<html lang="en" class="lang-mode-en">
+{%- assign lp_lang = 'en' -%}
+{%- if page.handle == 'prueba-gratis' -%}{%- assign lp_lang = 'es' -%}{%- endif -%}
+<html lang="{{ lp_lang }}" class="lang-mode-{{ lp_lang }}">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {%- if lp_lang == 'es' -%}
+  <title>Prueba Gratis — Promo &amp; Grow | Displays Personalizados para Eventos, Hechos en LA</title>
+  <meta name="description" content="Mándanos tu logo y recibe una prueba gratis — tu marca en tu carpa, mantel, bandera o backdrop — antes de pagar nada. La apruebas y lo tienes listo en 5 días hábiles. Hecho en LA, más de 20 años de experiencia, en español." />
+  {%- else -%}
   <title>Get a Free Proof — Promo &amp; Grow | Custom Event Displays Made in LA</title>
   <meta name="description" content="Send us your logo and get a free proof — your brand on your tent, table cover, flag, or backdrop — before you pay a cent. Approve it and you're booth-ready in 5 business days. Made in LA, 20+ years, bilingual." />
+  {%- endif -%}
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1064,7 +1071,7 @@
 
             <p class="subhead">
               <span class="lang-en">Send us your logo. We send back a free proof — your brand on your actual tent, table cover, flag, or backdrop — before you pay a cent. You approve it, and it's booth-ready in 5 business days from approval. No "Buy Now" guessing, no design fees to find out what it'll look like.</span>
-              <span class="lang-es">Mándanos tu logo. Te regresamos una prueba gratis — tu marca en tu carpa, mantel, bandera o backdrop de verdad — antes de que pagues un solo dólar. La apruebas, y lo tienes listo en 5 días hábiles desde tu aprobación. Sin adivinar con un "Comprar ya", sin cobros de diseño para ver cómo se ve.</span>
+              <span class="lang-es">Mándanos tu logo. Te enviamos una prueba gratis — tu marca en tu carpa, mantel, bandera o backdrop de verdad — antes de que pagues un solo dólar. La apruebas, y lo tienes listo en 5 días hábiles desde tu aprobación. Sin adivinar con un "Comprar ya", sin cobros de diseño para ver cómo se ve.</span>
             </p>
 
             <ul class="hero-steps" aria-label="The three steps">
@@ -1084,7 +1091,7 @@
             </p>
             <p class="ganas-line">
               <span class="lang-en">You bring the ganas &mdash; we'll make sure you show up like a pro.</span>
-              <span class="lang-es">Tú pones la ganas &mdash; nosotros nos aseguramos de que te veas como todo un profesional.</span>
+              <span class="lang-es">Tú pones las ganas &mdash; nosotros nos aseguramos de que te veas como todo un profesional.</span>
             </p>
 
             <div class="micro-trust">
@@ -1169,7 +1176,7 @@
                 <div class="field">
                   <label class="lbl" for="h-date"><span class="lang-en">Event date</span><span class="lang-es">Fecha del evento</span></label>
                   <input type="date" id="h-date" name="contact[Event date]" />
-                  <span class="helper"><span class="lang-en">Got a date? We'll plan backward from it.</span><span class="lang-es">¿Tienes fecha? Planeamos hacia atrás desde ahí.</span></span>
+                  <span class="helper"><span class="lang-en">Got a date? We'll plan backward from it.</span><span class="lang-es">¿Tienes fecha? Planeamos todo a partir de ahí.</span></span>
                 </div>
 
                 <div class="field">
@@ -1258,7 +1265,7 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow"><span class="lang-en">The difference</span><span class="lang-es">La diferencia</span></p>
-          <h2><span class="lang-en">Same hustle. Whole new room.</span><span class="lang-es">La misma ganas. Otro nivel.</span></h2>
+          <h2><span class="lang-en">Same hustle. Whole new room.</span><span class="lang-es">Las mismas ganas. Otro nivel.</span></h2>
         </div>
 
         <div class="ba-grid">
@@ -1266,7 +1273,7 @@
             <p class="ba-tag"><span class="lang-en">Before</span><span class="lang-es">Antes</span></p>
             <p>
               <span class="lang-en">You pull up with everything you've got &mdash; and a setup that doesn't match how hard you work. A bare table. A taped-up sign. That little voice that says "I hope they don't think I'm small-time." You're not small-time. You just haven't shown up like it yet.</span>
-              <span class="lang-es">Llegas con todo lo que tienes &mdash; y un setup que no refleja lo duro que trabajas. Una mesa pelada. Un letrero pegado con cinta. Esa vocecita que dice "espero que no piensen que soy de poca monta." No eres de poca monta. Solo que todavía no has llegado viéndote así.</span>
+              <span class="lang-es">Llegas con todo lo que tienes &mdash; y un montaje que no refleja lo duro que trabajas. Una mesa vacía. Un letrero pegado con cinta. Esa vocecita que dice "espero que no piensen que soy poca cosa." No eres poca cosa. Solo que todavía no has llegado viéndote así.</span>
             </p>
           </div>
           <div class="ba-card ba-after">
@@ -1280,9 +1287,9 @@
 
         <p class="ba-truth">
           <span class="lang-en">That's the whole job. We don't sell tents and banners. We sell the moment your hustle finally starts looking as legit as it already is.
-            <span class="es-aside">De vendedor de banqueta a marca que llama la atención &mdash; en una sola entrega.</span></span>
+            <span class="es-aside">De vendedor callejero a marca que llama la atención &mdash; en una sola entrega.</span></span>
           <span class="lang-es">Ese es todo el trabajo. No vendemos carpas y banners. Vendemos el momento en que tu esfuerzo por fin se ve tan en grande como ya es.
-            <span class="es-aside">De vendedor de banqueta a marca que llama la atención &mdash; en una sola entrega.</span></span>
+            <span class="es-aside">De vendedor callejero a marca que llama la atención &mdash; en una sola entrega.</span></span>
         </p>
 
         <div class="center-cta" style="text-align:left;">
@@ -1305,7 +1312,7 @@
             <h3><span class="lang-en">It costs $0</span><span class="lang-es">Cuesta $0</span></h3>
             <p>
               <span class="lang-en">The proof is free. You send your logo, we send back a real mockup of your product with your brand on it &mdash; no charge, no card required to see it.</span>
-              <span class="lang-es">La prueba es gratis. Mandas tu logo, te regresamos una prueba real de tu producto con tu marca &mdash; sin cobro, sin tarjeta para verla.</span>
+              <span class="lang-es">La prueba es gratis. Mandas tu logo, te enviamos una prueba real de tu producto con tu marca &mdash; sin cobro, sin tarjeta para verla.</span>
             </p>
           </div>
           <div class="promise-card">
@@ -1342,7 +1349,7 @@
             <h2><span class="lang-en">When you reach out, a real person answers &mdash; in your language.</span><span class="lang-es">Cuando nos contactas, te contesta una persona de verdad &mdash; en tu idioma.</span></h2>
             <p>
               <span class="lang-en">No bot. No form that falls into a void. It's Venus &mdash; a real, Spanish-speaking human here in LA who walks you through it start to finish: what it costs, what size fits your event, and getting your free proof into your hands. Tell her about your event the way you'd tell a neighbor, and she takes it from there.</span>
-              <span class="lang-es">No es un bot. No es un formulario que cae en un vacío. Es Venus &mdash; una persona de verdad que habla español, aquí en LA, que te ayuda de principio a fin: cuánto cuesta, qué tamaño te conviene, y tu prueba gratis en tus manos. Cuéntale de tu evento como se lo contarías a un vecino, y ella se encarga.</span>
+              <span class="lang-es">No es un bot. No es un formulario que cae en el vacío. Es Venus &mdash; una persona de verdad que habla español, aquí en LA, que te ayuda de principio a fin: cuánto cuesta, qué tamaño te conviene, y tu prueba gratis en tus manos. Cuéntale de tu evento como se lo contarías a un vecino, y ella se encarga.</span>
             </p>
             <p>
               <span class="lang-en">We've been printing in Lynwood for 20+ years &mdash; from the PrintCo Direct days to Promo &amp; Grow. We're not a national print mill shipping your order to a warehouse in who-knows-where. Everything is made right here in LA, made-to-order, by people from your community who want to see you win.</span>
@@ -1350,7 +1357,7 @@
             </p>
             <p class="ganas-line">
               <span class="lang-en">You bring the ganas. We'll make sure you show up like a pro.</span>
-              <span class="lang-es">Tú pones la ganas. Nosotros nos aseguramos de que te veas como todo un profesional.</span>
+              <span class="lang-es">Tú pones las ganas. Nosotros nos aseguramos de que te veas como todo un profesional.</span>
             </p>
             <div class="human-actions">
               <a class="btn" href="#quote-form"><span class="lang-en">Get my free proof &rarr;</span><span class="lang-es">Recibe mi prueba gratis &rarr;</span></a>
@@ -1398,7 +1405,7 @@
             <h3><span class="lang-en">The Donut Media night</span><span class="lang-es">La noche de Donut Media</span></h3>
             <p class="donut-myth">
               <span class="lang-en">When Donut Media needed a full branded setup fast, we delivered &mdash; and that night they closed around $30K in roughly five hours. <span class="donut-tag">Promote AND grow, literally.</span> That's what the right setup, done right, can do for a room.</span>
-              <span class="lang-es">Cuando Donut Media necesitó un setup completo de volada, lo entregamos rápido &mdash; y esa noche cerraron alrededor de $30,000 en unas cinco horas. <span class="donut-tag">Promote AND grow, literalmente.</span> Eso es lo que el setup correcto, hecho bien, puede hacer por un evento.</span>
+              <span class="lang-es">Cuando Donut Media necesitó un montaje completo a última hora, lo entregamos rápido &mdash; y esa noche cerraron alrededor de $30,000 en unas cinco horas. <span class="donut-tag">Promote AND grow, literalmente.</span> Eso es lo que el setup correcto, hecho bien, puede hacer por un evento.</span>
             </p>
           </div>
         </div>
@@ -1456,7 +1463,7 @@
             <div class="product-body">
               <h3><span class="lang-en">Custom Tents &amp; Canopies</span><span class="lang-es">Carpas / Toldos Personalizados</span></h3>
               <p class="starting"><span class="lang-en">From $800</span><span class="lang-es">Desde $800</span></p>
-              <p class="pdesc"><span class="lang-en">The 10x10 that makes a parking-lot booth look like a flagship.</span><span class="lang-es">La 10x10 que hace que un booth de estacionamiento se vea como marca.</span></p>
+              <p class="pdesc"><span class="lang-en">The 10x10 that makes a parking-lot booth look like a flagship.</span><span class="lang-es">La 10x10 que hace que un stand de estacionamiento se vea como marca.</span></p>
               <button type="button" class="pcta" data-product="Custom Tent/Canopy"><span class="lang-en">Free proof &rarr;</span><span class="lang-es">Prueba gratis &rarr;</span></button>
             </div>
           </article>
@@ -1464,7 +1471,7 @@
           <article class="product-card" id="seg-displays">
             <div class="product-thumb"><img src="{{ 'lp-card-seg.jpg' | asset_url }}" alt="Custom tension-fabric trade-show display, counter and banner stand" loading="lazy" /></div>
             <div class="product-body">
-              <h3><span class="lang-en">Trade-Show / SEG Displays &amp; Backdrops</span><span class="lang-es">Displays Trade-Show / SEG &amp; Backdrops</span></h3>
+              <h3><span class="lang-en">Trade-Show / SEG Displays &amp; Backdrops</span><span class="lang-es">Displays para Ferias / SEG y Backdrops</span></h3>
               <p class="starting"><span class="lang-en">From $248</span><span class="lang-es">Desde $248</span></p>
               <p class="pdesc"><span class="lang-en">Step-and-repeat and tension-fabric walls that read "legit."</span><span class="lang-es">Paredes de tela tensada y step-and-repeat que se ven "en grande."</span></p>
               <button type="button" class="pcta" data-product="Trade-Show/SEG Display"><span class="lang-en">Free proof &rarr;</span><span class="lang-es">Prueba gratis &rarr;</span></button>
@@ -1486,7 +1493,7 @@
             <div class="product-body">
               <h3><span class="lang-en">Feather Flags</span><span class="lang-es">Banderas tipo Pluma</span></h3>
               <p class="starting"><span class="lang-en">From $120</span><span class="lang-es">Desde $120</span></p>
-              <p class="pdesc"><span class="lang-en">Get seen from across the lot. Tu marca, en alto.</span><span class="lang-es">Que te vean desde el otro lado del lote. Tu marca, en alto.</span></p>
+              <p class="pdesc"><span class="lang-en">Get seen from across the lot. Tu marca, en alto.</span><span class="lang-es">Que te vean desde el otro lado del estacionamiento. Tu marca, en alto.</span></p>
               <button type="button" class="pcta" data-product="Feather Flag"><span class="lang-en">Free proof &rarr;</span><span class="lang-es">Prueba gratis &rarr;</span></button>
             </div>
           </article>
@@ -1504,7 +1511,7 @@
           <article class="product-card" id="banners">
             <div class="product-thumb"><img src="https://cdn.shopify.com/s/files/1/0731/3886/4164/files/Pop_Art_SEG_Frame_Prints_-_Promo_N_Grow.png?v=1758741133&amp;width=700" alt="Custom branded wall art and fabric frame prints" loading="lazy" /></div>
             <div class="product-body">
-              <h3><span class="lang-en">Banners &amp; Wall Art</span><span class="lang-es">Banners &amp; Wall Art</span></h3>
+              <h3><span class="lang-en">Banners &amp; Wall Art</span><span class="lang-es">Banners y Arte Mural</span></h3>
               <p class="starting"><span class="lang-en">From $98</span><span class="lang-es">Desde $98</span></p>
               <p class="pdesc"><span class="lang-en">Big, clean, on-brand &mdash; for the wall, the booth, or the storefront.</span><span class="lang-es">Grande, limpio, con tu marca &mdash; para la pared, el booth, o el local.</span></p>
               <button type="button" class="pcta" data-product="Banner"><span class="lang-en">Free proof &rarr;</span><span class="lang-es">Prueba gratis &rarr;</span></button>
@@ -1528,7 +1535,7 @@
             <h2><span class="lang-en">Send your logo. Get your free proof.</span><span class="lang-es">Manda tu logo. Recibe tu prueba gratis.</span></h2>
             <p>
               <span class="lang-en">Tell us about your event and drop your artwork &mdash; we'll come back with a free proof and an exact quote. No cost, no commitment, and nothing prints until you approve it. Got a date? Put it in the event-date field and we'll plan backward from it.</span>
-              <span class="lang-es">Cuéntanos de tu evento y sube tu arte &mdash; te regresamos una prueba gratis y una cotización exacta. Sin costo, sin compromiso, y nada se imprime hasta que tú lo apruebes. ¿Tienes fecha? Ponla en el campo de fecha del evento y planeamos hacia atrás desde ahí.</span>
+              <span class="lang-es">Cuéntanos de tu evento y sube tu arte &mdash; te enviamos una prueba gratis y una cotización exacta. Sin costo, sin compromiso, y nada se imprime hasta que tú lo apruebes. ¿Tienes fecha? Ponla en el campo de fecha del evento y planeamos todo a partir de ahí.</span>
             </p>
             <p>
               <span class="lang-en">You'll get an instant confirmation, then a real person (hi, Venus) follows up &mdash; usually the same day, Mon&ndash;Fri 10am&ndash;4pm PT.</span>
@@ -1614,7 +1621,7 @@
                 <div class="field">
                   <label class="lbl" for="m-date"><span class="lang-en">Event date</span><span class="lang-es">Fecha del evento</span></label>
                   <input type="date" id="m-date" name="contact[Event date]" />
-                  <span class="helper"><span class="lang-en">We'll plan backward from your date.</span><span class="lang-es">Planeamos hacia atrás desde tu fecha.</span></span>
+                  <span class="helper"><span class="lang-en">We'll plan backward from your date.</span><span class="lang-es">Planeamos todo a partir de tu fecha.</span></span>
                 </div>
 
                 <div class="field">
@@ -1664,11 +1671,11 @@
           <p class="footer-wordmark">PROMO <span class="amp">&amp;</span> GROW</p>
           <p>
             <span class="lang-en">Custom event displays made in LA. Tents &amp; canopies &middot; table covers &amp; throws &middot; feather flags &middot; SEG displays &amp; backdrops &middot; banners &middot; wall art.</span>
-            <span class="lang-es">Displays personalizados para eventos, hechos en LA. Carpas y toldos &middot; manteles y cubremesas &middot; banderas tipo pluma &middot; displays SEG y backdrops &middot; banners &middot; wall art.</span>
+            <span class="lang-es">Displays personalizados para eventos, hechos en LA. Carpas y toldos &middot; manteles y cubremesas &middot; banderas tipo pluma &middot; displays SEG y backdrops &middot; banners &middot; arte mural.</span>
           </p>
           <p class="ganas-line" style="font-style:italic;color:#AEBAC6;">
             <span class="lang-en">You bring the ganas. We'll make sure you show up like a pro.</span>
-            <span class="lang-es">Tú pones la ganas. Nosotros nos aseguramos de que te veas como todo un profesional.</span>
+            <span class="lang-es">Tú pones las ganas. Nosotros nos aseguramos de que te veas como todo un profesional.</span>
           </p>
           <div class="footer-lang">
             <div class="lang-pill" role="group" aria-label="Language / Idioma">
@@ -1735,6 +1742,8 @@
       document.querySelectorAll('.lang-pill button').forEach(function (btn) {
         btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
       });
+      /* sync the toggle to the server-set default language (EN page vs ES /prueba-gratis page) */
+      setLang(htmlEl.classList.contains('lang-mode-es') ? 'es' : 'en');
 
       /* ---------------- PRODUCT CARD -> jump to form + preselect ---------------- */
       document.querySelectorAll('.pcta').forEach(function (btn) {
