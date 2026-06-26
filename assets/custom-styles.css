@@ -1689,6 +1689,15 @@ a.png-link-cta::after {
   padding-bottom: 6px;
 }
 
+/* Size / variant selector — sits under the choice dropdown, full width */
+.png-bb__select--variant {
+  margin-top: 6px;
+  width: 100%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 11px;
+}
+
 /* Pricing block */
 .png-bb__pricing {
   display: flex;
@@ -3268,6 +3277,44 @@ button,
   color: var(--png-text-muted);
   font-size: 16px;
 }
+
+/* --- Bundle-savings popup: copper-inverted treatment (scoped to #png-popup-bundle only) --- */
+#png-popup-bundle .png-popup__modal {
+  background: var(--png-copper);
+  color: #fff;
+}
+#png-popup-bundle .png-popup__heading { color: #fff; }
+#png-popup-bundle .png-popup__body { color: rgba(255, 255, 255, 0.92); }
+#png-popup-bundle .png-popup__body strong { color: #fff; }
+#png-popup-bundle .png-popup__close { color: rgba(255, 255, 255, 0.8); }
+#png-popup-bundle .png-popup__close:hover { color: #fff; }
+#png-popup-bundle .png-popup__badge--green {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+#png-popup-bundle .png-popup__compare-card {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+#png-popup-bundle .png-popup__compare-card--highlight {
+  background: #fff;
+  border-color: #fff;
+}
+#png-popup-bundle .png-popup__compare-label { color: rgba(255, 255, 255, 0.85); }
+#png-popup-bundle .png-popup__compare-price { color: #fff; }
+#png-popup-bundle .png-popup__compare-card--highlight .png-popup__compare-label { color: var(--png-text-muted); }
+#png-popup-bundle .png-popup__compare-card--highlight .png-popup__compare-price { color: var(--png-copper); }
+#png-popup-bundle .png-popup__compare-price--old { color: rgba(255, 255, 255, 0.7); }
+#png-popup-bundle .png-btn-primary {
+  background: #fff;
+  color: var(--png-copper);
+}
+#png-popup-bundle .png-btn-primary:hover {
+  background: var(--png-navy);
+  color: #fff;
+}
+#png-popup-bundle .png-popup__dismiss { color: rgba(255, 255, 255, 0.8); }
+#png-popup-bundle .png-popup__dismiss:hover { color: #fff; }
 
 
 /* --- Popup B: Confidence Builder --- */

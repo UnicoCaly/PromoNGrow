@@ -61,7 +61,7 @@
     if (sessionStorage.getItem(POPUP_KEY)) return;
 
     var item = e.detail;
-    if (!item || !item.product_type) return;
+    if (!item || !item.product_type || !item.title) return;
 
     /* Skip if already a bundle */
     var title = (item.title || '').toLowerCase();
@@ -75,6 +75,7 @@
 
         /* Find a bundle that might match */
         var bundle = data.products[0]; /* Default to first bundle */
+        if (!bundle || !bundle.handle || !bundle.variants || !bundle.variants[0]) return;
         var separatePrice = item.price / 100;
         var bundlePrice = bundle.variants[0].price / 100;
         var savings = Math.max(0, separatePrice * 1.15 - bundlePrice); /* Estimate */

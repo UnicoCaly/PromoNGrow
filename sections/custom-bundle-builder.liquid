@@ -47,10 +47,9 @@
               { "handle": "10-x-15-event-tent", "label": "10ft x 15ft Event Tent" },
               { "handle": "10ft-x-20ft-event-tent-canopy", "label": "10ft x 20ft Event Tent" }
             ] },
-            { "type": "choice", "slot": "flag", "label": "Flag (add up to 4)", "qtyMax": 4, "options": [
-              { "handle": "feather-convex-flag-copy", "label": "Teardrop Flag" },
-              { "handle": "rectangle-flag", "label": "Rectangle Flag" },
+            { "type": "choice", "slot": "flag", "label": "Flag (size + qty)", "qtyMax": 4, "variants": true, "options": [
               { "handle": "feather-convex-flag", "label": "Feather Convex Flag" },
+              { "handle": "rectangle-flag", "label": "Rectangle Flag" },
               { "handle": "feather-angled-flag", "label": "Feather Angled Flag" },
               { "handle": "econo-feather-flag", "label": "Econo Feather Flag" }
             ] },
@@ -183,11 +182,15 @@
         var thumb = '';
         if (p.image && p.image.src) thumb = p.image.src;
         else if (p.images && p.images[0]) thumb = p.images[0].src;
+        var variants = (p.variants || []).map(function (v) {
+          return { id: v.id, title: v.title, price: toCents(v.price), available: !!v.available };
+        });
         productCache[handle] = {
           handle: handle,
           title: p.title,
           variantId: firstAvailable.id,
-          price: parseInt(firstAvailable.price * 100, 10) ? parseInt(firstAvailable.price * 100, 10) : Math.round(parseFloat(firstAvailable.price) * 100),
+          price: toCents(firstAvailable.price),
+          variants: variants,
           thumb: thumb,
           available: firstAvailable.available
         };
@@ -206,6 +209,36 @@
     if (cents == null || isNaN(cents)) return '—';
     var dollars = cents / 100;
     return '$' + dollars.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  /* --- Price (storefront dollars string) → integer cents --- */
+  function toCents(price) {
+    var c = Math.round(parseFloat(price) * 100);
+    return isNaN(c) ? 0 : c;
+  }
+
+  /* --- Build <option>s for a product's variants (size / options) --- */
+  function variantOptionsHtml(product, selectedId) {
+    if (!product || !product.variants) return '';
+    return product.variants.map(function (v) {
+      var dis = v.available ? '' : ' disabled';
+      var selAttr = (selectedId && v.id === selectedId) ? ' selected' : '';
+      return '<option value="' + v.id + '"' + dis + selAttr + '>' +
+        escapeHtml(v.title) + ' — ' + formatMoney(v.price) +
+      '</option>';
+    }).join('');
+  }
+
+  /* --- Unit price (cents) for the currently-selected variant, else product default --- */
+  function unitPriceFor(product, variantSel) {
+    if (!product) return null;
+    if (variantSel && variantSel.value && product.variants && product.variants.length) {
+      var vid = parseInt(variantSel.value, 10);
+      for (var i = 0; i < product.variants.length; i++) {
+        if (product.variants[i].id === vid) return product.variants[i].price;
+      }
+    }
+    return product.price;
   }
 
   /* --- Render a fixed item row --- */
@@ -257,6 +290,15 @@
       '</option>';
     }).join('');
 
+    /* Optional size/variant selector — shown when the slot opts in with "variants": true */
+    var variantHtml = '';
+    if (item.variants === true) {
+      variantHtml =
+        '<select class="png-bb__select png-bb__select--variant" data-choice-variant data-slot="' + escapeHtml(item.slot) + '" aria-label="Size and options for ' + escapeHtml(item.label) + '">' +
+          (firstValid ? variantOptionsHtml(firstValid, firstValid.variantId) : '') +
+        '</select>';
+    }
+
     /* Optional quantity selector (e.g. add multiple flags) — shown only when qtyMax > 1 */
     var qtyHtml = '';
     var qtyMax = parseInt(item.qtyMax, 10);
@@ -278,6 +320,7 @@
         '<select class="png-bb__select" data-choice-select data-bundle="' + escapeHtml(bundleId) + '" data-slot="' + escapeHtml(item.slot) + '">' +
           optionsHtml +
         '</select>' +
+        variantHtml +
         qtyHtml +
       '</div>' +
       '<span class="png-bb__item-price" data-choice-price>' + (firstValid ? formatMoney(firstValid.price) : '—') + '</span>';
@@ -325,10 +368,13 @@
         if (!sel) return;
         var cp = productCache[sel.value];
         if (!cp) { allValid = false; return; }
+        var variantSel = card.querySelector('[data-choice-variant][data-slot="' + item.slot + '"]');
+        var variantId = (variantSel && variantSel.value) ? (parseInt(variantSel.value, 10) || cp.variantId) : cp.variantId;
+        var unit = unitPriceFor(cp, variantSel);
         var qtySel = card.querySelector('[data-choice-qty][data-slot="' + item.slot + '"]');
         var qty = qtySel ? (parseInt(qtySel.value, 10) || 1) : 1;
-        total += cp.price * qty;
-        addLine(cp.variantId, qty);
+        total += (unit || 0) * qty;
+        addLine(variantId, qty);
       }
     });
 
@@ -374,10 +420,12 @@
     var priceEl = row.querySelector('[data-choice-price]');
     var thumbEl = row.querySelector('[data-choice-thumb]');
     var qtySel = row.querySelector('[data-choice-qty]');
+    var variantSel = row.querySelector('[data-choice-variant]');
     var qty = qtySel ? (parseInt(qtySel.value, 10) || 1) : 1;
     var p = productCache[sel.value];
+    var unit = unitPriceFor(p, variantSel);
 
-    if (priceEl) priceEl.textContent = p ? formatMoney(p.price * qty) : '—';
+    if (priceEl) priceEl.textContent = (unit != null) ? formatMoney(unit * qty) : '—';
     if (thumbEl && p && p.thumb) {
       var newThumb;
       if (thumbEl.tagName === 'IMG') {
@@ -509,10 +557,24 @@
         }
       });
 
-      /* Wire up dropdown listeners */
+      /* Wire up product (type) dropdown listeners — repopulate the size/variant dropdown on change */
       card.querySelectorAll('[data-choice-select]').forEach(function (sel) {
         sel.addEventListener('change', function () {
+          var srow = sel.closest('.png-bb__item');
+          var vsel = srow ? srow.querySelector('[data-choice-variant]') : null;
+          var sp = productCache[sel.value];
+          if (vsel && sp) vsel.innerHTML = variantOptionsHtml(sp, sp.variantId);
           handleChoiceChange(card, bundleConfig, sel);
+        });
+      });
+
+      /* Wire up size/variant dropdown listeners */
+      card.querySelectorAll('[data-choice-variant]').forEach(function (vsel) {
+        vsel.addEventListener('change', function () {
+          var vrow = vsel.closest('.png-bb__item');
+          var psel = vrow ? vrow.querySelector('[data-choice-select]') : null;
+          if (psel) handleChoiceChange(card, bundleConfig, psel);
+          else updateCardPricing(card, bundleConfig);
         });
       });
 
