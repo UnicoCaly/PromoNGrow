@@ -47,7 +47,7 @@
               { "handle": "10-x-15-event-tent", "label": "10ft x 15ft Event Tent" },
               { "handle": "10ft-x-20ft-event-tent-canopy", "label": "10ft x 20ft Event Tent" }
             ] },
-            { "type": "choice", "slot": "flag", "label": "Flag", "options": [
+            { "type": "choice", "slot": "flag", "label": "Flag (add up to 4)", "qtyMax": 4, "options": [
               { "handle": "feather-convex-flag-copy", "label": "Teardrop Flag" },
               { "handle": "rectangle-flag", "label": "Rectangle Flag" },
               { "handle": "feather-convex-flag", "label": "Feather Convex Flag" },
@@ -257,6 +257,20 @@
       '</option>';
     }).join('');
 
+    /* Optional quantity selector (e.g. add multiple flags) — shown only when qtyMax > 1 */
+    var qtyHtml = '';
+    var qtyMax = parseInt(item.qtyMax, 10);
+    if (qtyMax && qtyMax > 1) {
+      var qtyOptions = '';
+      for (var q = 1; q <= qtyMax; q++) {
+        qtyOptions += '<option value="' + q + '">Qty: ' + q + '</option>';
+      }
+      qtyHtml =
+        '<select class="png-bb__select png-bb__select--qty" data-choice-qty data-slot="' + escapeHtml(item.slot) + '" aria-label="Quantity for ' + escapeHtml(item.label) + '">' +
+          qtyOptions +
+        '</select>';
+    }
+
     row.innerHTML =
       thumb +
       '<div class="png-bb__item-info">' +
@@ -264,6 +278,7 @@
         '<select class="png-bb__select" data-choice-select data-bundle="' + escapeHtml(bundleId) + '" data-slot="' + escapeHtml(item.slot) + '">' +
           optionsHtml +
         '</select>' +
+        qtyHtml +
       '</div>' +
       '<span class="png-bb__item-price" data-choice-price>' + (firstValid ? formatMoney(firstValid.price) : '—') + '</span>';
     return row;
@@ -288,26 +303,36 @@
   function calculateBundle(card, bundleConfig) {
     var total = 0;
     var allValid = true;
-    var variantIds = [];
+    var lines = [];
+
+    /* Aggregate by variant so the same item picked twice merges into one line */
+    function addLine(variantId, qty) {
+      for (var i = 0; i < lines.length; i++) {
+        if (lines[i].id === variantId) { lines[i].quantity += qty; return; }
+      }
+      lines.push({ id: variantId, quantity: qty });
+    }
 
     bundleConfig.items.forEach(function (item) {
       if (item.type === 'fixed') {
         var p = productCache[item.handle];
         if (!p) { allValid = false; return; }
-        total += p.price;
-        variantIds.push(p.variantId);
+        var fq = parseInt(item.qty, 10) > 0 ? parseInt(item.qty, 10) : 1;
+        total += p.price * fq;
+        addLine(p.variantId, fq);
       } else if (item.type === 'choice') {
         var sel = card.querySelector('[data-choice-select][data-slot="' + item.slot + '"]');
         if (!sel) return;
-        var handle = sel.value;
-        var p = productCache[handle];
-        if (!p) { allValid = false; return; }
-        total += p.price;
-        variantIds.push(p.variantId);
+        var cp = productCache[sel.value];
+        if (!cp) { allValid = false; return; }
+        var qtySel = card.querySelector('[data-choice-qty][data-slot="' + item.slot + '"]');
+        var qty = qtySel ? (parseInt(qtySel.value, 10) || 1) : 1;
+        total += cp.price * qty;
+        addLine(cp.variantId, qty);
       }
     });
 
-    return { total: total, variantIds: variantIds, valid: allValid };
+    return { total: total, lines: lines, valid: allValid };
   }
 
   /* --- Update pricing display for a card --- */
@@ -338,8 +363,8 @@
     if (btn) btn.disabled = false;
     if (btnText) btnText.textContent = 'Add bundle to cart';
 
-    /* Stash variant IDs and bundle name on the button for the add handler */
-    btn.setAttribute('data-variants', calc.variantIds.join(','));
+    /* Stash line items (variant id + quantity) on the button for the add handler */
+    btn.setAttribute('data-lines', JSON.stringify(calc.lines));
   }
 
   /* --- Update choice price + thumb when dropdown changes --- */
@@ -348,9 +373,11 @@
     var row = sel.closest('.png-bb__item');
     var priceEl = row.querySelector('[data-choice-price]');
     var thumbEl = row.querySelector('[data-choice-thumb]');
+    var qtySel = row.querySelector('[data-choice-qty]');
+    var qty = qtySel ? (parseInt(qtySel.value, 10) || 1) : 1;
     var p = productCache[sel.value];
 
-    if (priceEl) priceEl.textContent = p ? formatMoney(p.price) : '—';
+    if (priceEl) priceEl.textContent = p ? formatMoney(p.price * qty) : '—';
     if (thumbEl && p && p.thumb) {
       var newThumb;
       if (thumbEl.tagName === 'IMG') {
@@ -379,17 +406,18 @@
     var btnText = card.querySelector('[data-bundle-btn-text]');
     if (!btn || btn.disabled) return;
 
-    var variantIds = (btn.getAttribute('data-variants') || '').split(',').filter(Boolean).map(function (id) { return parseInt(id, 10); });
-    if (variantIds.length === 0) return;
+    var lines;
+    try { lines = JSON.parse(btn.getAttribute('data-lines') || '[]'); } catch (e) { lines = []; }
+    if (!lines.length) return;
 
     var originalText = btnText.textContent;
     btn.disabled = true;
     btnText.textContent = 'Adding...';
 
-    var items = variantIds.map(function (id) {
+    var items = lines.map(function (ln) {
       return {
-        id: id,
-        quantity: 1,
+        id: ln.id,
+        quantity: ln.quantity || 1,
         properties: { '_bundle': bundleConfig.name }
       };
     });
@@ -485,6 +513,16 @@
       card.querySelectorAll('[data-choice-select]').forEach(function (sel) {
         sel.addEventListener('change', function () {
           handleChoiceChange(card, bundleConfig, sel);
+        });
+      });
+
+      /* Wire up quantity listeners (e.g. multiple flags) */
+      card.querySelectorAll('[data-choice-qty]').forEach(function (qsel) {
+        qsel.addEventListener('change', function () {
+          var qrow = qsel.closest('.png-bb__item');
+          var psel = qrow ? qrow.querySelector('[data-choice-select]') : null;
+          if (psel) handleChoiceChange(card, bundleConfig, psel);
+          else updateCardPricing(card, bundleConfig);
         });
       });
 

@@ -1680,6 +1680,15 @@ a.png-link-cta::after {
   border-color: var(--png-copper);
 }
 
+/* Quantity selector (e.g. add multiple flags) — sits under the choice dropdown */
+.png-bb__select--qty {
+  margin-top: 6px;
+  max-width: 120px;
+  align-self: flex-start;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
 /* Pricing block */
 .png-bb__pricing {
   display: flex;
