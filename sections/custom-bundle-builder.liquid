@@ -16,21 +16,22 @@
     <script type="application/json" data-bundle-config>
     {
       "discount": 0.15,
+      "defaults": { "banner-4ft-x-10ft": "8' x 4'", "10-x-15-event-tent": "Tent Only", "10ft-x-20ft-event-tent-canopy": "Tent Only" },
       "bundles": [
         {
           "id": "event-vendor",
           "name": "Event Vendor",
           "popular": false,
           "items": [
-            { "type": "choice", "slot": "tent", "label": "Tent Size", "options": [
+            { "type": "choice", "slot": "tent", "label": "Tent (size + walls)", "variants": true, "options": [
               { "handle": "10ft-x-10ft-event-tent-canopy", "label": "10ft x 10ft Event Tent" },
               { "handle": "10-x-15-event-tent", "label": "10ft x 15ft Event Tent" },
               { "handle": "10ft-x-20ft-event-tent-canopy", "label": "10ft x 20ft Event Tent" }
             ] },
-            { "type": "choice", "slot": "banner", "label": "Banner", "options": [
-              { "handle": "banner-4ft-x-10ft", "label": "Tent Banner — 4ft x 10ft" }
+            { "type": "choice", "slot": "banner", "label": "Banner", "variants": true, "options": [
+              { "handle": "banner-4ft-x-10ft", "label": "Custom Tent Banner" }
             ] },
-            { "type": "choice", "slot": "throw", "label": "Table Throw", "options": [
+            { "type": "choice", "slot": "throw", "label": "Table Throw", "variants": true, "options": [
               { "handle": "stretch-table-cover", "label": "Stretch Table Cover" },
               { "handle": "8ft-table-throw", "label": "Table Throw" },
               { "handle": "6ft-table-runner-with-solid-blank-table-throw", "label": "Table Runner + Blank" }
@@ -42,7 +43,7 @@
           "name": "Event Pro",
           "popular": true,
           "items": [
-            { "type": "choice", "slot": "tent", "label": "Tent Size", "options": [
+            { "type": "choice", "slot": "tent", "label": "Tent (size + walls)", "variants": true, "options": [
               { "handle": "10ft-x-10ft-event-tent-canopy", "label": "10ft x 10ft Event Tent" },
               { "handle": "10-x-15-event-tent", "label": "10ft x 15ft Event Tent" },
               { "handle": "10ft-x-20ft-event-tent-canopy", "label": "10ft x 20ft Event Tent" }
@@ -53,7 +54,7 @@
               { "handle": "feather-angled-flag", "label": "Feather Angled Flag" },
               { "handle": "econo-feather-flag", "label": "Econo Feather Flag" }
             ] },
-            { "type": "choice", "slot": "throw", "label": "Table Throw", "options": [
+            { "type": "choice", "slot": "throw", "label": "Table Throw", "variants": true, "options": [
               { "handle": "stretch-table-cover", "label": "Stretch Table Cover" },
               { "handle": "8ft-table-throw", "label": "Table Throw" },
               { "handle": "6ft-table-runner-with-solid-blank-table-throw", "label": "Table Runner + Blank" }
@@ -177,22 +178,29 @@
       .then(function (data) {
         var p = data.product;
         if (!p) throw new Error('Empty product: ' + handle);
-        var firstAvailable = (p.variants || []).find(function (v) { return v.available; }) || p.variants[0];
+        var allVariants = p.variants || [];
+        var firstAvailable = allVariants.find(function (v) { return v.available !== false; }) || allVariants[0];
         if (!firstAvailable) throw new Error('No variants: ' + handle);
+        var defaultMatch = (config.defaults && config.defaults[handle]) || null;
+        var defaultVariant = firstAvailable;
+        if (defaultMatch) {
+          var matched = allVariants.find(function (v) { return v.available !== false && v.title && v.title.indexOf(defaultMatch) !== -1; }) || allVariants.find(function (v) { return v.title && v.title.indexOf(defaultMatch) !== -1; });
+          if (matched) defaultVariant = matched;
+        }
         var thumb = '';
         if (p.image && p.image.src) thumb = p.image.src;
         else if (p.images && p.images[0]) thumb = p.images[0].src;
         var variants = (p.variants || []).map(function (v) {
-          return { id: v.id, title: v.title, price: toCents(v.price), available: !!v.available };
+          return { id: v.id, title: v.title, price: toCents(v.price), available: v.available !== false };
         });
         productCache[handle] = {
           handle: handle,
           title: p.title,
-          variantId: firstAvailable.id,
-          price: toCents(firstAvailable.price),
+          variantId: defaultVariant.id,
+          price: toCents(defaultVariant.price),
           variants: variants,
           thumb: thumb,
-          available: firstAvailable.available
+          available: defaultVariant.available !== false
         };
         return productCache[handle];
       })
@@ -221,7 +229,10 @@
   function variantOptionsHtml(product, selectedId) {
     if (!product || !product.variants) return '';
     return product.variants.map(function (v) {
-      var dis = v.available ? '' : ' disabled';
+      /* Only disable a variant that is EXPLICITLY out of stock. The storefront
+         /products/<handle>.json omits the `available` field entirely, so treating
+         undefined as unavailable would disable every option (= "not selectable"). */
+      var dis = (v.available === false) ? ' disabled' : '';
       var selAttr = (selectedId && v.id === selectedId) ? ' selected' : '';
       return '<option value="' + v.id + '"' + dis + selAttr + '>' +
         escapeHtml(v.title) + ' — ' + formatMoney(v.price) +
