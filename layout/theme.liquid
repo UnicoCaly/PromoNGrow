@@ -453,8 +453,8 @@
     {%- endif -%}
 
     <!-- Promo & Grow: Purchase Popups (deferred via internal setTimeout) -->
-    {%- render 'popup-bundle-savings' -%}
-    {%- render 'popup-exit-bundle' -%}
+    {%- comment -%} Bundle popups retired 2026-09-13 (bundles off the site; snippet files kept for rollback) {%- endcomment -%}
+    {%- comment -%}{%- render 'popup-bundle-savings' -%}{%- render 'popup-exit-bundle' -%}{%- endcomment -%}
 
     <!-- Promo & Grow: Quote / Free-Proof Modal (triggered by data-quote-modal-trigger anywhere on the page) -->
     {%- render 'png-quote-modal' -%}

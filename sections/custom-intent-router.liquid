@@ -44,13 +44,13 @@
       </a>
 
       {%- comment -%} Door 2 — Bundles {%- endcomment -%}
-      <a href="{{ loc }}{{ section.settings.door2_link | default: '/collections/bundles' }}"
+      <a href="{{ loc }}{{ section.settings.door2_link | default: '/collections/tents-canopies' }}"
          class="png-router__door"
          data-intent-door="bundles">
         <span class="png-router__ic" aria-hidden="true">&#9733;</span>
-        <span class="png-router__label">{{ section.settings.door2_label | default: 'Shop Bundles' }}</span>
-        <span class="png-router__sublabel">{{ section.settings.door2_sub | default: 'Tent + flag + throw. Save 15%+.' }}</span>
-        <span class="png-router__cta">{{ section.settings.door2_cta | default: 'Build a bundle' }} &rarr;</span>
+        <span class="png-router__label">{{ section.settings.door2_label | default: 'Shop Custom Tents' }}</span>
+        <span class="png-router__sublabel">{{ section.settings.door2_sub | default: '10x10, 10x15, and 10x20 — from $800.' }}</span>
+        <span class="png-router__cta">{{ section.settings.door2_cta | default: 'See tents' }} &rarr;</span>
       </a>
 
       {%- comment -%} Door 3 — Buy Online {%- endcomment -%}
@@ -111,7 +111,7 @@
     { "type": "text", "id": "door2_label", "label": "Label", "default": "Shop Bundles" },
     { "type": "text", "id": "door2_sub", "label": "Sublabel", "default": "Tent + flag + throw. Save 15%+." },
     { "type": "text", "id": "door2_cta", "label": "CTA text", "default": "Build a bundle" },
-    { "type": "text", "id": "door2_link", "label": "Link", "default": "/collections/bundles" },
+    { "type": "text", "id": "door2_link", "label": "Link", "default": "/collections/tents-canopies" },
     { "type": "header", "content": "Door 3 — Buy Online" },
     { "type": "text", "id": "door3_label", "label": "Label", "default": "Buy Online" },
     { "type": "text", "id": "door3_sub", "label": "Sublabel", "default": "Know what you need? Shop the catalog." },

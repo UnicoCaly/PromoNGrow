@@ -7,9 +7,9 @@
       <div class="png-hero-dark__content">
         <span class="png-hero-dark__eyebrow">{{ section.settings.eyebrow | default: 'Custom event displays' }}</span>
         <h1 class="png-hero-dark__heading">{{ section.settings.heading | default: 'Your brand, built to show up.' }}</h1>
-        <p class="png-hero-dark__subtext">{{ section.settings.subtext | default: 'Custom tents, backdrops, flags, and signage — produced and delivered nationwide in 5 business days.' }}</p>
+        <p class="png-hero-dark__subtext">{{ section.settings.subtext | default: 'Custom tents, backdrops, flags, and signage — printed in LA with fast nationwide delivery.' }}</p>
         <div class="png-hero-dark__actions">
-          <a href="{{ section.settings.primary_url | default: '/collections/bundles' }}" class="png-hero-dark__btn-primary">
+          <a href="{{ section.settings.primary_url | default: '/pages/free-proof' }}" class="png-hero-dark__btn-primary">
             {{ section.settings.primary_label | default: 'Shop bundles' }}
           </a>
           <a href="{{ section.settings.secondary_url | default: '/pages/contact' }}" class="png-hero-dark__btn-ghost">
@@ -84,7 +84,7 @@
           <span class="png-router__cta">{{ section.settings.door1_cta | default: 'Start free proof' }} &rarr;</span>
         </a>
 
-        <a href="{{ loc }}{{ section.settings.door2_link | default: '/collections/bundles' }}"
+        <a href="{{ loc }}{{ section.settings.door2_link | default: '/collections/tents-canopies' }}"
            class="png-router__door"
            data-intent-door="bundles">
           <span class="png-router__ic" aria-hidden="true">&#9733;</span>
@@ -153,7 +153,7 @@
     { "type": "text", "id": "door2_label", "label": "Door 2 label", "default": "Shop Bundles" },
     { "type": "text", "id": "door2_sub", "label": "Door 2 sublabel", "default": "Tent + flag + throw. Save 15%+." },
     { "type": "text", "id": "door2_cta", "label": "Door 2 CTA", "default": "Build a bundle" },
-    { "type": "text", "id": "door2_link", "label": "Door 2 link", "default": "/collections/bundles" },
+    { "type": "text", "id": "door2_link", "label": "Door 2 link", "default": "/collections/tents-canopies" },
     { "type": "text", "id": "door3_label", "label": "Door 3 label", "default": "Buy Online" },
     { "type": "text", "id": "door3_sub", "label": "Door 3 sublabel", "default": "Know what you need? Shop the catalog." },
     { "type": "text", "id": "door3_cta", "label": "Door 3 CTA", "default": "Browse all" },
@@ -178,7 +178,7 @@
       "type": "textarea",
       "id": "subtext",
       "label": "Subtext",
-      "default": "Custom tents, backdrops, flags, and signage — produced and delivered nationwide in 5 business days."
+      "default": "Custom tents, backdrops, flags, and signage — printed in LA with fast nationwide delivery."
     },
     {
       "type": "text",
