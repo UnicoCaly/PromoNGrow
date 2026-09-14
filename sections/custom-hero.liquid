@@ -10,7 +10,7 @@
         <p class="png-hero-dark__subtext">{{ section.settings.subtext | default: 'Custom tents, backdrops, flags, and signage — printed in LA with fast nationwide delivery.' }}</p>
         <div class="png-hero-dark__actions">
           <a href="{{ section.settings.primary_url | default: '/pages/free-proof' }}" class="png-hero-dark__btn-primary">
-            {{ section.settings.primary_label | default: 'Shop bundles' }}
+            {{ section.settings.primary_label | default: 'Get a free proof' }}
           </a>
           <a href="{{ section.settings.secondary_url | default: '/pages/contact' }}" class="png-hero-dark__btn-ghost">
             {{ section.settings.secondary_label | default: 'Get a quote' }}
@@ -50,7 +50,7 @@
       <span class="png-hero-dark__trust-divider" aria-hidden="true"></span>
       <span class="png-hero-dark__trust-text">20+ years in production</span>
       <span class="png-hero-dark__trust-divider" aria-hidden="true"></span>
-      <span class="png-hero-dark__trust-text">Printed in the USA</span>
+      <span class="png-hero-dark__trust-text">Printed in LA</span>
     </div>
 
   </div>
@@ -88,9 +88,9 @@
            class="png-router__door"
            data-intent-door="bundles">
           <span class="png-router__ic" aria-hidden="true">&#9733;</span>
-          <span class="png-router__label">{{ section.settings.door2_label | default: 'Shop Bundles' }}</span>
-          <span class="png-router__sublabel">{{ section.settings.door2_sub | default: 'Tent + flag + throw. Save 15%+.' }}</span>
-          <span class="png-router__cta">{{ section.settings.door2_cta | default: 'Build a bundle' }} &rarr;</span>
+          <span class="png-router__label">{{ section.settings.door2_label | default: 'Shop Custom Tents' }}</span>
+          <span class="png-router__sublabel">{{ section.settings.door2_sub | default: '10x10, 10x15, and 10x20 — from $800.' }}</span>
+          <span class="png-router__cta">{{ section.settings.door2_cta | default: 'See tents' }} &rarr;</span>
         </a>
 
         <a href="{{ loc }}{{ section.settings.door3_link | default: '/collections/all' }}"
@@ -146,13 +146,13 @@
     { "type": "header", "content": "Intent Router (4 doors, below hero)" },
     { "type": "checkbox", "id": "show_router", "label": "Show intent router", "default": true },
     { "type": "text", "id": "router_heading", "label": "Router heading", "default": "How can we help today?" },
-    { "type": "text", "id": "router_sub", "label": "Router subheading", "default": "Pick the path that fits — buy now, bundle and save, or get a free proof first." },
+    { "type": "text", "id": "router_sub", "label": "Router subheading", "default": "Pick the path that fits — buy now, shop custom tents, or get a free proof first." },
     { "type": "text", "id": "door1_label", "label": "Door 1 label", "default": "Get a Free Proof" },
     { "type": "text", "id": "door1_sub", "label": "Door 1 sublabel", "default": "See it before you pay. No commitment." },
     { "type": "text", "id": "door1_cta", "label": "Door 1 CTA", "default": "Start free proof" },
-    { "type": "text", "id": "door2_label", "label": "Door 2 label", "default": "Shop Bundles" },
-    { "type": "text", "id": "door2_sub", "label": "Door 2 sublabel", "default": "Tent + flag + throw. Save 15%+." },
-    { "type": "text", "id": "door2_cta", "label": "Door 2 CTA", "default": "Build a bundle" },
+    { "type": "text", "id": "door2_label", "label": "Door 2 label", "default": "Shop Custom Tents" },
+    { "type": "text", "id": "door2_sub", "label": "Door 2 sublabel", "default": "10x10, 10x15, and 10x20 — from $800." },
+    { "type": "text", "id": "door2_cta", "label": "Door 2 CTA", "default": "See tents" },
     { "type": "text", "id": "door2_link", "label": "Door 2 link", "default": "/collections/tents-canopies" },
     { "type": "text", "id": "door3_label", "label": "Door 3 label", "default": "Buy Online" },
     { "type": "text", "id": "door3_sub", "label": "Door 3 sublabel", "default": "Know what you need? Shop the catalog." },
@@ -184,7 +184,7 @@
       "type": "text",
       "id": "primary_label",
       "label": "Primary CTA text",
-      "default": "Shop bundles"
+      "default": "Get a free proof"
     },
     {
       "type": "url",

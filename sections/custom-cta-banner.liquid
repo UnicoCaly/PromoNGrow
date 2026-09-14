@@ -9,7 +9,7 @@
       <div class="png-cta-banner__actions">
         {%- if section.settings.primary_url != blank -%}
           <a href="{{ section.settings.primary_url }}" class="png-btn-primary">
-            {{ section.settings.primary_label | default: 'Shop bundles' }}
+            {{ section.settings.primary_label | default: 'Get a free proof' }}
           </a>
         {%- endif -%}
         {%- if section.settings.secondary_url != blank or section.settings.secondary_label != blank -%}
@@ -47,7 +47,7 @@
       "type": "text",
       "id": "primary_label",
       "label": "Primary button label",
-      "default": "Shop bundles"
+      "default": "Get a free proof"
     },
     {
       "type": "url",
