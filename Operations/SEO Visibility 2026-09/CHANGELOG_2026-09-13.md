@@ -51,7 +51,11 @@ Carlos: orders ship within 5 business days; rush on request, quoted per project;
 
 ---
 
-## 5. 2026-09-22 — entity record completed + GA4 attribution fix (commit `7177412`, **awaiting push**)
+## 5. 2026-09-22 — entity record completed + GA4 attribution fix (commit `7177412`, ✅ **LIVE + verified**)
+> **Deployed and verified on the live storefront 2026-09-22.** Served homepage HTML confirms the
+> `openingHoursSpecification` block, all four `sameAs` URLs, `cta_placement` at all four emitters, and
+> **no `gtag('event', …)` passing a reserved traffic-source field**. Carlos registered the
+> `cta_placement` custom dimension in GA4 the same day, so placement reporting starts 2026-09-22.
 Carlos: "Go" on the two queued items. Local clone was 7 commits behind live — fast-forwarded first. The
 never-pushed July theme batch (Inter body + 23 claims fixes) was **stashed, not discarded**
 (`git stash list` → "July staged theme batch … preserved 2026-09-22"); one untracked local template moved to

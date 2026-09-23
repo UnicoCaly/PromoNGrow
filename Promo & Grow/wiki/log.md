@@ -6,8 +6,10 @@ Append-only, newest at top. Each entry: `## [YYYY-MM-DD] <op> | <title>` (ingest
 
 ## [2026-09-22] update | Entity record completed + the GA4 fix that was patched in the wrong place first
 
-**Carlos said go on both queued theme items.** Committed as `7177412`; **the push to live is gated by a
-permission prompt and is still pending.**
+**Carlos said go on both queued theme items.** Committed as `7177412` and **deployed to the live storefront the same day** — served HTML verified for the
+schema block, all four `sameAs` URLs, `cta_placement` at every emitter, and no remaining reserved
+traffic-source field on any `gtag('event', …)`. Carlos **registered the `cta_placement` custom dimension
+in GA4 on 2026-09-22**, so placement reporting begins that date (it is not backfilled).
 
 **LocalBusiness schema** (`sections/header.liquid`): `openingHoursSpecification` Mon–Fri 10:00–16:00
 (weekends omitted = closed, the schema.org convention), and `sameAs` now carries the confirmed Facebook and
