@@ -1,0 +1,66 @@
+    /* Quote submitted — strongest concierge conversion */
+    document.addEventListener('png:quote_request_submitted', function (e) {
+      var detail = (e && e.detail) || {};
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {
+              content_name: detail.product_title || '',
+              content_category: detail.product_type || '',
+              source: detail.source || 'png-quote-modal'
+            });
+          }
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              currency: '{{ shop.currency }}',
+              source: detail.source || 'png-quote-modal'
+            });
+            {%- if gads_label != blank -%}
+              gtag('event', 'conversion', {
+                send_to: '{{ gads_id }}/{{ gads_label }}'
+              });
+            {%- endif -%}
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Email captured */
+    document.addEventListener('png:email_captured', function () {
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') fbq('track', 'Subscribe');
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'sign_up', { method: 'email_capture' });
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Click-to-call — high-intent signal */
+    document.addEventListener('png:click_to_call', function (e) {
+      var detail = (e && e.detail) || {};
+      try {
+        {%- if meta_id != blank -%}
+          if (typeof fbq === 'function') {
+            fbq('track', 'Contact', {
+              source: detail.source || 'unknown'
+            });
+          }
+        {%- endif -%}
+        {%- if gads_id != blank -%}
+          if (typeof gtag === 'function') {
+            gtag('event', 'click_to_call', {
+              source: detail.source || 'unknown'
+            });
+          }
+        {%- endif -%}
+      } catch (err) {}
+    });
+
+    /* Quote modal opened — engagement signal, not a conversion */
+    document.addEventListener('png:quote_modal_opened', function () {

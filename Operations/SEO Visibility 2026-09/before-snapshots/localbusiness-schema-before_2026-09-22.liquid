@@ -1,0 +1,54 @@
+{%- comment -%} Promo & Grow entity record (LocalBusiness). Canonical facts: wiki concepts/entity-facts-sheet.md {%- endcomment -%}
+{%- capture png_same_as_raw -%}{{ settings.social_instagram_link }}|{{ settings.social_facebook_link }}|{{ settings.social_youtube_link }}|{{ settings.social_tiktok_link }}|{{ settings.social_twitter_link }}|{{ settings.social_pinterest_link }}|https://www.yelp.com/biz/promote-and-grow-lynwood{%- endcapture -%}
+{%- assign png_same_as = png_same_as_raw | split: '|' -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": {{ request.origin | append: '/#business' | json }},
+    "name": "Promo & Grow",
+    "alternateName": "PrintCo Direct Inc.",
+    "description": "Custom event displays printed in Los Angeles: canopy tents, SEG fabric backdrops, flags, table throws, banners, and wall art. Bilingual service in English and Spanish.",
+    "url": {{ request.origin | append: '/' | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+      "image": {{ settings.logo | image_url: width: 1200 | prepend: "https:" | json }},
+    {% endif %}
+    "telephone": "+1-213-817-9188",
+    "email": "hello@promongrow.com",
+    "foundingDate": "2005",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10514 Long Beach Blvd",
+      "addressLocality": "Lynwood",
+      "addressRegion": "CA",
+      "postalCode": "90262",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Los Angeles" },
+      { "@type": "Country", "name": "United States" }
+    ],
+    "knowsLanguage": ["en", "es"],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-844-883-3308",
+        "contactType": "customer service",
+        "areaServed": "US",
+        "availableLanguage": ["English", "Spanish"]
+      }
+    ],
+    "sameAs": [
+      {%- assign png_first = true -%}
+      {%- for link in png_same_as -%}
+        {%- if link != blank -%}
+          {%- unless png_first -%},{%- endunless -%}
+          {{ link | strip | json }}
+          {%- assign png_first = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+</script>

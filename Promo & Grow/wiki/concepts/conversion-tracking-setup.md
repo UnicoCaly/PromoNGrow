@@ -12,6 +12,18 @@
 
 ---
 
+## Pixel consolidation — USE `1205589804645510` (2026-06-24)
+
+When Carlos set up the Meta campaign, the pixel verification "didn't recognize" the installed pixel and Meta offered a different code. Diagnosis: **multiple Business Managers + several accidental empty pixels.** The canonical one:
+
+- ✅ **`1205589804645510`** — "Promo & Grow Shop's pixel", in the **"Promo & Grow Shop"** Business Manager. **Active, ~2.1K events/28d, Conversions API + Meta Pixel, and the pixel installed site-wide** (verified in the live DOM). **Use this one everywhere.**
+- ⚠️ **Empty/duplicate datasets to ignore** (0 events, created by accident): `2085994955264913`, `1350948813650905` (Shopify Concierge), `941980002205530` (Promo N Grow), **`850250664585586` ("Proofer Adds")** — the ad had defaulted to this one → "Meta Pixel not active." Rename them "❌ DO NOT USE" so they stop defaulting in; **don't delete** (permanent).
+- ⚠️ A separate **"Shopify Business Manager"** holds a different auto-created pixel `136323338213418` (~125 events) — not the main one.
+
+**To select `1205…` in an ad:** confirm you're in the "Promo & Grow Shop" BM → Business Settings → Data sources → Datasets → `1205…` → **add the ad account to Connected assets** → set it as the ad account's default conversion dataset → select it in the ad's Tracking. (It wasn't selectable because it wasn't assigned to that ad account.) **Owner: Carlos** (Meta UI). This is the pixel the [[meta-ugc-launch-kit]] website funnel optimizes against. (source: Carlos screenshots + session 2026-06-24)
+
+---
+
 ## Why this is the #1 prerequisite
 
 Tracking is **partly live** (build-status 6/16): the Meta Pixel `1205589804645510` + Google Ads tag `AW-17631020505` are installed via the theme (`snippets/png-tracking-pixels.liquid`), so **remarketing audiences are already collecting** (source: PNG-Build-Status_6.16.2026.md). The gap turned out to be **wider than "just the label"** (audit 2026-06-20):
@@ -29,9 +41,14 @@ Tracking is **partly live** (build-status 6/16): the Meta Pixel `120558980464551
 
 **Remaining, in order:**
 1. ✅ **[Carlos] DONE 2026-06-20** — "Submit lead form" conversion action created; **label = `_S8lCJKl6sIcENmLkNdB`** (full `send_to: 'AW-17631020505/_S8lCJKl6sIcENmLkNdB'`, value 1.0 USD). *(Confirm it's marked Primary + Count = One.)*
-2. **[Claude Code/admin]** Paste the label → Theme settings → "Promo & Grow — Tracking & Analytics" → Google Ads → "Quote conversion label" (or set `config/settings_data.json` `google_ads_quote_label`); then **push** the fix + label live: `shopify theme push --only snippets/png-quote-modal.liquid config/settings_data.json` (+ mirror sync).
-3. **[Claude-admin]** **Verify** — submit a live test quote; in DevTools → Network watch for a `googleads.g.doubleclick.net/pagead/…` (or `google.com/pagead/1p-conversion/…`) hit carrying `AW-17631020505/<label>` on the success page, or Tag Assistant shows a `conversion` event with that `send_to`. Then Google Ads → Conversions → "Quote submitted" → **"Recording conversions"** (up to 3–24h lag).
+2. ✅ **DONE 2026-06-21** — label `_S8lCJKl6sIcENmLkNdB` is live in `config/settings_data.json` on the MAIN theme **and** the success-page conversion fire is live in `snippets/png-quote-modal.liquid` (both confirmed by reading the published theme via the Admin API). The wiring renders `gtag('event','conversion',{send_to:'AW-17631020505/_S8lCJKl6sIcENmLkNdB'})` on the quote-form success page — it WILL fire on a real submit.
+3. 🔄 **IN PROGRESS** — **Carlos sent test submits 2026-06-21; checking Google Ads "Recording conversions" 6/22.** *Verify method:* on the live theme, submit a test quote and reach the success page. In DevTools → Network, **filter by the label `_S8lCJKl6sIcENmLkNdB`** (or `17631020505` — the `AW-` prefix is NOT in the URL). Success = a request to one of `www.googleadservices.com/pagead/conversion/17631020505/…`, `googleads.g.doubleclick.net/pagead/viewthroughconversion/17631020505/…`, or `www.google.com/pagead/1p-conversion/17631020505/…` whose query contains **`label=_S8lCJKl6sIcENmLkNdB`** (status 200). The label is the distinguisher — a page-load remarketing ping to `17631020505` fires on every page *without* it. The Network ping is **instant** (= proof of wiring); the Google Ads **count lags ~3–24h** (Conversions → the action → "Recording conversions"); a no-ad-click test shows on the action's diagnostics but 0 in campaign columns (normal).
 4. **GA4 import** (optional/parallel) — Carlos-VA via the Google & YouTube channel.
+5. 🆕 **[Carlos — GA4 admin lane, NOT Claude Code] Register the `cta_placement` custom dimension.** Theme commit `7177412` (2026-09-22) renamed the GA4-facing event parameter from `source` to **`cta_placement`** at all three emitters, because GA4 treats `source` as a *manual traffic-source field on any event*, not a custom parameter — so every lead and call event was overwriting its own session origin (78 sessions in the 2026-09-14 export were attributed to placements: "mobile-sticky / (not set)" 52, "unknown" 16, "png-quote-modal" 9, "intent-router" 1 → [[ga4-traffic-read-2026-09]]).
+   **Do this:** GA4 Admin → Data display → Custom definitions → Create custom dimension · name "CTA placement" · scope **Event** · event parameter `cta_placement` (exact lowercase).
+   ⚠️ **Not retroactive** — the dimension reports only from its registration date forward, so register it at or before the deploy. Until then the value is still *collected* and visible in DebugView/Realtime (and any BigQuery export), just unusable in standard reports and Explorations. Nothing is lost, only unreadable where you'd look.
+   **Verify first (step 0):** this theme configures only `AW-17631020505` and loads gtag only when `window.gtag` is undefined, relying on Shopify's Google & YouTube channel to supply the GA4 config. Fire a quote submit and a tap-to-call with **DebugView** open and confirm `generate_lead` / `click_to_call` arrive in the GA4 property carrying `cta_placement`. If they don't, the events are reaching Google Ads only and no custom dimension will ever populate.
+   **Note:** the Meta pixel deliberately still sends `source` (`source` is not reserved in Meta). The two platforms read different parameter names for the same concept — expected, not a bug.
 
 **Hard gate:** no ad spend until a live test produces the labeled `pagead`/`doubleclick` conversion ping AND the action shows "Recording conversions." Repeat the live-test for tap-to-call + lead-form before launch.
 
@@ -46,6 +63,8 @@ Tracking is **partly live** (build-status 6/16): the Meta Pixel `120558980464551
 | `add_to_cart` / `begin_checkout` | Self-serve cart events (low-ticket items) | Secondary | Monitor only — not the goal (source: concierge-close.md) |
 
 The revenue runs on the [[concierge-close|human close]], so the primary conversions are quote requests and calls — NOT checkouts (source: conversion-bridge.md, concierge-close.md). Mark cart/checkout events Secondary so they don't pull bidding toward the near-dead cart.
+
+> **New conversion surface (2026-06-22):** the [[free-proof-landing-page]] (`page.lp-free-proof`) fires `quote_request_submitted` the same way the quote modal does — both its forms dispatch `png:quote_request_submitted` on the `form.posted_successfully?` success render, so the existing Meta `Lead` + Google Ads `conversion` (label `_S8lCJKl6sIcENmLkNdB`) wiring applies with no new pixel code. Pending the same live-test before paid traffic. (source: build session 2026-06-22)
 
 ## Call tracking
 
