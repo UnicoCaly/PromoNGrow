@@ -73,7 +73,7 @@
               {%- endif -%}
               {%- if gads_id != blank -%}
               if (typeof gtag === 'function') {
-                gtag('event', 'generate_lead', { currency: '{{ shop.currency }}', source: 'png-quote-modal' });
+                gtag('event', 'generate_lead', { currency: '{{ shop.currency }}', cta_placement: 'png-quote-modal' });
                 {%- if gads_label != blank -%}
                 gtag('event', 'conversion', { send_to: '{{ gads_id }}/{{ gads_label }}' });
                 {%- endif -%}
@@ -478,7 +478,8 @@
           event: 'quote_request_submitted',
           product_title: productField ? productField.value : '',
           product_type: typeField ? typeField.value : '',
-          source: 'png-quote-modal'
+          source: 'png-quote-modal',
+          cta_placement: 'png-quote-modal'
         });
       });
     }

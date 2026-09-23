@@ -31,6 +31,9 @@
 
   function push(event, data) {
     var payload = Object.assign({ event: event, page_path: window.location.pathname }, data || {});
+    /* GA4 treats 'source' as a reserved traffic-source parameter; mirror it under a
+       neutral name so tags can read placement without overriding attribution. */
+    if (payload.source && !payload.cta_placement) payload.cta_placement = payload.source;
     window.dataLayer.push(payload);
     try { document.dispatchEvent(new CustomEvent('png:' + event, { detail: payload })); } catch (e) { /* old browser, ignore */ }
   }

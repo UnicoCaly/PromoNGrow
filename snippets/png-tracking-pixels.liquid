@@ -149,7 +149,7 @@
           if (typeof gtag === 'function') {
             gtag('event', 'generate_lead', {
               currency: '{{ shop.currency }}',
-              source: detail.source || 'png-quote-modal'
+              cta_placement: detail.cta_placement || detail.source || 'png-quote-modal'
             });
             {%- if gads_label != blank -%}
               gtag('event', 'conversion', {
@@ -189,7 +189,7 @@
         {%- if gads_id != blank -%}
           if (typeof gtag === 'function') {
             gtag('event', 'click_to_call', {
-              source: detail.source || 'unknown'
+              cta_placement: detail.cta_placement || detail.source || 'unknown'
             });
           }
         {%- endif -%}
