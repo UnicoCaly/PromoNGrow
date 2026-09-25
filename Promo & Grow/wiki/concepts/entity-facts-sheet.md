@@ -27,7 +27,8 @@
 | LinkedIn | https://www.linkedin.com/company/promo-grow/ | Confirmed live 2026-09-20; page read 2026-09-22 — header facts match canon, but the tagline, About body and Specialties still say **"Promote & Grow"** and misspell "Graphics". Copy-paste fix listed in [[mention-sprint-2026-09]]. Any older "PrintCo Direct Inc." page should point here, not be deleted. |
 | Languages | English and Spanish | "Hablamos español" stays on outward pages: **Carlos speaks Spanish** and covers Spanish calls/emails after Venus's departure (Carlos 2026-09-14). |
 | Service area | Los Angeles and SoCal (pickup in Lynwood); ships nationwide | |
-| Sister business | Proágo Branding (agency) — a separate entity | Don't merge the two in schema or listings. |
+| **Legal entity** | **PrintCo Direct Inc. DBA Promo N Grow** | **Ruled 2026-09-24 (Carlos)**, to cut the Proágo conflation. Supersedes the 9/13 "a DBA of Proágo Branding Dept." framing everywhere. Note the DBA is styled **Promo N Grow**; the trading/brand name stays **Promo & Grow**. Confirmed against the CA SoS filing (General Corporation, filed 2011-06-13, Carlos A Diaz Jr. CEO) surfaced on bizprofile.net. |
+| Sister business | Proágo Branding (agency) — a separate entity | Don't merge the two in schema or listings. **"Powered by Proágo Branding Dept." removed from the site 2026-09-24** (footer on every page + both free-proof LPs) — it was the sentence AI answers cited when binding the two. Zero Proágo references remain in the theme. |
 
 ## What we make
 Custom-printed event displays: canopy tents (10x10, 10x15, 10x20) and tent walls, SEG tension-fabric backdrops (including pillowcase and backlit), feather/teardrop/rectangle flags, table throws and runners, vinyl banners and tent banners, A-frame and backdrop wraps, retractable banner stands, podiums, and wall art (canvas, SEG frames, acrylic). Also a reusable memorial display system for funeral homes ([[memorial-displays-vertical]]).

@@ -79,6 +79,48 @@ should in fact be tracked here.**
 
 ---
 
+## [2026-09-24] decision + update | Proágo conflation cut at the source — footer live, policies staged
+
+Carlos: P&G is leaking onto the Proágo site, and named the carrier — the refund-policy entity line and the
+footer "Powered by" line. **Ruling: the legal entity is `PrintCo Direct Inc. DBA Promo N Grow`**, which
+supersedes the 9/13 "a DBA of Proágo Branding Dept." framing everywhere. Note he styles the DBA **Promo N
+Grow** while the trading name stays **Promo & Grow** — both kept distinct so the name-consensus work is not
+undone. The CA SoS filing found on bizprofile.net corroborates the entity (General Corporation, filed
+2011-06-13, Carlos A Diaz Jr. CEO).
+
+**✅ LIVE (theme, commit `e5dada0`).** "Powered by Proágo Branding Dept." removed from three files — the
+site-wide footer and both free-proof landing pages — and replaced with the entity line. Verified on the
+homepage, a landing page and a PDP after a cache-busted fetch: **zero Proágo references remain anywhere in
+the theme or on the served pages.**
+
+**⛔ Policies still Carlos-only.** `shopPolicyUpdate` was attempted live again today and refused —
+`write_legal_policies` scope is still not granted. All four paste-ready files were updated instead
+(11 occurrences).
+
+**The refund policy carried six Proágo touchpoints, not one.** Beyond the entity line Carlos named, the live
+policy says "If **Proágo** prints a version that does not match the final approved proof…" and "not
+guaranteed by **Proágo**" in its operative text, and routes claims to **hello@proagobranding.co** in two
+places — so a customer filing a claim was being sent to the other company. All corrected.
+
+**Two things flagged back to Carlos, not decided here:**
+1. **The footer now contradicts itself.** "Formerly PrintCo Direct Inc." (a 9/13 ruling, four lines above)
+   sits directly over "PrintCo Direct Inc. DBA Promo N Grow". One says *we used to be that*, the other says
+   *we are that*. Both are true — brand history vs. legal structure — but read together they reproduce the
+   confusion this change exists to remove. Proposed: "Formerly trading as PrintCo Direct," or drop the line,
+   since the DBA line now carries the heritage signal more precisely.
+2. **Two of the Terms replacements are legal substance, not wording** — §15 Limitation of Liability and §16
+   Indemnification name the *shielded* entity. Swapping Proágo for PrintCo Direct Inc. changes who is
+   protected. Needs his (or counsel's) eye before pasting.
+
+Also proposed: add schema.org **`legalName`** to the LocalBusiness record alongside the existing
+`alternateName`, so engines get the entity relationship stated rather than inferred.
+
+**The other half of the binding is still live and on the Proágo side:** `printco-direct.com` 302-redirects to
+proagobranding.co, which publishes 323.249.4449 and names 10514 Long Beach Blvd — P&G's address — as its
+"Production Facility" → [[ai-visibility-panel-2026-09]] §3c. Fixing P&G's side does not undo that.
+
+→ [[entity-facts-sheet]] · [[ai-visibility-panel-2026-09]] · [[phone-number-map]]
+
 ## [2026-09-24] query | First AI-visibility panel — clean sentiment, wrong name, zero buyer-intent visibility
 
 Carlos asked where the AEO campaign stands and what sentiment AI carries for the brand. The second question
