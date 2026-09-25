@@ -3,7 +3,7 @@
 **Summary**: A top-down teardown of six direct competitors (user journeys + ad posture), the conversion-mechanic gaps that explain "nice catalog, no carts," a two-track game plan (concierge bridge now / self-serve machine in parallel), and the five wedges no competitor combines. Predecessor analysis the Growth Offensive sits inside.
 **Type**: concept
 **Sources**: PNG-Competitive-War-Room_6.08.2026.html
-**Last updated**: 2026-06-18 (cost-per-sale reconciled: ~$60–70 superseded by <$130).
+**Last updated**: 2026-07-12 (ad-channel view superseded: the verified 2026 paid-social competitive read — TentCraft/MVP/BuildASign/Vispronet postures, live Ads Library patterns, and the four whitespace wedges — now lives on [[meta-creative-expansion-2026-07]]; this page remains the site/UX teardown + wedge framework). *(6/18: cost-per-sale reconciled: ~$60–70 superseded by <$130.)*
 
 ---
 

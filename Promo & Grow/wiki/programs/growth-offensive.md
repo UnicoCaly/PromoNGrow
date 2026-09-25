@@ -1,5 +1,7 @@
 # Growth Offensive
 
+> 🔁 **Superseded by [[growth-offensive-v2]] (2026-06-21) as the current plan.** v2 is lead-gen-first: outbound calls + partnerships + GBP as the primary engine, paid reframed as a 90-day play, cold email corrected to Option A. This v1 page is kept for history + the still-valid red-team, scoreboard guardrails, and competitor analysis.
+
 **Summary**: The Growth Offensive is the 6/15/2026 paid + cold-email growth strategy — two engines (light paid, retargeting-first; warmed cold email) feeding warm leads to Venus, throttled to her real close capacity and measured on closed invoices, not platform ROAS. Written as plan → competitor red-team → hardened rebuild.
 **Type**: campaign
 **Sources**: PNG-Growth-Offensive-GamePlan_6.15.2026.md, PNG-Growth-Offensive-Dashboard_6.15.2026.html, PNG-Growth-Offensive-ExecutionPack_6.15.2026.html
@@ -56,7 +58,7 @@ All paid optimizes to **Lead** events (form submit / WhatsApp / phone click), ne
 
 ## Engine 2 — Cold email
 
-Sent **only from the separate `promotengrow.com` domain — never the transactional `promongrow.com`** — so a complaint spike can't touch invoices and client replies (note: replies already land in SPAM from villahallmark.com, so the main domain's reputation is fragile and must be protected) (source: PNG-Growth-Offensive-GamePlan_6.15.2026.md).
+Sent **only from the separate `promoteandgrow.com` domain — never the transactional `promongrow.com`** — so a complaint spike can't touch invoices and client replies (note: replies already land in SPAM from villahallmark.com, so the main domain's reputation is fragile and must be protected) (source: PNG-Growth-Offensive-GamePlan_6.15.2026.md).
 
 **Apollo routing — three options** (Apollo is tied to Proago.club; don't mix it):
 
@@ -64,7 +66,7 @@ Sent **only from the separate `promotengrow.com` domain — never the transactio
 |---|---|---|
 | A | Add a PNG mailbox to the existing Apollo account | Cheapest; shares reputation/data with Proago. Stopgap only |
 | B | Separate Apollo seat/workspace for PNG | Isolated; extra seat cost; Apollo isn't best at sending |
-| C (recommended) | Apollo for *data* (build/verify list) → send via Instantly/Smartlead on promotengrow.com | Built-in warmup, inbox rotation, spam alarms, one-click unsubscribe, DMARC. ~$30–100/mo (co-CEO recommendation) |
+| C (recommended) | Apollo for *data* (build/verify list) → send via Instantly/Smartlead on promoteandgrow.com | Built-in warmup, inbox rotation, spam alarms, one-click unsubscribe, DMARC. ~$30–100/mo (co-CEO recommendation) |
 
 2 sending inboxes, SPF + DKIM + DMARC, warmup ON from day one, ramping to ~60/day across both inboxes by week 4–5. Auto-pause if spam complaints cross 0.08% or bounces cross 1.5%. The cold sequence's job is to start a conversation Venus finishes — see [[cold-email-sequence]].
 
@@ -81,7 +83,7 @@ The plan is stress-tested by an imagined bigger LA competitor; each attack maps 
 | 1, 7 | Venus is the single point of failure; lead-form ads attract tire-kickers | Capacity is the design center: size inflow to ~5–6 quality/day, retargeting-first, 60-sec qualifier filters junk, auto-pause prospecting if backlog > 8 for 3 days, or green-light a 2nd closer |
 | 2 | $0 ceded to high-intent Google Search | Ring-fenced $150/mo Google Search line on exact terms |
 | 3, 8 | Wedge is copyable; tight-knit niche poisons on one slip | Bundle the wedge with proof of trust (logos, "formerly PrintCo Direct," job photos, Spanish video testimonial); lock in referral capture |
-| 4, 5 | Cold email is a coin flip on a fragile base; "this week" makes you sloppy | Cold only from promotengrow.com; Option C warmup/rotation/alarms; no warmup corner-cut; auto-pause at 0.08% spam; separately fix the main-domain SPAM issue |
+| 4, 5 | Cold email is a coin flip on a fragile base; "this week" makes you sloppy | Cold only from promoteandgrow.com; Option C warmup/rotation/alarms; no warmup corner-cut; auto-pause at 0.08% spam; separately fix the main-domain SPAM issue |
 | 6, 10 | Small-budget ROAS is noise; no kill-criteria | Judge on rolling 60-day cost-per-closed-deal (<$130) + leading indicators; instrumented attribution; written kill/scale rules |
 | 9 | No retention/reorder loop | Bolt on the reorder loop: retarget past customers while Venus calls them, seasonal reorder triggers, every new customer enters the loop day one |
 
@@ -103,6 +105,17 @@ The plan is stress-tested by an imagined bigger LA competitor; each attack maps 
 
 **Written kill/scale rules:** scale a source if rolling cost/close < $130 *and* Venus has capacity; fix-or-cut after a 60-day fair test if cost/close > $250 or it yields leads she can't close; auto-throttle prospecting on the overflow trigger (source: PNG-Growth-Offensive-GamePlan_6.15.2026.md).
 
+## 2026 benchmark validation + the lean-launch refinement (2026-06-20)
+
+A 2026 external-research pass (deep-research task wtl253ia7) and a Carlos decision (2026-06-20) refine this engine. **Decision: lean & validate first** — hold the ~$750–800/mo all-in, prove tracking + close rate, and **scale only on proof**. The honest read on each dimension:
+
+- **Where the steady cadence actually comes from.** At ~$750–800/mo, paid alone does **not** produce a "strong cadence" of leads — the closest benchmark (WordStream 2026 Business Services: **CPC ~$5.87, CPL ~$93.69, CVR 4.85%**, 13K+ campaigns) puts a ~$25/day budget at **1–4 *qualified* leads/mo in month 1**. So the cadence that keeps Venus busy is the **combination**: warm reactivation (live now) + cold email (July) carry the *volume*; paid is **high-intent capture (Google Search) + retargeting air-cover**, not a volume spigot. This is by design and validated, not a shortfall.
+- **The "cost per qualified lead < $40" scoreboard target is aspirational.** The honest baseline is **~$70–150 CPL months 1–2** (matches the $93.69 Business-Services benchmark and [[lead-machine]]'s feasibility note). Read <$40 as a stretch goal once optimized; don't bench the program for missing it early.
+- **Performance Max is OUT at this budget.** PMax needs ~**$100–150/day ($3,000–4,500/mo)** to exit its learning period; at ~$25/day it would burn ~70% on junk Display/YouTube inventory. **Search-first is correct** for budgets under $5,000/mo (NAV43; corroborated). Revisit PMax only after a scale decision.
+- **Bench Meta prospecting until the close rate proves out.** No reliable public Meta lead-form CPL benchmark survived verification, and lead-form ads attract tire-kickers (red-team #1/#7). So launch **Google Search (Spanish + Tents) + retargeting only**; hold the $200 Meta prospecting line until Venus's close rate on paid leads is known — then turn it on with our *own* CPL data ([[launch-week-roadmap]], [[meta-lead-form]]).
+- **The hard gate is unchanged:** no spend until the `google_ads_quote_label` fires live ([[conversion-tracking-setup]]).
+- **Confirmed as-is:** the $400/$150/$200 split (with Meta benched initially), retargeting-first, the <$130-scale/>$250-cut rules, ROAS-on-closed-invoices, Venus-as-throttle.
+
 ## Week-by-week and 90-day economics
 
 | Week | Paid | Cold email |
@@ -117,7 +130,7 @@ The plan is stress-tested by an imagined bigger LA competitor; each attack maps 
 
 ## What's needed to pull the triggers
 
-(1) Green-light Option C (or pick A to save the subscription); (2) confirm Claude can set up the 2 promotengrow.com inboxes safely (never passwords in files); (3) confirm the $400 / $150 / $200 split; (4) say go to draft the bilingual sequence + Meta creative, build the Apollo list, and stand up the revenue-by-source tracker (source: PNG-Growth-Offensive-GamePlan_6.15.2026.md). Implementation detail lives in [[cold-email-sequence]], [[meta-lead-form]], and [[lead-machine]].
+(1) Green-light Option C (or pick A to save the subscription); (2) confirm Claude can set up the 2 promoteandgrow.com inboxes safely (never passwords in files); (3) confirm the $400 / $150 / $200 split; (4) say go to draft the bilingual sequence + Meta creative, build the Apollo list, and stand up the revenue-by-source tracker (source: PNG-Growth-Offensive-GamePlan_6.15.2026.md). Implementation detail lives in [[cold-email-sequence]], [[meta-lead-form]], and [[lead-machine]].
 
 ## Related pages
 - [[lead-machine]]

@@ -6,9 +6,11 @@
 
 **Sources**: co-CEO build session 2026-06-20; synthesizes [[outbound-method]], [[venus-sales-playbook]], [[deal-followup-playbook]], [[sell-guide]], [[concierge-close]], [[master-price-sheet]], [[operating-rhythm]].
 
-**Last updated**: 2026-06-20.
+**Last updated**: 2026-06-20 *(2026-06-22 note: full seminar/outbound push deferred this week — see banner below)*.
 
 ---
+
+> **▶ DEFERRED this week — 2026-06-22 (re-scope).** Per Carlos's evening direction, the week is re-scoped to **UGC / inbound-first** ([[meta-ugc-launch-kit]]); the **full formal sales seminar + the outbound push (cold calls + cold email) are deferred — not this week** (outbound needs more finesse/infra/reps first). The Monday training was **cut short** (too many PDFs to navigate live) and will be **RE-RUN 2026-06-23, tightened and UGC-focused.** This page stays as the runnable seminar for when training resumes. (source: Carlos direction 2026-06-22)
 
 ## Format
 ~90 min, Carlos leads, Venus + (optional VA) attend. Screen-share the linked pages. End with one live role-play and Venus's first three actions. Keep it energizing — she's "employee #1 of the sales machine," not a cog.
@@ -35,8 +37,10 @@ From [[outbound-method]] (read it after). The spine for every call and email:
 6. **Tonality:** warm, confident, never pushy; bilingual by nature. Rehearse the openers so they're natural.
 
 ## Part 4 — Working the queue (10 min)
+> **Updated 2026-06-22 (training/lane shift):** Venus's actual first move this week is **Yoni + Alex (hot follow-ups) → then net-new outbound**, not Shadi. **Shadi Safai ($5,838) and #D77 ($3,400) moved to Carlos's lane** after weeks of no response. See the [[venus-work-queue]] Monday override. (source: [[venus-launch-training-2026-06-22]])
+
 [[venus-work-queue]], top-down, every day:
-- **Tier 0 — open quotes to close/revive** (start here: **Shadi Safai $5,838**, #D77 $3,400).
+- **Tier 0 — open quotes to close/revive** (start here: **Shadi Safai $5,838**, #D77 $3,400). *(6/22: Shadi + #D77 are now Carlos's lane — see the override note above.)*
 - **Tier 1 — fresh inbound** (ads + Fútbol replies) — respond first, within minutes.
 - **Tier 2 — recent buyers** to reorder/upsell (Karen, Pathita VIP…).
 - **Tier 3 — reactivation** calls (whales + hot-23 — [[reactivation-call-queue]]).
@@ -44,7 +48,9 @@ Product knowledge + cross-sell angles + "stat ammo": [[sell-guide]].
 
 ## Part 5 — Pricing + guardrails (10 min)
 - **Quote ONLY from [[master-price-sheet]].** Catalog = the set price, no math. **Custom = route to Carlos**, never guess.
-- **$100 floor, no discounts without Carlos.** Free proof on every order.
+- **$100 floor, no discounts without Carlos.** Free proof.
+  - **Updated 2026-06-22 (training):** for COLD outreach the free-proof hook is scoped to big-ticket items (tents/displays); whether it still applies to all warm/existing orders is unconfirmed — Carlos to clarify. (source: [[venus-launch-training-2026-06-22]])
+  - **RESOLVED 2026-06-22 (ruling):** Free proof = **$500+ big-ticket items only** (tents, displays, etc.). Items **under $500 — business cards, brochures, flyers — get NO free proof**, even at high quantity (e.g., 10,000 brochures), because design must be charged. The website already reflects this (not every product shows "Get a Free Proof"). This supersedes the "unconfirmed — Carlos to clarify" note above and any blanket "free proof on every order" reading. (source: Carlos direction 2026-06-22)
 - **Delivery is always "5 business days from proof approval"** — never "guaranteed."
 - **Never expose vendor cost** (4over/B2Sign/etc.). The honest line: *"produced locally in LA, fast turnaround."*
 - **DNC / institutional** (`sogate.org`, City of South Gate, Lynwood/LUSD, Nova Storage) = **Carlos's lane — do not contact.**
@@ -61,12 +67,18 @@ Run one of each, scored on: warm open · found the need · offered the free proo
 - **Objection** — "more than I wanted to spend" → right-size + send the proof.
 
 ## Venus's first three actions (end of seminar)
-1. Open [[venus-work-queue]]; call **Shadi Safai** about the 3 open quotes ($5,838).
+> **Superseded 2026-06-22 (lane shift):** action 1 below is replaced by the launch-day plan — Venus's first move is **Yoni + Alex (hot follow-ups, offer a free proof) → then net-new outbound fishing**; **Shadi → Carlos's lane.** See the [[venus-work-queue]] Monday override and [[venus-launch-training-2026-06-22]].
+
+1. Open [[venus-work-queue]]; call **Shadi Safai** about the 3 open quotes ($5,838). *(6/22: superseded — Shadi is Carlos's lane; Venus starts with Yoni + Alex.)*
 2. Set up the Sheet + Shopify tag habit on the first 3 leads she touches.
 3. Skim [[outbound-method]] + [[sell-guide]] before tomorrow.
 
 ## Related pages
+- [[venus-launch-training-2026-06-22]]
 - [[launch-week-roadmap]]
+- [[venus-cold-email-training]]
+- [[venus-email-writing-engine]]
+- [[cold-reply-playbook]]
 - [[venus-work-queue]]
 - [[outbound-method]]
 - [[venus-sales-playbook]]

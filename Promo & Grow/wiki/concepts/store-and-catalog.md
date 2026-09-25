@@ -62,6 +62,7 @@ This deliverability work underpins the [[reactivation-email-sequence]].
 - **Carlos / VA** = platform toggles (automations, GBP, sends), approvals, the human close (source: PNG-Master-Context-Playbook.md).
 
 ## Related pages
+- [[product-catalog-2026]] — the outward sales-kit rendering of this catalog (PDF + sale sheets, 2026-07-10)
 - [[pricing-engine]]
 - [[master-price-sheet]]
 - [[fulfillment-sop]]

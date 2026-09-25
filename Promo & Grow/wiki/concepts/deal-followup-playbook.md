@@ -6,7 +6,7 @@
 
 **Sources**: co-CEO build session 2026-06-17; PNG-Follow-Up-Email-Playbook.md; PNG-First-Call-Playbook.md; PNG-Roleplay-and-Objection-Drills.md; PNG-Closer-Onboarding-Workbook.md.
 
-**Last updated**: 2026-06-19 (applied [[outbound-method]] tactics: assumptive language, tight email micro-sequence, objection bank).
+**Last updated**: 2026-07-13 (budget-objection moves updated for the ratified Deposit-to-Lock + 10%-in-trade authority; earlier 2026-06-25: outward copy anti-AI revised; applied [[outbound-method]] tactics).
 
 ---
 
@@ -39,9 +39,9 @@ Lead with the channel the customer used; escalate channels if they go quiet. SMS
 | Touch | When | Channel | Job | What to say |
 |---|---|---|---|---|
 | 1 | Same day (with quote) | their channel | Deliver | Quote + free-proof offer + "5 business days from proof approval" |
-| 2 | Day 1–2 | call → text | Re-open | Assumptive proof hook: "I'm starting your free proof so you can see it with your logo — what quantity/art should I use?" |
-| 3 | Day 3 | email/text | Help | "Locking in for [event date] — I'll send the proof to approve; anything to change first?" |
-| 4 | Day 7 | call/text | Deadline | "Your event's close — let's start the 5-day clock today. I'll send the proof to approve." |
+| 2 | Day 1–2 | call → text | Re-open | Assumptive proof hook: "Starting your free proof so you can see it with your logo. What quantity and art should I use?" |
+| 3 | Day 3 | email/text | Help | "Locking this in for [event date]. I'll send the proof to approve — anything you want to change first?" |
+| 4 | Day 7 | call/text | Deadline | "Your event's getting close. Let's start the 5-day clock today. I'll send the proof to approve." |
 | **5 — THE TAKEAWAY** | Day 10–12 | text/email | Pattern-interrupt | The breakup / 1-2-3 reply (below) — usually the **highest-response** touch |
 | 6+ | Monthly | email | Nurture | Soft value; new season/offer; don't hound |
 
@@ -51,9 +51,9 @@ After the takeaway with no reply → mark **Nurture**, route to the [[email-libr
 
 From [[outbound-method]]: **~70–80% of closes come from a follow-up, not the first send**, and reply rates fall off hard past ~48h between touches. So when a quote is unanswered on email, run a tight **every-other-day** micro-sequence that keeps pointing back to the original quote — three short follow-ups, one job each, then stop:
 
-- **FU1 — benefit of the doubt (Day +1–2):** "Hi [name] — just making sure you caught your **[product]** quote. I'll get the **free proof** started so you can see it with your logo — send the art (or I'll mock it up)."
-- **FU2 — the thoughts line (Day +3–4, the highest-reply touch):** "Hi [name] — quick one: what are your thoughts on the **[product]**? Even a **1-2-3** works — 1 let's go · 2 love it, not yet · 3 pass."
-- **FU3 — assumptive close-the-loop (Day +6–7):** "Hi [name] — want me to hold your slot for **[event/season]**, or has the timing shifted? I'll close the loop either way — just reply."
+- **FU1 — benefit of the doubt (Day +1–2):** "Hi [name], making sure your **[product]** quote landed. I'll get the **free proof** started so you can see it with your logo. Send the art or I'll mock it up."
+- **FU2 — the thoughts line (Day +3–4, the highest-reply touch):** "Hi [name], where's your head at on the **[product]**? Even a **1-2-3** works: 1 let's go, 2 love it but not yet, 3 pass."
+- **FU3 — assumptive close-the-loop (Day +6–7):** "Hi [name], want me to hold your slot for **[event/season]**, or has the timing shifted? Either way I'll close the loop. Just reply."
 
 Each is **short** and redirects to the original quote (don't re-pitch). **Cap it at ~4–5 total touches** — past that you devalue yourself; mark Nurture and re-touch in 30 days. **ABAB rhythm:** if you're working two batches, alternate them day-by-day (batch A Mon, B Tue, FU-A Wed, FU-B Thu) so the morning email block stays ~an hour; ideally alternate channels too — email one day, call the next. (FU2's 1-2-3 is the same 1-2-3 reply from the pattern-interrupt toolkit below, used softer here.)
 
@@ -65,7 +65,7 @@ Each is **short** and redirects to the original quote (don't re-pitch). **Cap it
 2. **Switch the time.** Try a different hour/day (early AM or just after lunch). You may just be hitting them wrong.
 3. **The takeaway / breakup** — *highest re-engagement move.* Remove the pressure and gently signal you'll close the file. People react to losing the option more than to another pitch.
 4. **Shrink the ask (down-sell to an easy yes).** A big number stalls. Offer the smallest first step (smaller tier, cheaper config, "just start with X"). Momentum beats the perfect order.
-5. **Ask the diagnostic question.** Name the real blocker: *"Totally fine either way — is it the timing, the budget, or do you need to run it by someone?"* Whatever they say is what you actually solve.
+5. **Ask the diagnostic question.** Name the real blocker: *"Totally fine either way. Is it the timing, the budget, or do you need to run it by someone?"* Whatever they say is what you actually solve.
 6. **The 1/2/3 reply.** Make responding a 2-second tap: *"Reply 1 (let's go), 2 (love it, not yet), or 3 (pass for now)."* Even a "3" is a win — it frees the slot and your time.
 
 ## Objection → response (quick reference)
@@ -75,14 +75,14 @@ The move on **every** objection: **acknowledge → reframe to value → end on t
 | They say | Real meaning | The move (end on the proof) |
 |---|---|---|
 | *(silence)* | busy / not urgent / unsure | takeaway + 1-2-3 reply |
-| "More than I wanted to spend" | price vs. perceived value | right-size to a smaller tier; restate free proof + 5-day; **never discount past the floor** — escalate to Carlos ([[pricing-engine]]) |
+| "More than I wanted to spend" | price vs. perceived value | on $800+: **Deposit-to-Lock (50% freezes price+slot 60d)** first, then right-size to a smaller tier; restate free proof + 5-day; **10% off only in-trade** (deposit/pickup/review/referral), deeper → Carlos ([[master-price-sheet]]) |
 | "Let me think about it" / "I'll get back to you" | an unspoken objection | the diagnostic (timing / budget / approver?) — then send the proof anyway |
-| "Just send me a price / info" | brush-off | "fastest real number is a free proof — what product + qty?" |
+| "Just send me a price / info" | brush-off | "fastest real number is a free proof. What product and qty?" |
 | "Need to check with [boss/partner]" | not the decision-maker | "makes sense — I'll put it on one sheet you can forward, proof attached" |
 | "We already have a printer / vendor" | inertia, not loyalty | the difference (a person who answers + free proof + 5-day); "run one free proof and compare" |
 | "Can you go faster than 5 days?" | deadline pressure | "give me your in-hand date, I'll confirm the rush — starting the proof now" (rush = custom → Carlos) |
 | "Can you design it?" | no art ready | "send whatever you've got, even a sketch — we mock it up in the free proof" |
-| "Who is this again?" | cold memory | the PrintCo reframe + their past order + "want a quick free proof?" |
+| "Who is this again?" | cold memory | the PrintCo reframe + their past order + "want a free proof?" |
 
 ## Won / Nurture / Dead — decide, don't drift
 
@@ -101,27 +101,29 @@ Email opens/clicks are **not exposed via the Shopify connector** (no engagement 
 
 ## Outward copy (ganas voice)
 
+> *Outward copy anti-AI revised (v2) 2026-06-25 — see [[png-voice]] anti-AI rule.*
+
 **The takeaway / breakup (the cold-deal revive):**
-> "Hey [name] — Venus from Promo & Grow. No quiero seguir llamándote 🙂. I've still got your [proof/quote] ready, but I won't hold your production slot if the timing changed. Just reply **1** (let's lock it in), **2** (love it, not yet), or **3** (pass for now) — lo que sea, sin pena. If it's budget or timing, dime y lo resolvemos."
+> "Hey [name], it's Venus from Promo & Grow. No quiero seguir llamándote 🙂. I've still got your [proof/quote] ready, but I won't hold your production slot if the timing changed on you. Reply **1** (let's lock it in), **2** (love it, not yet), or **3** (pass for now). Lo que sea, sin pena. And if it's budget or timing, dime y lo resolvemos."
 
 **The down-sell (easy yes):**
-> "Totalmente entiendo que [the full order] es una decisión grande. ¿Quieres empezar con [smaller tier / the one piece] so you're moving now, y hacemos el resto cuando estés listo? Te mando un **free proof** hoy y en **5 días hábiles** estás listo. ¿Te lo envío?"
+> "Te entiendo, [the full order] es una decisión grande. ¿Y si empezamos con [smaller tier / the one piece] so you're moving now, y hacemos el resto cuando estés listo? Te mando un **free proof** hoy y en **5 días hábiles** lo tienes. ¿Te lo envío?"
 
 **The diagnostic:**
 > "Sin presión, [name] — para ayudarte mejor: ¿es el timing, el presupuesto, o lo tienes que consultar con alguien? Whatever it is, I'll work with you."
 
 **Monthly nurture (re-touch):**
-> "¡Hola [name]! Pensé en ti — [season/event] is coming up. Sigo teniendo tu info; want me to put together a quick **free proof** so you're ready? No compromiso."
+> "¡Hola [name]! Me acordé de ti, [season/event] is coming up. Sigo teniendo tu info. Want me to put together a **free proof** so you're ready to go? Sin compromiso."
 
-**Objection bank — base responses (copy, then add their specifics):** every line acknowledges, reframes to value, and **ends on the free-proof next step.** Never discount past the $100 floor / no discount without Carlos ([[pricing-engine]]).
-> **Price ("more than I wanted"):** "Totally hear you — ¿cuál es el número que tienes en mente? I can right-size it (smaller tier or qty) so you still show up sharp. Let me start a free proof at that number so you see it before you commit."
-> **"Let me think about it" / "I'll get back to you":** "Of course — real quick so I help right: is it the timing, the budget, or running it by someone? Either way I'll send the free proof now so it's in your hands when you decide."
-> **"Just send me a price / info":** "Done — y la forma más rápida a un número real is a free proof with your logo, no commitment. What's the product and quantity? Both over today."
-> **"We already have a printer":** "Makes sense — most of our regulars did too. La diferencia: a real person who answers, a free proof before you pay, and 5-day delivery. Let me run one free proof on your next [product] and you compare — no switching just to look."
-> **"Faster than 5 days?":** "Often yes on print — dame tu fecha de entrega and I'll confirm the rush. Starting your proof now so the clock can start the second you approve." *(rush = custom → confirm with Carlos.)*
-> **"Can you design it?":** "¡Claro! Send whatever you have — even a sketch or just your logo — y lo montamos in the free proof. I'll get it started."
-> **"Who is this again?":** "Venus de Promo & Grow — you knew us as PrintCo Direct, Carlos's shop. We ran your [product] back in [time]. Reaching out because we now do [event displays] in 5 days too — want a quick free proof?"
-> **"Why you vs Vistaprint?":** "Those are templates and a faraway printer. Somos gente real en LA — free proof, a person who answers, 5-day delivery. Hecho bien. Let me prove it with one free proof."
+**Objection bank — base responses (copy, then add their specifics):** every line acknowledges, reframes to value, and **ends on the free-proof next step.** Discounts = **Venus's 10% in-trade margin only** (deposit / pickup / review / referral, never an opener); deeper or off-sheet → Carlos. On any budget objection, **Deposit-to-Lock (50%, $800+)** is the first lever before the discount ([[master-price-sheet]] ruling 2026-07-13).
+> **Price ("more than I wanted"):** "Totally hear you. ¿Cuál es el número que tienes en mente? I can right-size it (smaller tier or qty) so you still show up sharp. Let me start a free proof at that number so you see it before you commit."
+> **"Let me think about it" / "I'll get back to you":** "Of course. So I help you right: is it the timing, the budget, or running it by someone? Either way I'll send the free proof now so it's in your hands when you decide."
+> **"Just send me a price / info":** "Done. La forma más rápida a un número real is a free proof with your logo, no commitment. What's the product and quantity? You'll have both today."
+> **"We already have a printer":** "Makes sense, most of our regulars did too. La diferencia: a real person who answers, a free proof before you pay, and 5-day delivery. Let me run one free proof on your next [product] so you can compare. No switching just to look."
+> **"Faster than 5 days?":** "Often yes on print. Dame tu fecha de entrega and I'll confirm the rush. I'm starting your proof now so the clock can start the second you approve." *(rush = custom → confirm with Carlos.)*
+> **"Can you design it?":** "¡Claro que sí! Send whatever you have, even a sketch or just your logo, y lo montamos in the free proof. I'll get it started."
+> **"Who is this again?":** "It's Venus de Promo & Grow. You knew us as PrintCo Direct, Carlos's shop. We ran your [product] back in [time]. Calling because we now do [event displays] in 5 days too. Want a free proof?"
+> **"Why you vs Vistaprint?":** "Those are templates and a faraway printer. Somos gente real en LA: free proof, a person who answers, 5-day delivery. Hecho bien. Let me prove it with one free proof."
 
 ## Related pages
 - [[draft-order-quote-system]] · [[venus-sales-playbook]] · [[venus-work-queue]] · [[reactivation-call-queue]] · [[master-price-sheet]] · [[pricing-engine]] · [[operating-rhythm]] · [[outbound-method]]

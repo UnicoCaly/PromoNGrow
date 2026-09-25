@@ -4,6 +4,126 @@ Append-only, newest at top. Each entry: `## [YYYY-MM-DD] <op> | <title>` (ingest
 
 ---
 
+## [2026-09-24] ingest | Titan won, Gloria's nine-day proof outage, and two concessions retired
+
+**Files touched:** [[dr-silegy-dental]] **(created)** · [[titan-law-firm]] · [[evoria-health]] · [[proof-vs-design-policy]] · [[master-price-sheet]] · `dashboard.md`.
+
+**[[titan-law-firm]] WON — $1,796.74, `#P&G881082`.** Proof approved 9:08 AM, paid 10:40 AM. **The silence was never about price.** She asked for a one-word fix at 9:25 AM on 9/23 and what she got at 11:02 AM was an invoice. The nudge that worked led with the fix and owned the sequencing. **Answer the request first, in its own message; let the invoice follow.**
+
+**[[dr-silegy-dental]] created — and it is a delivery failure, not a policy failure.** `#P&G881079` was **paid on 9/15** and sat **unfulfilled for nine days** because the Shopify Proofer proof never reached Gloria — four or five sends, two unanswered calls, nothing in her spam. Sending it direct from Carlos's email got approval in writing within the hour. **Abandoning a channel that had already failed five times was correct, not a concession.**
+
+**The finding is that proofs have no delivery confirmation.** Five sends produced no signal at all; the first signal was a customer's irritation on a phone call. **Marisol and Darling both approved through the portal in the same window**, so the app works and this is recipient-side — most likely **Microsoft tenant quarantine**, which holds mail without placing it in Junk, matching exactly what she described. **Proposed: two sends with no portal activity inside 48 hours ends the channel** — direct email plus a call, no third attempt down the same path; `drsilegy.com` on a known-bad-delivery list; and check whether Proofer can send from a `promongrow.com` address.
+
+**CORRECTION worth recording.** A midday 9/24 note filed Gloria as the portal rule being *"waived at the first sign of friction."* **That was inferred from one email exchange without the nine days behind it, and it was wrong.** Left uncorrected it would have produced a policy aimed at discipline when the problem was a broken pipe.
+
+**[[proof-vs-design-policy]] placed UNDER REVIEW — not ruled.** The leak is **proofing before Deposit-to-Lock**, not the revision count: Titan ran four rounds on $1,813 with nothing collected, against a 50%-on-$800+ rule that already existed and was not applied. **Move the gate, do not tighten the cap.**
+
+**[[master-price-sheet]] RULING 3 — free ground shipping and the 10% volume discount both RETIRED, effective Mon 2026-09-28.** The 10% in-trade closer's margin and the 8% nonprofit rate both survive. Open before Monday: shipping needs a *method*, the site and checkout still advertise free shipping, and sheet prices were built with freight inside them.
+
+**[[evoria-health]] — first deliberate post-order ask sent** (photos + Google review). Carlos wants this automated for P&G. Design notes filed on the deal: trigger on **delivery**, ask for the **photo before the review**, **one** follow-up, and **do not automate until it has been sent by hand a few more times** — Marisol is sample size one.
+
+**Tax variance is systemic, not a one-off.** Titan paid **$16.37 less than quoted** because Shopify resolves tax at the **destination** and the draft estimate uses the **Lynwood origin**. Same as Firm Footing. **P&G quotes overstate the out-the-door total for out-of-area customers.**
+
+## [2026-09-23] ingest | Five-day catch-up — Evoria won and closed the tax question; Titan is one letter from paid
+
+Swept Gmail, Shopify orders and the live draft state for everything since 9/18. Four things moved.
+
+**[[evoria-health]] WON.** Paid **2026-09-20 23:16** → order **#P&G881080**, **$1,165.78**, `PAID` /
+`FULFILLED`, shipped 9/22–23 on B2Sign A9096119 (tracking 877605334350 / 877606694556) against a ~9/26
+window. **She took delivery to Pasadena 91107, not the Lynwood pickup that was pressed on 9/16** — ground
+made it comfortably, so that "pickup is what protects the deadline" call was more conservative than the
+job required. Worth remembering before leaning that hard on pickup for a ~10-day build again.
+
+**She paid $2.64 less than the invoice, and that is the finding.** #D164 resolved against the **Lynwood
+origin at 10.75% ($1,168.42)**; checkout with a real destination **re-resolved the district lines to
+Pasadena at 10.50% ($1,165.78)** — Lynwood City 1% off, Pasadena City 0.75% on, state and county lines
+unchanged. **The tax rule from this one job is now complete in three turns** ([[master-price-sheet]]):
+an unsent draft shows **$0**, a hand-computed blended rate runs **1–2¢ light**, and **a sent invoice is only
+the origin-situs figure — it moves again at checkout if the order ships elsewhere.** Practical rule: put
+*"the final rate follows the delivery address"* in writing on every quote, and never promise an
+out-the-door number to the cent before the address exists. Direction is predictable — shipping outside
+Lynwood lands at or below the invoice.
+
+**[[titan-law-firm]] is one character from paid.** Artwork landed and proofs are running in Proofer against
+#D166. **9/23 16:25 — proof rejected:** *"Last change request, the top part where it says Auto Accident &
+Injury Lawyer, make it plural please.... Should say Lawyers."* She said **"last change request"** herself.
+One letter gates **$1,813.11**.
+
+**Process flag on the same deal.** The invoice was re-sent at **18:02:45 — 1h37m after that rejection** —
+asking *"If the latest design looks good, we're ready to get everything into production."* She had already
+answered that in writing. The same message opens **"HiDarling,"** with no space. She has not reacted and
+nothing is broken, but the ordering is the lesson: **clear the proof queue before firing the payment
+chase**, or the chase contradicts the proof — particularly with a buyer whose only open note is a grammar
+correction.
+
+**New lead, and it has been sitting.** [[jose-perez-lead]] came in **9/22 11:41** and is **still unanswered
+24h+** against a 2-business-hour target. Eleven items in one message — 10x10 canopy, 8x3 banner, large
+roadside sign, menu board, tees, aprons, 12oz hot cups, 16oz cold cups, paper bags, wax paper, 3"
+stickers. That is **someone opening a food or coffee business**, and the consumables are the recurring
+revenue, not the canopy. **Only about four of the eleven are in catalog.** It forces the **apparel question
+open since July** ([[lynwood-usd-account]]) now with a live buyer attached, plus a new one on food-service
+packaging: source it, refer it openly, or route the whole job to Proágo. Carlos's call.
+
+**Also noted:** Gloria Moreno's **$267.11** (paid 9/15) is **still unfulfilled at 8 days** — flagged 9/16 as
+awaiting her Proofer approval, worth a direct nudge now. Socorro Gutierrez **$128.47** (9/21) unfulfilled,
+inside normal production. Kaila Garcia (Laurence School) was steered from a banner stand to the Pillowcase
+Backdrop on 9/22, surfacing a catalog fact: **the standard retractable stand is being phased out and is
+offered only when asked for by name.**
+
+**Seen and deliberately not ingested** (per the [[phone-number-map]] / entity-boundary rule): the VCC 1909
+PGA "Play the Game" sign set and its PGA-blue colour-variance thread, 1 Shine Youth Center's monument sign,
+the Raya Insurance policy for PrintCo Direct DBA Proágo, the California Science Center membership reprint,
+and a Raised Printing vendor intro — **all Proágo-side**. Also skipped: an Indeed application for a
+Production Specialist / Installer in Lynwood, where the hiring entity is ambiguous. **Flag if any of those
+should in fact be tracked here.**
+
+---
+
+## [2026-09-24] query | First AI-visibility panel — clean sentiment, wrong name, zero buyer-intent visibility
+
+Carlos asked where the AEO campaign stands and what sentiment AI carries for the brand. The second question
+is the measurement that had stood at **"Not run"** since 9/13, so it was run: 16 buyer and brand queries put
+to the live open web, with every factual claim found about the business independently re-verified against its
+source by a second agent. Filed as [[ai-visibility-panel-2026-09]].
+
+**Sentiment is clean and that is real.** Zero negative content anywhere — no BBB profile or complaints, no
+scam reports, no refund disputes. Yelp 5.0 across 15 reviews and 39 photos; surfaced review language includes
+"top tier work," "Over 100% recommend," "Efficient," "Punctual." **But the evaluative content is almost
+entirely first-party or Yelp** — for "is this company legitimate," an AI has nothing to ground on but
+promongrow.com and one Yelp listing. A clean record no independent source carries is invisible, not
+persuasive. That is the strongest argument yet for [[mention-sprint-2026-09]].
+
+**Visibility is brand-name only: 6/6 brand queries, 0/7 category, 0/2 Spanish, 0/1 comparison.** On a
+hyper-local Lynwood printing query, the UPS Store four blocks away ranked #1 and P&G did not appear. A
+published "Top 10+ Canopy Tent Printing Companies in Los Angeles 2026" roundup lists 15 companies and P&G is
+not among them.
+
+**Three wrong-fact findings, all verified live:**
+1. **The homepage title is the worst offender and it is ours.** `Booth Kits and Bundles - Tents & Backdrops |
+   5 Day Nationwide Delivery – Promo & Grow` — still live, carrying **both** retired concepts, in `<title>`,
+   `og:title` and `twitter:title`. It is the string AI quotes back most. One panel answer reconstructed
+   "bundled packages… with 15%+ savings" straight from it. This is the two-minute Preferences item, and it is
+   now the top fix on the board.
+2. **Yelp outranks promongrow.com on the brand's own queries** and publishes **(323) 249-4449** — Proágo's
+   number — in both its meta description and its JSON-LD, plus a **third number (213) 685-0656** that matches
+   nothing in [[phone-number-map]]. Categories read "Graphic Design, Vehicle Wraps, Signmaking," which is
+   causal: Yelp surfaced on **no** category query. Its Specialties copy still says "produced and delivered in
+   5 days or less." The 9/14 phone correction never landed.
+3. **`printco-direct.com` is still live and 302s to proagobranding.co**, which publishes 323.249.4449 and
+   names 10514 Long Beach Blvd — P&G's address — as its "Production Facility." That is the mechanism binding
+   the wrong phone to this business. Needs a Carlos ruling; it is a Proágo asset.
+
+Also: the search index still shows "Promote & Grow Shop" and "Made in LA" on pages already fixed on-site
+(recrawl lag, no action), and Spanish is a diagnosable blank — the EN/ES toggle exists but no indexable
+Spanish content does.
+
+**Campaign state alongside it:** site fixes all live and holding (the 10x10 tent PDP meta is clean); ChatGPT
+sessions 6→8 over 180 days and 3→4 over 30 — noise, not a trend; **blog articles still 0**; Tier 1 listings
+still unsubmitted except **Bing Places, imported from GBP 2026-09-24, pending publication (7–12 days)**.
+Flagged to Carlos that a GBP import copies whatever GBP holds, and GBP has not had its canon pass yet.
+
+→ [[ai-visibility-panel-2026-09]] · [[search-visibility-game-plan]] · [[mention-sprint-2026-09]] · [[phone-number-map]]
+
 ## [2026-09-22] update | Entity record completed + the GA4 fix that was patched in the wrong place first
 
 **Carlos said go on both queued theme items.** Committed as `7177412` and **deployed to the live storefront the same day** — served HTML verified for the

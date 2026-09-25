@@ -12,7 +12,7 @@
 
 **Sources**: PNG-Master-Context-Playbook.md, PNG-Full-Context_4.14.2026.md
 
-**Last updated**: 2026-06-17.
+**Last updated**: 2026-06-25. Outward copy anti-AI revised (v2) 2026-06-25 — see [[png-voice]] anti-AI rule. (No deliverable customer-facing copy lives on this page; the page is analysis/operational. Note added for tracking parity.)
 
 ---
 

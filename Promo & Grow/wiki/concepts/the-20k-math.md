@@ -43,5 +43,6 @@ The April Full Context framed P&G's target as **$5–8K/month** ("scale from ~$2
 ## Related pages
 - [[concierge-close]]
 - [[conversion-bridge]]
+- [[getting-customers-fast]] — Hormozi's "LTV is the arms race" lever: raise per-customer value (the AOV lever above), don't chase cheaper leads
 - [[store-and-catalog]]
 - [[dashboard]]

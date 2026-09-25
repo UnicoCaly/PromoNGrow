@@ -1,6 +1,6 @@
 # SOP Library
 
-**Summary**: The cataloged SOP library that walks a closer through running an order end to end — SOP-01 quote/price, SOP-02 build the draft order, SOP-03 attach the client, SOP-04 the invoice email, SOP-05 proof/checkout/shipping, SOP-06 legacy Ordant lookup, and SOP-07 a real worked example — plus the re-record outlines for refilming the source Looms.
+**Summary**: The cataloged SOP library that walks a closer through running an order end to end — SOP-01 quote/price, SOP-02 build the draft order, SOP-03 attach the client, SOP-04 the invoice email, SOP-05 proof/checkout/shipping, SOP-06 legacy Ordant lookup, SOP-07 a real worked example, and SOP-08 charging for design — plus the re-record outlines for refilming the source Looms.
 **Type**: concept
 **Sources**: 00-SOP-Index.md, SOP-01-Quoting-and-Pricing.md, SOP-02-Create-Draft-Order-Shopify.md, SOP-03-Add-Client-Shopify.md, SOP-04-Invoice-Email-and-Notes.md, SOP-05-Proof-Checkout-Shipping.md, SOP-06-Legacy-Order-Lookup-Ordant.md, SOP-07-Worked-Example-Canopy-and-AFrame-Quote.md, Re-Record-Outlines.md
 **Last updated**: 2026-06-19 (legacy name reconciled to canonical "PrintCo Direct").
@@ -28,6 +28,7 @@ The ten original Looms collapsed into seven SOPs. The six order-flow clips (Loom
 | SOP-05 Proof, Checkout & Shipping | Looms 8–9 | Master Order Walkthrough | Venus |
 | SOP-06 Legacy Order Lookup (Ordant) | Loom 10 | Loom 10 | Venus |
 | SOP-07 Worked Example (Canopy + A-Frame) | Loom 11 (added June 15) | Loom 11 | Venus (process only — example client is Carlos-only) |
+| SOP-08 Charging for Design | added 2026-06-24 (no Loom yet) | — | Venus |
 
 **Confidentiality split:** Looms 1–3 cover vendor-side (4over) pricing and stay internal — they reveal cost and are not for entry-level reps. Venus quotes from the [[master-price-sheet]] without seeing 4over cost, so SOP-01 needs no video for her. Looms 4–10 are her Venus-facing operational walkthroughs (source: 00-SOP-Index.md, Re-Record-Outlines.md). The internal pricing math lives in [[pricing-engine]].
 
@@ -110,6 +111,21 @@ The ten original Looms collapsed into seven SOPs. The six order-flow clips (Loom
 
 **Reusable takeaways:** anchor item first, then add-ons; unspecified config → quote the standard and mention upgrades; confirm sizes/specs; returning client → find, don't duplicate; AI drafts the email but you steer it (feed specs + prices, ask for short + inquisitive, include a site link, then trim); price is the start of a conversation, not the end (source: SOP-07-Worked-Example-Canopy-and-AFrame-Quote.md).
 
+## SOP-08 — Charging for Design
+
+**Purpose:** decide fast whether a job's art help is free (placement) or paid (fix/create), land the right fee tier without bottlenecking on Carlos, and quote it before doing the work — the operational counterpart to [[proof-vs-design-policy]]. The set fees + complexity-rating reference live on the [[design-price-rubric]]; this is the decision flow.
+
+**Trigger:** any time a customer needs art help — sends a logo, sends a bad file, asks "can you make/design X," or wants a proof on a sub-$500 print item (source: [[proof-vs-design-policy]], Carlos confirmation 2026-06-24).
+
+**The flow:**
+1. **Run the [[file-prep-gate]]** — is the art print-ready (vector/hi-res, right size, CMYK, bleed)?
+2. **Ask the one question — placing, fixing, or creating?** Placing ready art on a $500+ item → **Tier 1 free proof**; placing on sub-$500 print → run as-is, no free proof; fixing → **Tier 2**; creating → **Tier 3**; logo/brand/wrap/crest-from-scratch → **Proágo**.
+3. **Rate the tier** off the [[design-price-rubric]] complexity reference (bump signals: new art drawn / multiple sides or pieces / step-and-repeat / intricate art / color tricks). Between two tiers → quote the higher and tell Carlos.
+4. **Quote the fee BEFORE the work**, warm-framed; add it as a line on the draft order (SOP-02). Never deliver custom art then ask for money.
+5. **Revisions:** ~2 free placement rounds on *supplied* art; new elements/redraws = new quote. **Post-approval = locked** — then the 5-day clock starts.
+
+**Guardrails:** free proof = placement only, $500+ only; sub-$500 print design fee is never waived; Tier 3 never credited; **unsure on tier or it smells like Proágo → route to Carlos, never guess a design number** (same rule as SOP-01).
+
 ## Re-record outlines
 
 Clean scripts for refilming tighter QuickTime videos, each built from the original Loom and trimmed to essentials (source: Re-Record-Outlines.md).
@@ -129,6 +145,8 @@ This library is the sales/ordering front of the house — quote, draft order, in
 - [[fulfillment-sop]]
 - [[pricing-engine]]
 - [[master-price-sheet]]
+- [[design-price-rubric]]
+- [[proof-vs-design-policy]]
 - [[concierge-close]]
 - [[file-prep-gate]]
 - [[shopify-tag-taxonomy]]

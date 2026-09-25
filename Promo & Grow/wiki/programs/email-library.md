@@ -10,7 +10,7 @@
 
 **Sources**: PNG-Email-Library_5.9.2026.md, PNG-Email-Templates-PlugAndPlay_5.9.2026.html, PNG-Abandoned-Cart-and-Exit-Popup_5.9.2026.md, email-01-carlos-reactivation.body.html, email-04-event-season.body.html, email-08-vip-note.body.html
 
-**Last updated**: 2026-06-17.
+**Last updated**: 2026-06-25. Outward copy anti-AI revised (v2) 2026-06-25 — see [[png-voice]] anti-AI rule.
 
 **Channel**: Email (Shopify Email, free tier) + theme-level exit popup
 
@@ -181,15 +181,15 @@ The sourced emails are written in Carlos's plain owner-English; below is a bilin
 
 > **Subject:** ¿Todavía pensándolo? / Still on the fence?
 >
-> Hey {{ first_name | default: "" }} — tu carrito sigue guardado, no te preocupes.
+> Hola {{ first_name | default: "" }}, tu carrito sigue guardado. Sin prisa.
 >
-> Antes de decidir, esto es lo que va incluido en cada orden, sin costo extra:
-> - Prueba de arte gratis — te mandamos el proof antes de imprimir. Tú apruebas, nosotros producimos. Nada se imprime sin tu OK.
-> - Entrega garantizada en 5 días hábiles. No es estimado — es promesa.
+> Antes de que decidas, esto es lo que va incluido en cada orden, sin costo extra:
+> - Prueba de arte gratis. Te mandamos el proof antes de imprimir. Tú apruebas, nosotros producimos. Nada se imprime sin tu OK.
+> - Entrega en 5 días hábiles desde que apruebas el proof. No es estimado, es promesa.
 > - 20+ años produciendo. Tus archivos los revisa gente real, no un algoritmo.
-> - 4.8★ en Google. Esto dijo un cliente: "The canopy setup turned out absolutely killer. Over 100% recommend!"
+> - 4.8★ en Google. Un cliente nos dijo: "The canopy setup turned out absolutely killer. Over 100% recommend!"
 >
-> Tu marca, lista para brillar. Termina tu orden cuando quieras — y si tienes una pregunta, contéstale a este correo o llámanos al (844) 883-3308. Contestamos rápido, de verdad.
+> Tu marca, lista para brillar. Termina tu orden cuando quieras, y si tienes una pregunta, contéstale a este correo o llámanos al (844) 883-3308. Contestamos rápido, de verdad.
 >
 > — Carlos, Promo & Grow
 
@@ -207,4 +207,5 @@ The sourced emails are written in Carlos's plain owner-English; below is a bilin
 - [[bilingual-spanish-moat]]
 - [[shopify-tag-taxonomy]]
 - [[email-campaign-engine]]
+- [[fourth-of-july-email-campaign]]
 

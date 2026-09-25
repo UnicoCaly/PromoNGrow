@@ -25,6 +25,8 @@
 
 Any fail → bounce to the customer **same day** with a specific, friendly fix (template in [[fulfillment-sop]] outward copy), or route to design. The faster the file is right, the faster the proof goes out and the 5-day clock starts.
 
+**Per-product specs (from the vendor templates).** The exact dimensions/dpi to check against live in [[proof-and-production-templates]]. E.g. the **B2Sign event-tent canopy**: CMYK · **150 dpi** · flatten + outline text · PDF/JPG · **Safe Zone 115"×78.85"** · **Bleed Zone 119"×84.28" (2" bleed)** · per side if different artwork. A wrong-size file is the most common bounce — e.g. **posters must be the ordered finish size** (a 24"×36" job needs every file at 24"×36", not mixed sizes).
+
 ## The automation roadmap (three phases)
 
 The goal is to take the human out of the gate over time, raising the clean-file rate at each phase. This is part of the 85%-automated goal (source: dashboard).
@@ -47,7 +49,9 @@ The quote form already includes a **logo upload** field (source: conversion-brid
 Phase 1 (design-resources page) is the immediate move and is referenced in the outward copy as `[design-resources]` (lane: Claude Code to build the page, Claude-admin to write it). [Carlos to provide: confirm the design-resources page is live, or queue it.] Phases 2-3 follow once Phase 1 proves the lift.
 
 ## Related pages
+- [[proof-and-production-templates]]
 - [[fulfillment-sop]]
 - [[conversion-bridge]]
 - [[store-and-catalog]]
 - [[concierge-close]]
+- [[meta-lead-intake-playbook]]

@@ -48,6 +48,7 @@ The $2.4M campaign idea came from the **marketing director, not the founder.** B
 Hormozi's figures (~$6/email, $2.4M in 5 days, ~8% buy rate on a $2K offer with an $88K upsell) come from a **$250M info-product portfolio** with a massive list and high-ticket *digital* offers. **PNG's economics are different** — a ~1.2K warm list, $100–1,600 *physical* products, B2B-ish buyers. **The principles and cadence transfer; the dollar figures do not.** PNG's realistic per-campaign scale is the [[summer-of-futbol-campaign|+$4–8K]] range. Use this page for the *structure*, not the math (sourced figures live on [[dashboard]] and [[the-20k-math]]).
 
 ## Related pages
+- [[getting-customers-fast]] — the **lead-gen** Hormozi counterpart (get the lead; this page = monetize the list)
 - [[email-library]]
 - [[reactivation-email-sequence]]
 - [[reactivation-outreach]]

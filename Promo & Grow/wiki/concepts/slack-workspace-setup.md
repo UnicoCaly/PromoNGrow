@@ -23,6 +23,7 @@ Workspace = `progobrandingdept`. As of 2026-06-17 it has **#promo-and-grow** (Ca
 | **#orders** | Paid orders + production/fulfillment status | Zapier (Shopify) / Carlos-VA | Order paid; in-production; shipped; delivered |
 | **#wins** | Closed deals + 5-star reviews + milestones | Venus / Carlos | Stage → Won; a new review; hitting a weekly number |
 | **#ops** | The spine itself: Sheet/tag questions, SOP changes, blockers | everyone | Anything about how the machine runs |
+| **#promo-and-grow-artwork-proofer** ✅ *(exists — created 2026-06-21, `C0BBY6AJJEP`, private)* | Artwork + spec handoff for proofs | Venus (+ AI) post; Carlos proofs | Venus posts logo + spec → Carlos makes the proof (interim, for SOP/doc) or routes to **graphxsource** → returns it. The future **press team (human + AI)** is being built around this channel. (source: Carlos direction 2026-06-24; channel confirmed live 2026-06-25) |
 | **#general** | Announcements, schedules, non-pipeline chatter | everyone | Default catch-all |
 
 The four pipeline channels (#leads → #quotes → #orders → #wins) intentionally trace the pipeline stages, so the workspace itself is the funnel left-to-right. (co-CEO recommendation)
@@ -59,6 +60,7 @@ The four pipeline channels (#leads → #quotes → #orders → #wins) intentiona
 Workspace + channel creation and invites = Carlos-VA. Pinned reference docs + the eventual Zap-to-Slack posts = Claude-admin design. (source: co-CEO build session 2026-06-17)
 
 ## Related pages
+- [[meta-lead-intake-playbook]] — what feeds #promo-and-grow-artwork-proofer
 - [[pipeline-ops-spine]]
 - [[lead-tracker-sheet]]
 - [[shopify-tag-taxonomy]]

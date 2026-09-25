@@ -90,6 +90,7 @@ Start Venus on the warmest, highest-intent work first — open Shopify draft ord
 - **#D66 — $150**, Cristian Lopez (salsa_culichi@aol.com), Apr 22. Quick close. (Lives in South Gate but a private customer — NOT the city. Fine to call.)
 - **#D2 / #D3 / #D5 ($432 / $487 / $3,040, mid-2025)** — no customer attached; investigate, likely archive.
 - **Midweek — Shadi Safai · Smile Klub Dental** (safaishadi@gmail.com): open storefront-signage quote, decision pending. Two options sent — Option 1 targeted fix $1,788 (replace 2 sun-faded circle decals + refresh hours/contact on door + pylon) · Option 2 full storefront $4,800 (full window wrap + new pylon sign). Venus calls to help her choose and lock it. Already tagged `stage:quoted` `pri:hot` `fu:tue`.
+  - **Status update 2026-06-22:** Shadi is now **Carlos's lane** (not Venus's) — the current state is **$5,838 across 3 sent quotes** (#D83/#D80/#D84; the older $1,788/$4,800 two-option framing is superseded — don't double-count). **Carlos contacted Shadi directly** (still considering / circle back / close the file?); **no reply yet**, holding a few days, **candidate to close if silent.** See [[venus-work-queue]] Tier 0. (source: Carlos direction 2026-06-22)
 
 Tag drafts `src:draft` + `pri:hot` as worked.
 

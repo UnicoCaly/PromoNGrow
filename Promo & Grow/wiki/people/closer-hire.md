@@ -6,9 +6,11 @@
 
 **Sources**: PNG-Master-Context-Playbook.md, PNG-Closer-Onboarding-Workbook.md, PNG-SMS-Marketing-Playbook.md
 
-**Last updated**: 2026-06-18 (vendor rename SwordXpress→Soar Dist USA).
+**Last updated**: 2026-09-13 (Venus departure recorded).
 
 ---
+
+> **Status 2026-09-13 (Carlos): Venus Castro is no longer with the company.** Departure date not recorded. Venus-named references were removed from the live free-proof LP the same day (name, photo card, "hi, I'm Venus" lines → team + contact card; response promise softened to "usually within one business day") — theme commit `e99da81`. The closer seat is open; lead handling reverts to Carlos. Offboarding checklist (Carlos lane) is logged in [[log]] 2026-09-13. Pages still describing Venus as the active closer/social owner — [[venus-work-queue]], [[venus-social-ads-playbook]], [[meta-lead-intake-playbook]], [[venus-email-signature]], [[phone-number-map]], and the Venus briefs — are historical as of this date.
 
 ## The closer-first decision
 

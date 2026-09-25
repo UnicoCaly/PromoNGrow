@@ -9,7 +9,7 @@
 
 **Channel**: Email (owned warm list) + Meta (lead-form prospecting + retargeting) + Google Search + organic/boosted social.
 **Status**: Built and brand-audited. **EN email SENT 2026-06-17** (Venus Castro, warm list); ads, funnel, and social are copy-ready, pending wiring/launch (source: Summer-of-Futbol-Context-and-Status_6.16.2026.md; Carlos 2026-06-17).
-**Performance**: EN email sent 6/17 — awaiting open/click data; ads/funnel/social not yet launched. Targets are stated below under Objective.
+**Performance** (EN email, pulled 2026-07-06 → [[sent-email-log]]): 630 sent · open **23%** · click **1.8%** · bounce 0.5% (Good) · unsub 0% · delivery 100% · **$0 attributed sales / 0 orders** (concierge-close — the campaign optimizes for closed invoice $, not tracked checkouts). **⚠️ Merge bug:** the subject went out as the literal `Want your patio packed on game day, {{ data.customer.first_name }}?` — the `{{ data.customer.first_name }}` tag rendered **raw** (the `data.` prefix doesn't resolve in Shopify Email); body greeting was blank too. The correct tag is `{{ customer.first_name }}` (fixed on later sends). Ads/funnel/social not launched. Targets under Objective below.
 
 ---
 
@@ -114,7 +114,7 @@ Navy `#1B2838` (text/structure) · Copper `#C17A3A` (CTAs/accents ONLY) · Trust
 
 ## Deliverable 1 — Email blast
 
-- **Send to:** OWNED warm Shopify Email list only — Reactivation-Apr2026 (~647) + Reactivation-2026 (~574) + `int:tents`. **NOT** the cold prospecting list (promotengrow.com cold domain — distinct from the live storefront promongrow.com). **EXCLUDE** DNC:institutional (source: 01-Email-Blast.md, Summer-of-Futbol-Context-and-Status_6.16.2026.md). *(The ~647 / ~574 email segments and the ~162 past-customer call list are different cohorts of the same reactivation universe, not a conflict — the full reconciliation is on [[reactivation-outreach]].)*
+- **Send to:** OWNED warm Shopify Email list only — Reactivation-Apr2026 (~647) + Reactivation-2026 (~574) + `int:tents`. **NOT** the cold prospecting list (promoteandgrow.com cold domain — distinct from the live storefront promongrow.com). **EXCLUDE** DNC:institutional (source: 01-Email-Blast.md, Summer-of-Futbol-Context-and-Status_6.16.2026.md). *(The ~647 / ~574 email segments and the ~162 past-customer call list are different cohorts of the same reactivation universe, not a conflict — the full reconciliation is on [[reactivation-outreach]].)*
 - **From (LIVE):** Venus Castro · Promo & Grow · reply-to hello@promongrow.com. The source email copy (01-Email-Blast.md) is written in Carlos's first person and signature; the finalized send was **swapped to Venus Castro** as the contact/signature per the status doc (source: Summer-of-Futbol-Context-and-Status_6.16.2026.md).
 - **Subject (LIVE = Option 2):** `Want your patio packed on game day, {{ first_name }}?` · **Preview:** `Your tent, your throw, your flag — your logo, your team's colors.` (source: Summer-of-Futbol-Context-and-Status_6.16.2026.md). Three subject options (calendar/benefit, curiosity/warm, concierge/human) exist in EN/ES/Spanglish (source: 01-Email-Blast.md).
 - **Only discount code anywhere:** SHOWUP = free shipping over $500. No other codes, no fake countdowns (source: 01-Email-Blast.md).
@@ -255,3 +255,4 @@ The master line, as it carries the whole campaign:
 - [[vip-reactivation-list]]
 - [[closer-hire]]
 - [[email-campaign-engine]]
+- [[fourth-of-july-email-campaign]]

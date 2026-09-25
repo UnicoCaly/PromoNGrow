@@ -72,6 +72,9 @@ $15.00 → $15.75 (3 mo) → $16.54 (6 mo) → $17.36 (9 mo) → $18.23 (12 mo) 
 - **Week 2 — First close + the unlock.** She closes her first warm lead; *after* that win, introduce the voice-capture habit (see Your Playbook below). Raise hours cap if she's flowing.
 - **Weeks 3–4 — Rhythm.** Effort metrics at target, quote→paid trending up; Carlos spot-checks instead of reviewing every quote (source: PNG-Weekly-Scorecard-and-30-Day-Checkpoint.md).
 
+**Live milestones:**
+- **2026-06-26 — first solo quote, end-to-end, no step-in.** Venus built and sent her first complete quote on a live Meta lead with Carlos not stepping in. That's the **Foundations-gate signal** that she can quote a catalog item cleanly on her own → reads as ready for the [[design-price-rubric]] + [[master-price-sheet]] handoff so Carlos exits the per-quote loop. (source: Carlos 2026-06-26.)
+
 ### 30-Day checkpoint (trial → commit)
 Pass criteria: closed real warm leads (first handful of paid invoices); speed-to-lead + follow-through green; quotes accurate + floor respected; voice on-brand; self-manages. If she passes: raise the weekly hours cap (the clean trial→commit mechanism — no separate contract), keep her on the rate ladder, graduate her toward more of the warm queue and eventually cold, and set up her Cowork account for voice-matched drafting (only after the close is proven). If close but not there: name the one or two metrics, give 2 more weeks, don't move the goalposts (source: PNG-Weekly-Scorecard-and-30-Day-Checkpoint.md).
 

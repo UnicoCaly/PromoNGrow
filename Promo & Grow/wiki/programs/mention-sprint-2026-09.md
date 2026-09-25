@@ -25,7 +25,7 @@ Branded web mentions correlated with AI Overview visibility more strongly than b
 | # | Target | Notes | Lane |
 |---|---|---|---|
 | 1 | **Google Business Profile** | Exists. Fix to canon: 213 primary + 844 secondary, categories, services, attributes, long description, photos | Carlos |
-| 2 | **Bing Places** | Also feeds ChatGPT's search index — doubly valuable | Carlos |
+| 2 | ~~**Bing Places**~~ ✅ **submitted 2026-09-24 via GBP import — pending publication (7–12 days)** | Also feeds ChatGPT's search index — doubly valuable | Carlos |
 | 3 | **Apple Business Connect** | Apple Maps + Siri | Carlos |
 | 4 | **Yelp** | Name fixed 9/13; confirm phone changed to 213; add services + photos | Carlos |
 | 5 | **Facebook business page** | facebook.com/promongrow — update it, never create a duplicate | Carlos |
@@ -66,6 +66,7 @@ Reddit is among the most frequently cited sources in ChatGPT ([[aeo-citation-met
 | Instagram | live | instagram.com/promongrow | — | in site schema |
 | Facebook | URL given by Carlos 9/20 | facebook.com/promongrow | 2026-09-20 | needs canon pass; **not machine-verifiable** — Facebook blocks automated reads (HTTP 400 / login splash, checked 9/20 + 9/22). Carlos to eyeball on first visit |
 | LinkedIn | live, URL confirmed 9/20 | linkedin.com/company/promo-grow | 2026-09-20 | ⚠️ **page read 9/22 — body copy still says "Promote & Grow"** (see below); 131 followers; address/founded/website already match canon |
+| **Bing Places** | **submitted 2026-09-24 — pending publication** | — | 2026-09-24 | Imported from GBP (the fast path). Bing says 7–12 days to publish. **Highest-value Tier 1 item after GBP itself: ChatGPT's search grounding leans on Bing's index, and ChatGPT is the channel that produced both AEO leads.** Re-check ~2026-10-06; verify the published record matches canon (213 phone, hours, categories) since an import carries over whatever GBP holds. |
 | *(the rest open)* | | | | |
 
 ## Resolved 2026-09-20 (Carlos)

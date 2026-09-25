@@ -2,6 +2,8 @@
 
 > ⚠️ **SLA + voice check:** any customer-facing delivery line reads "5 business days from proof approval," never an unconditional guarantee; the "3 days for Donut Media" claim is retired; bilingual copy must pass the ganas read-aloud test. (co-CEO 2026-06-17) — see [[lead-machine]], [[png-voice]].
 
+> 🟡 **Status (2026-06-20): Meta prospecting is BENCHED at launch.** Per the lean-validate decision, week-1 paid = Google Search (Spanish + Tents) + retargeting only; the $200 Meta prospecting line holds until Venus's close rate on paid leads is known (no reliable public Meta lead-form CPL survived 2026 verification, and lead-form ads over-attract tire-kickers). Retargeting creative here is still in play. Turn prospecting on with our own CPL data. See [[growth-offensive]], [[launch-week-roadmap]].
+
 **Summary**: The paid-ads channel of the Growth Offensive — bilingual Meta lead-form creatives (prospecting + retargeting), a 6-question 60-second qualifier that filters tire-kickers before Venus, plus the tracking/audiences/Google-Search setup. Optimizes to Lead events, never phantom web-cart purchases.
 **Type**: channel
 **Sources**: PNG-Meta-LeadForm-Creative_6.15.2026.md, PNG-ColdEmail-and-Ads-Implementation-Runbook_6.15.2026.md

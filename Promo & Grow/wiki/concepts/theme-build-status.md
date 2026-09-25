@@ -3,7 +3,7 @@
 **Summary**: Single source of truth for the Promo & Grow Shopify (Dawn 15.x customized) theme build as of 2026-06-16 — what is live in the theme, how the build/deploy works, the admin tasks still owned by Carlos, and where the build sits on the roadmap.
 **Type**: source-summary
 **Sources**: PNG-Build-Status_6.16.2026.md
-**Last updated**: 2026-06-20 (quote-conversion firing-path bug found + fixed)
+**Last updated**: 2026-07-09 (staged tournament rebuilds recorded: home r2 + bundle builder v2; v1-builder live fixes noted)
 
 ---
 
@@ -24,6 +24,15 @@ These are the load-bearing mechanics for anyone pushing to the theme (source: PN
 - **Schema gotcha.** Shopify rejects a `default` on a `"type": "url"` setting — use `"type": "text"` for links with defaults, or the whole section fails to compile. This caused the intent-router not rendering until fixed.
 - **Page cache caveat.** Anonymous `curl` of promongrow.com hits Shopify's server-side `page_cache` which doesn't bust via URL params, so curl can show stale HTML even after a clean deploy. Verify deploys by reading the theme file / push success, not anonymous curl.
 - **Dev server.** Shopify CLI `theme dev` needs interactive store auth and does NOT run through the preview MCP. Config saved in `.claude/launch.json` (port 9293); verification is via deployed-DOM curl.
+
+## Staged, not live (go-live candidates)
+
+Two tournament-won rebuilds plus the brand-canon batch sit in the repo awaiting the Carlos-gated flip:
+
+- **Brand-canon batch (staged 2026-07-30 — [[brand-identity-system]] rollout):** the **DM Sans → Inter body migration** (`--png-font-body` → `'Inter','DM Sans',system-ui` in `layout/theme.liquid` + `assets/custom-styles.css`; 26 hardcoded stacks migrated across 5 png-* snippets, popup-exit-bundle, both home-final sections, bundle-builder-v2, and both free-proof LP templates incl. their Google-Fonts loaders — DM Serif Display kept loaded as the Cooper fallback), the canon hover `#A8682F` → `#A66629` in 11 files, and **23 SLA/claims fixes** ("Free proof on every order" → "$500+" in trust-strip/contact; unconditional "5-day, guaranteed" / "delivered in 5 business days" → "from proof approval" across custom-hero, seo-landing, how-it-works, product-tabs + product.json, tent page templates, index.json, home-final/r2, bundle-builder-v2, lp-free-proof-v2 metas). Dawn's editor-owned `settings_data.json` deliberately untouched. **Push (Carlos, after `git pull --no-rebase --no-edit`):** `--only layout/theme.liquid assets/custom-styles.css snippets/png-*.liquid snippets/popup-exit-bundle.liquid sections/custom-{trust-strip,contact,product-tabs,hero,seo-landing,how-it-works}.liquid templates/page.lp-free-proof*.liquid templates/product.json templates/page.tent-10x*.json` (validate with `--development` first; home-final/bundle-v2 changes ride their own go-lives). After push: verify hero/announcement text in the theme editor (editor-stored settings may carry old copy). (source: staged working tree 2026-07-30; wiki log 7/30.)
+
+- **Home page r2** (`sections/custom-home-final-r2.liquid`, `.pg-home2`-scoped): the [[home-redesign-tournament]] round-2 final. Both repo copies of `templates/index.json` already hold the r2 template; section validated on a dev theme; ships with the 2026-07-07 SEO batch. CTAs corrected to `/pages/free-proof` (2026-07-07).
+- **Bundle builder v2** (`sections/custom-bundle-builder-v2.liquid`, `.pgbb2`-scoped): the [[bundle-builder-v2]] smart-default board, free-proof-first. Live `templates/collection.bundles.json` still renders v1; ready-to-swap template in `Bundle Builder Tournament/final/`. Open pre-flight: preview-theme smoke test (commerce wiring only statically verified) + the section is **not yet mirrored** to the theme_export copy.
 
 ## What's live (theme features)
 
@@ -55,13 +64,14 @@ Block order: title → price → review_stars (Judge.me) → trust badges → va
 ### Collections
 - **Comparison-row list** (`sections/custom-collection-products.liquid` + `snippets/product-row-card.liquid`): horizontal rows with thumbnail, title, per-grid Judge.me star badge, price, 5-day badge, View button. HIDDEN on /collections/bundles.
 - **Collection banner** (`custom-collection-banner.liquid`): per-handle hero copy.
-- **Bundle builder** (`sections/custom-bundle-builder.liquid`, on /collections/bundles): JS-powered, fetches live prices from `/products/{handle}.json`, 3 bundles (Event Vendor / Event Pro popular / Trade Show Starter), every item a dropdown, 15% discount math, add-to-cart via `/cart/add.js` with `_bundle` line-item property.
+- **Bundle builder v1** (`sections/custom-bundle-builder.liquid`, on /collections/bundles): JS-powered, fetches live prices from `/products/{handle}.json`, 3 bundles (Event Vendor / Event Pro popular / Trade Show Starter), every item a dropdown, 15% discount math, add-to-cart via `/cart/add.js` with `_bundle` line-item property. Live fixes since 6/16: multi-flag per-slot quantity (6/26), flag size/variant selection + copper popup (6/26), the `available`-field dropdown bug (6/30) — see [[site-catalog-fix-backlog]]. Its tournament-won replacement is staged as [[bundle-builder-v2]] (see Staged block above).
 
 ### Pages
 - **Contact / quote** (`custom-contact.liquid`): form + phone card (Mon–Fri 10am–4pm PST) + email card (hello@promongrow.com) + trust badges.
 - **Design Resources** (`page.design-resources` → `custom-design-resources.liquid`): hero, 3-step, template grid, file-requirements 2×2, AI prompt cards (copy buttons), navy CTA. Requires a Shopify Page assigned to the template (see admin tasks). Supports the [[file-prep-gate]].
 - **Size-segmented SEO landing pages (Phase 2):** `page.tent-10x10`, `page.tent-10x15`, `page.tent-10x20` → `custom-seo-landing.liquid` (reusable, schema-driven): navy keyword hero + dual CTA + benefits + spec strip + FAQ accordion + FAQPage JSON-LD + closing CTA. Templates exist; need Shopify Page records assigned. (War-Room steal: Instent.)
 - **AEO article template (Phase 2):** `article.aeo` → `main-article` + `custom-aeo-faq.liquid` (FAQ accordion + FAQPage JSON-LD + free-proof CTA). Assign blog posts to `article.aeo` to publish.
+- **Free-Proof landing page** (`page.lp-free-proof` → `templates/page.lp-free-proof.liquid`): standalone single-goal conversion LP rendered with `{% layout none %}` (no Dawn header/footer), dual `{% form 'contact' %}` forms → Store contact email (hello@promongrow.com) with mapped `contact[…]` fields + a `Source` tag, the real retro logo as an image (works here because the LP header is white, unlike the navy footer's white-out problem), embedded Venus headshot, CDN product images, bilingual consent + footer Privacy Policy link, conversion via the `png:quote_request_submitted` bridge. Pushed to live (inert); test page `/pages/free-proof-test`; pending submit-test + URL finalize. The landing destination for [[meta-ugc-launch-kit]] / [[outbound-fishing-playbook]] / [[google-search-engine]]. Full page: [[free-proof-landing-page]]. (Built 2026-06-22, Claude-admin.)
 
 ### Popups (rendered in `layout/theme.liquid`)
 - **Exit-intent bundle popup** (`snippets/popup-exit-bundle.liquid`): product+collection pages only, desktop mouseout-to-top / mobile rapid scroll-up, once/session, armed after 5s. Offer "Starting at $848, saves you $150+" *(✅ Resolved 2026-06-19: was a stale "$910 / $160+"; synced to the builder's ≈$848.30 lowest complete config per [[master-price-sheet]]; its "5-day delivery, guaranteed" line also softened to "from proof approval". Durable follow-up: make the popup pull the number live from the builder so it can't drift again — Claude Code lane.)* Tier-aware.
@@ -84,7 +94,7 @@ These are [[carlos]]-VA-lane items; the theme code is done but the work won't sh
 |---|---|---|
 | 1 | Create Shopify Pages + assign templates | Templates exist, pages don't: Design Resources → `page.design-resources`; Custom 10x10/10x15/10x20 Event Tent → `page.tent-10x10/15/20`. Set SEO title/meta; add to nav/sitemap. |
 | 2 | AEO articles | Write 1–2 FAQ/AEO blog posts, set each to `article.aeo`, fill FAQ blocks. |
-| 3 | Google Ads quote conversion | **Code fix shipped 2026-06-20** (conversion now fires on the success page — was dead/unreachable). Remaining: create the "Quote submitted" action (manual · value+USD · Count=One · **Primary**), paste its label into Theme settings → Tracking & Analytics → "Quote conversion label", **push** the quote-modal fix + label live, then live-test (Network tab / Tag Assistant). Until done, quote submits aren't counted. See [[conversion-tracking-setup]]. |
+| 3 | Google Ads quote conversion | ✅ **Wired live 2026-06-21** — the (found-dead) firing path + label `_S8lCJKl6sIcENmLkNdB` confirmed on the MAIN theme via Admin API; "Submit lead form" action created. **Carlos sent test submits 6/21 → confirming "Recording conversions" 6/22**, then the ad gate clears. See [[conversion-tracking-setup]]. |
 | 4 | Quote auto-reply email | Settings → Notifications → Contact form — set reply-to hello@promongrow.com + Carlos-voice auto-reply (EN + ES). |
 | 5 | Bilingual | Spanish is published in Markets; paste PNG-Spanish-Money-Page-Copy into Translate & Adapt for hero pages, nav, footer, trust strings. Stage page-by-page (no half-Spanish pages). See [[bilingual-spanish-moat]]. |
 | 6 | Footer logo (optional) | To use an image instead of the text wordmark, upload a transparent WHITE logo to Settings → Brand. |
@@ -101,7 +111,7 @@ These are [[carlos]]-VA-lane items; the theme code is done but the work won't sh
 
 ## Conventions
 
-Palette: navy `#1B2838`, copper `#C17A3A` (CTAs/clickable ONLY), copper-hover `#A8682F`, trust-green `#1E6B4A`, off-white `#F7F7F5`. Fonts: DM Serif Display (headings), DM Sans (UI/body). All custom classes are `png-` namespaced. Phone: (844) 883-3308 / `tel:8448833308`. 5-day delivery is the hero stat everywhere; no fake urgency (source: PNG-Build-Status_6.16.2026.md).
+Palette: navy `#1B2838`, copper `#C17A3A` (CTAs/clickable ONLY), copper-hover `#A8682F`, trust-green `#1E6B4A`, off-white `#F7F7F5`. Fonts: **Cooper Black** (titles/headings — real licensed font self-hosted at `assets/cooper-black.woff2`, `@font-face` in `theme.liquid` critical CSS, swapped site-wide 2026-06-24; was DM Serif Display), DM Sans (UI/body). All custom classes are `png-` namespaced. Phone: (844) 883-3308 / `tel:8448833308`. 5-day delivery is the hero stat everywhere; no fake urgency (source: PNG-Build-Status_6.16.2026.md).
 
 The 6/16 doc names companion build specs not yet in this wiki: PNG-90-Day-Execution-Roadmap, PNG-Competitive-War-Room_6.08.2026, PNG-Concierge-Conversion-Build-Spec, PNG-Bilingual-Build-Spec (unverified — not yet ingested).
 

@@ -2,6 +2,8 @@
 
 > ⚠️ **Reality-check applied.** Cold paid leads close FAR below the warm 2.5-3% rate, CPCs run higher than first modeled, and every customer-facing delivery line must read "5 business days from proof approval" — never an unconditional guarantee. Corrected economics, kill-switch, and honest framing live in [[lead-machine]]. (co-CEO 2026-06-17)
 
+> ✅ **2026 validation (task wtl253ia7, 6/20): Search-first is correct; Performance Max is OUT at this budget.** PMax needs ~$100–150/day ($3–4.5K/mo) to exit learning; at ~$25/day it wastes ~70% on Display/YouTube junk. Closest benchmark (WordStream 2026 Business Services): CPC ~$5.87, CPL ~$93.69, CVR 4.85% → the lean budget realistically yields **1–4 qualified leads/mo in month 1**. Revisit PMax only after a scale decision. See [[growth-offensive]].
+
 **Summary**: The lean Google Search acquisition engine ($500-1K/mo) designed to make the phone ring with high-intent LA event-display leads for Venus to close. One Search campaign, a handful of tight product-intent ad groups plus a dedicated Spanish ad group, bilingual ganas-voice ads on the 5-day promise + free-proof CTA, and a hard prerequisite: wire the quote-conversion label before any spend (tracking is partly live — pixel + Ads tag already installed).
 
 **Type**: channel
@@ -93,7 +95,7 @@ All ad copy below is outward customer-facing and written in the bilingual ganas 
 **Descriptions:** Carpas y toldos personalizados, hechos en Lynwood y listos en 5 días hábiles. Prueba gratis. · Manda tu logo y te hacemos una prueba gratis — sin compromiso. Lista en 5 días. · Tu evento, tu marca, hecho bien. Pide tu cotización gratis hoy. · Gente real que habla tu idioma. 20+ años ayudando a emprendedores de LA.
 
 ### RSA Set 4 — Table Covers & Flags (EN, La Emprendedora / vendor)
-**Headlines:** Custom Table Covers, LA · Feather Flags w/ Your Logo · Booth-Ready in 5 Days · Free Proof on Every Order · Show Up Like a Pro · Made in LA, Not Mass-Made · Send Your Logo Today · 4.8★ from Local Vendors
+**Headlines:** Custom Table Covers, LA · Feather Flags w/ Your Logo · Booth-Ready in 5 Days · Free Proof on Orders $500+ · Show Up Like a Pro · Made in LA, Not Mass-Made · Send Your Logo Today · 4.8★ from Local Vendors
 **Descriptions:** Printed table throws & feather flags that make your booth look legit. Free proof, 5 days. · You bring the ganas — we make sure you show up like a pro. Free quote today. · Custom table covers & flags made in Lynwood. Free proof before you pay. · Real craft, fast turnaround, fair price. Send your logo, get a free proof.
 
 **Pinning guidance:** pin one "5 days" headline and one "free proof" headline to slots so the promise + CTA always show; let Google rotate the rest (co-CEO recommendation). Keep prices OUT of ad copy — products are quote-first / custom (source: conversion-bridge.md). Never use fake urgency / countdowns — it violates the anti-brand (source: png-voice.md).
@@ -105,7 +107,7 @@ Maximize the free real estate — extensions lift CTR and Quality Score, lowerin
 - **Call asset** — the (844) 883-3308 line, set to show only during Venus's answer hours (see schedule). Use a **call-tracking number/conversion** so calls are counted (source: store-and-catalog.md for the line; tracking spec on [[conversion-tracking-setup]]).
 - **Lead-form asset** — a low-friction "Get a free proof" form (name / phone / what they need) so mobile users convert without leaving Google; route submissions to the warm queue with an instant alert (speed-to-lead is the #1 close factor) (source: conversion-bridge.md).
 - **Sitelinks (4):** "Custom Tents", "Trade-Show Displays", "Get a Free Proof", "How It Works (5 Days)".
-- **Callouts:** "5 Days After Proof OK", "Free Proof Every Order", "Made in the USA", "20+ Years in LA", "Hablamos Español", "4.8★ Reviews" (source: png-voice.md trust phrases). *(Never use "guaranteed" — see the SLA honesty rule in [[lead-machine]] and [[fulfillment-sop]].)*
+- **Callouts:** "5 Days After Proof OK", "Free Proof on $500+", "Made in the USA", "20+ Years in LA", "Hablamos Español", "4.8★ Reviews" (source: png-voice.md trust phrases). *(Never use "guaranteed" — see the SLA honesty rule in [[lead-machine]] and [[fulfillment-sop]].)*
 - **Structured snippets:** Header "Brands" or "Types" → Canopy Tents, Table Covers, Feather Flags, SEG Displays, Step & Repeat, Banners.
 - **Location asset** — link the Google Business Profile (4.8★, 19 reviews) so the Lynwood address + reviews show (source: dashboard.md). Reinforces the local moat.
 - **Image assets** — real product/booth photos (premium, never stock-looking — source: png-voice.md guardrail). **(Claude-admin / Carlos-VA)** to supply. [Carlos to provide: 3-5 high-quality product/booth photos for image assets.]

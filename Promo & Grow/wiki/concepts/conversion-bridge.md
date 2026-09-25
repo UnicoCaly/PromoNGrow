@@ -16,6 +16,8 @@
 
 The fix for the [[concierge-close|missing bridge]] is the **"Get a Free Proof" quote path** — a low-friction on-ramp that feeds cold traffic into the human close that already converts. Spec'd in PNG-Concierge-Conversion-Build-Spec (a build for Claude Code; not yet ingested into raw) (source: PNG-Master-Context-Playbook.md). The #1 strategic lever (source: PNG-Master-Context-Playbook.md).
 
+A dedicated **landing-page implementation is now shipped** — see [[free-proof-landing-page]] (the `page.lp-free-proof` Shopify template hosted on promongrow.com + the png-v9/v10 standalone versions): a single-goal page the cold/paid campaigns point at (built 2026-06-22). It is in addition to the on-site quote modal that lives on PDPs.
+
 ## Tiered CTAs (quote-first vs cart-first)
 
 Tier the funnel by product type:
@@ -51,6 +53,8 @@ For cold traffic, success = **quote requests / calls, not checkouts.** Track `qu
 The bridge build (popups, quote form, CTAs, pixel, bilingual plumbing) is Claude Code's lane; the app evaluation and copy are Claude-admin; platform toggles and the human close are Carlos/VA (source: PNG-Master-Context-Playbook.md).
 
 ## Related pages
+- [[getting-customers-fast]] — why the free proof works: it's a free lead magnet (#1) that removes the buyer's "need-to-believes" (#6)
+- [[free-proof-landing-page]]
 - [[lead-machine]]
 - [[draft-order-quote-system]]
 - [[lead-tracker-sheet]]

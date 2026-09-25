@@ -19,5 +19,8 @@
 
 Live theme state (Dawn 15.x, theme id 171153293348, Phases 1–2 complete) is on [[theme-build-status]]. The sibling lanes are **Claude-admin** (Shopify admin, catalog, copy, data, connectors, this wiki) and **Carlos/VA** ([[carlos]]) — see [[store-and-catalog]] § the two-agent build model.
 
+**Lane expansion (2026-07-10/12):** the build surface now includes **`Proof Factory/`** (compositor v2 + production templates), **`Ad Studio/`** (data-driven static-ad renderer, Cooper Black), and two repos — **png-team-brain** (filtered knowledge) + **png-agentic-os** (event spine: Worker/D1/runner). See [[ai-first-architecture]] / [[agentic-os]].
+
 ## Related pages
 - [[theme-build-status]] · [[conversion-tracking-setup]] · [[lead-machine]] · [[store-and-catalog]] · [[carlos]]
+- [[ai-first-architecture]] · [[agentic-os]] · [[meta-creative-expansion-2026-07]]
