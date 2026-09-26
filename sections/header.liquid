@@ -439,7 +439,8 @@
     "@type": "LocalBusiness",
     "@id": {{ request.origin | append: '/#business' | json }},
     "name": "Promo & Grow",
-    "alternateName": "PrintCo Direct Inc.",
+    "legalName": "PrintCo Direct Inc.",
+    "alternateName": ["PrintCo Direct", "Promo N Grow"],
     "description": "Custom event displays printed in Los Angeles: canopy tents, SEG fabric backdrops, flags, table throws, banners, and wall art. Bilingual service in English and Spanish.",
     "url": {{ request.origin | append: '/' | json }},
     {% if settings.logo %}
